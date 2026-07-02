@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OperateAI - Features</title>
+    <meta name="description" content="OperateAI Features - AI Registry, Certification, DID, DIDComm, and more">
+    <meta name="keywords" content="AI, AI Registry, DID, Blockchain, Web3, OperateAI">
+    <meta name="author" content="BizFirst AI">
+    <link rel="shortcut icon" href="./images/favicon.ico">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/animations.css">
+    <link rel="stylesheet" href="./css/components.css">
+    <link rel="stylesheet" href="./css/common.css">
+
+    <style>
+    body { overflow-x: hidden; }
+        body {
+            background: #111;
+        }
+
+        .oai-hero {
+            padding: 160px 0 80px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a2a0a 50%, #1a1a1a 100%);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            color: #fff;
+        }
+
+        .oai-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 30% 40%, rgba(0, 255, 0, 0.06) 0%, transparent 60%),
+                radial-gradient(circle at 70% 60%, rgba(6, 182, 212, 0.06) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .oai-hero .hero-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 40px rgba(0, 255, 0, 0.25);
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 40px rgba(0, 255, 0, 0.25);
+            }
+
+            50% {
+                box-shadow: 0 0 60px rgba(0, 255, 0, 0.4);
+            }
+        }
+
+        .oai-hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .oai-hero p.lead {
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.75);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            margin: 0;
+        }
+
+        .oai-section {
+            padding: 80px 0;
+            background: linear-gradient(180deg, #141414 0%, #1a1a1a 100%);
+            color: #fff;
+        }
+
+        .oai-section:nth-child(odd) {
+            background: linear-gradient(180deg, #1a1a1a 0%, #141414 100%);
+        }
+
+        .oai-section .section-header h2 {
+            color: #fff;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .oai-section .section-header p {
+            color: rgba(255, 255, 255, 0.65);
+        }
+
+        .feature-detail-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            height: 100%;
+        }
+
+        .feature-detail-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-6px);
+            border-color: rgba(0, 255, 0, 0.25);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 25px rgba(0, 255, 0, 0.08);
+        }
+
+        .feature-detail-card .feature-icon-lg {
+            width: 72px;
+            height: 72px;
+            background: linear-gradient(135deg, rgba(0, 255, 0, 0.15), rgba(6, 182, 212, 0.1));
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--accent-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-detail-card h3 {
+            color: #fff;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .feature-detail-card p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+        }
+
+        .feature-detail-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-detail-card ul li {
+            color: rgba(255, 255, 255, 0.8);
+            padding: 0.4rem 0;
+            font-size: 0.95rem;
+        }
+
+        .feature-detail-card ul li i {
+            color: var(--accent-primary);
+            margin-right: 0.5rem;
+            width: 16px;
+        }
+
+        .mermaid-container {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .cta-section-oai {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #0a2a0a, #141414);
+            text-align: center;
+            color: #fff;
+        }
+
+        .cta-section-oai h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section-oai p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .oai-hero { padding: 120px 0 60px; }
+            .oai-hero h1 { font-size: 2rem; }
+            .oai-hero p.lead { font-size: 1rem; }
+            .feature-detail-card { padding: 1.5rem; }
+        }
+
+        @media (max-width: 576px) {
+            .oai-hero h1 { font-size: 1.75rem; }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="preloader">
+        <div id="status">
+            <div class="spinner">Loading...</div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top custom-nav">
+        <div class="container">
+            <a class="navbar-brand" href="./index.html">
+                <div class="logo-container"><img src="./images/logo.png" alt="BizFirst AI" class="logo-img"></div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="features.html">Features</a></li>
+                    <li class="nav-item"><a class="nav-link" href="how-it-works.html">How It Works</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ecosystem.html">Ecosystem</a></li>
+                    <li class="nav-item"><a class="nav-link" href="did-identity.html">DID & Identity</a></li>
+                    <li class="nav-item"><a class="nav-link" href="agent-communication.html">Communication</a></li>
+                    <li class="nav-item"><a class="nav-link" href="getting-started.html">Get Started</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="oai-hero">
+        <div class="container position-relative">
+            <div class="hero-icon" data-aos="zoom-in">
+                <i class="fas fa-cubes"></i>
+            </div>
+            <h1 data-aos="fade-up" data-aos-delay="100">OperateAI Features</h1>
+            <p class="lead" data-aos="fade-up" data-aos-delay="200">Six powerful capabilities that give your AI agents
+                sovereign identity, verifiable credentials, and autonomous communication on the blockchain.</p>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Feature 1: AI Registry -->
+    <section class="oai-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="feature-detail-card" data-aos="fade-up">
+                        <div class="feature-icon-lg">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <h3>AI Registry</h3>
+                        <p>A sovereign registry for your personal or organizational AI agents. Only the owner or
+                            trusted delegates can modify entries, ensuring complete immunity from external interference.
+                            Build and manage custom AI Agent Forms tailored to your unique AI design requirements.</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Personal or organizational AI Agent registry</li>
+                            <li><i class="fas fa-check-circle"></i> Only owner or trusted delegates can modify</li>
+                            <li><i class="fas fa-check-circle"></i> Sovereign — immune from external interference</li>
+                            <li><i class="fas fa-check-circle"></i> Custom AI Agent Forms based on your AI design</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Feature 2: AI Agent Certification -->
+    <section class="oai-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="feature-detail-card" data-aos="fade-up">
+                        <div class="feature-icon-lg">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <h3>AI Agent Certification</h3>
+                        <p>Establish trust and credibility for your AI agents through a flexible certification
+                            framework. Any certifying authority can certify your agents, and you can even enroll as a
+                            certifying authority yourself. Powered by CertifiedItems.com, this feature builds confidence
+                            for third-party consumers interacting with your agents.</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Any certifying authority can certify your agents
+                            </li>
+                            <li><i class="fas fa-check-circle"></i> Enroll as a certifying authority yourself</li>
+                            <li><i class="fas fa-check-circle"></i> Builds trust for third-party consumers</li>
+                            <li><i class="fas fa-check-circle"></i> Powered by CertifiedItems.com</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Feature 3: AI Agent Data Registration -->
+    <section class="oai-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="feature-detail-card" data-aos="fade-up">
+                        <div class="feature-icon-lg">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3>AI Agent Data Registration</h3>
+                        <p>Register your agent's critical data directly on-chain, including memory states and RAG data.
+                            The Accumulate blockchain provides persistent, verifiable data storage that ensures your
+                            agent's knowledge base remains tamper-proof and auditable at all times.</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Register agent data on-chain (memory, RAG data)
+                            </li>
+                            <li><i class="fas fa-check-circle"></i> Persistent, verifiable data storage</li>
+                            <li><i class="fas fa-check-circle"></i> Powered by the Accumulate blockchain</li>
+                            <li><i class="fas fa-check-circle"></i> Tamper-proof and fully auditable</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Feature 4: Decentralized Identity (DID) -->
+    <section class="oai-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="feature-detail-card" data-aos="fade-up">
+                        <div class="feature-icon-lg">
+                            <i class="fas fa-fingerprint"></i>
+                        </div>
+                        <h3>Decentralized Identity (DID)</h3>
+                        <p>Every AI agent registered on OperateAI automatically receives a Decentralized Identifier
+                            (DID). Each agent becomes accessible at {agentid}.operateDid.com with a W3C-compliant DID
+                            Document available at /.well-known/did.json. Identity is secured using secp256k1
+                            cryptographic keys.</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Every AI agent gets a DID automatically</li>
+                            <li><i class="fas fa-check-circle"></i> Accessible at {agentid}.operateDid.com</li>
+                            <li><i class="fas fa-check-circle"></i> DID Document at /.well-known/did.json</li>
+                            <li><i class="fas fa-check-circle"></i> W3C compliant, secp256k1 keys</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Feature 5: Agent Communication (DIDComm) -->
+    <section class="oai-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="feature-detail-card" data-aos="fade-up">
+                        <div class="feature-icon-lg">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3>Agent Communication (DIDComm)</h3>
+                        <p>Enable secure, standards-based communication between public and autonomous agents. Built on
+                            the DIDComm specification and powered by EdgeStream, this feature supports a rich set of
+                            messaging protocols including Ping, Heartbeat, Mediate, Replay, and Negotiate.</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> For public/autonomous agents only</li>
+                            <li><i class="fas fa-check-circle"></i> Supports Ping, Heartbeat, Mediate, Replay,
+                                Negotiate</li>
+                            <li><i class="fas fa-check-circle"></i> Powered by EdgeStream</li>
+                            <li><i class="fas fa-check-circle"></i> Follows DIDComm specification</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Feature 6: Document Signing -->
+    <section class="oai-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="feature-detail-card" data-aos="fade-up">
+                        <div class="feature-icon-lg">
+                            <i class="fas fa-file-signature"></i>
+                        </div>
+                        <h3>Document Signing</h3>
+                        <p>AI agents can independently sign documents with a seamless docu-sign experience powered by
+                            LedgerDocuments.com. Signed documents are stored immutably on IPFS via IpfsServer.com,
+                            ensuring permanent availability and verifiability.</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> AI agents can independently sign documents</li>
+                            <li><i class="fas fa-check-circle"></i> Docu-sign experience via LedgerDocuments.com</li>
+                            <li><i class="fas fa-check-circle"></i> Documents stored on IPFS via IpfsServer.com</li>
+                            <li><i class="fas fa-check-circle"></i> Permanent availability and verifiability</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Feature Relationship Diagram -->
+    <section class="oai-section">
+        <div class="container">
+            <div class="section-header text-center" data-aos="fade-up">
+                <h2><i class="fas fa-project-diagram me-3"></i>Feature Relationship Map</h2>
+                <p>How the six core features connect and build upon each other</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="mermaid-container" data-aos="fade-up" data-aos-delay="200">
+                        <div class="mermaid">
+                            graph TD
+                                A[AI Registry] --> B[DID Identity]
+                                A --> C[Data Registration]
+                                B --> D[Agent Communication]
+                                B --> E[Certification]
+                                D --> F[Document Signing]
+                                E --> F
+
+                                style A fill:#0a2a0a,stroke:#00ff00,color:#fff
+                                style B fill:#0a2a0a,stroke:#06B6D4,color:#fff
+                                style C fill:#0a2a0a,stroke:#00ff00,color:#fff
+                                style D fill:#0a2a0a,stroke:#06B6D4,color:#fff
+                                style E fill:#0a2a0a,stroke:#00ff00,color:#fff
+                                style F fill:#0a2a0a,stroke:#06B6D4,color:#fff
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- CTA Section -->
+    <section class="cta-section-oai">
+        <div class="container">
+            <h2 data-aos="fade-up">Ready to Build with OperateAI?</h2>
+            <p data-aos="fade-up" data-aos-delay="100">Register your first AI agent and unlock sovereign identity,
+                certification, and autonomous communication.</p>
+            <div data-aos="fade-up" data-aos-delay="200">
+                <a href="getting-started.html" class="btn btn-primary btn-lg me-3">
+                    <i class="fas fa-rocket me-2"></i>Get Started
+                </a>
+                <a href="how-it-works.html" class="btn btn-outline-light btn-lg">
+                    <i class="fas fa-book me-2"></i>Learn More
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content text-center">
+                <div class="footer-logo" data-aos="fade-up">
+                    <img src="./images/logo.png" alt="BizFirst AI" class="footer-logo-img">
+                </div>
+
+                <div class="footer-social" data-aos="fade-up" data-aos-delay="400">
+                    <a href="https://www.youtube.com/@operatecrypto" target="_blank"><i
+                            class="fab fa-youtube"></i></a>
+                    <a href="https://twitter.com/OperateID" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://discord.gg/F6NjA5dzZV" target="_blank"><i class="fab fa-discord"></i></a>
+                    <a href="https://github.com/operatecrypto" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://t.me/operatecrypto" target="_blank"><i class="fab fa-telegram"></i></a>
+                </div>
+
+                <div class="footer-bottom" data-aos="fade-up" data-aos-delay="600">
+                    <p>&copy; 2024 BizFirst AI. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Custom JS -->
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/main.js"></script>
+    <script src="./js/animations.js"></script>
+    <script src="./js/components.js"></script>
+
+    <!-- Mermaid Diagram -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            theme: 'dark',
+            themeVariables: {
+                primaryColor: '#0a2a0a',
+                primaryBorderColor: '#00ff00',
+                primaryTextColor: '#fff',
+                lineColor: '#06B6D4',
+                secondaryColor: '#141414',
+                tertiaryColor: '#1a1a1a',
+                fontFamily: 'Poppins'
+            }
+        });
+    </script>
+</body>
+
+</html>

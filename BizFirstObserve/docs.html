@@ -1,0 +1,938 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="https://bizfirstai.com/website/assets/Logo/logo-m.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BizFirst Observe Documentation — full observability in minutes. Quick start, logging, metrics, tracing, health checks, multi-tenancy, alerting, and deployment guides.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="BizFirst Observe Documentation">
+  <meta property="og:description" content="Everything you need to get up and running with BizFirst Observe — full observability in minutes.">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BizFirst Observe Documentation">
+  <meta name="twitter:description" content="Full observability in minutes. Quick start, logging, metrics, tracing, health checks, and deployment guides.">
+
+  <title>Documentation — BizFirst Observe by BizFirstAi</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://bizfirstai.com/website/assets/css/b-index.css">
+
+  <style>
+    body { overflow-x: hidden; }
+    .b-hero-section .b-container { display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .b-hero-section .b-hero-left { max-width: 780px; width: 100%; }
+    .b-hero-section .b-hero-ctas { justify-content: center; }
+    .b-hero-section .b-hero-subheading { max-width: 640px; margin-left: auto; margin-right: auto; }
+
+    /* ── Docs two-column layout ──────────────────────────────── */
+    .obs-docs-layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 0;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 var(--b-space-8);
+      min-height: calc(100vh - 60px);
+    }
+
+    /* ── Sidebar ─────────────────────────────────────────────── */
+    .obs-docs-sidebar {
+      border-right: 1px solid var(--b-border-subtle);
+      padding: var(--b-space-16) var(--b-space-8) var(--b-space-16) 0;
+      position: sticky;
+      top: 60px;
+      align-self: start;
+      height: calc(100vh - 60px);
+      overflow-y: auto;
+    }
+
+    .obs-docs-nav h4 {
+      font-size: var(--b-font-size-xs);
+      font-weight: var(--b-font-weight-bold);
+      color: var(--b-text-muted);
+      text-transform: uppercase;
+      letter-spacing: var(--b-letter-spacing-wide);
+      margin: var(--b-space-8) 0 var(--b-space-3);
+    }
+
+    .obs-docs-nav h4:first-child {
+      margin-top: 0;
+    }
+
+    .obs-docs-nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .obs-docs-nav li {
+      margin-bottom: var(--b-space-1);
+    }
+
+    .obs-docs-nav a {
+      display: block;
+      padding: var(--b-space-2) var(--b-space-3);
+      border-radius: var(--b-radius-md);
+      font-size: var(--b-font-size-sm);
+      color: var(--b-text-muted);
+      text-decoration: none;
+      transition: all var(--b-transition-fast);
+    }
+
+    .obs-docs-nav a:hover,
+    .obs-docs-nav a.obs-active {
+      color: var(--b-color-primary);
+      background: var(--b-color-primary-subtle);
+    }
+
+    /* ── Content area ────────────────────────────────────────── */
+    .obs-docs-content {
+      padding: var(--b-space-16) var(--b-space-16) var(--b-space-20);
+      min-width: 0;
+    }
+
+    .obs-docs-content h1 {
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-weight: var(--b-font-weight-black);
+      color: var(--b-text-primary);
+      margin-bottom: var(--b-space-6);
+    }
+
+    .obs-docs-content h2 {
+      font-size: var(--b-font-size-2xl);
+      font-weight: var(--b-font-weight-bold);
+      color: var(--b-text-primary);
+      margin: var(--b-space-16) 0 var(--b-space-6);
+      padding-top: var(--b-space-8);
+      border-top: 1px solid var(--b-border-subtle);
+    }
+
+    .obs-docs-content h2:first-of-type {
+      margin-top: var(--b-space-12);
+      border-top: none;
+    }
+
+    .obs-docs-content h3 {
+      font-size: var(--b-font-size-xl);
+      font-weight: var(--b-font-weight-semibold);
+      color: var(--b-color-primary);
+      margin: var(--b-space-10) 0 var(--b-space-4);
+    }
+
+    .obs-docs-content p {
+      color: var(--b-text-muted);
+      font-size: var(--b-font-size-base);
+      line-height: var(--b-line-height-relaxed);
+      margin-bottom: var(--b-space-6);
+    }
+
+    .obs-docs-content ul {
+      list-style: none;
+      margin: 0 0 var(--b-space-6);
+      padding: 0;
+    }
+
+    .obs-docs-content ul li {
+      color: var(--b-text-muted);
+      font-size: var(--b-font-size-base);
+      padding: var(--b-space-2) 0 var(--b-space-2) var(--b-space-6);
+      position: relative;
+      line-height: var(--b-line-height-relaxed);
+    }
+
+    .obs-docs-content ul li::before {
+      content: '\2192';
+      position: absolute;
+      left: 0;
+      color: var(--b-color-primary);
+      font-weight: var(--b-font-weight-bold);
+    }
+
+    /* ── Code block ──────────────────────────────────────────── */
+    .obs-code-block {
+      background: var(--b-card-bg);
+      border: 1px solid var(--b-card-border);
+      border-radius: var(--b-radius-xl);
+      overflow: hidden;
+      margin: var(--b-space-6) 0;
+    }
+
+    .obs-code-block__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--b-space-3) var(--b-space-6);
+      border-bottom: 1px solid var(--b-card-border);
+      background: var(--b-card-hover-bg);
+    }
+
+    .obs-code-block__lang {
+      font-size: var(--b-font-size-xs);
+      font-weight: var(--b-font-weight-semibold);
+      color: var(--b-color-primary);
+      text-transform: uppercase;
+      letter-spacing: var(--b-letter-spacing-wide);
+    }
+
+    .obs-code-block pre {
+      margin: 0;
+      padding: var(--b-space-6);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .obs-code-block code {
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-size: var(--b-font-size-sm);
+      color: var(--b-text-primary);
+      line-height: 1.7;
+      white-space: pre;
+    }
+
+    /* ── Next steps card row ─────────────────────────────────── */
+    .obs-docs-next {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--b-space-6);
+      margin-top: var(--b-space-8);
+    }
+
+    .obs-docs-next__card {
+      background: var(--b-card-bg);
+      border: 1px solid var(--b-card-border);
+      border-radius: var(--b-radius-xl);
+      padding: var(--b-space-6) var(--b-space-8);
+      text-decoration: none;
+      transition: all var(--b-transition-normal);
+      display: block;
+    }
+
+    .obs-docs-next__card:hover {
+      border-color: var(--b-color-primary);
+      background: var(--b-card-hover-bg);
+      transform: translateY(-4px);
+    }
+
+    .obs-docs-next__card-label {
+      font-size: var(--b-font-size-xs);
+      font-weight: var(--b-font-weight-bold);
+      color: var(--b-color-primary);
+      text-transform: uppercase;
+      letter-spacing: var(--b-letter-spacing-wide);
+      margin-bottom: var(--b-space-2);
+    }
+
+    .obs-docs-next__card-title {
+      font-size: var(--b-font-size-base);
+      font-weight: var(--b-font-weight-semibold);
+      color: var(--b-text-primary);
+    }
+
+    /* ── Callout note ────────────────────────────────────────── */
+    .obs-docs-note {
+      background: var(--b-color-primary-subtle);
+      border: 1px solid var(--b-border-primary);
+      border-left: 4px solid var(--b-color-primary);
+      border-radius: var(--b-radius-lg);
+      padding: var(--b-space-5) var(--b-space-6);
+      margin: var(--b-space-6) 0;
+    }
+
+    .obs-docs-note p {
+      margin: 0;
+      font-size: var(--b-font-size-sm);
+      color: var(--b-text-primary);
+    }
+
+    /* ── Table scroll wrapper ───────────────────────────────── */
+    .obs-table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: var(--b-space-6) 0;
+    }
+
+    .obs-table-wrap .obs-concept-table {
+      margin: 0;
+      min-width: 480px;
+    }
+
+    /* ── Concept table ───────────────────────────────────────── */
+    .obs-concept-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: var(--b-space-6) 0;
+    }
+
+    .obs-concept-table th {
+      text-align: left;
+      padding: var(--b-space-3) var(--b-space-5);
+      font-size: var(--b-font-size-sm);
+      font-weight: var(--b-font-weight-semibold);
+      color: var(--b-color-primary);
+      border-bottom: 1px solid var(--b-card-border);
+    }
+
+    .obs-concept-table td {
+      padding: var(--b-space-3) var(--b-space-5);
+      font-size: var(--b-font-size-sm);
+      color: var(--b-text-muted);
+      border-bottom: 1px solid var(--b-border-subtle);
+      line-height: var(--b-line-height-relaxed);
+      vertical-align: top;
+    }
+
+    .obs-concept-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* ── Word wrap for content ───────────────────────────────── */
+    .obs-docs-content p,
+    .obs-docs-content li {
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+
+    /* ── Responsive ──────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .obs-docs-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .obs-docs-sidebar {
+        position: static;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--b-border-subtle);
+        padding: var(--b-space-6) 0;
+      }
+
+      /* Compact pill nav on tablet/mobile */
+      .obs-docs-nav h4 { display: none; }
+      .obs-docs-nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--b-space-2);
+      }
+      .obs-docs-nav a {
+        white-space: nowrap;
+        border: 1px solid var(--b-border-subtle);
+        border-radius: var(--b-radius-full);
+        font-size: var(--b-font-size-xs);
+        padding: var(--b-space-1) var(--b-space-3);
+      }
+
+      .obs-docs-content {
+        padding: var(--b-space-10) 0 var(--b-space-16);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .obs-docs-layout {
+        padding-left: var(--b-space-5);
+        padding-right: var(--b-space-5);
+      }
+      .obs-docs-content {
+        padding-top: var(--b-space-8);
+        padding-bottom: var(--b-space-12);
+      }
+      .obs-code-block pre {
+        padding: var(--b-space-5);
+        font-size: 13px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .obs-docs-layout {
+        padding-left: var(--b-space-4);
+        padding-right: var(--b-space-4);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header id="header-container"></header>
+
+  <!-- ════════════════════════════════════════════════════════════
+       HERO
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-hero-section b-hero-bg" style="min-height:52vh;">
+    <div class="b-container">
+      <div class="b-hero-left">
+        <h1 class="b-hero-headline">BizFirst Observe Documentation</h1>
+        <p class="b-hero-subheading">Full observability in minutes.</p>
+        <div class="b-hero-ctas">
+          <a href="#quickstart" class="b-btn b-btn-primary b-btn-large">Quick Start</a>
+          <a href="https://community.bizfirstai.com/c/observe" class="b-btn b-btn-secondary b-btn-large" target="_blank" rel="noopener">Ask the Community</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       TWO-COLUMN DOCS LAYOUT
+       ════════════════════════════════════════════════════════════ -->
+  <div class="obs-docs-layout" style="padding-top: var(--b-space-8); padding-bottom: var(--b-space-20);">
+
+    <!-- SIDEBAR -->
+    <aside class="obs-docs-sidebar">
+      <nav class="obs-docs-nav">
+
+        <h4>Quick Start</h4>
+        <ul>
+          <li><a href="#quickstart" class="obs-active">Setup</a></li>
+          <li><a href="#config">Configuration</a></li>
+          <li><a href="#verify">Verify</a></li>
+        </ul>
+
+        <h4>Logging</h4>
+        <ul>
+          <li><a href="#logging-registration">Registration</a></li>
+          <li><a href="#logging-enrichment">Enrichment Fields</a></li>
+          <li><a href="#logging-logql">LogQL Examples</a></li>
+        </ul>
+
+        <h4>Metrics</h4>
+        <ul>
+          <li><a href="#metrics-custom">Custom Metrics</a></li>
+          <li><a href="#metrics-promql">PromQL Examples</a></li>
+        </ul>
+
+        <h4>Tracing</h4>
+        <ul>
+          <li><a href="#tracing-spans">Custom Spans</a></li>
+          <li><a href="#tracing-traceql">TraceQL Examples</a></li>
+        </ul>
+
+        <h4>Health Checks</h4>
+        <ul>
+          <li><a href="#health-registration">Registration</a></li>
+          <li><a href="#health-response">Response Format</a></li>
+          <li><a href="#health-kubernetes">Kubernetes Probes</a></li>
+        </ul>
+
+        <h4>Multi-Tenancy</h4>
+        <ul>
+          <li><a href="#multitenancy">Middleware</a></li>
+        </ul>
+
+        <h4>Alerting</h4>
+        <ul>
+          <li><a href="#alerting">Alert Rules</a></li>
+        </ul>
+
+        <h4>Deployment</h4>
+        <ul>
+          <li><a href="#deployment">Docker Compose</a></li>
+        </ul>
+
+        <h4>Changelog</h4>
+        <ul>
+          <li><a href="./changelog.html">Release Notes</a></li>
+        </ul>
+
+      </nav>
+    </aside>
+
+    <!-- CONTENT -->
+    <main class="obs-docs-content">
+
+      <!-- ── QUICK START ───────────────────────────────── -->
+      <h1 id="quickstart">Getting Started with BizFirst Observe</h1>
+      <p>BizFirst Observe is the unified observability platform for the BizFirstAi platform. It provides logs via Grafana Loki, metrics via Prometheus, distributed traces via Grafana Tempo, and health checks — all wired up with three method calls in your <code>Program.cs</code>.</p>
+
+      <div class="obs-docs-note">
+        <p><strong>Production-verified:</strong> BizFirst Observe entered production on March 24, 2026 running .NET 9.0 with OpenTelemetry SDK 1.11, Grafana v12.4.1, and Grafana Loki on port 3100. The configuration below reflects that verified stack.</p>
+      </div>
+
+      <h2 id="config">3-Line Setup</h2>
+      <p>Add the following three calls to your <code>Program.cs</code> to register the full observability stack:</p>
+
+      <div class="obs-code-block">
+        <div class="obs-code-block__header">
+          <span class="obs-code-block__lang">C# — Program.cs</span>
+        </div>
+        <pre><code>// 1. Register OTEL SDK, Prometheus exporter, Loki exporter, Tempo exporter
+builder.Services.RegisterService_Observability(builder.Configuration);
+
+// 2. Register Serilog with Loki sink and enrichment
+builder.Host.RegisterSerilog_Observability(builder.Configuration);
+
+// 3. Register middleware: TelemetryEnrichmentMiddleware + /metrics + /health endpoints
+app.RegisterApp_Observability();</code></pre>
+      </div>
+
+      <h3>appsettings.json</h3>
+      <p>Add the Observability section to your <code>appsettings.json</code>. Adjust endpoint URLs for your environment:</p>
+
+      <div class="obs-code-block">
+        <div class="obs-code-block__header">
+          <span class="obs-code-block__lang">JSON — appsettings.json</span>
+        </div>
+        <pre><code>{
+  "Observability": {
+    "Tracing": {
+      "OtlpEndpoint": "http://localhost:4317",
+      "SamplingRate": 1.0,
+      "AlwaysSampleErrors": true
+    },
+    "Metrics": {
+      "PrometheusEndpoint": "http://localhost:9090",
+      "ScrapeIntervalSeconds": 15
+    },
+    "Logging": {
+      "LokiEndpoint": "http://localhost:3100",
+      "MinimumLevel": "Information",
+      "RetentionDays": 3
+    },
+    "Grafana": {
+      "Endpoint": "http://localhost:3000"
+    }
+  }
+}</code></pre>
+      </div>
+
+      <div class="obs-docs-note">
+        <p><strong>Production values:</strong> Set <code>SamplingRate</code> to 0.01 (1%) in production and 0.10 (10%) in staging. Set <code>RetentionDays</code> to 30 for production and 7 for staging. <code>AlwaysSampleErrors</code> must always be <code>true</code>.</p>
+      </div>
+
+      <h2 id="verify">Verify Your Installation</h2>
+      <p>After starting your application, verify each component is running:</p>
+
+      <div class="obs-code-block">
+        <div class="obs-code-block__header">
+          <span class="obs-code-block__lang">Shell</span>
+        </div>
+        <pre><code># Check Prometheus /metrics endpoint on your service
+curl http://localhost:5000/metrics
+
+# Check Prometheus is scraping (replace with your Prometheus host)
+curl http://localhost:9090/api/v1/targets
+
+# Check Grafana is running
+curl http://localhost:3000/api/health
+
+# Check Loki is running
+curl http://localhost:3100/ready
+
+# Check your service health endpoints
+curl http://localhost:5000/health
+curl http://localhost:5000/health/live
+curl http://localhost:5000/health/ready</code></pre>
+      </div>
+
+      <!-- ── LOGGING ────────────────────────────────────── -->
+      <h2 id="logging-registration">Logging</h2>
+
+      <h3>Serilog Registration</h3>
+      <p>BizFirst Observe registers Serilog with three sinks automatically: Console/File (L0, development), Loki HTTP push (L1, all environments), and the SQL Server SecurityAuditLog table (L2, compliance events). You do not need to configure Serilog manually.</p>
+
+      <div class="obs-code-block">
+        <div class="obs-code-block__header">
+          <span class="obs-code-block__lang">C# — Manual Registration (if needed)</span>
+        </div>
+        <pre><code>// Normally handled by RegisterSerilog_Observability — shown for reference
+Log.Logger = new LoggerConfiguration()
+    .Enrich.FromLogContext()
+    .WriteTo.Console()
+    .WriteTo.GrafanaLoki(
+        "http://localhost:3100",
+        labels: new[] { new LokiLabel { Key = "app", Value = "bizfirst" } })
+    .CreateLogger();</code></pre>
+      </div>
+
+      <h3 id="logging-enrichment">Automatic Enrichment Fields</h3>
+      <p>TelemetryEnrichmentMiddleware adds the following fields to every log entry automatically. These fields are also used as Loki labels:</p>
+
+      <div class="obs-table-wrap">
+      <table class="obs-concept-table">
+        <thead>
+          <tr>
+            <th>Field</th>
+            <th>Source</th>
+            <th>Purpose</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>TenantId</code></td>
+            <td>JWT claim / request header</td>
+            <td>Tenant isolation — all queries filter by this field</td>
+          </tr>
+          <tr>
+            <td><code>ServerId</code></td>
+            <td>Machine name / pod name</td>
+            <td>Identify which instance produced the log</td>
+          </tr>
+          <tr>
+            <td><code>RequestId</code></td>
+            <td>ASP.NET Core TraceIdentifier</td>
+            <td>Correlate all logs within a single HTTP request</td>
+          </tr>
+          <tr>
+            <td><code>TraceId</code></td>
+            <td>OpenTelemetry Activity TraceId</td>
+            <td>Link log entries to the corresponding distributed trace in Tempo</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3 id="logging-logql">LogQL Example Queries</h3>
+      <p>Use these queries in Grafana Explore (Loki data source) to investigate logs:</p>
+
+      <div class="obs-code-block">
+        <div class="obs-code-block__header">
+          <span class="obs-code-block__lang">LogQL</span>
+        </div>
+        <pre><code># All errors for a specific tenant
+{tenant_id="acme"} |= "ERROR"
+
+# Fatal logs from the payroll service
+{service="payroll", tenant_id="acme"} | json | level="Fatal"
+
+# Logs for a specific request trace
+{app="bizfirst"} | json | TraceId="4bf92f3577b34da6"
+
+# Logs from a specific server in the last hour
+{server_id="prod-node-01"} | json | level=~"Error|Fatal"
+
+# Security audit events for a tenant
+{tenant_id="acme", service="auth"} | json | EventType="DENY"</code></pre>
+      </div>
+
+      <!-- ── METRICS ────────────────────────────────────── -->
+      <h2 id="metrics-custom">Metrics</h2>
+
+      <h3>Custom Counter &amp; Histogram in C#</h3>
+      <p>Use the <code>IMeterFactory</code> provided by the OTEL SDK. All custom metrics must include a <code>tenant_id</code> tag:</p>
+
+      <div class="obs-code-block">
+        <div class="obs-code-block__header">
+          <span class="obs-code-block__lang">C#</span>
+        </div>
+        <pre><code>using System.Diagnostics.Metrics;
+
+public class PayrollService
+{
+    private static readonly Meter _meter = new("BizFirst.Payroll", "1.0");
+
+    // Counter — increment each time a payroll run completes
+    private static readonly Counter&lt;long&gt; _payrollCounter =
+        _meter.CreateCounter&lt;long&gt;(
+            "bizfirst_payroll_processed_total",
+            description: "Total number of payroll runs processed");
+
+    // Histogram — record duration of each payroll run
+    private static readonly Histogram&lt;double&gt; _payrollDuration =
+        _meter.CreateHistogram&lt;double&gt;(
+            "bizfirst_payroll_duration_seconds",
+            unit: "s",
+            description: "Duration of payroll run processing");
+
+    public async Task ProcessPayroll(string tenantId)
+    {
+        var stopwatch = Stopwatch.StartNew();
+        try
+        {
+            // ... payroll processing logic ...
+
+            _payrollCounter.Add(1,
+                new KeyValuePair&lt;string, object?&gt;("tenant_id", tenantId),
+                new KeyValuePair&lt;string, object?&gt;("status", "success"));
+        }
+        finally
+        {
+            stopwatch.Stop();
+            _payrollDuration.Record(stopwatch.Elapsed.TotalSeconds,
+                new KeyValuePair&lt;string, object?&gt;("tenant_id", tenantId));
+        }
+    }
+}</code></pre>
+      </div>
+
+      <h3 id="metrics-promql">PromQL Example Queries</h3>
+      <p>Use these queries in Grafana Explore (Prometheus data source) to build dashboards and alerts:</p>
+
+      <div class="obs-code-block">
+        <div class="obs-code-block__header">
+          <span class="obs-code-block__lang">PromQL</span>
+        </div>
+        <pre><code># Request rate (requests per second over last 5 minutes)
+rate(http_server_request_duration_seconds_count[5m])
+
+# P99 latency per tenant
+histogram_quantile(0.99,
+  sum(rate(http_server_request_duration_seconds_bucket{tenant_id="acme"}[5m]))
+  by (le))
+
+# 5xx error rate
+rate(http_server_request_duration_seconds_count{http_response_status_code=~"5.."}[5m])
+/
+rate(http_server_request_duration_seconds_count[5m])
+
+# Health status for Kafka (2=Healthy, 1=Degraded, 0=Unhealthy)
+bizfirst_health_check_status{component="kafka"}
+
+# Kafka consumer lag
+edgestream_kafka_consumer_lag_messages{consumer_group="payroll-processor"}
+
+# Active HTTP requests right now
+http_server_active_requests</code></pre>
+      </div>
+
+      <!-- ── TRACING ────────────────────────────────────── -->
+      <h2 id="tracing-spans">Tracing</h2>
+
+      <h3>Custom Span in C#</h3>
+      <p>Use <code>ActivitySource</code> to create custom spans. BizFirst Observe pre-registers ActivitySources for all BizFirstAi products:</p>
+
+      <div class="obs-code-block">
+        <div class="obs-code-block__header">
+          <span class="obs-code-block__lang">C#</span>
+        </div>
+        <pre><code>using System.Diagnostics;
+
+public class WorkflowExecutor
+{
+    private static readonly ActivitySource _activitySource =
+        new("BizFirst.ProcessEngine");
+
+    public async Task ExecuteWorkflow(string workflowId, string tenantId)
+    {
+        using var activity = _activitySource.StartActivity("workflow.execute");
+
+        // Add span attributes — tenant_id is required
+        activity?.SetTag("tenant_id", tenantId);
+        activity?.SetTag("workflow.id", workflowId);
+        activity?.SetTag("workflow.version", "1.0");
+
+        try
+        {
+            // Execute each node as a child span
+            foreach (var node in workflow.Nodes)
+            {
+                using var nodeActivity = _activitySource.StartActivity(
+                    "node.execute",
+                    ActivityKind.Internal,
+                    activity?.Context ?? default);
+
+                nodeActivity?.SetTag("node.id", node.Id);
+                nodeActivity?.SetTag("node.type", node.Type);
+                nodeActivity?.SetTag("tenant_id", tenantId);
+
+                await node.ExecuteAsync();
+            }
+        }
+        catch (Exception ex)
+        {
+            activity?.SetStatus(ActivityStatusCode.Error, ex.Message);
+            activity?.RecordException(ex);
+            throw;
+        }
+    }
+}</code></pre>
+      </div>
+
+      <h3 id="tracing-traceql">TraceQL Example Queries</h3>
+      <p>Use these queries in Grafana Explore (Tempo data source) to find traces:</p>
+
+      <div class="obs-code-block">
+        <div class="obs-code-block__header">
+          <span class="obs-code-block__lang">TraceQL</span>
+        </div>
+        <pre><code># Slow traces (duration over 2 seconds)
+{duration > 2s}
+
+# Error traces
+{status=error}
+
+# Tenant-specific traces
+{.tenant_id="acme"}
+
+# Database query spans over 500ms
+{span.db.system="mssql" &amp;&amp; duration > 500ms}
+
+# Workflow execution traces for a specific tenant
+{name="workflow.execute" &amp;&amp; .tenant_id="acme"}
+
+# All traces containing an error span from the payroll service
+{resource.service.name="bizfirst-payroll"} | select(status=error)</code></pre>
+      </div>
+
+      <!-- ── HEALTH CHECKS ──────────────────────────────── -->
+      <h2 id="health-registration">Health Checks</h2>
+
+      <h3>Registration</h3>
+      <p>BizFirst Observe registers health checks for all six core dependencies automatically via <code>RegisterService_Observability</code>. The equivalent manual registration looks like this:</p>
+
+      <div class="obs-code-block">
+        <div class="obs-code-block__header">
+          <span class="obs-code-block__lang">C# — Manual Registration (reference)</span>
+        </div>
+        <pre><code>builder.Services.AddHealthChecks()
+    .AddKafka(config, name: "kafka", tags: new[] { "ready" })
+    .AddRedis(redisConnectionString, name: "redis", tags: new[] { "ready" })
+    .AddSqlServer(sqlConnectionString, name: "sqlserver", tags: new[] { "ready" })
+    .AddUrlGroup(new Uri("http://localhost:3100/ready"), name: "loki", tags: new[] { "ready" })
+    .AddUrlGroup(new Uri("http://localhost:4317"), name: "tempo", tags: new[] { "ready" })
+    .AddUrlGroup(new Uri("http://localhost:3000/api/health"), name: "grafana", tags: new[] { "ready" });</code></pre>
+      </div>
+
+      <h3 id="health-response">Health Response Format</h3>
+      <p>GET /health returns a JSON body with the overall status and a breakdown per component:</p>
+
+      <div class="obs-code-block">
+        <div class="obs-code-block__header">
+          <span class="obs-code-block__lang">JSON — /health response</span>
+        </div>
+        <pre><code>{
+  "status": "Healthy",
+  "totalDuration": "00:00:00.1234567",
+  "entries": {
+    "kafka":     { "status": "Healthy",   "duration": "00:00:00.0120000" },
+    "redis":     { "status": "Healthy",   "duration": "00:00:00.0030000" },
+    "sqlserver": { "status": "Healthy",   "duration": "00:00:00.0450000" },
+    "loki":      { "status": "Healthy",   "duration": "00:00:00.0080000" },
+    "tempo":     { "status": "Degraded",  "duration": "00:00:00.3210000",
+                   "description": "Connection timeout" },
+    "grafana":   { "status": "Healthy",   "duration": "00:00:00.0110000" }
+  }
+}</code></pre>
+      </div>
+
+      <h3 id="health-kubernetes">Kubernetes Probe Configuration</h3>
+      <p>Use the dedicated liveness and readiness endpoints in your Kubernetes pod spec:</p>
+
+      <div class="obs-code-block">
+        <div class="obs-code-block__header">
+          <span class="obs-code-block__lang">YAML — Kubernetes pod spec</span>
+        </div>
+        <pre><code>livenessProbe:
+  httpGet:
+    path: /health/live
+    port: 8080
+  initialDelaySeconds: 10
+  periodSeconds: 15
+  failureThreshold: 3
+
+readinessProbe:
+  httpGet:
+    path: /health/ready
+    port: 8080
+  initialDelaySeconds: 5
+  periodSeconds: 10
+  failureThreshold: 2</code></pre>
+      </div>
+
+      <!-- ── MULTI-TENANCY ──────────────────────────────── -->
+      <h2 id="multitenancy">Multi-Tenancy</h2>
+      <p>TelemetryEnrichmentMiddleware is registered automatically by <code>app.RegisterApp_Observability()</code>. It reads the <code>TenantId</code> from the authenticated user's JWT claims and adds it as a property to every log entry via Serilog's log context, as a label on every Loki log, as a tag on every OpenTelemetry span, and as a label on every Prometheus metric.</p>
+
+      <div class="obs-docs-note">
+        <p><strong>Enforcement rule:</strong> Every custom metric you create must include a <code>tenant_id</code> label. The platform enforces this at code review. Metrics without tenant_id cannot be used in per-tenant dashboards and will fail tenant isolation audits.</p>
+      </div>
+
+      <!-- ── ALERTING ───────────────────────────────────── -->
+      <h2 id="alerting">Alerting</h2>
+      <p>BizFirst Observe ships with four pre-configured AlertManager rules. These are activated when you deploy the included <code>docker-compose.observability.yml</code>:</p>
+
+      <div class="obs-table-wrap">
+      <table class="obs-concept-table">
+        <thead>
+          <tr>
+            <th>Rule</th>
+            <th>Condition</th>
+            <th>Duration</th>
+            <th>Routing</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>HighErrorRate</td>
+            <td>5xx rate &gt; 5%</td>
+            <td>5 minutes</td>
+            <td>PagerDuty (Critical)</td>
+          </tr>
+          <tr>
+            <td>HighLatency</td>
+            <td>P95 &gt; 1 second</td>
+            <td>10 minutes</td>
+            <td>Slack (Warning)</td>
+          </tr>
+          <tr>
+            <td>HighKafkaLag</td>
+            <td>Lag &gt; 10,000 messages</td>
+            <td>5 minutes</td>
+            <td>Slack (Warning)</td>
+          </tr>
+          <tr>
+            <td>ComponentDown</td>
+            <td>health_check_status == 0</td>
+            <td>2 minutes</td>
+            <td>PagerDuty (Critical)</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+      <!-- ── DEPLOYMENT ─────────────────────────────────── -->
+      <h2 id="deployment">Deployment</h2>
+      <p>For local development and single-server deployments, use the included Docker Compose file to run the full observability stack alongside your application:</p>
+
+      <div class="obs-code-block">
+        <div class="obs-code-block__header">
+          <span class="obs-code-block__lang">Shell</span>
+        </div>
+        <pre><code># Start the full observability stack (Prometheus, Loki, Tempo, Grafana, AlertManager)
+docker compose -f docker-compose.observability.yml up -d
+
+# Verify all services are healthy
+docker compose -f docker-compose.observability.yml ps
+
+# Service port map:
+# Grafana:      http://localhost:3000  (dashboards + alerting UI)
+# Prometheus:   http://localhost:9090  (metrics query + targets)
+# Loki:         http://localhost:3100  (log storage)
+# Tempo OTLP:   grpc://localhost:4317  (trace ingestion)
+# AlertManager: http://localhost:9093  (alert routing UI)</code></pre>
+      </div>
+
+      <h2>Next Steps</h2>
+      <p>Ready to go further? Explore these resources:</p>
+
+      <div class="obs-docs-next">
+        <a href="./features.html" class="obs-docs-next__card">
+          <div class="obs-docs-next__card-label">Reference</div>
+          <div class="obs-docs-next__card-title">All Features</div>
+        </a>
+        <a href="./changelog.html" class="obs-docs-next__card">
+          <div class="obs-docs-next__card-label">History</div>
+          <div class="obs-docs-next__card-title">Changelog</div>
+        </a>
+        <a href="https://community.bizfirstai.com/c/observe" class="obs-docs-next__card" target="_blank" rel="noopener">
+          <div class="obs-docs-next__card-label">Community</div>
+          <div class="obs-docs-next__card-title">Ask &amp; Discuss</div>
+        </a>
+        <a href="https://bizfirstai.com/website/contact.html" class="obs-docs-next__card">
+          <div class="obs-docs-next__card-label">Enterprise</div>
+          <div class="obs-docs-next__card-title">Talk to Sales</div>
+        </a>
+      </div>
+
+    </main>
+
+  </div>
+
+  <footer id="footer-container"></footer>
+
+  <script src="./shared-layout.js"></script>
+</body>
+</html>

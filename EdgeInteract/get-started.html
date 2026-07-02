@@ -1,0 +1,362 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="https://bizfirstai.com/website/assets/Logo/logo-m.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Get Started with EdgeInteract — Install, set context, publish messages, control UI components.">
+  <title>Get Started — EdgeInteract by BizFirstAi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://bizfirstai.com/website/assets/css/b-index.css">
+  <link rel="stylesheet" href="./ei.css">
+  <style>
+    body { overflow-x: hidden; }
+
+    /* ── Step layout ── */
+    .gs-step { display: grid; grid-template-columns: 56px 1fr; gap: var(--b-space-6); margin-bottom: var(--b-space-10); }
+    .gs-step > div:last-child { min-width: 0; }
+    .gs-step__num { width: 56px; height: 56px; border-radius: 50%; border: 2px solid var(--b-color-primary); background: var(--b-color-primary-subtle); display: flex; align-items: center; justify-content: center; font-size: var(--b-font-size-xl); font-weight: var(--b-font-weight-black); color: var(--b-color-primary); flex-shrink: 0; }
+    .gs-step__title { font-size: var(--b-font-size-lg); font-weight: var(--b-font-weight-semibold); color: var(--b-text-primary); margin-bottom: var(--b-space-3); }
+    .gs-step__desc { color: var(--b-text-muted); font-size: var(--b-font-size-base); line-height: var(--b-line-height-relaxed); margin-bottom: var(--b-space-4); }
+
+    /* ── Code blocks — white-space:pre preserves line breaks; overflow-x:auto scrolls long lines ── */
+    .gs-code {
+      background: var(--b-bg-surface);
+      border: 1px solid var(--b-border-default);
+      border-radius: var(--b-radius-md);
+      padding: var(--b-space-4) var(--b-space-5);
+      font-family: monospace;
+      font-size: var(--b-font-size-sm);
+      color: var(--b-color-primary-light);
+      white-space: pre;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      max-width: 100%;
+      box-sizing: border-box;
+      margin-bottom: var(--b-space-4);
+      line-height: 1.6;
+    }
+
+    /* ── Inline code — prevent overflow on narrow screens ── */
+    code {
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+
+    /* ── Note box ── */
+    .gs-note { display: flex; gap: var(--b-space-3); background: var(--b-color-primary-subtle); border: 1px solid var(--b-border-primary); border-radius: var(--b-radius-md); padding: var(--b-space-4); font-size: var(--b-font-size-sm); color: var(--b-text-secondary); line-height: var(--b-line-height-relaxed); margin-bottom: var(--b-space-4); }
+    .gs-note svg { width: 18px; height: 18px; color: var(--b-color-primary); flex-shrink: 0; margin-top: 2px; }
+
+    /* ── CTA button group — stack on mobile ── */
+    @media (max-width: 600px) {
+      .b-cta-section .b-btn-group { flex-direction: column; align-items: stretch; }
+      .b-cta-section .b-btn-group .b-btn { text-align: center; }
+    }
+
+    /* ── Tablet / mobile step adjustments ── */
+    @media (max-width: 768px) {
+      .gs-step { grid-template-columns: 40px 1fr; gap: var(--b-space-4); }
+      .gs-step__num { width: 40px; height: 40px; font-size: var(--b-font-size-base); }
+      .gs-code { font-size: 0.75rem; padding: var(--b-space-3) var(--b-space-4); }
+    }
+
+    /* ── Reduce hero top-padding on mobile ── */
+    @media (max-width: 768px) {
+      .gs-hero-section { padding-top: var(--b-space-12) !important; }
+    }
+    @media (max-width: 480px) {
+      .gs-step { margin-bottom: var(--b-space-8); }
+      .gs-step__title { font-size: var(--b-font-size-base); }
+    }
+  </style>
+</head>
+<body>
+  <header id="ei-header"></header>
+
+  <section class="b-section b-section--default gs-hero-section" style="padding-top: var(--b-space-20);">
+    <div class="b-container">
+      <h1 class="b-section-title">Get Started with EdgeInteract</h1>
+      <p class="b-section-subtitle">EdgeInteract requires EdgeStream as its communication foundation. This guide walks you from installation through setting context, publishing messages, and controlling your first UI component.</p>
+    </div>
+  </section>
+
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">Installation</h2>
+
+      <div class="gs-step">
+        <div class="gs-step__num">1</div>
+        <div>
+          <div class="gs-step__title">Install EdgeStream and core EdgeInteract packages</div>
+          <p class="gs-step__desc">EdgeStream is the required communication foundation. Install it first, then add the EdgeInteract packages you need.</p>
+          <div class="gs-code">pnpm add edge-stream-js
+pnpm add @edge-interact/context-data-js
+pnpm add @edge-interact/context-manager
+pnpm add @edge-interact/comm-manager
+pnpm add @edge-interact/player-manager
+pnpm add @edge-interact/client
+pnpm add @edge-interact/built-in-plugins</div>
+        </div>
+      </div>
+
+      <div class="gs-step">
+        <div class="gs-step__num">2</div>
+        <div>
+          <div class="gs-step__title">Add React integration (optional)</div>
+          <p class="gs-step__desc">If you are using React, add the hooks and UI packages. The vanilla JS chat window works without React.</p>
+          <div class="gs-code">pnpm add @edge-interact/react-hooks
+pnpm add @edge-interact/react-ui
+pnpm add @edge-interact/integration</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="b-section b-section--default">
+    <div class="b-container">
+      <h2 class="b-section-title">Create the client</h2>
+
+      <div class="gs-step">
+        <div class="gs-step__num">3</div>
+        <div>
+          <div class="gs-step__title">Initialise EdgeStream and create the EdgeInteract client</div>
+          <p class="gs-step__desc">The <code>EdgeInteractClientService</code> is the single facade for the entire system. Pass it an EdgeStream instance and it wires up ContextManager, CommManager, and PlayerManager automatically.</p>
+          <div class="gs-code">import { EdgeStream } from 'edge-stream-js';
+import { EdgeInteractClientService } from '@edge-interact/client';
+
+// 1. Create EdgeStream
+const edgeStream = new EdgeStream({
+  serverUrl: 'wss://your-server.com/ws',
+  reconnect: true
+});
+
+// 2. Create EdgeInteract client
+const client = EdgeInteractClientService.create(edgeStream, {
+  logLevel: 'info',
+  enableObservability: true
+});
+
+// Full API available at:
+// client.state   — context management
+// client.players — UI control (chat, form, workflow)
+// client.comm    — publish / subscribe
+// client.ui      — plugin registration
+// client.errors  — error handling
+// client.observability — health and logging</div>
+        </div>
+      </div>
+
+      <div class="gs-step">
+        <div class="gs-step__num">4</div>
+        <div>
+          <div class="gs-step__title">Set user and session context</div>
+          <p class="gs-step__desc">Set context once after login. Every subsequent message published via <code>client.comm</code> automatically carries this context — you never pass it manually again.</p>
+          <div class="gs-code">import type { IUserData, ISessionData } from '@edge-interact/context-data-js';
+
+// Set user context after authentication
+const user: IUserData = {
+  role: 'user',
+  userId: 'user-sarah-123',
+  userName: 'Sarah Johnson',
+  email: 'sarah@company.com',
+  permissions: ['read-orders', 'write-orders', 'view-customers']
+};
+
+client.state.setUser(user);
+
+// Set session context
+const session: ISessionData = {
+  role: 'session',
+  sessionId: 'sess-' + Date.now(),
+  startTime: new Date().toISOString(),
+  timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+  locale: navigator.language
+};
+
+client.state.setSession(session);</div>
+          <div class="gs-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span>From this point, every message published through EdgeInteract carries <code>user.userId</code>, <code>user.permissions</code>, <code>session.sessionId</code>, <code>session.timezone</code>, and <code>session.locale</code> — automatically. Your validation and routing hooks can access all of this without any additional lookup.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">Open a conversation and send a message</h2>
+
+      <div class="gs-step">
+        <div class="gs-step__num">5</div>
+        <div>
+          <div class="gs-step__title">Set conversation context</div>
+          <p class="gs-step__desc">Before sending chat messages, set the active conversation. EdgeInteract uses this to isolate messages between users — User A's messages never reach User B's subscriber.</p>
+          <div class="gs-code">import type { IConversationData } from '@edge-interact/context-data-js';
+
+const conversation: IConversationData = {
+  role: 'conversation',
+  conversationId: 'conv-support-456',
+  type: 'chat',
+  participants: ['user-sarah-123', 'bot-support'],
+  createdAt: new Date().toISOString()
+};
+
+client.state.setConversation(conversation);</div>
+        </div>
+      </div>
+
+      <div class="gs-step">
+        <div class="gs-step__num">6</div>
+        <div>
+          <div class="gs-step__title">Register the ChatWindowPlugin and display the chat</div>
+          <p class="gs-step__desc">Register the built-in chat plugin, then use PlayerManager to display it. Every message sent or received carries the full context envelope.</p>
+          <div class="gs-code">import { ChatWindowPlugin } from '@edge-interact/built-in-plugins';
+
+// Register the plugin
+const chatPlugin = new ChatWindowPlugin();
+client.ui.register(chatPlugin, {
+  containerId: 'chat-container',
+  theme: 'dark'
+});
+
+// Display the chat window
+await client.players.chat('conv-support-456').show();
+
+// Send a message — context is added automatically
+await client.players.chat('conv-support-456').sendMessage({
+  text: 'Hello, I need help with my order',
+  type: 'user'
+});</div>
+        </div>
+      </div>
+
+      <div class="gs-step">
+        <div class="gs-step__num">7</div>
+        <div>
+          <div class="gs-step__title">Subscribe to incoming messages</div>
+          <p class="gs-step__desc">Subscribe to a topic with an optional context filter. The filter ensures you only receive messages for the current conversation — context isolation built in.</p>
+          <div class="gs-code">// Subscribe with context filter
+const subscription = client.comm.subscribe(
+  'messages:conversation:conv-support-456',
+  (message) => {
+    console.log('Received:', message.body);
+    console.log('From user:', message.context.user.userName);
+    console.log('Customer tier:', message.context.variables?.customerTier);
+
+    // Display in chat window
+    client.players.chat('conv-support-456').displayMessage(message);
+  },
+  // Optional context filter — only messages for this conversation
+  (context) => context.conversation?.conversationId === 'conv-support-456'
+);
+
+// Later: unsubscribe
+subscription.unsubscribe();</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="b-section b-section--default">
+    <div class="b-container">
+      <h2 class="b-section-title">Add a context enhancer</h2>
+
+      <div class="gs-step">
+        <div class="gs-step__num">8</div>
+        <div>
+          <div class="gs-step__title">Register a custom context enhancer</div>
+          <p class="gs-step__desc">Context enhancers run as a middleware pipeline on every message. Use them to add business data (customer tier, permissions, language) without changing any other code.</p>
+          <div class="gs-code">import type { IContextEnhancer, IContextualMessage } from '@edge-interact/context-manager';
+
+class CustomerTierEnhancer implements IContextEnhancer {
+  name = 'customer-tier';
+  priority = 10; // Lower = runs first
+
+  async enhance(context: IContextualMessage): Promise<IContextualMessage> {
+    if (!context.context.entity?.id) return context;
+
+    // Fetch from your API
+    const tier = await fetchCustomerTier(context.context.entity.id);
+
+    return {
+      ...context,
+      context: {
+        ...context.context,
+        variables: {
+          ...context.context.variables,
+          customerTier: tier // 'gold', 'silver', 'standard'
+        }
+      }
+    };
+  }
+}
+
+// Register — runs on every outgoing message
+client.state.addEnhancer(new CustomerTierEnhancer());</div>
+          <div class="gs-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>After this enhancer is registered, every message in the pipeline will have <code>context.variables.customerTier</code> available — in validation hooks, routing hooks, bot handlers, and UI components. No boilerplate in each subscriber.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="gs-step">
+        <div class="gs-step__num">9</div>
+        <div>
+          <div class="gs-step__title">Use React hooks (if using React)</div>
+          <p class="gs-step__desc">Wrap your app in <code>EdgeInteractProvider</code> once. Then use hooks anywhere in the component tree to access state, players, and subscriptions.</p>
+          <div class="gs-code">// App.tsx
+import { EdgeInteractProvider } from '@edge-interact/react-hooks';
+
+export function App() {
+  return (
+    &lt;EdgeInteractProvider edgeStream={edgeStream} options={{}}&gt;
+      &lt;SupportDashboard /&gt;
+    &lt;/EdgeInteractProvider&gt;
+  );
+}
+
+// SupportDashboard.tsx
+import { useEdgeInteract, useChat } from '@edge-interact/react-hooks';
+
+function SupportDashboard() {
+  const { state, players } = useEdgeInteract();
+  const { messages, sendMessage } = useChat('conv-support-456');
+
+  const handleSend = async (text: string) => {
+    await sendMessage({ text, type: 'user' });
+  };
+
+  return (
+    &lt;div&gt;
+      {messages.map(msg =&gt; (
+        &lt;div key={msg.messageId}&gt;
+          &lt;strong&gt;{msg.context.user.userName}&lt;/strong&gt;: {msg.body.text}
+        &lt;/div&gt;
+      ))}
+    &lt;/div&gt;
+  );
+}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="b-cta-section">
+    <div class="b-container">
+      <h2>Need help getting set up?</h2>
+      <p>Ask in the EdgeInteract community or book a session with the BizFirstAi team.</p>
+      <div class="b-btn-group">
+        <a href="https://community.bizfirstai.com/tag/edge-interact" class="b-btn b-btn-primary b-btn-large" target="_blank" rel="noopener">Join the Community</a>
+        <a href="https://bizfirstai.com/website/contact.html" class="b-btn b-btn-secondary b-btn-large" target="_blank" rel="noopener">Book a Session</a>
+      </div>
+    </div>
+  </section>
+
+  <footer id="ei-footer"></footer>
+  <script src="./ei-layout.js"></script>
+</body>
+</html>

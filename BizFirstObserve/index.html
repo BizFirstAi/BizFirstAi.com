@@ -1,0 +1,438 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="https://bizfirstai.com/website/assets/Logo/logo-m.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BizFirst Observe — Enterprise-grade unified observability for the BizFirstAi platform. Logs, metrics, distributed traces, and health checks in one open-source platform.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="BizFirst Observe — Full-Stack Observability for AI Systems.">
+  <meta property="og:description" content="Logs, metrics, distributed traces, and health checks — unified in one open-source platform. No vendor lock-in. Production-verified.">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BizFirst Observe — Full-Stack Observability for AI Systems.">
+  <meta name="twitter:description" content="Logs, metrics, distributed traces, and health checks — unified in one open-source platform. No vendor lock-in. Production-verified.">
+
+  <title>BizFirst Observe — Full-Stack Observability for AI Systems.</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://bizfirstai.com/website/assets/css/b-index.css">
+  <style>
+    body { overflow-x: hidden; }
+    .b-benefit-card { min-width: 0; overflow: hidden; }
+    .b-benefit-card p { overflow-wrap: break-word; word-break: break-word; }
+
+    /* ── Observability dashboard mock ─────────────────────────── */
+    .obs-dashboard {
+      background: var(--b-card-bg);
+      border: 1px solid var(--b-card-border);
+      border-radius: var(--b-radius-2xl);
+      padding: var(--b-space-5);
+      font-size: var(--b-font-size-xs);
+      width: 100%;
+      max-width: 460px;
+    }
+    .obs-dash__bar {
+      display: flex;
+      align-items: center;
+      gap: var(--b-space-2);
+      margin-bottom: var(--b-space-4);
+      padding-bottom: var(--b-space-3);
+      border-bottom: 1px solid var(--b-border-subtle);
+    }
+    .obs-dash__dot { width: 8px; height: 8px; border-radius: 50%; }
+    .obs-dash__dot--r { background: #ef4444; }
+    .obs-dash__dot--y { background: #f59e0b; }
+    .obs-dash__dot--g { background: #22c55e; }
+    .obs-dash__title { font-size: var(--b-font-size-xs); color: var(--b-text-muted); margin-left: var(--b-space-2); }
+
+    .obs-dash__stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--b-space-2);
+      margin-bottom: var(--b-space-4);
+    }
+    .obs-dash__stat {
+      background: var(--b-bg-surface);
+      border: 1px solid var(--b-border-subtle);
+      border-radius: var(--b-radius-md);
+      padding: var(--b-space-3) var(--b-space-2);
+      text-align: center;
+    }
+    .obs-dash__stat-val {
+      font-size: var(--b-font-size-sm);
+      font-weight: var(--b-font-weight-bold);
+      color: var(--b-color-primary);
+      line-height: 1;
+      margin-bottom: 3px;
+    }
+    .obs-dash__stat-lbl { font-size: 10px; color: var(--b-text-muted); }
+
+    .obs-dash__chart {
+      background: var(--b-bg-surface);
+      border: 1px solid var(--b-border-subtle);
+      border-radius: var(--b-radius-md);
+      padding: var(--b-space-3) var(--b-space-4);
+      margin-bottom: var(--b-space-3);
+    }
+    .obs-dash__chart-label {
+      font-size: 10px;
+      color: var(--b-text-muted);
+      margin-bottom: var(--b-space-2);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .obs-dash__chart svg { display: block; width: 100%; height: 48px; }
+
+    .obs-dash__logs {
+      background: var(--b-bg-surface);
+      border: 1px solid var(--b-border-subtle);
+      border-radius: var(--b-radius-md);
+      padding: var(--b-space-3) var(--b-space-4);
+      margin-bottom: var(--b-space-3);
+    }
+    .obs-dash__log-row {
+      display: flex;
+      align-items: center;
+      gap: var(--b-space-2);
+      padding: 3px 0;
+      border-bottom: 1px solid var(--b-border-subtle);
+      font-family: monospace;
+      font-size: 10px;
+    }
+    .obs-dash__log-row:last-child { border-bottom: none; }
+    .obs-log-level {
+      font-weight: var(--b-font-weight-bold);
+      flex-shrink: 0;
+    }
+    .obs-log-level--info { color: var(--b-color-primary); }
+    .obs-log-level--warn { color: #f59e0b; }
+    .obs-log-level--err  { color: #ef4444; }
+    .obs-log-msg { color: var(--b-text-secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .obs-log-tid { color: var(--b-text-muted); flex-shrink: 0; }
+
+    .obs-dash__health {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--b-space-2);
+    }
+    .obs-dash__hc {
+      background: var(--b-bg-surface);
+      border: 1px solid var(--b-border-subtle);
+      border-radius: var(--b-radius-md);
+      padding: var(--b-space-2) var(--b-space-3);
+      display: flex;
+      align-items: center;
+      gap: var(--b-space-2);
+    }
+    .obs-hc-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+    .obs-hc-dot--ok  { background: #22c55e; }
+    .obs-hc-dot--deg { background: #f59e0b; }
+    .obs-hc-name { font-size: 10px; color: var(--b-text-muted); }
+
+    @media (max-width: 1024px) {
+      .obs-dashboard { max-width: 100%; }
+      .obs-dash__stats { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .obs-dashboard { padding: var(--b-space-4); }
+      .obs-dash__stats { grid-template-columns: repeat(2, 1fr); }
+      .obs-dash__health { grid-template-columns: repeat(3, 1fr); }
+      .obs-dash__chart svg { height: 36px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header id="header-container"></header>
+
+  <!-- ════════════════════════════════════════════════════════════
+       HERO
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-hero-section b-hero-bg" style="min-height:52vh;">
+    <div class="b-container">
+      <div class="b-hero-left">
+        <h1 class="b-hero-headline">Full-Stack Observability for AI Systems.</h1>
+        <p class="b-hero-subheading">Logs, metrics, distributed traces, and health checks — unified in one open-source platform. No vendor lock-in. Production-verified.</p>
+        <div class="b-hero-ctas">
+          <a href="./features.html" class="b-btn b-btn-primary b-btn-large">Explore Features</a>
+          <a href="./docs.html" class="b-btn b-btn-secondary b-btn-large">Read the Docs</a>
+        </div>
+        <p class="b-hero-trust">Part of the BizFirstAi platform &middot; Production-verified March 2026</p>
+      </div>
+
+      <!-- ── Observability dashboard visual ──────────────────── -->
+      <div class="b-hero-right">
+        <div class="obs-dashboard">
+
+          <!-- Window chrome -->
+          <div class="obs-dash__bar">
+            <span class="obs-dash__dot obs-dash__dot--r"></span>
+            <span class="obs-dash__dot obs-dash__dot--y"></span>
+            <span class="obs-dash__dot obs-dash__dot--g"></span>
+            <span class="obs-dash__title">BizFirst Observe — Grafana</span>
+          </div>
+
+          <!-- Stats row -->
+          <div class="obs-dash__stats">
+            <div class="obs-dash__stat">
+              <div class="obs-dash__stat-val">50+</div>
+              <div class="obs-dash__stat-lbl">Metrics</div>
+            </div>
+            <div class="obs-dash__stat">
+              <div class="obs-dash__stat-val">1%</div>
+              <div class="obs-dash__stat-lbl">Prod sample</div>
+            </div>
+            <div class="obs-dash__stat">
+              <div class="obs-dash__stat-val">4</div>
+              <div class="obs-dash__stat-lbl">Signals</div>
+            </div>
+            <div class="obs-dash__stat">
+              <div class="obs-dash__stat-val">P99</div>
+              <div class="obs-dash__stat-lbl">Latency</div>
+            </div>
+          </div>
+
+          <!-- Metrics sparkline -->
+          <div class="obs-dash__chart">
+            <div class="obs-dash__chart-label">http_server_request_duration_seconds · P95</div>
+            <svg viewBox="0 0 380 48" preserveAspectRatio="none" fill="none">
+              <defs>
+                <linearGradient id="gfill" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#22c55e" stop-opacity="0.3"/>
+                  <stop offset="100%" stop-color="#22c55e" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path d="M0 38 C30 36,50 32,80 28 C110 24,130 30,160 22 C190 14,210 18,240 12 C270 6,300 16,330 10 C350 6,365 8,380 6" stroke="#22c55e" stroke-width="2" fill="none"/>
+              <path d="M0 38 C30 36,50 32,80 28 C110 24,130 30,160 22 C190 14,210 18,240 12 C270 6,300 16,330 10 C350 6,365 8,380 6 L380 48 L0 48 Z" fill="url(#gfill)"/>
+            </svg>
+          </div>
+
+          <!-- Log stream -->
+          <div class="obs-dash__logs">
+            <div class="obs-dash__log-row">
+              <span class="obs-log-level obs-log-level--info">INFO</span>
+              <span class="obs-log-msg">PayrollService: run completed</span>
+              <span class="obs-log-tid">acme</span>
+            </div>
+            <div class="obs-dash__log-row">
+              <span class="obs-log-level obs-log-level--warn">WARN</span>
+              <span class="obs-log-msg">Kafka lag &gt; 1000 messages</span>
+              <span class="obs-log-tid">beta</span>
+            </div>
+            <div class="obs-dash__log-row">
+              <span class="obs-log-level obs-log-level--err">ERR</span>
+              <span class="obs-log-msg">SQL timeout on payroll query</span>
+              <span class="obs-log-tid">acme</span>
+            </div>
+            <div class="obs-dash__log-row">
+              <span class="obs-log-level obs-log-level--info">INFO</span>
+              <span class="obs-log-msg">Trace exported to Tempo</span>
+              <span class="obs-log-tid">acme</span>
+            </div>
+          </div>
+
+          <!-- Health checks -->
+          <div class="obs-dash__health">
+            <div class="obs-dash__hc"><span class="obs-hc-dot obs-hc-dot--ok"></span><span class="obs-hc-name">Kafka</span></div>
+            <div class="obs-dash__hc"><span class="obs-hc-dot obs-hc-dot--ok"></span><span class="obs-hc-name">Redis</span></div>
+            <div class="obs-dash__hc"><span class="obs-hc-dot obs-hc-dot--ok"></span><span class="obs-hc-name">SQL</span></div>
+            <div class="obs-dash__hc"><span class="obs-hc-dot obs-hc-dot--ok"></span><span class="obs-hc-name">Loki</span></div>
+            <div class="obs-dash__hc"><span class="obs-hc-dot obs-hc-dot--deg"></span><span class="obs-hc-name">Tempo</span></div>
+            <div class="obs-dash__hc"><span class="obs-hc-dot obs-hc-dot--ok"></span><span class="obs-hc-name">Grafana</span></div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       STAT BAR
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-section--sm b-section--alt">
+    <div class="b-container">
+      <div class="b-differentiators__strip">
+        <div class="b-differentiators__stat">
+          <div class="b-differentiators__number">50+</div>
+          <div class="b-differentiators__label">Metrics built-in</div>
+        </div>
+        <div class="b-differentiators__stat">
+          <div class="b-differentiators__number">4</div>
+          <div class="b-differentiators__label">Signal types</div>
+        </div>
+        <div class="b-differentiators__stat">
+          <div class="b-differentiators__number">100%</div>
+          <div class="b-differentiators__label">Dev sampling</div>
+        </div>
+        <div class="b-differentiators__stat">
+          <div class="b-differentiators__number">$0</div>
+          <div class="b-differentiators__label">Vendor lock-in</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       WHAT IS BIZFIRST OBSERVE
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">What is BizFirst Observe?</h2>
+      <p class="b-section-subtitle">Enterprise-grade, unified observability via four signal types. Complete operational visibility into the BizFirstAi platform.</p>
+
+      <div class="b-benefits-grid">
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+            </span>
+            Structured Logs (Grafana Loki)
+          </h3>
+          <p>Serilog structured logs with automatic TenantId, ServerId, RequestId, and TraceId enrichment on every entry. Query with LogQL. Configurable retention from 3 days (development) to 30 days (production).</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="20" x2="18" y2="10"></line>
+                <line x1="12" y1="20" x2="12" y2="4"></line>
+                <line x1="6" y1="20" x2="6" y2="14"></line>
+              </svg>
+            </span>
+            Time-Series Metrics (Prometheus)
+          </h3>
+          <p>50+ built-in metrics covering every service layer. P50/P95/P99 latency histograms, Kafka consumer lag gauges, and health status gauges. Scrape interval every 15 seconds. Query with PromQL.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+              </svg>
+            </span>
+            Distributed Traces (Grafana Tempo)
+          </h3>
+          <p>Full-chain tracing from HTTP request through service layer to database queries and Kafka. 1% production sampling with always-sample-errors policy. Query with TraceQL. TraceId linked to Loki logs automatically.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </span>
+            Health Checks
+          </h3>
+          <p>GET /health, /health/live, and /health/ready endpoints covering Kafka, Redis, SQL Server, Loki, Tempo, and Grafana. Published automatically as the <code>bizfirst_health_check_status</code> Prometheus gauge. Kubernetes liveness/readiness compatible.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       OPEN SOURCE / NO LOCK-IN
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-section--default">
+    <div class="b-container">
+      <h2 class="b-section-title">Open-source. No lock-in.</h2>
+      <p class="b-section-subtitle">Built on proven open standards. Your data stays in your infrastructure — always.</p>
+
+      <div class="b-benefits-grid">
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+            </span>
+            Built on standards
+          </h3>
+          <p>OpenTelemetry for instrumentation, Prometheus for metrics, Grafana for dashboards. Standard protocols and query languages — not proprietary agents or SPL.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
+            </span>
+            On-prem or cloud
+          </h3>
+          <p>Docker Compose for development and single-server deployment. Kubernetes for production. Runs anywhere you can run a container — no cloud account required.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+            </span>
+            Your data stays yours
+          </h3>
+          <p>No telemetry sent to a vendor. Loki, Prometheus, and Tempo run inside your own infrastructure. GDPR-ready with configurable TTL retention and no PII in logs.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       THREE-LINE SETUP CTA
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-cta-section">
+    <div class="b-container">
+      <h2>Three lines of C# to get started.</h2>
+      <p>Full observability — logs, metrics, traces, health checks — with three method calls.</p>
+
+      <div style="max-width:680px;margin:var(--b-space-10) auto var(--b-space-10);text-align:left;">
+        <div style="background:var(--b-card-bg);border:1px solid var(--b-card-border);border-radius:var(--b-radius-xl);overflow:hidden;">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:var(--b-space-3) var(--b-space-6);border-bottom:1px solid var(--b-card-border);background:var(--b-card-hover-bg);">
+            <span style="font-size:var(--b-font-size-xs);font-weight:var(--b-font-weight-semibold);color:var(--b-color-primary);text-transform:uppercase;letter-spacing:var(--b-letter-spacing-wide);">C#</span>
+          </div>
+          <pre style="margin:0;padding:var(--b-space-8);overflow-x:auto;"><code style="font-family:'Fira Code','Cascadia Code','Consolas',monospace;font-size:var(--b-font-size-sm);color:var(--b-text-primary);line-height:1.7;">builder.Services.RegisterService_Observability(builder.Configuration);
+builder.Host.RegisterSerilog_Observability(builder.Configuration);
+app.RegisterApp_Observability();</code></pre>
+        </div>
+      </div>
+
+      <div class="b-btn-group">
+        <a href="./features.html" class="b-btn b-btn-primary b-btn-large">Explore Features</a>
+        <a href="https://community.bizfirstai.com/c/observe" class="b-btn b-btn-secondary b-btn-large" target="_blank" rel="noopener">Join Community</a>
+      </div>
+    </div>
+  </section>
+
+  <footer id="footer-container"></footer>
+
+  <script src="./shared-layout.js"></script>
+</body>
+</html>

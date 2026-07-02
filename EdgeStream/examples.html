@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="https://bizfirstai.com/website/assets/Logo/logo-m.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="EdgeStream Examples — real-world code patterns for pub/sub, hooks, observability, and React integration.">
+  <title>Examples — EdgeStream by BizFirstAi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://bizfirstai.com/website/assets/css/b-index.css">
+  <link rel="stylesheet" href="./es.css">
+  <style>
+    body { overflow-x: hidden; }
+  </style>
+</head>
+<body>
+  <header id="es-header"></header>
+
+  <section class="b-section b-section--default" style="padding-top: var(--b-space-20);">
+    <div class="b-container">
+      <h1 class="b-section-title">Examples</h1>
+      <p class="b-section-subtitle">Real-world patterns you can copy directly into your project. Every example is TypeScript strict and tested against production EdgeStream deployments.</p>
+    </div>
+  </section>
+
+  <!-- ── Basic pub/sub ─────────────────────────────────────── -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">Basic pub/sub</h2>
+
+      <div class="gs-step">
+        <div class="gs-step__num" style="font-size: var(--b-font-size-sm);">Ex1</div>
+        <div>
+          <div class="gs-step__title">Wildcard subscription — all events for a user</div>
+          <p class="gs-step__desc">Subscribe to every event for a specific user using wildcard topic notation. Useful for notification centres and activity feeds.</p>
+          <div class="gs-code">import { EdgeStream, HubServer } from 'edge-stream-js';
+
+const edgeStream = new EdgeStream();
+edgeStream.registerServer(new HubServer({ url: '/hub' }));
+await edgeStream.start();
+
+// Subscribe to everything for user-123
+const sub = edgeStream.subscribe('user:123:*', (envelope) => {
+  console.log('[user:123 event]', envelope.meta.topic, envelope.body);
+});
+
+// Publishes that match:
+// ✅ 'user:123:message'
+// ✅ 'user:123:notification'
+// ✅ 'user:123:order-update'
+// ❌ 'user:456:message'      — different user
+// ❌ 'order:123:status'      — different root
+
+// Unsubscribe when component unmounts
+sub.unsubscribe();</div>
+        </div>
+      </div>
+
+      <div class="gs-step">
+        <div class="gs-step__num" style="font-size: var(--b-font-size-sm);">Ex2</div>
+        <div>
+          <div class="gs-step__title">Request-reply — waiting for a server response</div>
+          <p class="gs-step__desc">Subscribe to a reply topic before publishing. The server processes the message and publishes a response to the reply topic — same pipeline, zero custom infrastructure.</p>
+          <div class="gs-code">async function requestOrderStatus(orderId: string): Promise&lt;OrderStatus&gt; {
+  const replyTopic = `order:${orderId}:status:reply:${Date.now()}`;
+
+  return new Promise((resolve, reject) => {
+    const timeout = setTimeout(() => {
+      sub.unsubscribe();
+      reject(new Error('Request timed out'));
+    }, 5000);
+
+    // 1. Subscribe to the reply topic first
+    const sub = edgeStream.subscribe(replyTopic, (envelope) => {
+      clearTimeout(timeout);
+      sub.unsubscribe();
+      resolve(envelope.body as OrderStatus);
+    });
+
+    // 2. Publish the request with the reply topic attached
+    edgeStream.publish({
+      topic: 'order:status:request',
+      body: { orderId },
+      meta: {
+        source: 'web-client',
+        correlationId: replyTopic  // Server reads this to know where to reply
+      }
+    });
+  });
+}
+
+const status = await requestOrderStatus('order-4521');
+console.log('Order status:', status.state, status.estimatedDelivery);</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Custom hooks ──────────────────────────────────────── -->
+  <section class="b-section b-section--default">
+    <div class="b-container">
+      <h2 class="b-section-title">Custom hooks</h2>
+
+      <div class="gs-step">
+        <div class="gs-step__num" style="font-size: var(--b-font-size-sm);">Ex3</div>
+        <div>
+          <div class="gs-step__title">Incoming hook — enrich messages with user data</div>
+          <p class="gs-step__desc">Register an incoming hook that fetches user data from your API and attaches it to every message. Every downstream subscriber sees the enriched message — no duplication.</p>
+          <div class="gs-code">import type { IHook, IEnvelope } from 'edge-stream-js';
+
+class UserEnrichmentHook implements IHook {
+  name = 'user-enrichment';
+  priority = 30; // Runs after validation (10) and normalization (20)
+
+  private cache = new Map&lt;string, UserProfile&gt;();
+
+  async execute(envelope: IEnvelope): Promise&lt;IEnvelope&gt; {
+    const userId = envelope.meta.userId;
+    if (!userId) return envelope; // No-op if no user on message
+
+    // Cache to avoid redundant API calls
+    if (!this.cache.has(userId)) {
+      const profile = await fetchUserProfile(userId);
+      this.cache.set(userId, profile);
+    }
+
+    const profile = this.cache.get(userId)!;
+
+    return {
+      ...envelope,
+      attributes: {
+        ...envelope.attributes,
+        userTier:    profile.tier,        // 'gold' | 'silver' | 'standard'
+        userName:    profile.displayName,
+        permissions: profile.permissions
+      }
+    };
+  }
+}
+
+edgeStream.registerIncomingHook(new UserEnrichmentHook());
+
+// Now every subscriber sees envelope.attributes.userTier automatically
+edgeStream.subscribe('messages:*', (envelope) => {
+  console.log('Tier:', envelope.attributes?.userTier); // 'gold'
+  console.log('User:', envelope.attributes?.userName); // 'Sarah Johnson'
+});</div>
+        </div>
+      </div>
+
+      <div class="gs-step">
+        <div class="gs-step__num" style="font-size: var(--b-font-size-sm);">Ex4</div>
+        <div>
+          <div class="gs-step__title">Outgoing hook — add HMAC signature to every message</div>
+          <p class="gs-step__desc">Register an outgoing hook that signs every outgoing message. The server verifies the signature — zero per-call boilerplate.</p>
+          <div class="gs-code">import { createHmac } from 'crypto';
+
+class HmacSigningHook implements IHook {
+  name = 'hmac-signing';
+  priority = 5; // Runs first — before logging
+  private secret: string;
+
+  constructor(secret: string) { this.secret = secret; }
+
+  async execute(envelope: IEnvelope): Promise&lt;IEnvelope&gt; {
+    const payload = JSON.stringify(envelope.body);
+    const signature = createHmac('sha256', this.secret)
+      .update(payload)
+      .digest('hex');
+
+    return {
+      ...envelope,
+      headers: {
+        ...envelope.headers,
+        'x-signature': `sha256=${signature}`
+      }
+    };
+  }
+}
+
+edgeStream.registerOutgoingHook(
+  new HmacSigningHook(process.env.EDGE_STREAM_HMAC_SECRET!)
+);</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Observability ─────────────────────────────────────── -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">Observability</h2>
+
+      <div class="gs-step">
+        <div class="gs-step__num" style="font-size: var(--b-font-size-sm);">Ex5</div>
+        <div>
+          <div class="gs-step__title">Query the activity log for a specific message</div>
+          <p class="gs-step__desc">EdgeStream logs every hook execution and subscriber delivery. Query by messageId to get the complete lifecycle — timing, status, errors — for debugging and compliance.</p>
+          <div class="gs-code">import { LoggingService } from 'edge-stream-js';
+
+const logger = edgeStream.getLoggingService();
+
+// Get complete lifecycle for a specific message
+const log = logger.getMessageLog('msg-uuid-here');
+/*
+{
+  id: 'msg-uuid-here',
+  topic: 'messages:conversation:conv-123',
+  status: 'delivered',
+  createdAt: '2026-04-14T10:23:41.123Z',
+  completedAt: '2026-04-14T10:23:41.187Z',  // 64ms total
+  hookLogs: [
+    { hookName: 'validation-hook',    status: 'success', duration: 2  },
+    { hookName: 'normalization-hook', status: 'success', duration: 4  },
+    { hookName: 'user-enrichment',    status: 'success', duration: 45 },
+    { hookName: 'log-hook',           status: 'success', duration: 1  }
+  ],
+  subscriberDeliveries: [
+    { subscriberId: 'sub-chat-ui',      status: 'delivered', processingTime: 8  },
+    { subscriberId: 'sub-audit-logger', status: 'delivered', processingTime: 3  }
+  ]
+}
+*/
+
+// Performance stats
+const stats = logger.getPerformanceStats();
+console.log('Avg latency:', stats.avgLatencyMs);
+console.log('Success rate:', stats.successRate);
+console.log('Slowest hook:', stats.slowestHook.name, stats.slowestHook.avgDuration);</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── React integration ─────────────────────────────────── -->
+  <section class="b-section b-section--default">
+    <div class="b-container">
+      <h2 class="b-section-title">React integration</h2>
+
+      <div class="gs-step">
+        <div class="gs-step__num" style="font-size: var(--b-font-size-sm);">Ex6</div>
+        <div>
+          <div class="gs-step__title">Live order tracking component</div>
+          <p class="gs-step__desc">A complete React component that subscribes to order status updates and renders them in real-time. No polling, no custom state management — just a subscription and reactive state.</p>
+          <div class="gs-code">import { useSubscription } from '@edge-stream/react-hooks';
+import { useState } from 'react';
+
+interface OrderStatus {
+  orderId: string;
+  state: 'processing' | 'shipped' | 'delivered';
+  location?: string;
+  eta?: string;
+}
+
+function OrderTracker({ orderId }: { orderId: string }) {
+  const [status, setStatus] = useState&lt;OrderStatus | null&gt;(null);
+  const [updates, setUpdates] = useState&lt;string[]&gt;([]);
+
+  // Subscribes on mount, unsubscribes on unmount — automatic
+  useSubscription(
+    `order:${orderId}:status`,
+    (envelope) => {
+      const update = envelope.body as OrderStatus;
+      setStatus(update);
+      setUpdates(prev =&gt; [
+        `[${new Date().toLocaleTimeString()}] ${update.state}${update.location ? ` — ${update.location}` : ''}`,
+        ...prev.slice(0, 9)  // Keep last 10
+      ]);
+    }
+  );
+
+  if (!status) return &lt;div&gt;Waiting for order updates...&lt;/div&gt;;
+
+  return (
+    &lt;div&gt;
+      &lt;h3&gt;Order #{status.orderId}&lt;/h3&gt;
+      &lt;p&gt;Status: &lt;strong&gt;{status.state}&lt;/strong&gt;&lt;/p&gt;
+      {status.eta &amp;&amp; &lt;p&gt;ETA: {status.eta}&lt;/p&gt;}
+      &lt;ul&gt;
+        {updates.map((u, i) =&gt; &lt;li key={i}&gt;{u}&lt;/li&gt;)}
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  );
+}</div>
+        </div>
+      </div>
+
+      <div class="gs-step">
+        <div class="gs-step__num" style="font-size: var(--b-font-size-sm);">Ex7</div>
+        <div>
+          <div class="gs-step__title">Connection status indicator</div>
+          <p class="gs-step__desc">Display connection state to users. EdgeStream emits structured connection events — no polling or manual ping logic required.</p>
+          <div class="gs-code">import { useConnectionStatus } from '@edge-stream/react-hooks';
+
+function ConnectionBadge() {
+  const { status, latency, reconnectAttempt } = useConnectionStatus();
+
+  const colours = {
+    connected:    '#22c55e',
+    disconnected: '#ef4444',
+    reconnecting: '#f59e0b',
+    connecting:   '#6366f1'
+  };
+
+  return (
+    &lt;div style={{ display: 'flex', alignItems: 'center', gap: 8 }}&gt;
+      &lt;span style={{
+        width: 8, height: 8,
+        borderRadius: '50%',
+        background: colours[status] ?? '#6b7280'
+      }} /&gt;
+      &lt;span&gt;
+        {status === 'connected' &amp;&amp; `Connected (${latency}ms)`}
+        {status === 'reconnecting' &amp;&amp; `Reconnecting (attempt ${reconnectAttempt})`}
+        {status === 'disconnected' &amp;&amp; 'Disconnected'}
+        {status === 'connecting' &amp;&amp; 'Connecting…'}
+      &lt;/span&gt;
+    &lt;/div&gt;
+  );
+}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Multi-agent ───────────────────────────────────────── -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">AI agent integration</h2>
+
+      <div class="gs-step">
+        <div class="gs-step__num" style="font-size: var(--b-font-size-sm);">Ex8</div>
+        <div>
+          <div class="gs-step__title">LLM streaming — token-by-token delivery</div>
+          <p class="gs-step__desc">Stream LLM token output to the UI via EdgeStream. The AI service publishes one token per message. The React hook accumulates them — real-time typing animation with no custom streaming protocol.</p>
+          <div class="gs-code">// AI service (backend)
+// Each LLM token published individually
+for await (const token of llm.streamComplete(prompt)) {
+  await edgeStream.publish({
+    topic: `ai:conversation:${convId}:stream`,
+    body: {
+      token,
+      done: false,
+      convId,
+      sessionId
+    }
+  });
+}
+// Signal completion
+await edgeStream.publish({
+  topic: `ai:conversation:${convId}:stream`,
+  body: { done: true, convId }
+});
+
+// React component (frontend)
+function StreamingResponse({ convId }: { convId: string }) {
+  const [text, setText] = useState('');
+  const [done, setDone] = useState(false);
+
+  useSubscription(
+    `ai:conversation:${convId}:stream`,
+    (envelope) =&gt; {
+      const { token, done: isDone } = envelope.body;
+      if (isDone) { setDone(true); return; }
+      setText(prev =&gt; prev + token);
+    }
+  );
+
+  return (
+    &lt;div&gt;
+      {text}{!done &amp;&amp; &lt;span className="cursor"&gt;█&lt;/span&gt;}
+    &lt;/div&gt;
+  );
+}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="b-cta-section">
+    <div class="b-container">
+      <h2>Ready to build?</h2>
+      <p>Follow the get-started guide or explore the full architecture.</p>
+      <div class="b-btn-group">
+        <a href="./get-started.html" class="b-btn b-btn-primary b-btn-large">Get Started</a>
+        <a href="./architecture.html" class="b-btn b-btn-secondary b-btn-large">Architecture</a>
+      </div>
+    </div>
+  </section>
+
+  <footer id="es-footer"></footer>
+  <script src="./es-layout.js"></script>
+</body>
+</html>

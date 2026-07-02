@@ -1,0 +1,439 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="https://bizfirstai.com/website/assets/Logo/logo-m.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Atlas Forms — Enterprise form management system. 89+ controls. 17 packages. OWASP compliant. Schema-driven.">
+  <title>Atlas Forms — Enterprise Form Management by BizFirstAi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://bizfirstai.com/website/assets/css/b-index.css">
+  <link rel="stylesheet" href="./atlas.css">
+  <style>
+    body { overflow-x: hidden; }
+  </style>
+</head>
+<body>
+  <header id="atlas-header"></header>
+
+  <!-- ── Hero ────────────────────────────────────────────── -->
+  <section class="atlas-hero">
+    <div class="b-container">
+      <div class="atlas-hero__inner">
+
+        <div class="b-hero-left">
+          <div class="atlas-hero__eyebrow">
+            <span class="atlas-hero__eyebrow-dot"></span>
+            Enterprise Form Management
+          </div>
+          <h1 class="b-hero-headline">Forms without<br><em>the code.</em></h1>
+          <p class="b-hero-subheading">Atlas Forms is an enterprise-grade, schema-driven form management system. 89+ pre-built controls, 5 operating modes, OWASP-compliant security, and deep integration with BizFirstAi workflows — deploy complex forms in hours, not weeks.</p>
+          <div class="b-hero-ctas">
+            <a href="./get-started.html" class="b-btn b-btn-primary b-btn-large">Get Started</a>
+            <a href="./examples.html" class="b-btn b-btn-secondary b-btn-large">See Examples</a>
+          </div>
+        </div>
+
+        <!-- Form preview -->
+        <div class="b-hero-right" style="min-height: auto;">
+          <div class="atlas-form-preview">
+            <div class="atlas-form-preview__toolbar">
+              <div class="atlas-form-preview__dot"></div>
+              <div class="atlas-form-preview__dot"></div>
+              <div class="atlas-form-preview__dot"></div>
+              <span class="atlas-form-preview__title">Customer Onboarding Form</span>
+            </div>
+            <div class="atlas-form-preview__body">
+              <div class="atlas-field__row">
+                <div class="atlas-field">
+                  <span class="atlas-field__label">First Name *</span>
+                  <div class="atlas-field__input atlas-field__input--focus" style="display:flex;align-items:center;">Sarah</div>
+                </div>
+                <div class="atlas-field">
+                  <span class="atlas-field__label">Last Name *</span>
+                  <div class="atlas-field__input" style="display:flex;align-items:center;">Johnson</div>
+                </div>
+              </div>
+              <div class="atlas-field">
+                <span class="atlas-field__label">Email Address *</span>
+                <div class="atlas-field__input" style="display:flex;align-items:center;">sarah.johnson@company.com</div>
+              </div>
+              <div class="atlas-field">
+                <span class="atlas-field__label">Industry</span>
+                <div class="atlas-field__select">
+                  <span>Financial Services</span>
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </div>
+              </div>
+              <div class="atlas-field">
+                <span class="atlas-field__label">Interests</span>
+                <div class="atlas-field__badges">
+                  <span class="atlas-field__badge">Workflow Automation</span>
+                  <span class="atlas-field__badge">AI Integration</span>
+                  <span class="atlas-field__badge">Analytics</span>
+                </div>
+              </div>
+              <button class="atlas-field__submit">Submit Application</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Stats -->
+      <div class="atlas-stats">
+        <div class="atlas-stat">
+          <div class="atlas-stat__number">89+</div>
+          <div class="atlas-stat__label">Control types</div>
+        </div>
+        <div class="atlas-stat">
+          <div class="atlas-stat__number">17</div>
+          <div class="atlas-stat__label">npm packages</div>
+        </div>
+        <div class="atlas-stat">
+          <div class="atlas-stat__number">28+</div>
+          <div class="atlas-stat__label">XSS vectors blocked</div>
+        </div>
+        <div class="atlas-stat">
+          <div class="atlas-stat__number">&lt;100ms</div>
+          <div class="atlas-stat__label">Form load time</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── What it is ───────────────────────────────────────── -->
+  <section class="b-section b-section--default">
+    <div class="b-container">
+      <h2 class="b-section-title">Two components. One complete form system.</h2>
+      <p class="b-section-subtitle">Atlas Forms is the library. Atlas Form Studio is the visual designer built on top of it.</p>
+
+      <div class="b-benefits-grid atlas-two-col" style="margin-top: var(--b-space-12);">
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </span>
+            Atlas Forms Library
+          </h3>
+          <p>A 17-package pnpm monorepo providing everything needed to build, validate, store, and submit forms. Core packages have zero external dependencies and are 100% TypeScript 5.0+ strict.</p>
+          <ul class="b-feature-list">
+            <li>17 specialized npm packages</li>
+            <li>Schema-based form definition (JSON)</li>
+            <li>6 built-in validators + custom extension</li>
+            <li>80%+ API call reduction via caching</li>
+            <li>LocalStorage + IndexedDB persistence</li>
+          </ul>
+        </div>
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            </span>
+            Atlas Form Studio
+          </h3>
+          <p>The visual form designer. A drag-and-drop canvas where business users and developers create, configure, and publish forms without writing code — in 5 operating modes.</p>
+          <ul class="b-feature-list">
+            <li>Drag-and-drop 89+ controls onto canvas</li>
+            <li>5 modes: edit, view, design, admin, preview</li>
+            <li>Per-control mode visibility settings</li>
+            <li>Real-time validation feedback</li>
+            <li>Form versioning and history</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Core Capabilities ─────────────────────────────────── -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">Built for every enterprise requirement</h2>
+      <p class="b-section-subtitle">Not another simple form builder. Atlas Forms handles security, scale, workflow integration, and extensibility from the ground up.</p>
+
+      <div class="b-benefits-grid">
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </span>
+            OWASP-Compliant Security
+          </h3>
+          <p>Six security layers in the HTML control block 28+ confirmed XSS attack vectors. HTML5 encoding, attribute encoding, CSS sanitization, and URL validation — enforced by default, not optional.</p>
+          <ul class="b-feature-list">
+            <li>28+ XSS vectors blocked</li>
+            <li>6 security layers in HtmlControl</li>
+            <li>40+ dedicated security test cases</li>
+            <li>OWASP Top 10 compliant</li>
+          </ul>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </span>
+            Schema-Driven Forms
+          </h3>
+          <p>Define any form as a JSON schema. No code required for standard forms. Validation rules, conditional visibility, data binding, and control ordering are all schema-level properties.</p>
+          <ul class="b-feature-list">
+            <li>JSON schema → working form</li>
+            <li>Conditional logic &amp; visibility rules</li>
+            <li>Per-mode control visibility</li>
+            <li>Form versioning &amp; history</li>
+          </ul>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4m0 14v4M4.22 4.22l2.83 2.83m9.9 9.9l2.83 2.83M1 12h4m14 0h4M4.22 19.78l2.83-2.83m9.9-9.9l2.83-2.83"/></svg>
+            </span>
+            Workflow Integration
+          </h3>
+          <p>Atlas Forms is deeply integrated into BizFirstAi's Flow Engine. Form nodes inside workflows use Atlas Forms for input capture, node configuration, and human-in-the-loop data collection.</p>
+          <ul class="b-feature-list">
+            <li>Native Flow Engine node forms</li>
+            <li>Human-in-the-loop data capture</li>
+            <li>3-tier form resolution per node</li>
+            <li>Runtime &amp; evaluation form modes</li>
+          </ul>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </span>
+            Multi-Tenant Architecture
+          </h3>
+          <p>Full tenant isolation at the data layer. Each tenant's forms, records, and drafts are completely separated. Audit trails and soft-delete with recovery are standard — not add-ons.</p>
+          <ul class="b-feature-list">
+            <li>Complete tenant data isolation</li>
+            <li>Enterprise audit trail</li>
+            <li>Soft-delete with recovery</li>
+            <li>100k+ forms proven at scale</li>
+          </ul>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </span>
+            Extensible Control Registry
+          </h3>
+          <p>The plugin registry lets developers register custom controls alongside the 89+ built-in types. Custom validators, custom themes, and custom storage adapters follow the same pattern.</p>
+          <ul class="b-feature-list">
+            <li>Plugin registry for custom controls</li>
+            <li>Custom validator registration</li>
+            <li>Custom theme support (light/dark/custom)</li>
+            <li>Custom storage adapters</li>
+          </ul>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </span>
+            AI Form Generation
+          </h3>
+          <p>An AI agent can generate complete Atlas Forms from a natural language prompt. The agent maps control properties, validation rules, and layout from the prompt using the full 89+ control inventory.</p>
+          <ul class="b-feature-list">
+            <li>Prompt → form schema generation</li>
+            <li>Full control property mapping</li>
+            <li>Validation rule inference</li>
+            <li>LLM-agnostic prompt template</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Control Types ─────────────────────────────────────── -->
+  <section class="b-section b-section--default">
+    <div class="b-container">
+      <h2 class="b-section-title">89+ controls across 9 categories</h2>
+      <p class="b-section-subtitle">Every control type an enterprise form could need — from simple text inputs to charts, media viewers, and multi-step wizards.</p>
+
+      <div class="b-tech-highlights__groups" style="margin-top: var(--b-space-12);">
+
+        <div class="b-tech-group">
+          <div class="b-tech-group__label">Input Controls (14)</div>
+          <div class="b-tech-group__badges">
+            <span class="b-tech-badge">text</span>
+            <span class="b-tech-badge">textarea</span>
+            <span class="b-tech-badge">number</span>
+            <span class="b-tech-badge">email</span>
+            <span class="b-tech-badge">password</span>
+            <span class="b-tech-badge">url</span>
+            <span class="b-tech-badge">date</span>
+            <span class="b-tech-badge">datetime</span>
+            <span class="b-tech-badge">select</span>
+            <span class="b-tech-badge">multiselect</span>
+            <span class="b-tech-badge">checkbox</span>
+            <span class="b-tech-badge">radio</span>
+            <span class="b-tech-badge">switch</span>
+            <span class="b-tech-badge">json-editor</span>
+          </div>
+        </div>
+
+        <div class="b-tech-group">
+          <div class="b-tech-group__label">Layout Controls (10+)</div>
+          <div class="b-tech-group__badges">
+            <span class="b-tech-badge">tabs</span>
+            <span class="b-tech-badge">accordion</span>
+            <span class="b-tech-badge">stepper</span>
+            <span class="b-tech-badge">card-container</span>
+            <span class="b-tech-badge">modal</span>
+            <span class="b-tech-badge">collapsible-panel</span>
+            <span class="b-tech-badge">data-table</span>
+            <span class="b-tech-badge">sidebar-nav</span>
+            <span class="b-tech-badge">breadcrumb</span>
+            <span class="b-tech-badge">api-response-viewer</span>
+          </div>
+        </div>
+
+        <div class="b-tech-group">
+          <div class="b-tech-group__label">Display Controls</div>
+          <div class="b-tech-group__badges">
+            <span class="b-tech-badge">label</span>
+            <span class="b-tech-badge">header</span>
+            <span class="b-tech-badge">image</span>
+            <span class="b-tech-badge">html (XSS-safe)</span>
+            <span class="b-tech-badge">file-upload</span>
+          </div>
+        </div>
+
+        <div class="b-tech-group">
+          <div class="b-tech-group__label">Chart Controls</div>
+          <div class="b-tech-group__badges">
+            <span class="b-tech-badge">bar</span>
+            <span class="b-tech-badge">line</span>
+            <span class="b-tech-badge">area</span>
+            <span class="b-tech-badge">pie</span>
+            <span class="b-tech-badge">scatter</span>
+            <span class="b-tech-badge">histogram</span>
+            <span class="b-tech-badge">heatmap</span>
+          </div>
+        </div>
+
+        <div class="b-tech-group">
+          <div class="b-tech-group__label">Gauge Controls</div>
+          <div class="b-tech-group__badges">
+            <span class="b-tech-badge">radial gauge</span>
+            <span class="b-tech-badge">linear gauge</span>
+          </div>
+        </div>
+
+        <div class="b-tech-group">
+          <div class="b-tech-group__label">Media &amp; Advanced</div>
+          <div class="b-tech-group__badges">
+            <span class="b-tech-badge">video</span>
+            <span class="b-tech-badge">audio</span>
+            <span class="b-tech-badge">iframe-viewer</span>
+            <span class="b-tech-badge">pdf-viewer</span>
+            <span class="b-tech-badge">mermaid diagram</span>
+            <span class="b-tech-badge">variable-inspector</span>
+            <span class="b-tech-badge">article</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── vs Competitors ────────────────────────────────────── -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">Why not JotForm, Google Forms, or SAP?</h2>
+      <p class="b-section-subtitle">Consumer tools lack enterprise depth. Legacy tools lack modern UX. Atlas Forms was built for the gap between them.</p>
+
+      <div class="atlas-compare">
+        <table class="atlas-compare-table">
+          <thead>
+            <tr>
+              <th>Capability</th>
+              <th class="ours">Atlas Forms</th>
+              <th>JotForm / Typeform</th>
+              <th>Google / MS Forms</th>
+              <th>SAP / Oracle</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Control types</td>
+              <td class="ours">89+</td>
+              <td>~30</td>
+              <td>10–15</td>
+              <td>20–30</td>
+            </tr>
+            <tr>
+              <td>Workflow integration</td>
+              <td class="ours"><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span> Native</td>
+              <td>Zapier only</td>
+              <td><span class="cross"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td>
+              <td>SAP only</td>
+            </tr>
+            <tr>
+              <td>OWASP / XSS security</td>
+              <td class="ours"><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span> 28+ vectors</td>
+              <td>Basic</td>
+              <td>Basic</td>
+              <td>Partial</td>
+            </tr>
+            <tr>
+              <td>Self-hosted / on-premise</td>
+              <td class="ours"><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span></td>
+              <td><span class="cross"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td>
+              <td><span class="cross"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td>
+              <td><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span></td>
+            </tr>
+            <tr>
+              <td>Multi-tenant isolation</td>
+              <td class="ours"><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span></td>
+              <td>Account-level only</td>
+              <td><span class="cross"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td>
+              <td>Complex setup</td>
+            </tr>
+            <tr>
+              <td>AI form generation</td>
+              <td class="ours"><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span></td>
+              <td>Basic AI assist</td>
+              <td><span class="cross"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td>
+              <td><span class="cross"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td>
+            </tr>
+            <tr>
+              <td>Development time reduction</td>
+              <td class="ours">70–80%</td>
+              <td>40–50%</td>
+              <td>20–30%</td>
+              <td>10–20%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ──────────────────────────────────────────────── -->
+  <section class="b-cta-section">
+    <div class="b-container">
+      <h2>Start building enterprise forms today.</h2>
+      <p>89+ controls. Schema-driven. OWASP secure. Workflow-integrated.</p>
+      <div class="b-btn-group">
+        <a href="./get-started.html" class="b-btn b-btn-primary b-btn-large">Get Started</a>
+        <a href="./architecture.html" class="b-btn b-btn-secondary b-btn-large">Explore Architecture</a>
+      </div>
+    </div>
+  </section>
+
+  <footer id="atlas-footer"></footer>
+  <script src="./atlas-layout.js"></script>
+</body>
+</html>

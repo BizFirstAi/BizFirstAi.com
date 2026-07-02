@@ -1,0 +1,596 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="https://bizfirstai.com/website/assets/Logo/logo-m.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MarketHub Features — Deep-dive into all 6 modules: Catalogue, Discovery, Distribution, Community, Publisher, and Reviews. Every capability your marketplace needs.">
+
+  <meta property="og:title" content="MarketHub Features — Every Capability Out of the Box">
+  <meta property="og:description" content="Six production-ready modules covering catalogue management, TF-IDF discovery, licence distribution, community, publisher verification, and moderated reviews.">
+  <meta property="og:type" content="website">
+
+  <title>Features — MarketHub by BizFirstAi</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://bizfirstai.com/website/assets/css/b-index.css">
+  <link rel="stylesheet" href="./assets/css/markethub.css">
+  <style>
+    body { overflow-x: hidden; }
+
+    /* Ensure b-container doesn't allow child overflow on small screens */
+    .b-container { max-width: 100%; }
+
+    /* Algorithm bar track — prevent label from forcing width on tiny screens */
+    @media (max-width: 420px) {
+      .mh-algo-label { min-width: 70px; font-size: 0.7rem; }
+      .mh-rep-tier { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+  <header id="mh-header-container"></header>
+
+  <!-- ════════════════════════════════════════════════════════════
+       HERO
+       ════════════════════════════════════════════════════════════ -->
+  <section class="mh-hero" style="min-height: 55vh;">
+    <div class="b-container">
+      <div class="mh-hero-badge">
+        <span class="mh-hero-badge-dot"></span>
+        6 modules · 3 apps · 80+ API endpoints
+      </div>
+      <h1 class="mh-hero-headline">
+        Every feature your<br>
+        <span class="mh-accent">marketplace needs.</span>
+      </h1>
+      <p class="mh-hero-sub">
+        MarketHub ships comprehensive, production-ready capabilities out of the box. No MVP shortcuts, no placeholder screens — every module is fully implemented and tested.
+      </p>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       CATALOGUE MODULE
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <span class="mh-section-label">Module 01</span>
+      <h2 class="b-section-title b-section-title--left">Catalogue</h2>
+      <p class="b-section-subtitle b-section-subtitle--left">
+        SemVer-native package management with enterprise-grade lifecycle controls. Every listing, version, and dependency is a first-class object.
+      </p>
+
+      <div class="mh-feature-section">
+        <div>
+          <div class="mh-feature-detail-card">
+            <div class="mh-feature-detail-header">
+              <div class="mh-feature-detail-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                </svg>
+              </div>
+              <h3>Package Lifecycle</h3>
+            </div>
+            <ul class="mh-feature-points">
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Strict SemVer enforcement (major, minor, patch, pre-release, build metadata)
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Dependency graph resolution with conflict detection
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Custom validation rules per package category or publisher tier
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Bulk import/export via CSV, JSON, and API batch endpoints
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Package deprecation, yanking, and archiving with forward notices
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Rich media support — screenshots, videos, changelogs, and documentation links
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <div class="mh-feature-detail-card">
+            <div class="mh-feature-detail-header">
+              <div class="mh-feature-detail-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                </svg>
+              </div>
+              <h3>API Surface</h3>
+            </div>
+            <ul class="mh-feature-points">
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                20+ dedicated API endpoints for full catalogue lifecycle
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Versioned REST API with OpenAPI/Swagger documentation
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Webhook support for publish, update, and status-change events
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Pagination, sorting, and field-level filtering on all list endpoints
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       DISCOVERY MODULE
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section">
+    <div class="b-container">
+      <span class="mh-section-label">Module 02</span>
+      <h2 class="b-section-title b-section-title--left">Discovery</h2>
+      <p class="b-section-subtitle b-section-subtitle--left">
+        A search and ranking engine that rewards genuine quality — not just keyword stuffing or download velocity gaming.
+      </p>
+
+      <div class="mh-feature-section mh-feature-section--reverse">
+        <div>
+          <div class="mh-feature-detail-card">
+            <div class="mh-feature-detail-header">
+              <div class="mh-feature-detail-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                </svg>
+              </div>
+              <h3>TF-IDF Ranking Algorithm</h3>
+            </div>
+            <div class="mh-algorithm-visual">
+              <p class="mh-algo-title">Ranking Signal Weights</p>
+              <div class="mh-algo-row">
+                <span class="mh-algo-label">Text relevance</span>
+                <div class="mh-algo-bar-track"><div class="mh-algo-bar-fill" style="width:40%;"></div></div>
+                <span class="mh-algo-pct">40%</span>
+              </div>
+              <div class="mh-algo-row">
+                <span class="mh-algo-label">Download velocity</span>
+                <div class="mh-algo-bar-track"><div class="mh-algo-bar-fill" style="width:30%;"></div></div>
+                <span class="mh-algo-pct">30%</span>
+              </div>
+              <div class="mh-algo-row">
+                <span class="mh-algo-label">Star rating</span>
+                <div class="mh-algo-bar-track"><div class="mh-algo-bar-fill" style="width:20%;"></div></div>
+                <span class="mh-algo-pct">20%</span>
+              </div>
+              <div class="mh-algo-row" style="margin-bottom:0;">
+                <span class="mh-algo-label">Recency</span>
+                <div class="mh-algo-bar-track"><div class="mh-algo-bar-fill" style="width:10%;"></div></div>
+                <span class="mh-algo-pct">10%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="mh-feature-detail-card">
+            <div class="mh-feature-detail-header">
+              <div class="mh-feature-detail-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                </svg>
+              </div>
+              <h3>Surface &amp; Promote</h3>
+            </div>
+            <ul class="mh-feature-points">
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Trending lists computed from rolling 7-day and 30-day windows
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Personalised recommendations based on installed packages and category affinity
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                "Also installed by users who installed X" collaborative-filter signals
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Admin-curated featured placements and category spotlights
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Full-text search across name, description, tags, and publisher name
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       DISTRIBUTION MODULE
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <span class="mh-section-label">Module 03</span>
+      <h2 class="b-section-title b-section-title--left">Distribution</h2>
+      <p class="b-section-subtitle b-section-subtitle--left">
+        A complete licencing engine covering all commercial models from free trials through enterprise perpetual deals — with enforcement, auditing, and billing hooks built in.
+      </p>
+
+      <div class="mh-feature-section">
+        <div>
+          <div class="mh-feature-detail-card">
+            <div class="mh-feature-detail-header">
+              <div class="mh-feature-detail-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/>
+                </svg>
+              </div>
+              <h3>Four Licence Types</h3>
+            </div>
+            <ul class="mh-feature-points">
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <strong style="color:var(--b-text-primary);">Trial</strong> — time-limited access with configurable feature gating
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <strong style="color:var(--b-text-primary);">Subscription</strong> — recurring billing periods with auto-renewal and grace periods
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <strong style="color:var(--b-text-primary);">Perpetual</strong> — one-time purchase with optional maintenance add-on
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <strong style="color:var(--b-text-primary);">Metered</strong> — consumption-based billing with configurable usage units
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <div class="mh-feature-detail-card">
+            <div class="mh-feature-detail-header">
+              <div class="mh-feature-detail-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+              </div>
+              <h3>Enforcement &amp; Compliance</h3>
+            </div>
+            <ul class="mh-feature-points">
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Geo-restrictions at country or region level with IP validation
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Seat-based licence limits with named and concurrent seat modes
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Full immutable audit trail — every grant, revocation, and transfer recorded
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Licence key generation, activation, and transfer workflows
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Billing gateway hooks for Stripe, Paddle, or custom processors
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       COMMUNITY MODULE
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section">
+    <div class="b-container">
+      <span class="mh-section-label">Module 04</span>
+      <h2 class="b-section-title b-section-title--left">Community</h2>
+      <p class="b-section-subtitle b-section-subtitle--left">
+        A full-featured discussion system that keeps your ecosystem's conversations inside your platform — not scattered across third-party forums.
+      </p>
+
+      <div class="mh-feature-section mh-feature-section--reverse">
+        <div>
+          <div class="mh-feature-detail-card">
+            <div class="mh-feature-detail-header">
+              <div class="mh-feature-detail-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                </svg>
+              </div>
+              <h3>Discussions &amp; Threads</h3>
+            </div>
+            <ul class="mh-feature-points">
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Threaded discussions nested to arbitrary depth
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                @mentions with real-time and email notification delivery
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Follow system for packages, publishers, and users
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Up/down voting with configurable threshold-based content promotion
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Rich-text editor with code block highlighting and image embeds
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <div class="mh-feature-detail-card">
+            <div class="mh-feature-detail-header">
+              <div class="mh-feature-detail-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+              </div>
+              <h3>Moderation &amp; Badges</h3>
+            </div>
+            <ul class="mh-feature-points">
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Moderation queue with flag, hide, and remove workflows
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Configurable automatic content filters for banned words and patterns
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Community badges awarded by contribution thresholds
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Moderator role assignment with scoped permissions per category
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Activity feed and digest emails for followed entities
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       PUBLISHER MODULE
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <span class="mh-section-label">Module 05</span>
+      <h2 class="b-section-title b-section-title--left">Publisher</h2>
+      <p class="b-section-subtitle b-section-subtitle--left">
+        Structured verification and a 4-dimensional reputation model that rewards long-term quality — and is resistant to short-term gaming.
+      </p>
+
+      <div class="mh-feature-section">
+        <div>
+          <div class="mh-feature-detail-card">
+            <div class="mh-feature-detail-header">
+              <div class="mh-feature-detail-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                  <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+              </div>
+              <h3>Verification Workflow</h3>
+            </div>
+            <div class="mh-workflow-steps">
+              <div class="mh-workflow-step">
+                <span class="mh-workflow-step-num">1</span>
+                <span class="mh-workflow-step-arrow">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                </span>
+                <span class="mh-workflow-step-label"><strong style="color:var(--b-text-primary);">Unverified</strong> — account created, listings visible but unendorsed</span>
+              </div>
+              <div class="mh-workflow-step">
+                <span class="mh-workflow-step-num">2</span>
+                <span class="mh-workflow-step-arrow">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                </span>
+                <span class="mh-workflow-step-label"><strong style="color:var(--b-text-primary);">Pending</strong> — identity and security review submitted for admin assessment</span>
+              </div>
+              <div class="mh-workflow-step">
+                <span class="mh-workflow-step-num">3</span>
+                <span class="mh-workflow-step-arrow">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                </span>
+                <span class="mh-workflow-step-label"><strong style="color:var(--b-text-primary);">Verified</strong> — identity confirmed, trust badge visible on all listings</span>
+              </div>
+              <div class="mh-workflow-step">
+                <span class="mh-workflow-step-num">4</span>
+                <span class="mh-workflow-step-arrow">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                </span>
+                <span class="mh-workflow-step-label"><strong style="color:var(--b-text-primary);">Certified</strong> — premium tier with vesting cliff, featured placement, and higher revenue share</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="mh-feature-detail-card">
+            <div class="mh-feature-detail-header">
+              <div class="mh-feature-detail-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+                </svg>
+              </div>
+              <h3>4-Dimensional Reputation</h3>
+            </div>
+            <p style="font-size:var(--b-font-size-sm); color:var(--b-text-muted); margin-bottom:var(--b-space-4);">Each publisher accrues a score on four independent axes, each scored 0–5. Vesting cliffs prevent publishers from gaming their score by flooding the marketplace early, then coasting.</p>
+            <div class="mh-rep-tiers">
+              <div class="mh-rep-tier">
+                <span class="mh-rep-tier-badge">Publishing</span>
+                <span class="mh-rep-tier-desc">Volume, SemVer discipline, and update cadence</span>
+              </div>
+              <div class="mh-rep-tier">
+                <span class="mh-rep-tier-badge">Helpfulness</span>
+                <span class="mh-rep-tier-desc">Support response rate and community engagement score</span>
+              </div>
+              <div class="mh-rep-tier">
+                <span class="mh-rep-tier-badge">Quality</span>
+                <span class="mh-rep-tier-desc">Average star rating weighted by review recency</span>
+              </div>
+              <div class="mh-rep-tier">
+                <span class="mh-rep-tier-badge">Community</span>
+                <span class="mh-rep-tier-desc">Discussion contributions and upvote-to-post ratio</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       REVIEWS MODULE
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section">
+    <div class="b-container">
+      <span class="mh-section-label">Module 06</span>
+      <h2 class="b-section-title b-section-title--left">Reviews</h2>
+      <p class="b-section-subtitle b-section-subtitle--left">
+        A trust-building review system that enforces verified purchase before rating, deters abuse, and gives publishers a structured response channel.
+      </p>
+
+      <div class="mh-feature-section mh-feature-section--reverse">
+        <div>
+          <div class="mh-feature-detail-card">
+            <div class="mh-feature-detail-header">
+              <div class="mh-feature-detail-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+              </div>
+              <h3>Review Quality Controls</h3>
+            </div>
+            <ul class="mh-feature-points">
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Verified-install gate — only licensed users can submit ratings
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Sentiment analysis flagging outlier reviews for human moderation
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Content moderation queue with approve, edit, and reject actions
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Publisher official-response thread per review
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Helpfulness voting on reviews — surfaces the most useful feedback
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Version-pinned reviews showing which release was rated
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <div class="mh-feature-detail-card">
+            <div class="mh-feature-detail-header">
+              <div class="mh-feature-detail-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                </svg>
+              </div>
+              <h3>Admin Capabilities</h3>
+            </div>
+            <ul class="mh-feature-points">
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Package approval workflows with conditional holds and reviewer notes
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Publisher verification review — with document upload and checklist
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Reward assignment — badges, commissions overrides, and featured status
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Marketplace rule editor — policies, commission tiers, geo-restrictions
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Full analytics dashboard — installs, revenue, churn, and publisher health
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Immutable audit log for all admin and publisher actions
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       FINAL CTA
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-cta-section">
+    <div class="b-container">
+      <h2 class="b-section-title">See it in action.</h2>
+      <p>Book a 30-minute demo and we'll walk through the live platform with your use case in mind.</p>
+      <div class="b-btn-group">
+        <a href="https://bizfirstai.com/website/contact.html" class="b-btn b-btn-primary b-btn-large">Book a Demo</a>
+        <a href="./index.html" class="b-btn b-btn-secondary b-btn-large">Back to Overview</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="b-footer" id="mh-footer-container"></footer>
+
+  <script src="./assets/js/markethub-layout.js"></script>
+</body>
+</html>

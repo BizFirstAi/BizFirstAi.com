@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="https://bizfirstai.com/website/assets/Logo/logo-m.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="EdgeStream — Real-Time Message Orchestration Pipeline. Sub-100ms latency, 10k+ msg/sec, 14 packages, enterprise-grade observability.">
+  <title>EdgeStream — Real-Time Message Orchestration by BizFirstAi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://bizfirstai.com/website/assets/css/b-index.css">
+  <link rel="stylesheet" href="./es.css">
+  <style>
+    body { overflow-x: hidden; }
+    @media (max-width: 1024px) {
+      .b-benefits-grid[style*="1fr 1fr 1fr"] { grid-template-columns: 1fr 1fr !important; }
+    }
+    @media (max-width: 640px) {
+      .b-benefits-grid[style*="1fr 1fr 1fr"] { grid-template-columns: 1fr !important; }
+    }
+  </style>
+</head>
+<body>
+  <header id="es-header"></header>
+
+  <!-- ── Hero ─────────────────────────────────────────────── -->
+  <section class="es-hero">
+    <div class="b-container">
+      <div class="es-hero__inner">
+
+        <div class="b-hero-left">
+          <div class="es-hero__eyebrow">
+            <span class="es-hero__eyebrow-dot"></span>
+            Real-Time Message Orchestration
+          </div>
+          <h1 class="b-hero-headline">The communication<br><em>backbone.</em></h1>
+          <p class="b-hero-subheading">EdgeStream is an enterprise-grade, real-time message orchestration pipeline that powers the BizFirstAi ecosystem. Unified infrastructure for async messaging, event streaming, pub/sub distribution, and real-time communication — across every platform, every service, every message.</p>
+          <div class="b-hero-ctas">
+            <a href="./get-started.html" class="b-btn b-btn-primary b-btn-large">Get Started</a>
+            <a href="./architecture.html" class="b-btn b-btn-secondary b-btn-large">Explore Architecture</a>
+          </div>
+        </div>
+
+        <!-- Pipeline visual -->
+        <div class="b-hero-right" style="min-height: auto;">
+          <div class="es-pipeline">
+
+            <div class="es-pipeline__header">Incoming Hook Pipeline</div>
+
+            <div class="es-hook es-hook--active">
+              <div class="es-hook__dot"></div>
+              <span class="es-hook__name">Pre-Pipeline</span>
+              <span class="es-hook__tag">priority 0</span>
+            </div>
+            <div class="es-pipeline__arrow">↓</div>
+
+            <div class="es-hook es-hook--active">
+              <div class="es-hook__dot"></div>
+              <span class="es-hook__name">Validation</span>
+              <span class="es-hook__tag">priority 10</span>
+            </div>
+            <div class="es-pipeline__arrow">↓</div>
+
+            <div class="es-hook es-hook--active">
+              <div class="es-hook__dot"></div>
+              <span class="es-hook__name">Normalization</span>
+              <span class="es-hook__tag">CloudEvents</span>
+            </div>
+            <div class="es-pipeline__arrow">↓</div>
+
+            <div class="es-hook es-hook--active">
+              <div class="es-hook__dot"></div>
+              <span class="es-hook__name">Filter</span>
+              <span class="es-hook__tag">topic match</span>
+            </div>
+            <div class="es-pipeline__arrow">↓</div>
+
+            <div class="es-hook">
+              <div class="es-hook__dot"></div>
+              <span class="es-hook__name">Log</span>
+              <span class="es-hook__tag">audit trail</span>
+            </div>
+            <div class="es-pipeline__arrow">↓</div>
+
+            <div class="es-hook">
+              <div class="es-hook__dot"></div>
+              <span class="es-hook__name">Custom Hooks</span>
+              <span class="es-hook__tag">user-defined</span>
+            </div>
+
+            <div class="es-pipeline__divider" style="margin-top: var(--b-space-3);">Pub/Sub Engine → Subscribers</div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <div class="es-stats">
+        <div class="es-stat">
+          <div class="es-stat__number">&lt;100ms</div>
+          <div class="es-stat__label">P95 latency</div>
+        </div>
+        <div class="es-stat">
+          <div class="es-stat__number">10k+</div>
+          <div class="es-stat__label">Messages per second</div>
+        </div>
+        <div class="es-stat">
+          <div class="es-stat__number">14</div>
+          <div class="es-stat__label">Specialized packages</div>
+        </div>
+        <div class="es-stat">
+          <div class="es-stat__number">99.9%</div>
+          <div class="es-stat__label">Availability target</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Three Core Insights ──────────────────────────────── -->
+  <section class="b-section b-section--default">
+    <div class="b-container">
+      <h2 class="b-section-title">Built on three core insights.</h2>
+      <p class="b-section-subtitle">EdgeStream is not another message broker. It is a purpose-built orchestration layer designed around the realities of enterprise real-time communication.</p>
+
+      <div class="b-benefits-grid" style="margin-top: var(--b-space-12);">
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </span>
+            Context is Everything
+          </h3>
+          <p>Messages without full context create bugs, security risks, and poor user experience. EdgeStream carries user, session, conversation, and entity context through the entire message pipeline — automatically. Every hook, every subscriber, every delivery.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+              </svg>
+            </span>
+            Unified Pipeline Eliminates Inconsistency
+          </h3>
+          <p>Most systems treat send and receive differently. EdgeStream flows all messages — both directions — through the same hooks, handlers, and logging. Consistency is not a feature you configure. It is enforced by the architecture.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/>
+              </svg>
+            </span>
+            Dynamic Extensibility Without Code Changes
+          </h3>
+          <p>Hooks created at runtime with priority ordering. Handlers registered dynamically. Message types added without modifying core code. A 50+ plugin ecosystem — as composable as WordPress, as reliable as enterprise infrastructure.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Core Capabilities ─────────────────────────────────── -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">Everything real-time applications need.</h2>
+      <p class="b-section-subtitle">EdgeStream ships with every capability required for production enterprise messaging — without the operational overhead of a separate cluster.</p>
+
+      <div class="b-benefits-grid" style="margin-top: var(--b-space-12);">
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+                <line x1="12" y1="17" x2="12" y2="21"/>
+              </svg>
+            </span>
+            Multi-Transport
+          </h3>
+          <p>SignalR, WebSocket, and HTTP transports. Azure SignalR backend for horizontal scaling. Automatic reconnection with configurable retry strategy. Every connection managed centrally.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+            </span>
+            Topic-Based Pub/Sub
+          </h3>
+          <p>Wildcard subscriptions (<code>user:123:*</code>, <code>order:*:status</code>), exact topic matching, and context-aware delivery filtering. Subscribers receive only what they need — zero noise, full isolation.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+              </svg>
+            </span>
+            CloudEvents Standard
+          </h3>
+          <p>All messages normalised to the CNCF CloudEvents standard — <code>type</code>, <code>source</code>, <code>id</code>, <code>time</code>, <code>datacontenttype</code>. IEnvelope wraps every message with routing metadata, body, headers, and attributes.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              </svg>
+            </span>
+            Complete Observability
+          </h3>
+          <p>HookActivityLogger and SubscriberActivityLogger track every stage of every message. Query logs by message ID, topic, source, or status. Performance stats, success rates, and audit trails built in.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </span>
+            Zero Data Loss
+          </h3>
+          <p>Automatic message persistence, retry mechanisms with exponential backoff, and complete activity audit trails on every delivery. Failed messages are queued and re-delivered — nothing is silently dropped.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 18 22 12 16 6"/>
+                <polyline points="8 6 2 12 8 18"/>
+              </svg>
+            </span>
+            100% TypeScript
+          </h3>
+          <p>Strict type safety throughout all 14 packages. Full type inference from message creation to subscriber delivery. Zero runtime type surprises — type errors caught at build time.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Platform Integration ──────────────────────────────── -->
+  <section class="b-section b-section--default">
+    <div class="b-container">
+      <h2 class="b-section-title">The foundation every BizFirstAi product relies on.</h2>
+      <p class="b-section-subtitle">EdgeStream is not a standalone product. It is the communication layer beneath the entire BizFirstAi platform — every real-time message in FlowEngine, EdgeInteract, and the Process Engine travels through EdgeStream.</p>
+
+      <div class="b-benefits-grid" style="grid-template-columns: 1fr 1fr 1fr; margin-top: var(--b-space-12);">
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              </svg>
+            </span>
+            EdgeInteract
+          </h3>
+          <p>EdgeInteract's ContextManager and CommManager are built directly on top of EdgeStream. Every chat message, form submission, and workflow update travels through the EdgeStream pipeline.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+              </svg>
+            </span>
+            FlowEngine
+          </h3>
+          <p>SignalR-based execution streaming from FlowEngine back to the UI uses EdgeStream as the transport. Real-time step progress, approval requests, and workflow events all flow through EdgeStream.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
+                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
+                <line x1="6" y1="6" x2="6.01" y2="6"/>
+                <line x1="6" y1="18" x2="6.01" y2="18"/>
+              </svg>
+            </span>
+            ProcessEngine
+          </h3>
+          <p>Background processing, batch operations, and long-running task events surface to the UI layer through EdgeStream's pub/sub. Human-in-the-loop notifications land in the correct context, every time.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Results ───────────────────────────────────────────── -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">What EdgeStream delivers.</h2>
+
+      <div class="b-benefits-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin-top: var(--b-space-10);">
+        <div class="b-benefit-card" style="text-align: center; padding: var(--b-space-8);">
+          <div style="font-size: 2.5rem; font-weight: 900; color: var(--b-color-primary);">60%</div>
+          <div style="font-size: var(--b-font-size-sm); font-weight: 600; color: var(--b-text-primary); margin-top: var(--b-space-2);">Faster Feature Delivery</div>
+          <div style="font-size: var(--b-font-size-xs); color: var(--b-text-muted); margin-top: var(--b-space-2);">vs building real-time infrastructure from scratch</div>
+        </div>
+        <div class="b-benefit-card" style="text-align: center; padding: var(--b-space-8);">
+          <div style="font-size: 2.5rem; font-weight: 900; color: var(--b-color-primary);">-50%</div>
+          <div style="font-size: var(--b-font-size-sm); font-weight: 600; color: var(--b-text-primary); margin-top: var(--b-space-2);">Bug Escape Rate</div>
+          <div style="font-size: var(--b-font-size-xs); color: var(--b-text-muted); margin-top: var(--b-space-2);">Context isolation eliminates cross-conversation failures</div>
+        </div>
+        <div class="b-benefit-card" style="text-align: center; padding: var(--b-space-8);">
+          <div style="font-size: 2.5rem; font-weight: 900; color: var(--b-color-primary);">-40%</div>
+          <div style="font-size: var(--b-font-size-sm); font-weight: 600; color: var(--b-text-primary); margin-top: var(--b-space-2);">On-Call Incidents</div>
+          <div style="font-size: var(--b-font-size-xs); color: var(--b-text-muted); margin-top: var(--b-space-2);">Comprehensive activity logging reduces MTTR</div>
+        </div>
+        <div class="b-benefit-card" style="text-align: center; padding: var(--b-space-8);">
+          <div style="font-size: 2.5rem; font-weight: 900; color: var(--b-color-primary);">70%</div>
+          <div style="font-size: var(--b-font-size-sm); font-weight: 600; color: var(--b-text-primary); margin-top: var(--b-space-2);">Less Routing Code</div>
+          <div style="font-size: var(--b-font-size-xs); color: var(--b-text-muted); margin-top: var(--b-space-2);">MessageTypeMetadata handles routing automatically</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="b-cta-section">
+    <div class="b-container">
+      <h2>Start building on EdgeStream.</h2>
+      <p>Sub-100ms latency. 10k+ messages per second. Enterprise-grade from day one.</p>
+      <div class="b-btn-group">
+        <a href="./get-started.html" class="b-btn b-btn-primary b-btn-large">Get Started</a>
+        <a href="./architecture.html" class="b-btn b-btn-secondary b-btn-large">Architecture</a>
+      </div>
+    </div>
+  </section>
+
+  <footer id="es-footer"></footer>
+  <script src="./es-layout.js"></script>
+</body>
+</html>

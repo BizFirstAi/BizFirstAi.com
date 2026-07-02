@@ -1,0 +1,313 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="https://bizfirstai.com/website/assets/Logo/logo-m.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BizFirst Observe Changelog — version history and release notes for the BizFirst Observe unified observability platform.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="BizFirst Observe Changelog — What's new in every release.">
+  <meta property="og:description" content="Version history and release notes for BizFirst Observe, the enterprise observability platform by BizFirstAi.">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BizFirst Observe Changelog">
+  <meta name="twitter:description" content="What's new in every release of BizFirst Observe.">
+
+  <title>Changelog — BizFirst Observe by BizFirstAi</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://bizfirstai.com/website/assets/css/b-index.css">
+
+  <style>
+    body { overflow-x: hidden; }
+    .b-hero-section .b-container { display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .b-hero-section .b-hero-left { max-width: 780px; width: 100%; }
+    .b-hero-section .b-hero-ctas { justify-content: center; }
+    .b-hero-section .b-hero-subheading { max-width: 640px; margin-left: auto; margin-right: auto; }
+
+    .b-benefits-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (max-width: 768px) { .b-benefits-grid { grid-template-columns: 1fr; } }
+
+    .b-benefit-card {
+      overflow: hidden;
+      word-break: break-word;
+      min-width: 0;
+    }
+
+    .b-card-img {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 64px;
+      height: 64px;
+      border-radius: 14px;
+      background: rgba(0, 255, 136, 0.08);
+      border: 1px solid rgba(0, 255, 136, 0.18);
+      margin-bottom: 1rem;
+    }
+
+    .b-card-img svg {
+      width: 34px;
+      height: 34px;
+      color: var(--b-color-primary, #00ff88);
+      stroke: var(--b-color-primary, #00ff88);
+    }
+  </style>
+</head>
+<body>
+
+  <header id="header-container"></header>
+
+  <!-- ════════════════════════════════════════════════════════════
+       HERO
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-hero-section b-hero-bg" style="min-height:52vh;">
+    <div class="b-container">
+      <div class="b-hero-left">
+        <h1 class="b-hero-headline">BizFirst Observe Changelog</h1>
+        <p class="b-hero-subheading">What's new in every release.</p>
+        <div class="b-hero-ctas">
+          <a href="https://community.bizfirstai.com/c/observe" class="b-btn b-btn-secondary b-btn-large" target="_blank" rel="noopener">Discuss on Community</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       TIMELINE
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+
+      <div class="b-timeline">
+
+        <!-- v1.0.0 -->
+        <div class="b-timeline__item">
+          <div class="b-timeline__dot"></div>
+          <div class="b-timeline__year">March 2026 &nbsp;&middot;&nbsp; v1.0.0</div>
+          <div class="b-timeline__title">Production Release</div>
+          <div class="b-timeline__desc">
+            BizFirst Observe enters production. All four signal types — Logs, Metrics, Traces, and Health Checks — verified in a live production environment on March 24, 2026. This release ships 50+ built-in metrics, multi-tenant enrichment on every signal, the SecurityAuditLog compliance table, AlertManager integration with PagerDuty and Slack routing, and Docker Compose plus Kubernetes deployment manifests.
+          </div>
+
+          <div class="b-benefits-grid" style="margin-top:var(--b-space-16);">
+
+            <div class="b-benefit-card">
+              <div class="b-card-img">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="8" height="8" rx="1.5"/>
+                  <rect x="13" y="3" width="8" height="8" rx="1.5"/>
+                  <rect x="3" y="13" width="8" height="8" rx="1.5"/>
+                  <rect x="13" y="13" width="8" height="8" rx="1.5"/>
+                  <polyline points="15 17 17 19 21 15"/>
+                </svg>
+              </div>
+              <h3>All 4 Signal Types Verified</h3>
+              <p>Structured Logs via Grafana Loki, time-series Metrics via Prometheus, distributed Traces via Grafana Tempo, and Health Checks — all production-verified with real tenant workloads on March 24, 2026.</p>
+            </div>
+
+            <div class="b-benefit-card">
+              <div class="b-card-img">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="14" width="3" height="7" rx="1"/>
+                  <rect x="8.5" y="9" width="3" height="12" rx="1"/>
+                  <rect x="14" y="5" width="3" height="16" rx="1"/>
+                  <rect x="19.5" y="2" width="3" height="19" rx="1"/>
+                  <line x1="1" y1="22" x2="23" y2="22"/>
+                </svg>
+              </div>
+              <h3>50+ Built-In Metrics</h3>
+              <p>Custom BizFirst gauges, counters, and histograms plus full ASP.NET Core auto-instrumentation. EdgeStream Kafka metrics included. All metrics labelled by tenant_id. Exposed at /metrics, scraped every 15 seconds by Prometheus.</p>
+            </div>
+
+            <div class="b-benefit-card">
+              <div class="b-card-img">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="5" r="2.5"/>
+                  <circle cx="5" cy="17" r="2.5"/>
+                  <circle cx="19" cy="17" r="2.5"/>
+                  <line x1="12" y1="7.5" x2="5" y2="14.5"/>
+                  <line x1="12" y1="7.5" x2="19" y2="14.5"/>
+                  <line x1="5" y1="17" x2="19" y2="17"/>
+                  <path d="M10 13h4" stroke-dasharray="1.5 1.5"/>
+                </svg>
+              </div>
+              <h3>Multi-Tenant Enrichment</h3>
+              <p>TelemetryEnrichmentMiddleware automatically adds TenantId, ServerId, RequestId, and TraceId to every log entry, metric, and trace span. Per-tenant Grafana dashboards via $TenantId template variable. SecurityAuditLog indexed by (TenantId, CreatedAt).</p>
+            </div>
+
+            <div class="b-benefit-card">
+              <div class="b-card-img">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                  <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                  <circle cx="18" cy="5" r="3" fill="currentColor" stroke="none" opacity="0.5"/>
+                  <text x="16.5" y="6.5" font-size="4" fill="currentColor" stroke="none" font-weight="bold">!</text>
+                </svg>
+              </div>
+              <h3>AlertManager Integration</h3>
+              <p>Four production-ready alert rules: HighErrorRate, HighLatency, HighKafkaLag, ComponentDown. Critical alerts route to PagerDuty immediately. Warning alerts route to Slack. Full 30-minute escalation ladder configured out of the box.</p>
+            </div>
+
+            <div class="b-benefit-card">
+              <div class="b-card-img">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="7" width="20" height="5" rx="1.5"/>
+                  <rect x="2" y="14" width="20" height="5" rx="1.5"/>
+                  <circle cx="6" cy="9.5" r="1" fill="currentColor" stroke="none"/>
+                  <circle cx="6" cy="16.5" r="1" fill="currentColor" stroke="none"/>
+                  <path d="M10 9.5h8M10 16.5h8" stroke-width="1.2"/>
+                  <path d="M5 7V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v2" stroke-width="1.4"/>
+                </svg>
+              </div>
+              <h3>Docker Compose &amp; Kubernetes</h3>
+              <p>docker-compose.observability.yml spins up Prometheus (9090), Loki (3100), Tempo (4317), Grafana v12.4.1 (3000), and AlertManager in one command. Full Kubernetes manifests with liveness and readiness probe configuration included.</p>
+            </div>
+
+            <div class="b-benefit-card">
+              <div class="b-card-img">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  <polyline points="9 12 11 14 15 10"/>
+                </svg>
+              </div>
+              <h3>SecurityAuditLog</h3>
+              <p>L2 compliance tier: every RBAC decision (ALLOW/DENY/ERROR) written to SecurityAuditLog with PolicyId, PrivilegeKey, PrincipalId, ResourceNodeId, ActionType, Reason, and TenantId. GDPR-compliant — user IDs hashed, no PII in logs, configurable TTL retention.</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- v0.9.0 -->
+        <div class="b-timeline__item">
+          <div class="b-timeline__dot"></div>
+          <div class="b-timeline__year">February 2026 &nbsp;&middot;&nbsp; v0.9.0</div>
+          <div class="b-timeline__title">Tracing &amp; Tempo</div>
+          <div class="b-timeline__desc">
+            Introduces distributed tracing via Grafana Tempo. This release ships OTLP gRPC export, environment-aware adaptive sampling with always-sample-errors, TraceQL query support in Grafana, and automatic TraceId to Loki log correlation. Service dependency graphs are now built automatically from span relationships.
+          </div>
+
+          <div class="b-benefits-grid" style="margin-top:var(--b-space-16);">
+
+            <div class="b-benefit-card">
+              <div class="b-card-img">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="2 12 5 12 7 5 10 19 13 9 15 14 17 12 22 12"/>
+                </svg>
+              </div>
+              <h3>OTLP gRPC Export to Grafana Tempo</h3>
+              <p>Full-chain traces exported via OTLP gRPC to Grafana Tempo on port 4317. Spans cover the complete request path: HTTP request &rarr; service layer &rarr; database queries &rarr; Kafka &rarr; SignalR. Service dependency graph auto-built from span relationships.</p>
+            </div>
+
+            <div class="b-benefit-card">
+              <div class="b-card-img">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16v3L13 14v6l-2-1v-5L4 7V4z"/>
+                  <circle cx="19" cy="5" r="2.5" fill="currentColor" stroke="none" opacity="0.4"/>
+                  <path d="M17.5 5h3M19 3.5v3" stroke-width="1.4"/>
+                </svg>
+              </div>
+              <h3>Adaptive Sampling</h3>
+              <p>Environment-aware sampling rates configured in appsettings.json: 100% development, 10% staging, 1% production. AlwaysSampleErrors policy guarantees no error trace is ever dropped, regardless of sampling rate or environment.</p>
+            </div>
+
+            <div class="b-benefit-card">
+              <div class="b-card-img">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="10" cy="10" r="7"/>
+                  <line x1="21" y1="21" x2="15.65" y2="15.65"/>
+                  <path d="M7 10h6M10 7v6" stroke-width="1.4"/>
+                </svg>
+              </div>
+              <h3>TraceQL Support &amp; Log Correlation</h3>
+              <p>Query traces in Grafana using TraceQL. TraceId is automatically written to every Loki log entry by TelemetryEnrichmentMiddleware, enabling one-click navigation from any trace span to its associated log lines.</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- v0.8.0 -->
+        <div class="b-timeline__item">
+          <div class="b-timeline__dot"></div>
+          <div class="b-timeline__year">January 2026 &nbsp;&middot;&nbsp; v0.8.0</div>
+          <div class="b-timeline__title">Metrics &amp; Loki</div>
+          <div class="b-timeline__desc">
+            Ships the Prometheus /metrics endpoint with 50+ built-in metrics, the Serilog Loki sink, and TelemetryEnrichmentMiddleware. This release establishes the core multi-tenancy pattern — per-tenant labels on all signals — and enforces the tenant_id requirement on all custom metrics.
+          </div>
+
+          <div class="b-benefits-grid" style="margin-top:var(--b-space-16);">
+
+            <div class="b-benefit-card">
+              <div class="b-card-img">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="9"/>
+                  <path d="M12 7v5l3.5 2"/>
+                  <path d="M3.5 9.5l1.8.9M3.5 14.5l1.8-.9M12 3v2M20.5 9.5l-1.8.9M20.5 14.5l-1.8-.9M12 21v-2"/>
+                </svg>
+              </div>
+              <h3>Prometheus /metrics Endpoint</h3>
+              <p>50+ built-in metrics exposed at /metrics in Prometheus text format. BizFirst custom metrics, EdgeStream Kafka metrics, and ASP.NET Core auto-instrumented HTTP server metrics all available. Scrape interval: 15 seconds.</p>
+            </div>
+
+            <div class="b-benefit-card">
+              <div class="b-card-img">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                  <polyline points="14 2 14 8 20 8"/>
+                  <line x1="8" y1="13" x2="16" y2="13"/>
+                  <line x1="8" y1="17" x2="13" y2="17"/>
+                  <line x1="8" y1="9" x2="10" y2="9"/>
+                </svg>
+              </div>
+              <h3>Serilog Loki Sink</h3>
+              <p>Structured logs pushed to Grafana Loki via HTTP sink. Three log tiers operational: L0 Console/File for development, L1 Loki for all environments, L2 SecurityAuditLog for compliance. LogQL querying available immediately in Grafana Explore.</p>
+            </div>
+
+            <div class="b-benefit-card">
+              <div class="b-card-img">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="16" width="18" height="3" rx="1.5"/>
+                  <rect x="3" y="10.5" width="18" height="3" rx="1.5"/>
+                  <rect x="3" y="5" width="18" height="3" rx="1.5"/>
+                  <path d="M7 8v2.5M7 13.5V16" stroke-width="1.4" stroke-dasharray="1 1"/>
+                  <path d="M17 8v2.5M17 13.5V16" stroke-width="1.4" stroke-dasharray="1 1"/>
+                </svg>
+              </div>
+              <h3>TelemetryEnrichmentMiddleware</h3>
+              <p>Establishes the core multi-tenancy pattern: TelemetryEnrichmentMiddleware automatically adds TenantId, ServerId, RequestId, and TraceId to every log entry and metric. Per-tenant label enforcement introduced as a platform requirement for all custom metrics.</p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       CTA
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-cta-section">
+    <div class="b-container">
+      <h2>Start observing.</h2>
+      <p>Three lines of C#. Full-stack observability. Production-verified.</p>
+      <div class="b-btn-group">
+        <a href="./docs.html" class="b-btn b-btn-primary b-btn-large">Read the Docs</a>
+        <a href="https://community.bizfirstai.com/c/observe" class="b-btn b-btn-secondary b-btn-large" target="_blank" rel="noopener">Join the Community</a>
+      </div>
+    </div>
+  </section>
+
+  <footer id="footer-container"></footer>
+
+  <script src="./shared-layout.js"></script>
+</body>
+</html>

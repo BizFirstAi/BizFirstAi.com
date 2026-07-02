@@ -1,0 +1,387 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="https://bizfirstai.com/website/assets/Logo/logo-m.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Flow Examples — Real-world workflow patterns: approvals, AI classification, onboarding, notifications.">
+  <title>Examples — Flow by BizFirstAi</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://bizfirstai.com/website/assets/css/b-index.css">
+  <link rel="stylesheet" href="./flow.css">
+  <style>
+    .ex-header {
+      border-bottom: 1px solid var(--b-border-subtle);
+      padding-bottom: var(--b-space-6);
+      margin-bottom: var(--b-space-8);
+    }
+    .ex-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--b-space-2);
+      background: var(--b-color-primary-subtle);
+      border: 1px solid var(--b-border-primary);
+      border-radius: var(--b-radius-full);
+      padding: var(--b-space-1) var(--b-space-3);
+      font-size: var(--b-font-size-xs);
+      font-weight: var(--b-font-weight-medium);
+      color: var(--b-color-primary);
+      margin-bottom: var(--b-space-4);
+    }
+    .ex-flow {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--b-space-2);
+      margin: var(--b-space-6) 0;
+    }
+    .ex-node {
+      background: var(--b-bg-surface);
+      border: 1px solid var(--b-border-default);
+      border-radius: var(--b-radius-md);
+      padding: var(--b-space-2) var(--b-space-3);
+      font-size: var(--b-font-size-xs);
+      font-weight: var(--b-font-weight-medium);
+      color: var(--b-text-secondary);
+      white-space: nowrap;
+    }
+    .ex-node--trigger { border-color: var(--b-color-primary); color: var(--b-color-primary); background: var(--b-color-primary-subtle); }
+    .ex-node--ai { border-color: rgba(99,102,241,0.5); color: #a5b4fc; background: rgba(99,102,241,0.08); }
+    .ex-node--human { border-color: rgba(245,158,11,0.4); color: #fcd34d; background: rgba(245,158,11,0.08); }
+    .ex-node--end { border-color: rgba(16,185,129,0.4); color: #6ee7b7; background: rgba(16,185,129,0.08); }
+    .ex-arrow { color: var(--b-color-primary); font-size: 1rem; opacity: 0.6; }
+    .ex-nodes-used {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--b-space-2);
+      margin-top: var(--b-space-4);
+    }
+    .ex-capability {
+      font-size: var(--b-font-size-xs);
+      background: var(--b-bg-raised);
+      border: 1px solid var(--b-border-subtle);
+      border-radius: var(--b-radius-sm);
+      padding: 2px var(--b-space-2);
+      color: var(--b-text-muted);
+    }
+    .ex-section { margin-bottom: var(--b-space-20); }
+    .ex-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--b-space-4);
+      margin-top: var(--b-space-6);
+    }
+    .ex-detail {
+      background: var(--b-bg-surface);
+      border: 1px solid var(--b-border-default);
+      border-radius: var(--b-radius-lg);
+      padding: var(--b-space-5);
+    }
+    .ex-detail__label {
+      font-size: var(--b-font-size-xs);
+      font-weight: var(--b-font-weight-bold);
+      color: var(--b-color-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: var(--b-space-2);
+    }
+    .ex-detail__value {
+      font-size: var(--b-font-size-sm);
+      color: var(--b-text-secondary);
+      line-height: 1.5;
+    }
+    @media (max-width: 768px) { .ex-grid { grid-template-columns: 1fr; } }
+    body { overflow-x: hidden; }
+  </style>
+</head>
+<body>
+  <header id="flow-header"></header>
+
+  <section class="b-section b-section--default" style="padding-top: var(--b-space-20);">
+    <div class="b-container">
+      <h1 class="b-section-title">Workflow Examples</h1>
+      <p class="b-section-subtitle">Real-world patterns built with Flow. Each example shows the node sequence, the capabilities used, and the key Flow Engine features involved.</p>
+    </div>
+  </section>
+
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+
+      <!-- Example 1: Customer Onboarding -->
+      <div class="ex-section" id="onboarding">
+        <div class="ex-header">
+          <span class="ex-tag">Human-in-the-Loop · Forms · Database</span>
+          <h2 style="font-size: clamp(1.4rem, 3vw, 1.8rem); font-weight: var(--b-font-weight-bold); color: var(--b-text-primary);">Customer Onboarding</h2>
+          <p style="color: var(--b-text-muted); margin-top: var(--b-space-2);">Collect customer details via a form, validate them, route to a manager for approval, then create the account and notify the customer.</p>
+        </div>
+
+        <div class="ex-flow">
+          <span class="ex-node ex-node--trigger">Form Trigger</span>
+          <span class="ex-arrow">→</span>
+          <span class="ex-node">Validate Data</span>
+          <span class="ex-arrow">→</span>
+          <span class="ex-node">If / Condition</span>
+          <span class="ex-arrow">→ (valid)</span>
+          <span class="ex-node ex-node--human">Approval (Manager)</span>
+          <span class="ex-arrow">→ (approved)</span>
+          <span class="ex-node">Database Insert</span>
+          <span class="ex-arrow">→</span>
+          <span class="ex-node">Send Email</span>
+          <span class="ex-arrow">→</span>
+          <span class="ex-node ex-node--end">Complete</span>
+        </div>
+
+        <div class="ex-grid">
+          <div class="ex-detail">
+            <div class="ex-detail__label">Approval Strategy</div>
+            <div class="ex-detail__value">AnyOne — any single manager can approve. The workflow suspends in state 4 (Waiting) until the first approval comes in, then resumes automatically.</div>
+          </div>
+          <div class="ex-detail">
+            <div class="ex-detail__label">Error Handling</div>
+            <div class="ex-detail__value">The validation node has ContinueOnFail = false. Invalid data routes to an error branch that sends a rejection email, then terminates.</div>
+          </div>
+          <div class="ex-detail">
+            <div class="ex-detail__label">Timeout Behaviour</div>
+            <div class="ex-detail__value">Approval has a 48-hour deadline. On timeout, AutoOnTimeout = "escalate" — the request is forwarded to the team lead automatically.</div>
+          </div>
+          <div class="ex-detail">
+            <div class="ex-detail__label">Capabilities Used</div>
+            <div class="ex-detail__value">
+              <div class="ex-nodes-used">
+                <span class="ex-capability">ActorInLoop</span>
+                <span class="ex-capability">Forms</span>
+                <span class="ex-capability">Entity</span>
+                <span class="ex-capability">Messaging</span>
+                <span class="ex-capability">Identity</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Example 2: AI Classification -->
+      <div class="ex-section" id="ai">
+        <div class="ex-header">
+          <span class="ex-tag">AI Agent · Conditional Routing · Notifications</span>
+          <h2 style="font-size: clamp(1.4rem, 3vw, 1.8rem); font-weight: var(--b-font-weight-bold); color: var(--b-text-primary);">AI-Powered Support Ticket Classification</h2>
+          <p style="color: var(--b-text-muted); margin-top: var(--b-space-2);">Incoming support tickets are classified by an AI agent and routed to the right team automatically — no manual triage needed.</p>
+        </div>
+
+        <div class="ex-flow">
+          <span class="ex-node ex-node--trigger">Webhook Trigger</span>
+          <span class="ex-arrow">→</span>
+          <span class="ex-node ex-node--ai">AI Agent (Octopus)</span>
+          <span class="ex-arrow">→</span>
+          <span class="ex-node">Switch</span>
+          <span class="ex-arrow">→ (billing)</span>
+          <span class="ex-node">Slack Message</span>
+          <span class="ex-arrow">·</span>
+          <span class="ex-node">→ (technical)</span>
+          <span class="ex-node">Assign Engineer</span>
+          <span class="ex-arrow">·</span>
+          <span class="ex-node">→ (other)</span>
+          <span class="ex-node">Send Email</span>
+        </div>
+
+        <div class="ex-grid">
+          <div class="ex-detail">
+            <div class="ex-detail__label">AI Agent Configuration</div>
+            <div class="ex-detail__value">Octopus executor with OpenAI GPT-4o. Prompt template instructs the model to classify the ticket into: billing, technical, feature-request, or other. Output port maps to Switch node branches.</div>
+          </div>
+          <div class="ex-detail">
+            <div class="ex-detail__label">Output Port Mapping</div>
+            <div class="ex-detail__value">The AI Agent node uses OutputPortMapping to map model response values to execution ports. "billing" → billing port, "technical" → technical port. Unmatched → default/other.</div>
+          </div>
+          <div class="ex-detail">
+            <div class="ex-detail__label">Variable Scope</div>
+            <div class="ex-detail__value">Ticket content enters as GlobalScope input data. AI classification result is merged into GlobalScope and available to all downstream nodes (Slack message, Engineer assignment, Email).</div>
+          </div>
+          <div class="ex-detail">
+            <div class="ex-detail__label">Capabilities Used</div>
+            <div class="ex-detail__value">
+              <div class="ex-nodes-used">
+                <span class="ex-capability">Webhooks</span>
+                <span class="ex-capability">Services (OpenAI)</span>
+                <span class="ex-capability">Messaging (Slack)</span>
+                <span class="ex-capability">Identity</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Example 3: Document Approval -->
+      <div class="ex-section" id="approval">
+        <div class="ex-header">
+          <span class="ex-tag">Human-in-the-Loop · NofM Voting · Parallel</span>
+          <h2 style="font-size: clamp(1.4rem, 3vw, 1.8rem); font-weight: var(--b-font-weight-bold); color: var(--b-text-primary);">Multi-Level Document Approval</h2>
+          <p style="color: var(--b-text-muted); margin-top: var(--b-space-2);">A contract is uploaded, reviewed by legal and finance in parallel, then requires 2 of 3 executives to sign off before finalisation.</p>
+        </div>
+
+        <div class="ex-flow">
+          <span class="ex-node ex-node--trigger">Manual Trigger</span>
+          <span class="ex-arrow">→</span>
+          <span class="ex-node">Parallel Fork</span>
+          <span class="ex-arrow">→</span>
+          <span class="ex-node ex-node--human">Approval (Legal)</span>
+          <span class="ex-arrow">+</span>
+          <span class="ex-node ex-node--human">Approval (Finance)</span>
+          <span class="ex-arrow">→</span>
+          <span class="ex-node">Parallel Join</span>
+          <span class="ex-arrow">→</span>
+          <span class="ex-node ex-node--human">Approval NofM (2 of 3 Exec)</span>
+          <span class="ex-arrow">→</span>
+          <span class="ex-node ex-node--end">Finalise</span>
+        </div>
+
+        <div class="ex-grid">
+          <div class="ex-detail">
+            <div class="ex-detail__label">Parallel Execution</div>
+            <div class="ex-detail__value">Parallel Fork pushes both Legal and Finance approval nodes onto the execution stack simultaneously. Both run concurrently. Parallel Join waits for both to complete before continuing.</div>
+          </div>
+          <div class="ex-detail">
+            <div class="ex-detail__label">NofM Approval Strategy</div>
+            <div class="ex-detail__value">Executive approval uses Strategy = NofM with RequiredCount = 2 and 3 actors. Any 2 of the 3 executives approving is sufficient. The third's vote is ignored once the threshold is met.</div>
+          </div>
+          <div class="ex-detail">
+            <div class="ex-detail__label">Suspension Duration</div>
+            <div class="ex-detail__value">Each approval node suspends in state 4 (Waiting). The workflow can stay suspended for days. State is persisted in SuspendedExecution table and resumed via ExecuteContinuationAsync when decisions arrive.</div>
+          </div>
+          <div class="ex-detail">
+            <div class="ex-detail__label">Capabilities Used</div>
+            <div class="ex-detail__value">
+              <div class="ex-nodes-used">
+                <span class="ex-capability">ActorInLoop</span>
+                <span class="ex-capability">Execution (Parallel)</span>
+                <span class="ex-capability">Messaging</span>
+                <span class="ex-capability">Entity (Document)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Example 4: Data Sync -->
+      <div class="ex-section" id="datasync">
+        <div class="ex-header">
+          <span class="ex-tag">Scheduled · Database · Error Handling</span>
+          <h2 style="font-size: clamp(1.4rem, 3vw, 1.8rem); font-weight: var(--b-font-weight-bold); color: var(--b-text-primary);">Nightly Database Sync</h2>
+          <p style="color: var(--b-text-muted); margin-top: var(--b-space-2);">Every night at 2am, pull records from a PostgreSQL source, transform them, and upsert into Data Ocean. Alert on-call if anything fails.</p>
+        </div>
+
+        <div class="ex-flow">
+          <span class="ex-node ex-node--trigger">Schedule (Cron 0 2 * * *)</span>
+          <span class="ex-arrow">→</span>
+          <span class="ex-node">Try Block</span>
+          <span class="ex-arrow">→</span>
+          <span class="ex-node">PostgreSQL Query</span>
+          <span class="ex-arrow">→</span>
+          <span class="ex-node">JSON Transform</span>
+          <span class="ex-arrow">→</span>
+          <span class="ex-node">Loop</span>
+          <span class="ex-arrow">→</span>
+          <span class="ex-node">Database Upsert</span>
+          <span class="ex-arrow">→ (catch)</span>
+          <span class="ex-node">Slack Alert</span>
+          <span class="ex-arrow">→ (finally)</span>
+          <span class="ex-node ex-node--end">Log Result</span>
+        </div>
+
+        <div class="ex-grid">
+          <div class="ex-detail">
+            <div class="ex-detail__label">Loop Scope</div>
+            <div class="ex-detail__value">The Loop node iterates over the PostgreSQL result set. Each iteration's current record is stored in LoopScope and accessible to the Database Upsert node. LoopScope resets per iteration.</div>
+          </div>
+          <div class="ex-detail">
+            <div class="ex-detail__label">Try/Catch/Finally</div>
+            <div class="ex-detail__value">The PostgreSQL query and transform are inside a Try Block. If any node fails, the Catch branch routes to Slack alert with the error from TryCatchScope. Finally always runs to log the result — success or failure.</div>
+          </div>
+          <div class="ex-detail">
+            <div class="ex-detail__label">Node Timeout</div>
+            <div class="ex-detail__value">PostgreSQL Query has Timeout = 300 seconds, TimeoutBehavior = "Error". If the query runs over 5 minutes, it triggers the catch branch automatically.</div>
+          </div>
+          <div class="ex-detail">
+            <div class="ex-detail__label">Capabilities Used</div>
+            <div class="ex-detail__value">
+              <div class="ex-nodes-used">
+                <span class="ex-capability">Datasource (PostgreSQL)</span>
+                <span class="ex-capability">Entity (Data Ocean)</span>
+                <span class="ex-capability">Messaging (Slack)</span>
+                <span class="ex-capability">Rules</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Example 5: Sub-Workflow -->
+      <div class="ex-section" id="subworkflow">
+        <div class="ex-header">
+          <span class="ex-tag">Sub-Workflow · Reusable · Parallel</span>
+          <h2 style="font-size: clamp(1.4rem, 3vw, 1.8rem); font-weight: var(--b-font-weight-bold); color: var(--b-text-primary);">Reusable Notification Sub-Workflow</h2>
+          <p style="color: var(--b-text-muted); margin-top: var(--b-space-2);">Build a send-notification workflow once and call it from any other workflow using the Sub-Workflow node. Channel selection (Slack, Email, WhatsApp) is parameterised at call time.</p>
+        </div>
+
+        <div class="ex-flow">
+          <span class="ex-node">[Any Workflow]</span>
+          <span class="ex-arrow">→</span>
+          <span class="ex-node">Sub-Workflow: notify</span>
+          <span class="ex-arrow">→ (with params)</span>
+          <span class="ex-node ex-node--trigger">Webhook Trigger (notify)</span>
+          <span class="ex-arrow">→</span>
+          <span class="ex-node">Switch (channel)</span>
+          <span class="ex-arrow">→</span>
+          <span class="ex-node">Slack / Email / WhatsApp</span>
+          <span class="ex-arrow">→</span>
+          <span class="ex-node ex-node--end">Return</span>
+        </div>
+
+        <div class="ex-grid">
+          <div class="ex-detail">
+            <div class="ex-detail__label">Sub-Workflow Node</div>
+            <div class="ex-detail__value">The Sub-Workflow executor invokes a separate ProcessThread with its own execution context. Input data (channel, message, recipient) is passed via GlobalScope. The parent workflow waits for the sub-workflow to complete before continuing.</div>
+          </div>
+          <div class="ex-detail">
+            <div class="ex-detail__label">Reusability</div>
+            <div class="ex-detail__value">The notify sub-workflow is defined once in a shared project. Any workflow in the tenant can invoke it. Changes to the notification logic propagate automatically to all callers.</div>
+          </div>
+          <div class="ex-detail">
+            <div class="ex-detail__label">Capabilities Used</div>
+            <div class="ex-detail__value">
+              <div class="ex-nodes-used">
+                <span class="ex-capability">Process (Sub-workflow)</span>
+                <span class="ex-capability">Messaging (Slack)</span>
+                <span class="ex-capability">Messaging (Email)</span>
+                <span class="ex-capability">Messaging (WhatsApp)</span>
+              </div>
+            </div>
+          </div>
+          <div class="ex-detail">
+            <div class="ex-detail__label">Execution Context</div>
+            <div class="ex-detail__value">The sub-workflow runs as a new ProcessThread with its own ProcessThreadExecutionContext and ThreadScope. It does not pollute the parent's variable scopes. Only the return value is merged back into GlobalScope.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="b-cta-section">
+    <div class="b-container">
+      <h2>Ready to build your own?</h2>
+      <p>Start with the get-started guide or explore the architecture to understand how it all fits together.</p>
+      <div class="b-btn-group">
+        <a href="./get-started.html" class="b-btn b-btn-primary b-btn-large">Get Started</a>
+        <a href="./architecture.html" class="b-btn b-btn-secondary b-btn-large">Architecture</a>
+      </div>
+    </div>
+  </section>
+  <footer id="flow-footer"></footer>
+
+  <script src="./flow-layout.js"></script>
+</body>
+</html>

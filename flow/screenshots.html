@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="https://bizfirstai.com/website/assets/Logo/logo-m.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Flow Screenshots — See the visual workflow designer in action.">
+  <title>Screenshots — Flow by BizFirstAi</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://bizfirstai.com/website/assets/css/b-index.css">
+  <link rel="stylesheet" href="./flow.css">
+
+  <style>
+    html, body { margin: 0; padding: 0; height: 100%; overflow: hidden; overflow-x: hidden; }
+    .flow-pdf-wrap {
+      height: calc(100vh - 60px);
+      background: var(--b-bg-surface);
+    }
+
+    .flow-pdf-wrap iframe {
+      width: 100%;
+      max-width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    .flow-pdf-placeholder {
+      display: none;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: var(--b-space-4);
+      color: var(--b-text-muted);
+    }
+
+    .flow-pdf-placeholder svg {
+      width: 48px;
+      height: 48px;
+      opacity: 0.3;
+    }
+
+    .flow-pdf-placeholder p {
+      font-size: var(--b-font-size-sm);
+    }
+  </style>
+</head>
+<body>
+  <header id="flow-header"></header>
+
+  <!-- ── PDF Viewer ───────────────────────────────────────── -->
+  <div class="flow-pdf-wrap">
+    <iframe
+      src="./screenshots.pdf"
+      title="Flow Screenshots"
+      onerror="this.style.display='none'; document.querySelector('.flow-pdf-placeholder').style.display='flex';">
+    </iframe>
+    <div class="flow-pdf-placeholder">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+        <polyline points="14 2 14 8 20 8"/>
+      </svg>
+      <p>Place <strong>screenshots.pdf</strong> in the <code>flow/</code> folder.</p>
+    </div>
+  </div>
+
+  <footer id="flow-footer"></footer>
+  <script src="./flow-layout.js"></script>
+</body>
+</html>

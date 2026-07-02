@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BizFirst AI - Ecosystem</title>
+    <meta name="description" content="BizFirst AI - The complete product suite powering OperateAI's decentralized AI registry">
+    <meta name="keywords" content="AI, Ecosystem, Blockchain, Web3, Accumulate, OperateAI, Decentralized AI">
+    <meta name="author" content="Bank on Ledger">
+    <link rel="shortcut icon" href="./images/favicon.ico">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/animations.css">
+    <link rel="stylesheet" href="./css/components.css">
+    <link rel="stylesheet" href="./css/common.css">
+
+    <style>
+    body { overflow-x: hidden; }
+        /* ── Hero Banner ── */
+        .ecosystem-hero {
+            padding: 160px 0 80px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a2a0a 50%, #1a1a1a 100%);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            color: #fff;
+        }
+        .ecosystem-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 30% 40%, rgba(0,255,0,0.06) 0%, transparent 60%),
+                        radial-gradient(circle at 70% 60%, rgba(6,182,212,0.06) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .ecosystem-hero .hero-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 40px rgba(0,255,0,0.25);
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 40px rgba(0,255,0,0.25); }
+            50% { box-shadow: 0 0 60px rgba(0,255,0,0.4); }
+        }
+        .ecosystem-hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .ecosystem-hero p.lead {
+            font-size: 1.15rem;
+            color: rgba(255,255,255,0.75);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ── Section Divider ── */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            margin: 0;
+        }
+
+        /* ── Product Grid Section ── */
+        .products-section {
+            padding: 80px 0;
+            background: linear-gradient(180deg, #141414 0%, #1a1a1a 100%);
+            color: #fff;
+        }
+        .products-section .section-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+        }
+        .products-section .section-header p {
+            color: rgba(255,255,255,0.65);
+        }
+
+        /* ── Glassmorphism Product Cards ── */
+        .product-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            min-height: 280px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+        }
+        .product-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(0,255,0,0.03), transparent 60%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .product-card:hover {
+            background: rgba(255,255,255,0.08);
+            transform: translateY(-6px);
+            border-color: rgba(0,255,0,0.25);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4), 0 0 25px rgba(0,255,0,0.08);
+        }
+        .product-card:hover::before {
+            opacity: 1;
+        }
+        .product-card .card-content {
+            position: relative;
+            z-index: 1;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card .product-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 1.25rem;
+            transition: transform 0.3s ease;
+        }
+        .product-card:hover .product-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+        .product-card h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 0.4rem;
+        }
+        .product-card .product-domain {
+            font-size: 0.8rem;
+            color: var(--accent-primary);
+            margin-bottom: 0.75rem;
+            display: inline-block;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .product-card .product-domain:hover {
+            color: var(--accent-secondary);
+        }
+        .product-card .product-domain.internal {
+            color: rgba(255,255,255,0.4);
+            font-style: italic;
+        }
+        .product-card p.product-desc {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.65);
+            line-height: 1.7;
+            margin: 0;
+            flex: 1;
+        }
+
+        /* ── Accumulate Partnership Section ── */
+        .partnership-section {
+            padding: 80px 0;
+            background: linear-gradient(180deg, #1a1a1a 0%, #0a2a0a 50%, #1a1a1a 100%);
+            color: #fff;
+        }
+        .partnership-section .section-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+        }
+        .partnership-section .section-header p {
+            color: rgba(255,255,255,0.65);
+        }
+        .partnership-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0,255,0,0.15);
+            border-radius: 16px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .partnership-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            background: radial-gradient(circle at 20% 30%, rgba(0,255,0,0.05) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .partnership-card .card-content {
+            position: relative;
+            z-index: 1;
+        }
+        .partnership-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 1.5rem;
+        }
+        .partnership-card h3 i {
+            color: var(--accent-primary);
+        }
+        .partnership-card .partnership-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .partnership-card .partnership-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            color: rgba(255,255,255,0.8);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+        .partnership-card .partnership-list li:last-child {
+            border-bottom: none;
+        }
+        .partnership-card .partnership-list li i {
+            color: var(--accent-primary);
+            margin-top: 0.25rem;
+            flex-shrink: 0;
+        }
+        .partnership-card .partnership-list li a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .partnership-card .partnership-list li a:hover {
+            color: var(--accent-secondary);
+        }
+        .partnership-highlight {
+            background: rgba(0,255,0,0.08);
+            border: 1px solid rgba(0,255,0,0.2);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.75);
+            line-height: 1.6;
+        }
+        .partnership-highlight i {
+            color: var(--accent-primary);
+        }
+
+        /* ── Mermaid Diagram Section ── */
+        .diagram-section {
+            padding: 80px 0;
+            background: linear-gradient(180deg, #1a1a1a 0%, #141414 100%);
+            color: #fff;
+        }
+        .diagram-section .section-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+        }
+        .diagram-section .section-header p {
+            color: rgba(255,255,255,0.65);
+        }
+        .mermaid-container {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 2rem;
+            overflow-x: auto;
+        }
+        .mermaid {
+            display: flex;
+            justify-content: center;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .ecosystem-hero { padding: 120px 0 60px; }
+            .ecosystem-hero h1 {
+                font-size: 2rem;
+            }
+            .ecosystem-hero p.lead {
+                font-size: 1rem;
+            }
+            .product-card {
+                padding: 1.5rem;
+            }
+            .partnership-card {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .ecosystem-hero h1 { font-size: 1.75rem; }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div id="status">
+            <div class="spinner">Loading...</div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top custom-nav">
+        <div class="container">
+            <a class="navbar-brand" href="./index.html">
+                <div class="logo-container">
+                    <img src="./images/logo.png" alt="BizFirst AI" class="logo-img">
+                </div>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="features.html">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="how-it-works.html">How It Works</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="ecosystem.html">Ecosystem</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="did-identity.html">DID &amp; Identity</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="agent-communication.html">Communication</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="getting-started.html">Get Started</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Banner -->
+    <section class="ecosystem-hero">
+        <div class="container" data-aos="fade-up" data-aos-duration="800">
+            <div class="hero-icon">
+                <i class="fas fa-project-diagram"></i>
+            </div>
+            <h1><span class="gradient-text">Ecosystem</span></h1>
+            <p class="lead">The complete product suite powering OperateAI's decentralized AI registry</p>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Product Grid -->
+    <section class="products-section" id="products">
+        <div class="container">
+            <div class="section-header text-center" data-aos="fade-up">
+                <h2><i class="fas fa-cubes me-3"></i>Product Suite</h2>
+                <p>Twelve products working together to power the OperateAI decentralized AI ecosystem</p>
+            </div>
+
+            <div class="row g-4 mt-4">
+
+                <!-- 1. Operate Wallet -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="product-card">
+                        <div class="card-content">
+                            <div class="product-icon">
+                                <i class="fas fa-wallet"></i>
+                            </div>
+                            <h4>Operate Wallet</h4>
+                            <a href="https://www.OperateCrypto.com" target="_blank" class="product-domain">OperateCrypto.com</a>
+                            <p class="product-desc">Identity creation and key management. Accumulate Wallet Chrome Extension. Web3 operating system with code execution engine, rules engine, and secure vaults.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. BizFirst AI App -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="150">
+                    <div class="product-card">
+                        <div class="card-content">
+                            <div class="product-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <h4>BizFirst AI Wallet App</h4>
+                            <a href="https://www.operatecrypto.com" target="_blank" class="product-domain">Inside Operate Wallet</a>
+                            <p class="product-desc">Built into the Operate Wallet. AI Agent creation, publishing, and management. Multi-signature approval. Participant assignment for collaborative agent workflows.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. BizFirst AI Website -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="product-card">
+                        <div class="card-content">
+                            <div class="product-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <h4>BizFirst AI Website</h4>
+                            <a href="https://www.bizfirstai.com" target="_blank" class="product-domain">bizfirstai.com</a>
+                            <p class="product-desc">Agent review and discovery. Search and explore AI agents published on chain. Browse the full registry of decentralized AI agents.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. OperateDID -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="250">
+                    <div class="product-card">
+                        <div class="card-content">
+                            <div class="product-icon">
+                                <i class="fas fa-fingerprint"></i>
+                            </div>
+                            <h4>OperateDID</h4>
+                            <a href="https://www.operateDid.com" target="_blank" class="product-domain">operateDid.com</a>
+                            <p class="product-desc">W3C-compliant Decentralized Identifiers. Service Registry, Verifiable Credentials, and DIDComm. Built on Accumulate Protocol.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. EdgeStream -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="product-card">
+                        <div class="card-content">
+                            <div class="product-icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <h4>EdgeStream</h4>
+                            <span class="product-domain">BizFirst product</span>
+                            <p class="product-desc">DIDComm support and agent communication. Secure encrypted messaging between decentralized identities for real-time agent coordination.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. IPFS Server -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="350">
+                    <div class="product-card">
+                        <div class="card-content">
+                            <div class="product-icon">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                            </div>
+                            <h4>IPFS Server</h4>
+                            <a href="https://www.IpfsServer.com" target="_blank" class="product-domain">IpfsServer.com</a>
+                            <p class="product-desc">Decentralized file storage. Web3, Cloud, and Validator tiers. Lighthouse, Pinata, and FileCoin support with edge encryption.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7. LedgerDocuments -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="product-card">
+                        <div class="card-content">
+                            <div class="product-icon">
+                                <i class="fas fa-file-signature"></i>
+                            </div>
+                            <h4>LedgerDocuments</h4>
+                            <a href="https://www.LedgerDocuments.com" target="_blank" class="product-domain">LedgerDocuments.com</a>
+                            <p class="product-desc">Document signing for AI agents. A docu-sign experience purpose-built for autonomous agents to execute and verify agreements.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8. CertifiedItems -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="450">
+                    <div class="product-card">
+                        <div class="card-content">
+                            <div class="product-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <h4>CertifiedItems</h4>
+                            <a href="https://www.CertifiedItems.com" target="_blank" class="product-domain">CertifiedItems.com</a>
+                            <p class="product-desc">Certification authority and trust publishing. Third-party trust certificates for AI agents to establish credibility and compliance.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 9. Operate DAO -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                    <div class="product-card">
+                        <div class="card-content">
+                            <div class="product-icon">
+                                <i class="fas fa-store"></i>
+                            </div>
+                            <h4>Operate DAO</h4>
+                            <a href="https://www.OperateDAO.com" target="_blank" class="product-domain">OperateDAO.com</a>
+                            <p class="product-desc">Marketplace to purchase and publish AI Agents. Agent profiles, marketplace listings, and decentralized governance for the ecosystem.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 10. Accumulate Platform -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="550">
+                    <div class="product-card">
+                        <div class="card-content">
+                            <div class="product-icon">
+                                <i class="fas fa-server"></i>
+                            </div>
+                            <h4>Accumulate Platform</h4>
+                            <a href="https://accumulatenetwork.io/" target="_blank" class="product-domain">https://accumulatenetwork.io/</a>
+                            <p class="product-desc">API layer to query OperateAI objects. REST API for product listings, search, and programmatic access to the on-chain registry.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 11. Octopus Engine -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+                    <div class="product-card">
+                        <div class="card-content">
+                            <div class="product-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h4>Octopus Engine</h4>
+                            <span class="product-domain internal">Internal</span>
+                            <p class="product-desc">AI execution engine for cloud and web2 environments. OperateAI Plugins enable autonomous agent support across traditional infrastructure.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 12. Flow Engine -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="650">
+                    <div class="product-card">
+                        <div class="card-content">
+                            <div class="product-icon">
+                                <i class="fas fa-stream"></i>
+                            </div>
+                            <h4>Flow Engine</h4>
+                            <span class="product-domain internal">Internal</span>
+                            <p class="product-desc">AI workflow execution engine. Process orchestration for AI agents, managing multi-step tasks and inter-agent coordination.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Accumulate Network Partnership -->
+    <section class="partnership-section" id="partnership">
+        <div class="container">
+            <div class="section-header text-center" data-aos="fade-up">
+                <h2><i class="fas fa-link me-3"></i>Blockchain Partnership</h2>
+                <p>Built on Accumulate Network, the identity and data based blockchain</p>
+            </div>
+
+            <div class="row justify-content-center mt-4">
+                <div class="col-lg-10" data-aos="fade-up" data-aos-delay="100">
+                    <div class="partnership-card">
+                        <div class="card-content">
+                            <h3><i class="fas fa-cube me-3"></i>Accumulate Network Partnership</h3>
+                            <ul class="partnership-list">
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    <span><a href="https://www.AccumulateNetwork.io" target="_blank">AccumulateNetwork.io</a> is an identity and data based blockchain purpose-built for decentralized identity, key management, and on-chain data organization.</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Premier company: <a href="https://www.DefiDevs.io" target="_blank">DefiDevs.io</a> drives the growth, development, and adoption of the Accumulate blockchain ecosystem.</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>BizFirst has acquired approximately 10% of available Accumulate coins, establishing significant governance influence over the protocol's direction.</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>BizFirst controls more than 10% stake in DefiDevs, ensuring strategic alignment between the AI ecosystem and the underlying blockchain infrastructure.</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>OperateAI also integrates with Ethereum, Bitcoin, and other major blockchains through the Accumulate bridge, enabling cross-chain interoperability for AI agents.</span>
+                                </li>
+                            </ul>
+                            <div class="partnership-highlight">
+                                <i class="fas fa-info-circle me-2"></i>
+                                The deep integration with Accumulate Network provides OperateAI with human-readable addressing, hierarchical identity management, and a unique key-book architecture that allows AI agents to operate with real-world governance models.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Ecosystem Diagram -->
+    <section class="diagram-section" id="diagram">
+        <div class="container">
+            <div class="section-header text-center" data-aos="fade-up">
+                <h2><i class="fas fa-sitemap me-3"></i>Ecosystem Architecture</h2>
+                <p>How the products connect and interact within the OperateAI ecosystem</p>
+            </div>
+
+            <div class="row justify-content-center mt-4">
+                <div class="col-lg-10" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="mermaid-container">
+                        <pre class="mermaid">
+graph TD
+    OAI[OperateAI Registry] --> DID[OperateDID]
+    OAI --> AP[Accumulate Platform API]
+    OAI --> CI[CertifiedItems]
+
+    DID --> ES[EdgeStream DIDComm]
+    DID --> VC[Verifiable Credentials]
+
+    OW[Operate Wallet] --> OAI
+    BFA[BizFirst AI App] --> OAI
+
+    ES --> IPFS[IPFS Server]
+    ES --> LD[LedgerDocuments]
+
+    OAI --> OE[Octopus Engine]
+    OAI --> FE[Flow Engine]
+
+    CI --> DAO[Operate DAO Marketplace]
+
+    AN[Accumulate Network] -.-> OAI
+    AN -.-> DID
+    AN -.-> AP
+
+    style OAI fill:#0a2a0a,stroke:#00ff00,color:#fff
+    style DID fill:#0a2a0a,stroke:#06B6D4,color:#fff
+    style AN fill:#141414,stroke:#00ff00,color:#fff,stroke-dasharray: 5 5
+    style DAO fill:#0a2a0a,stroke:#F59E0B,color:#fff
+                        </pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content text-center">
+                <div class="footer-logo" data-aos="fade-up">
+                    <img src="./images/logo.png" alt="BizFirst AI" class="footer-logo-img">
+                </div>
+
+                <div class="footer-social" data-aos="fade-up" data-aos-delay="400">
+                    <a href="https://www.youtube.com/@operatecrypto" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="https://twitter.com/OperateID" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://discord.gg/F6NjA5dzZV" target="_blank"><i class="fab fa-discord"></i></a>
+                    <a href="https://github.com/operatecrypto" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://t.me/operatecrypto" target="_blank"><i class="fab fa-telegram"></i></a>
+                </div>
+
+                <div class="footer-bottom" data-aos="fade-up" data-aos-delay="600">
+                    <p>&copy; 2024 BizFirst AI. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Custom JS -->
+    <script src="./js/main.js"></script>
+    <script src="./js/animations.js"></script>
+    <script src="./js/components.js"></script>
+
+    <!-- Mermaid Diagram -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            themeVariables: {
+                fontFamily: 'Poppins, sans-serif',
+                primaryColor: '#0a2a0a',
+                primaryTextColor: '#fff',
+                primaryBorderColor: '#00ff00',
+                lineColor: '#00ff00',
+                secondaryColor: '#141414',
+                tertiaryColor: '#1a1a1a',
+                edgeLabelBackground: '#141414',
+                clusterBkg: '#0a2a0a',
+                clusterBorder: '#00ff00',
+                titleColor: '#fff',
+                nodeTextColor: '#fff'
+            },
+            flowchart: {
+                htmlLabels: true,
+                curve: 'basis',
+                nodeSpacing: 50,
+                rankSpacing: 60
+            }
+        });
+    </script>
+</body>
+
+</html>

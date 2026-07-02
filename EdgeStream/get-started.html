@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="https://bizfirstai.com/website/assets/Logo/logo-m.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Get Started with EdgeStream — Install, configure, connect, publish, and subscribe in minutes.">
+  <title>Get Started — EdgeStream by BizFirstAi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://bizfirstai.com/website/assets/css/b-index.css">
+  <link rel="stylesheet" href="./es.css">
+  <style>
+    body { overflow-x: hidden; }
+  </style>
+</head>
+<body>
+  <header id="es-header"></header>
+
+  <section class="b-section b-section--default" style="padding-top: var(--b-space-20);">
+    <div class="b-container">
+      <h1 class="b-section-title">Get Started with EdgeStream</h1>
+      <p class="b-section-subtitle">EdgeStream is a pure TypeScript library with zero external runtime dependencies. Install the core package, create an EdgeStream instance, connect to your SignalR hub, and start publishing and subscribing in under ten minutes.</p>
+    </div>
+  </section>
+
+  <!-- ── Installation ─────────────────────────────────────── -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">Installation</h2>
+
+      <div class="gs-step">
+        <div class="gs-step__num">1</div>
+        <div>
+          <div class="gs-step__title">Install the core package</div>
+          <p class="gs-step__desc">The main <code>edge-stream-js</code> package is the foundation. Add observability and React packages as needed.</p>
+          <div class="gs-code">pnpm add edge-stream-js
+
+# Optional: observability
+pnpm add @edge-stream/observability-core
+pnpm add @edge-stream/observability-hooks-js
+
+# Optional: React integration
+pnpm add @edge-stream/react-hooks</div>
+        </div>
+      </div>
+
+      <div class="gs-step">
+        <div class="gs-step__num">2</div>
+        <div>
+          <div class="gs-step__title">Add the React Native package (mobile only)</div>
+          <p class="gs-step__desc">For React Native applications, install the mobile-specific adapter. The same API surface as the web package — only the transport layer differs.</p>
+          <div class="gs-code">pnpm add edge-stream-js-react-native</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Connect ──────────────────────────────────────────── -->
+  <section class="b-section b-section--default">
+    <div class="b-container">
+      <h2 class="b-section-title">Create and connect</h2>
+
+      <div class="gs-step">
+        <div class="gs-step__num">3</div>
+        <div>
+          <div class="gs-step__title">Initialise EdgeStream with a SignalR server</div>
+          <p class="gs-step__desc"><code>EdgeStream</code> is the main facade. Pass it a <code>HubServer</code> configured with your SignalR endpoint. Start the connection — EdgeStream manages reconnection automatically.</p>
+          <div class="gs-code">import { EdgeStream, HubServer } from 'edge-stream-js';
+
+// 1. Create the server adapter
+const server = new HubServer({
+  url: 'https://your-api.example.com/chat-hub',
+  reconnect: true,
+  reconnectIntervals: [0, 2000, 5000, 10000]
+});
+
+// 2. Create EdgeStream and register the server
+const edgeStream = new EdgeStream();
+edgeStream.registerServer(server);
+
+// 3. Start the connection
+await edgeStream.start();
+console.log('EdgeStream connected');</div>
+          <div class="gs-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span>EdgeStream supports multiple concurrent servers. Register a <code>WebSocketServer</code> alongside a <code>HubServer</code> and EdgeStream manages both connections independently.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="gs-step">
+        <div class="gs-step__num">4</div>
+        <div>
+          <div class="gs-step__title">Listen for connection events</div>
+          <p class="gs-step__desc">EdgeStream emits lifecycle events for connection state changes, reconnections, and errors. Subscribe to stay in sync with the connection.</p>
+          <div class="gs-code">edgeStream.on('connected', () => {
+  console.log('Connected to EdgeStream hub');
+  updateUI({ status: 'connected' });
+});
+
+edgeStream.on('disconnected', ({ reason }) => {
+  console.warn('Disconnected:', reason);
+  updateUI({ status: 'disconnected' });
+});
+
+edgeStream.on('reconnecting', ({ attempt }) => {
+  console.log(`Reconnecting (attempt ${attempt})...`);
+});</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Register hooks ───────────────────────────────────── -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">Register hooks</h2>
+
+      <div class="gs-step">
+        <div class="gs-step__num">5</div>
+        <div>
+          <div class="gs-step__title">Register an incoming hook</div>
+          <p class="gs-step__desc">Hooks intercept every message in the pipeline. Register them before starting the connection. Lower priority numbers run first — the system executes hooks in order.</p>
+          <div class="gs-code">import type { IHook, IEnvelope } from 'edge-stream-js';
+
+class ValidationHook implements IHook {
+  name = 'validation-hook';
+  priority = 10;
+
+  async execute(envelope: IEnvelope): Promise&lt;IEnvelope&gt; {
+    if (!envelope.body?.text) {
+      throw new Error('Message body is required');
+    }
+    return envelope;
+  }
+}
+
+class LogHook implements IHook {
+  name = 'log-hook';
+  priority = 50;
+
+  async execute(envelope: IEnvelope): Promise&lt;IEnvelope&gt; {
+    console.log('[EdgeStream]', envelope.meta.messageId, envelope.body?.text);
+    return envelope;
+  }
+}
+
+// Register on the incoming pipeline
+edgeStream.registerIncomingHook(new ValidationHook());
+edgeStream.registerIncomingHook(new LogHook());</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Pub/Sub ───────────────────────────────────────────── -->
+  <section class="b-section b-section--default">
+    <div class="b-container">
+      <h2 class="b-section-title">Subscribe and publish</h2>
+
+      <div class="gs-step">
+        <div class="gs-step__num">6</div>
+        <div>
+          <div class="gs-step__title">Subscribe to a topic</div>
+          <p class="gs-step__desc">Topics are dot-separated strings. Use <code>*</code> as a wildcard segment. The callback receives the full <code>IEnvelope</code> including message body, metadata, and routing context.</p>
+          <div class="gs-code">// Exact topic match
+const sub1 = edgeStream.subscribe(
+  'messages:conversation:conv-123',
+  (envelope) => {
+    console.log('New message:', envelope.body.text);
+    console.log('Message ID:', envelope.meta.messageId);
+    console.log('Source:', envelope.meta.source);
+  }
+);
+
+// Wildcard: all messages for a user
+const sub2 = edgeStream.subscribe(
+  'user:sarah-123:*',
+  (envelope) => {
+    handleUserEvent(envelope);
+  }
+);
+
+// Wildcard: all order status changes
+const sub3 = edgeStream.subscribe(
+  'order:*:status',
+  (envelope) => {
+    updateOrderStatus(envelope.body.orderId, envelope.body.status);
+  }
+);
+
+// Later: unsubscribe
+sub1.unsubscribe();
+sub2.unsubscribe();</div>
+        </div>
+      </div>
+
+      <div class="gs-step">
+        <div class="gs-step__num">7</div>
+        <div>
+          <div class="gs-step__title">Publish a message</div>
+          <p class="gs-step__desc">Publish sends a message through the outgoing pipeline (hooks fire in order) before transmitting to the server. The server processes and distributes to matching subscribers.</p>
+          <div class="gs-code">// Publish a message — hooks run before transmission
+await edgeStream.publish({
+  topic: 'messages:conversation:conv-123',
+  body: {
+    text: 'Hello from EdgeStream',
+    type: 'user',
+    timestamp: new Date().toISOString()
+  },
+  meta: {
+    source: 'web-client',
+    conversationId: 'conv-123',
+    userId: 'user-sarah-123'
+  }
+});
+
+// Batch publish — multiple messages in one call
+await edgeStream.publishBatch([
+  { topic: 'metrics:page:view', body: { page: '/dashboard' } },
+  { topic: 'metrics:session:active', body: { duration: 42 } }
+]);</div>
+          <div class="gs-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Messages pass through the outgoing pipeline before leaving the client. Your validation, logging, and retry hooks fire on every publish — no boilerplate required at each call site.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── React integration ─────────────────────────────────── -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">React integration</h2>
+
+      <div class="gs-step">
+        <div class="gs-step__num">8</div>
+        <div>
+          <div class="gs-step__title">Wrap your app in EdgeStreamProvider</div>
+          <p class="gs-step__desc">The React package provides a context provider and hooks. Wrap once at the app root and use hooks anywhere in the component tree — no prop drilling.</p>
+          <div class="gs-code">// App.tsx
+import { EdgeStreamProvider } from '@edge-stream/react-hooks';
+import { EdgeStream, HubServer } from 'edge-stream-js';
+
+const edgeStream = new EdgeStream();
+edgeStream.registerServer(new HubServer({ url: '/chat-hub' }));
+
+export function App() {
+  return (
+    &lt;EdgeStreamProvider edgeStream={edgeStream}&gt;
+      &lt;Dashboard /&gt;
+    &lt;/EdgeStreamProvider&gt;
+  );
+}
+
+// Dashboard.tsx
+import { useEdgeStream, useSubscription } from '@edge-stream/react-hooks';
+
+function Dashboard() {
+  const { status } = useEdgeStream();
+  const [messages, setMessages] = useState([]);
+
+  useSubscription('messages:dashboard:*', (envelope) => {
+    setMessages(prev => [...prev, envelope.body]);
+  });
+
+  return (
+    &lt;div&gt;
+      &lt;span&gt;Status: {status}&lt;/span&gt;
+      {messages.map(m =&gt; &lt;div key={m.id}&gt;{m.text}&lt;/div&gt;)}
+    &lt;/div&gt;
+  );
+}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="b-cta-section">
+    <div class="b-container">
+      <h2>Need help getting set up?</h2>
+      <p>Explore the architecture or join the EdgeStream community.</p>
+      <div class="b-btn-group">
+        <a href="./architecture.html" class="b-btn b-btn-primary b-btn-large">Architecture</a>
+        <a href="./examples.html" class="b-btn b-btn-secondary b-btn-large">See Examples</a>
+      </div>
+    </div>
+  </section>
+
+  <footer id="es-footer"></footer>
+  <script src="./es-layout.js"></script>
+</body>
+</html>

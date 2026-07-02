@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BizFirst AI - How It Works</title>
+    <meta name="description" content="How OperateAI works — 7 steps from wallet setup to marketplace listing for your AI agent">
+    <meta name="keywords" content="AI, AI Agents, Blockchain, Web3, DID, Decentralized Identity, Accumulate Network">
+    <meta name="author" content="Bank on Ledger">
+    <link rel="shortcut icon" href="./images/favicon.ico">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/animations.css">
+    <link rel="stylesheet" href="./css/components.css">
+    <link rel="stylesheet" href="./css/common.css">
+
+    <style>
+    body { overflow-x: hidden; }
+        /* ══════════════════════════════════════════════
+           HOW IT WORKS — Dark Theme Styles
+           ══════════════════════════════════════════════ */
+
+        /* ── Hero Banner ── */
+        .oai-hero {
+            padding: 160px 0 80px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a2a0a 50%, #1a1a1a 100%);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            color: #fff;
+        }
+        .oai-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 30% 40%, rgba(0,255,0,0.06) 0%, transparent 60%),
+                        radial-gradient(circle at 70% 60%, rgba(6,182,212,0.06) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .oai-hero .hero-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 40px rgba(0,255,0,0.2);
+        }
+        .oai-hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .oai-hero p.lead {
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.7);
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        /* ── Section Backgrounds ── */
+        .steps-section {
+            background: linear-gradient(180deg, #141414 0%, #1a1a1a 100%);
+            color: #fff;
+            padding: 80px 0;
+        }
+        .diagram-section {
+            background: linear-gradient(180deg, #1a1a1a 0%, #141414 100%);
+            color: #fff;
+            padding: 80px 0;
+        }
+
+        /* ── Section Divider ── */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0,255,0,0.3), rgba(6,182,212,0.3), transparent);
+            border: none;
+            margin: 0;
+        }
+
+        /* ── Section Header ── */
+        .section-header h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.75rem;
+        }
+        .section-header p {
+            color: rgba(255,255,255,0.6);
+            font-size: 1.1rem;
+        }
+
+        /* ── Timeline ── */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--accent-primary), var(--accent-secondary));
+        }
+        .timeline-item {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        .timeline-number {
+            width: 60px;
+            height: 60px;
+            min-width: 60px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #fff;
+            z-index: 1;
+            box-shadow: 0 0 20px rgba(0,255,0,0.2);
+        }
+        .timeline-card {
+            flex: 1;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+        }
+        .timeline-card:hover {
+            background: rgba(255,255,255,0.08);
+            transform: translateY(-4px);
+            border-color: rgba(0,255,0,0.25);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4), 0 0 25px rgba(0,255,0,0.08);
+        }
+        .timeline-card h3 {
+            color: #fff;
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+        }
+        .timeline-card h3 i {
+            margin-right: 0.5rem;
+            color: var(--accent-primary);
+        }
+        .timeline-card p {
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 1rem;
+        }
+        .timeline-card .btn-sm {
+            font-size: 0.85rem;
+        }
+
+        /* ── Buttons ── */
+        .btn-outline-accent {
+            color: var(--accent-primary);
+            border: 1px solid var(--accent-primary);
+            background: transparent;
+            border-radius: 8px;
+            padding: 0.35rem 1rem;
+            transition: all 0.3s ease;
+        }
+        .btn-outline-accent:hover {
+            background: var(--accent-primary);
+            color: #000;
+            box-shadow: 0 0 15px rgba(0,255,0,0.3);
+        }
+
+        /* ── Mermaid Diagram Card ── */
+        .diagram-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+        }
+        .diagram-card:hover {
+            background: rgba(255,255,255,0.08);
+            transform: translateY(-6px);
+            border-color: rgba(0,255,0,0.25);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4), 0 0 25px rgba(0,255,0,0.08);
+        }
+        .mermaid {
+            display: flex;
+            justify-content: center;
+        }
+
+        .diagram-card .mermaid-container,
+        .diagram-card {
+            overflow-x: auto;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .oai-hero { padding: 120px 0 60px; }
+            .timeline::before {
+                left: 20px;
+            }
+            .timeline-number {
+                width: 40px;
+                height: 40px;
+                min-width: 40px;
+                font-size: 1rem;
+            }
+            .timeline-item {
+                gap: 1rem;
+            }
+            .oai-hero h1 {
+                font-size: 2rem;
+            }
+            .oai-hero p.lead {
+                font-size: 1rem;
+            }
+            .timeline-card { padding: 1.25rem; }
+        }
+
+        @media (max-width: 576px) {
+            .oai-hero h1 { font-size: 1.75rem; }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div id="status">
+            <div class="spinner">Loading...</div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top custom-nav">
+        <div class="container">
+            <a class="navbar-brand" href="./index.html">
+                <div class="logo-container"><img src="./images/logo.png" alt="BizFirst AI" class="logo-img"></div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="features.html">Features</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="how-it-works.html">How It Works</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ecosystem.html">Ecosystem</a></li>
+                    <li class="nav-item"><a class="nav-link" href="did-identity.html">DID & Identity</a></li>
+                    <li class="nav-item"><a class="nav-link" href="agent-communication.html">Communication</a></li>
+                    <li class="nav-item"><a class="nav-link" href="getting-started.html">Get Started</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="oai-hero">
+        <div class="container position-relative">
+            <div class="hero-icon" data-aos="zoom-in">
+                <i class="fas fa-route"></i>
+            </div>
+            <h1 data-aos="fade-up" data-aos-delay="100">How It Works</h1>
+            <p class="lead" data-aos="fade-up" data-aos-delay="200">From wallet setup to marketplace &mdash; your AI agent journey in 7 steps</p>
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <hr class="section-divider">
+
+    <!-- 7 Steps Timeline Section -->
+    <section class="steps-section">
+        <div class="container">
+            <div class="section-header text-center mb-5" data-aos="fade-up">
+                <h2>The 7-Step Registration Flow</h2>
+                <p>Follow this path to create, publish, and certify your AI agent on-chain</p>
+            </div>
+
+            <div class="timeline">
+
+                <!-- Step 1 -->
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="0">
+                    <div class="timeline-number">1</div>
+                    <div class="timeline-card">
+                        <h3><i class="fas fa-download"></i> Download Operate Wallet</h3>
+                        <p>Get the Accumulate Wallet Chrome Extension from OperateCrypto.com. This provides identity creation tools for you and your AI Agent.</p>
+                        <a href="https://www.operatecrypto.com" target="_blank" class="btn btn-sm btn-outline-accent">
+                            <i class="fas fa-external-link-alt me-1"></i> OperateCrypto.com
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="50">
+                    <div class="timeline-number">2</div>
+                    <div class="timeline-card">
+                        <h3><i class="fas fa-plus-circle"></i> Create & Publish AI Agent</h3>
+                        <p>Use the BizFirstAI App to create your AI Agent. Assign participants, configure multi-signature approval processes.</p>
+                        <a href="#" target="_blank" class="btn btn-sm btn-outline-accent">
+                            <i class="fas fa-external-link-alt me-1"></i> BizFirstAi inside wallet
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="timeline-number">3</div>
+                    <div class="timeline-card">
+                        <h3><i class="fas fa-eye"></i> Review AI Agent</h3>
+                        <p>Visit BizFirstAI.com to review your published AI Agent. Verify all details are correct.</p>
+                        <a href="https://www.bizfirstai.com" target="_blank" class="btn btn-sm btn-outline-accent">
+                            <i class="fas fa-external-link-alt me-1"></i> bizfirstai.com
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="150">
+                    <div class="timeline-number">4</div>
+                    <div class="timeline-card">
+                        <h3><i class="fas fa-search"></i> List on Search</h3>
+                        <p>Make your AI Agent discoverable by listing it on the BizFirst AI search directory.</p>
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="timeline-number">5</div>
+                    <div class="timeline-card">
+                        <h3><i class="fas fa-fingerprint"></i> Enable DID</h3>
+                        <p>Your agent gets assigned a Decentralized Identifier automatically. Available at {agentid}.operateDid.com with a full DID document.</p>
+                        <a href="https://www.operatedid.com" target="_blank" class="btn btn-sm btn-outline-accent">
+                            <i class="fas fa-external-link-alt me-1"></i> operatedid.com
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Step 6 -->
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="250">
+                    <div class="timeline-number">6</div>
+                    <div class="timeline-card">
+                        <h3><i class="fas fa-comments"></i> Discover & Communicate</h3>
+                        <p>Third parties discover your agent via its DID document. For autonomous agents, use DIDComm (via EdgeStream) for ping, heartbeat, mediation.</p>
+                    </div>
+                </div>
+
+                <!-- Step 7 -->
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="timeline-number">7</div>
+                    <div class="timeline-card">
+                        <h3><i class="fas fa-certificate"></i> Certify & Publish to Marketplace</h3>
+                        <p>Get your agent certified by trusted authorities via CertifiedItems.com. List on the OperateDAO.com marketplace.</p>
+                        <div class="d-flex flex-wrap gap-2">
+                            <a href="https://www.certifieditems.com" target="_blank" class="btn btn-sm btn-outline-accent">
+                                <i class="fas fa-external-link-alt me-1"></i> certifieditems.com
+                            </a>
+                            <a href="https://www.operatedao.com" target="_blank" class="btn btn-sm btn-outline-accent">
+                                <i class="fas fa-external-link-alt me-1"></i> operatedao.com
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <hr class="section-divider">
+
+    <!-- Mermaid Diagram Section -->
+    <section class="diagram-section">
+        <div class="container">
+            <div class="section-header text-center mb-5" data-aos="fade-up">
+                <h2>Registration Flow Diagram</h2>
+                <p>A visual overview of the complete agent registration pipeline</p>
+            </div>
+
+            <div class="diagram-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="mermaid">
+                    graph LR
+                        A[Download Wallet] --> B[Create Agent]
+                        B --> C[Review Agent]
+                        C --> D[List on Search]
+                        D --> E[Enable DID]
+                        E --> F[Discover & Communicate]
+                        F --> G[Certify & Publish]
+
+                        style A fill:#0a2a0a,stroke:#00ff00,color:#fff
+                        style B fill:#0a2a0a,stroke:#00ff00,color:#fff
+                        style C fill:#0a2a0a,stroke:#06B6D4,color:#fff
+                        style D fill:#0a2a0a,stroke:#06B6D4,color:#fff
+                        style E fill:#0a2a0a,stroke:#00ff00,color:#fff
+                        style F fill:#0a2a0a,stroke:#06B6D4,color:#fff
+                        style G fill:#0a2a0a,stroke:#00ff00,color:#fff
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <hr class="section-divider">
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content text-center">
+                <div class="footer-logo" data-aos="fade-up">
+                    <img src="./images/logo.png" alt="BizFirst AI" class="footer-logo-img">
+                </div>
+
+                <div class="footer-social" data-aos="fade-up" data-aos-delay="400">
+                    <a href="https://www.youtube.com/@operatecrypto" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="https://twitter.com/OperateID" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://discord.gg/F6NjA5dzZV" target="_blank"><i class="fab fa-discord"></i></a>
+                    <a href="https://github.com/operatecrypto" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://t.me/operatecrypto" target="_blank"><i class="fab fa-telegram"></i></a>
+                </div>
+
+                <div class="footer-bottom" data-aos="fade-up" data-aos-delay="600">
+                    <p>&copy; 2024 BizFirst AI. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Custom JS -->
+    <script src="./js/main.js"></script>
+    <script src="./js/animations.js"></script>
+    <script src="./js/components.js"></script>
+
+    <!-- Mermaid -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+
+    <script>
+        // Initialize Mermaid
+        mermaid.initialize({
+            theme: 'dark',
+            themeVariables: {
+                primaryColor: '#0a2a0a',
+                primaryBorderColor: '#00ff00',
+                primaryTextColor: '#fff',
+                lineColor: '#06B6D4',
+                secondaryColor: '#141414',
+                tertiaryColor: '#1a1a1a',
+                fontFamily: 'Poppins'
+            }
+        });
+    </script>
+
+</body>
+
+</html>

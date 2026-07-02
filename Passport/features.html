@@ -1,0 +1,731 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="https://bizfirstai.com/website/assets/Logo/logo-m.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Passport features — every IAM capability pre-built and tested. Authentication, RBAC, SSO, multi-tenant architecture, security monitoring, and compliance.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Passport Features — Every IAM Feature. Pre-Built and Tested.">
+  <meta property="og:description" content="630+ unit tests, 4 pluggable providers, multi-tenant by default. Every IAM feature your SaaS needs — already built.">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Passport Features — Enterprise IAM Built and Tested">
+  <meta name="twitter:description" content="Authentication, RBAC, SSO, audit trail, multi-tenant — 630+ tests, production grade.">
+
+  <title>Passport Features — Every IAM Feature. Pre-Built and Tested.</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://bizfirstai.com/website/assets/css/b-index.css">
+  <link rel="stylesheet" href="./assets/css/passport.css">
+  <style>
+    body { overflow-x: hidden; }
+
+    /* ── Inline code ── */
+    code { word-break: break-word; overflow-wrap: break-word; }
+
+    /* ── Performance table scroll wrapper ── */
+    .pp-perf-table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      max-width: 100%;
+    }
+
+    /* ── CTA button group — stack on mobile ── */
+    @media (max-width: 600px) {
+      .pp-hero-ctas,
+      .b-cta-section .b-btn-group { flex-direction: column; align-items: stretch; }
+      .pp-hero-ctas .b-btn,
+      .b-cta-section .b-btn-group .b-btn { text-align: center; }
+    }
+
+    /* ── Hero pill badges — prevent overflow on very small screens ── */
+    @media (max-width: 480px) {
+      .pp-hero-pill { font-size: 0.65rem; padding: 0.2rem 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header id="pp-header-container"></header>
+
+  <!-- ════════════════════════════════════════════════════════════
+       HERO
+       ════════════════════════════════════════════════════════════ -->
+  <section class="pp-hero">
+    <div class="b-container">
+      <div class="pp-hero-content">
+        <span class="pp-hero-eyebrow">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+          Feature Reference
+        </span>
+        <h1 class="pp-hero-headline">Every IAM feature.<br><span>Pre-built and tested.</span></h1>
+        <p class="pp-hero-subheading">Passport ships 630+ unit tests at 95% pass rate, built on SOLID principles and Clean Architecture. This is a production-grade IAM platform — not a prototype.</p>
+        <div class="pp-hero-ctas">
+          <a href="https://bizfirstai.com/website/contact.html" class="b-btn b-btn-primary b-btn-large">Book a Demo</a>
+          <a href="./index.html" class="b-btn b-btn-secondary b-btn-large">Back to Overview</a>
+        </div>
+        <p class="pp-hero-trust">27 packages (22 libraries + 5 apps) &middot; Clean Architecture &middot; React 18 + TypeScript + ASP.NET Core</p>
+      </div>
+
+      <div class="pp-hero-visual" aria-hidden="true">
+        <div class="pp-hero-shield">
+          <div class="pp-hero-shield-bg">
+            <svg class="pp-hero-shield-icon" width="110" height="110" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </div>
+          <span class="pp-hero-pill pp-hero-pill--top-right">630+ Tests</span>
+          <span class="pp-hero-pill pp-hero-pill--mid-right">95% Pass Rate</span>
+          <span class="pp-hero-pill pp-hero-pill--bottom">SOLID Principles</span>
+          <span class="pp-hero-pill pp-hero-pill--mid-left">Clean Arch</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       QUALITY BAR
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-section--sm b-section--alt">
+    <div class="b-container">
+      <div class="pp-quality-bar">
+        <div class="pp-quality-stat">
+          <span class="pp-quality-stat-number">27</span>
+          <span class="pp-quality-stat-label">Packages Total</span>
+        </div>
+        <div class="pp-quality-stat">
+          <span class="pp-quality-stat-number">22</span>
+          <span class="pp-quality-stat-label">Libraries</span>
+        </div>
+        <div class="pp-quality-stat">
+          <span class="pp-quality-stat-number">5</span>
+          <span class="pp-quality-stat-label">Frontend Apps</span>
+        </div>
+        <div class="pp-quality-stat">
+          <span class="pp-quality-stat-number">630+</span>
+          <span class="pp-quality-stat-label">Unit Tests</span>
+        </div>
+        <div class="pp-quality-stat">
+          <span class="pp-quality-stat-number">95%</span>
+          <span class="pp-quality-stat-label">Tests Passing</span>
+        </div>
+        <div class="pp-quality-stat">
+          <span class="pp-quality-stat-number">70%</span>
+          <span class="pp-quality-stat-label">Deploy-Ready</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       AUTHENTICATION METHODS
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section">
+    <div class="b-container">
+      <h2 class="b-section-title">Authentication methods.</h2>
+      <p class="pp-section-intro">Every authentication flow your users will need — local, social, federated, and enterprise SSO — all wired through the same provider interface.</p>
+
+      <div class="pp-auth-methods">
+
+        <div class="pp-auth-method">
+          <div class="pp-auth-method-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+          </div>
+          <h4>Local Credentials</h4>
+          <p>Email / password authentication with bcrypt hashing, configurable password policies, rate limiting, and brute-force lockout protection.</p>
+        </div>
+
+        <div class="pp-auth-method">
+          <div class="pp-auth-method-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="2" y1="12" x2="22" y2="12"/>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+          </div>
+          <h4>OAuth 2.0 Social</h4>
+          <p>Google, GitHub, and Microsoft social login. Configurable per tenant. OAuth tokens normalised into Passport's identity model — no provider-specific code in your app.</p>
+        </div>
+
+        <div class="pp-auth-method">
+          <div class="pp-auth-method-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="18" cy="5" r="3"/>
+              <circle cx="6" cy="12" r="3"/>
+              <circle cx="18" cy="19" r="3"/>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+            </svg>
+          </div>
+          <h4>SSO — Discourse Connect</h4>
+          <p>Passport is the identity provider for Discourse communities. Tokens, user sync, group mappings, and session management all handled by Passport. Live and in production.</p>
+        </div>
+
+        <div class="pp-auth-method">
+          <div class="pp-auth-method-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
+            </svg>
+          </div>
+          <h4>Federated — AWS Cognito</h4>
+          <p>Delegate to an existing Cognito user pool. Passport handles the UI, RBAC, and audit layer — Cognito handles the identity store and MFA.</p>
+        </div>
+
+        <div class="pp-auth-method">
+          <div class="pp-auth-method-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+              <line x1="8" y1="21" x2="16" y2="21"/>
+              <line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+          </div>
+          <h4>Federated — Azure AD</h4>
+          <p>Integrate with Microsoft Entra ID for enterprise customers. RBAC role mappings sync from Azure groups into Passport's permission model.</p>
+        </div>
+
+        <div class="pp-auth-method">
+          <div class="pp-auth-method-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/>
+              <circle cx="12" cy="12" r="4"/>
+            </svg>
+          </div>
+          <h4>Federated — Okta</h4>
+          <p>Okta as the identity backend with Passport's white-label screens on top. Fully tested against the Okta provider interface contract.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       ADMIN DASHBOARD DEEP-DIVE
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">Admin Dashboard.</h2>
+      <p class="pp-section-intro">A complete administration console for managing users, roles, tenants, and security policy — with full audit visibility.</p>
+
+      <div class="pp-deep-grid">
+        <div class="pp-deep-card">
+          <h4>User Management</h4>
+          <ul>
+            <li>Create, edit, suspend, and delete users</li>
+            <li>Bulk import via CSV</li>
+            <li>User search and filter by role, status, tenant</li>
+            <li>Password reset and forced re-authentication</li>
+          </ul>
+        </div>
+        <div class="pp-deep-card">
+          <h4>Role Management</h4>
+          <ul>
+            <li>Create hierarchical roles per tenant</li>
+            <li>Assign roles to users individually or in bulk</li>
+            <li>Role inheritance and override rules</li>
+            <li>Default role on registration per tenant</li>
+          </ul>
+        </div>
+        <div class="pp-deep-card">
+          <h4>RBAC Configuration</h4>
+          <ul>
+            <li>Define permissions and assign to roles</li>
+            <li>Permission resolver — resolves at request time</li>
+            <li>5-minute cache, fail-secure on resolver failure</li>
+            <li>Per-tenant RBAC isolation</li>
+          </ul>
+        </div>
+        <div class="pp-deep-card">
+          <h4>Audit Log Viewer</h4>
+          <ul>
+            <li>Every auth and authz event recorded</li>
+            <li>Filter by user, event type, date range, outcome</li>
+            <li>Export to CSV for compliance review</li>
+            <li>Non-repudiable — logs are append-only</li>
+          </ul>
+        </div>
+        <div class="pp-deep-card">
+          <h4>Settings &amp; Policy</h4>
+          <ul>
+            <li>Password policy configuration per tenant</li>
+            <li>Session timeout and concurrent session limits</li>
+            <li>Allowed OAuth providers per tenant</li>
+            <li>IP allowlist / blocklist rules</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECURITY DASHBOARD DEEP-DIVE
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section">
+    <div class="b-container">
+      <h2 class="b-section-title">Security Dashboard.</h2>
+      <p class="pp-section-intro">Real-time threat detection and compliance reporting. Your security team gets a live view of authentication health across all tenants.</p>
+
+      <div class="pp-deep-grid">
+        <div class="pp-deep-card">
+          <h4>Real-Time Login Monitoring</h4>
+          <ul>
+            <li>Live stream of authentication events</li>
+            <li>Success / failure rates by tenant</li>
+            <li>Geographic login distribution</li>
+            <li>Anomaly spike detection</li>
+          </ul>
+        </div>
+        <div class="pp-deep-card">
+          <h4>Suspicious Activity Alerts</h4>
+          <ul>
+            <li>Impossible travel detection</li>
+            <li>Failed attempt pattern analysis</li>
+            <li>New device from unfamiliar location</li>
+            <li>Configurable alert thresholds per tenant</li>
+          </ul>
+        </div>
+        <div class="pp-deep-card">
+          <h4>Device Fingerprinting</h4>
+          <ul>
+            <li>Browser fingerprint capture on login</li>
+            <li>Known vs. new device classification</li>
+            <li>Device trust scoring</li>
+            <li>Step-up authentication triggers</li>
+          </ul>
+        </div>
+        <div class="pp-deep-card">
+          <h4>IP Reputation</h4>
+          <ul>
+            <li>VPN, proxy, and datacenter detection</li>
+            <li>Threat intelligence feed integration</li>
+            <li>Configurable response — block, challenge, log</li>
+            <li>IP-level audit history</li>
+          </ul>
+        </div>
+        <div class="pp-deep-card">
+          <h4>Compliance Reports</h4>
+          <ul>
+            <li>GDPR access log exports</li>
+            <li>SOC2 audit trail evidence</li>
+            <li>HIPAA access control evidence</li>
+            <li>Scheduled report delivery</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SSO & PROVIDER DEEP-DIVE
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">SSO &amp; Provider Architecture.</h2>
+      <p class="pp-section-intro">All four IAM providers implement the same 6 interface contracts. The rest of the codebase never knows which provider is active.</p>
+
+      <div class="pp-deep-grid">
+        <div class="pp-deep-card">
+          <h4>6 Provider Interface Contracts</h4>
+          <ul>
+            <li>IAuthenticationProvider — sign-in, sign-out</li>
+            <li>IUserProvider — CRUD, search, profile</li>
+            <li>IRoleProvider — roles, assignments</li>
+            <li>ITokenProvider — issue, validate, revoke</li>
+            <li>IAuditProvider — event recording</li>
+            <li>ISSOProvider — external app registration, token exchange</li>
+          </ul>
+        </div>
+        <div class="pp-deep-card">
+          <h4>SSO Management Console</h4>
+          <ul>
+            <li>Register external apps for SSO</li>
+            <li>Configure role mappings from Passport roles to app claims</li>
+            <li>Monitor live SSO request traffic per app</li>
+            <li>Debug Discourse Connect token exchange</li>
+            <li>SAML 2.0 and OIDC configuration screens (roadmap)</li>
+          </ul>
+        </div>
+        <div class="pp-deep-card">
+          <h4>Performance Comparison</h4>
+          <p>Native provider benchmarked on local SQL. Cloud providers depend on network latency to the cloud region.</p>
+          <div class="pp-perf-table-wrap" style="margin-top:1rem;">
+          <table class="pp-perf-table">
+            <thead>
+              <tr>
+                <th>Provider</th>
+                <th>Throughput</th>
+                <th>Latency</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="pp-perf-highlight">
+                <td>Passport Native</td>
+                <td>2,000 – 3,000 req/s</td>
+                <td>&lt;5ms local</td>
+              </tr>
+              <tr>
+                <td>AWS Cognito</td>
+                <td>~500 req/s</td>
+                <td>20–80ms</td>
+              </tr>
+              <tr>
+                <td>Azure AD</td>
+                <td>~400 req/s</td>
+                <td>30–100ms</td>
+              </tr>
+              <tr>
+                <td>Okta</td>
+                <td>~300 req/s</td>
+                <td>40–120ms</td>
+              </tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+        <div class="pp-deep-card">
+          <h4>Provider Swap</h4>
+          <ul>
+            <li>One config line to switch providers</li>
+            <li>No controller changes required</li>
+            <li>No business logic changes required</li>
+            <li>Tested: Cognito &rarr; Azure AD &rarr; Native in CI</li>
+            <li>Safe for zero-downtime migrations</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       RBAC & PERMISSIONS
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section">
+    <div class="b-container">
+      <h2 class="b-section-title">RBAC &amp; Permissions.</h2>
+      <p class="pp-section-intro">Hierarchical roles, a permission resolver pattern, caching, and fail-secure design — built for production authorisation at scale.</p>
+
+      <div class="pp-features-grid">
+
+        <div class="pp-feature-card">
+          <div class="pp-feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="5" r="3"/>
+              <circle cx="5" cy="19" r="3"/>
+              <circle cx="19" cy="19" r="3"/>
+              <line x1="12" y1="8" x2="5" y2="16"/>
+              <line x1="12" y1="8" x2="19" y2="16"/>
+            </svg>
+          </div>
+          <h3>Hierarchical Roles</h3>
+          <p>Roles inherit permissions from parent roles. A SuperAdmin inherits everything. A TenantAdmin inherits tenant-scoped permissions. Custom roles extend the hierarchy without breaking existing assignments.</p>
+        </div>
+
+        <div class="pp-feature-card">
+          <div class="pp-feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="16 3 21 3 21 8"/>
+              <line x1="4" y1="20" x2="21" y2="3"/>
+              <polyline points="21 16 21 21 16 21"/>
+              <line x1="15" y1="15" x2="21" y2="21"/>
+            </svg>
+          </div>
+          <h3>Permission Resolver</h3>
+          <p>At request time, the resolver walks the role hierarchy for the authenticated user and tenant, materialises the effective permission set, and caches the result for 5 minutes per user session.</p>
+        </div>
+
+        <div class="pp-feature-card">
+          <div class="pp-feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <h3>Fail-Secure Design</h3>
+          <p>If the permission resolver encounters an error, access is denied — not granted. No silent fail-open vulnerabilities. Every permission decision is logged with the resolver outcome.</p>
+        </div>
+
+        <div class="pp-feature-card">
+          <div class="pp-feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+            </svg>
+          </div>
+          <h3>Per-Tenant Isolation</h3>
+          <p>Each tenant has its own role and permission namespace. A user who is an admin in Tenant A has zero elevated access in Tenant B. Enforced at the DB query level, not just the API.</p>
+        </div>
+
+        <div class="pp-feature-card">
+          <div class="pp-feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
+            </svg>
+          </div>
+          <h3>Redis Cache (Optional)</h3>
+          <p>The 5-minute permission cache uses in-memory storage by default. Swap to Redis with one config line for distributed deployments where multiple API instances share session state.</p>
+        </div>
+
+        <div class="pp-feature-card">
+          <div class="pp-feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="18" y1="20" x2="18" y2="10"/>
+              <line x1="12" y1="20" x2="12" y2="4"/>
+              <line x1="6" y1="20" x2="6" y2="14"/>
+            </svg>
+          </div>
+          <h3>Permission Assignment API</h3>
+          <p>Programmatically grant, revoke, and check permissions via the internal API. Automate onboarding flows — assign roles on user creation, update on subscription tier change.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       MULTI-TENANT ARCHITECTURE
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">Multi-Tenant architecture.</h2>
+      <p class="pp-section-intro">TenantId is a first-class citizen at every layer. It is not a filter you add later — it is a structural constraint baked into the data model, API contracts, and UI rendering.</p>
+
+      <div class="pp-deep-grid">
+        <div class="pp-deep-card">
+          <h4>Database Layer</h4>
+          <ul>
+            <li>TenantId on every tenant-scoped table</li>
+            <li>All queries include TenantId filter — enforced via repository base class</li>
+            <li>No raw SQL that bypasses the tenant filter</li>
+            <li>Optional: separate DB per large tenant</li>
+          </ul>
+        </div>
+        <div class="pp-deep-card">
+          <h4>API Layer</h4>
+          <ul>
+            <li>TenantId resolved from JWT claim on every request</li>
+            <li>No API endpoint operates without a resolved tenant context</li>
+            <li>Cross-tenant access returns 403, not 404 — no data leak via timing</li>
+            <li>Tenant resolution tested in unit and integration test suites</li>
+          </ul>
+        </div>
+        <div class="pp-deep-card">
+          <h4>UI Layer</h4>
+          <ul>
+            <li>React context carries TenantId throughout component tree</li>
+            <li>All data fetching hooks pass TenantId as a required parameter</li>
+            <li>White-label theming — each tenant can have its own logo and colour scheme</li>
+            <li>Tenant-scoped feature flags</li>
+          </ul>
+        </div>
+        <div class="pp-deep-card">
+          <h4>Tenant Provisioning</h4>
+          <ul>
+            <li>Tenant creation via Admin Dashboard or API</li>
+            <li>Default roles assigned on creation</li>
+            <li>Invite flow sends tenanted registration links</li>
+            <li>Tenant deactivation suspends all users in that tenant atomically</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       QUALITY & SECURITY
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section">
+    <div class="b-container">
+      <h2 class="b-section-title">Quality &amp; Security.</h2>
+      <p class="pp-section-intro">IAM is not a place to cut corners. Passport is built on engineering fundamentals that make security properties provable, not hopeful.</p>
+
+      <div class="pp-features-grid">
+
+        <div class="pp-feature-card">
+          <div class="pp-feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+          </div>
+          <h3>630+ Unit Tests</h3>
+          <p>Tests cover authentication flows, permission resolution, tenant isolation, token lifecycle, and every critical path. 95% pass rate. Remaining 5% are in-progress compliance edge cases.</p>
+        </div>
+
+        <div class="pp-feature-card">
+          <div class="pp-feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+          </div>
+          <h3>bcrypt Password Hashing</h3>
+          <p>All passwords are stored as bcrypt hashes with configurable cost factor. Plain-text passwords never touch the database. Password comparison is always timing-safe.</p>
+        </div>
+
+        <div class="pp-feature-card">
+          <div class="pp-feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <line x1="12" y1="8" x2="12" y2="12"/>
+              <line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+          </div>
+          <h3>CSRF Protection</h3>
+          <p>Anti-CSRF tokens on all state-mutating endpoints. Token rotation on session elevation. SameSite cookie policy enforced. Tested against standard OWASP CSRF attack patterns.</p>
+        </div>
+
+        <div class="pp-feature-card">
+          <div class="pp-feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/>
+            </svg>
+          </div>
+          <h3>Rate Limiting</h3>
+          <p>Per-user, per-IP, and per-tenant rate limits on authentication endpoints. Sliding window algorithm. Configurable limits per environment. Redis-backed for distributed deployments.</p>
+        </div>
+
+        <div class="pp-feature-card">
+          <div class="pp-feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+              <line x1="8" y1="21" x2="16" y2="21"/>
+              <line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+          </div>
+          <h3>SOLID Principles</h3>
+          <p>Clean Architecture throughout: presentation, application, domain, and infrastructure layers are strictly separated. Every dependency points inward. Easy to extend, safe to change.</p>
+        </div>
+
+        <div class="pp-feature-card">
+          <div class="pp-feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+            </svg>
+          </div>
+          <h3>Enterprise Compliance Progress</h3>
+          <p>70% deployment-ready. Enterprise compliance controls (SOC2 Type II, HIPAA BAA support) in active development. GDPR data export and deletion tooling included in current release.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       PROTOCOL SUPPORT
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">Protocol support.</h2>
+      <p class="b-section-subtitle">Open standards coverage for every integration your customers will ask for.</p>
+
+      <div class="pp-protocol-strip">
+        <span class="pp-protocol-badge pp-protocol-badge--live">
+          <span class="pp-protocol-badge-dot" aria-hidden="true"></span>
+          Discourse Connect
+          <span class="pp-protocol-badge-status">Live</span>
+        </span>
+        <span class="pp-protocol-badge pp-protocol-badge--live">
+          <span class="pp-protocol-badge-dot" aria-hidden="true"></span>
+          OAuth 2.0 Social
+          <span class="pp-protocol-badge-status">Live — Google, GitHub, Microsoft</span>
+        </span>
+        <span class="pp-protocol-badge">
+          <span class="pp-protocol-badge-dot" aria-hidden="true"></span>
+          SAML 2.0
+          <span class="pp-protocol-badge-status">In Roadmap</span>
+        </span>
+        <span class="pp-protocol-badge">
+          <span class="pp-protocol-badge-dot" aria-hidden="true"></span>
+          OIDC
+          <span class="pp-protocol-badge-status">In Roadmap</span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       TECH STACK
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section">
+    <div class="b-container">
+      <h2 class="b-section-title">Technology stack.</h2>
+      <p class="pp-section-intro">Modern, standard, easy to hire for. No exotic dependencies — just well-understood technologies used correctly.</p>
+
+      <div class="pp-deep-grid">
+        <div class="pp-deep-card">
+          <h4>Frontend</h4>
+          <ul>
+            <li>React 18 with TypeScript</li>
+            <li>Zustand for state management</li>
+            <li>Vite for build tooling</li>
+            <li>5 independent single-page applications</li>
+            <li>Shared component library across all apps</li>
+          </ul>
+        </div>
+        <div class="pp-deep-card">
+          <h4>Backend</h4>
+          <ul>
+            <li>ASP.NET Core — API and business logic</li>
+            <li>Clean Architecture with CQRS pattern</li>
+            <li>SQL Server (primary data store)</li>
+            <li>Redis (optional session &amp; permission cache)</li>
+            <li>Entity Framework Core — migrations, seeding</li>
+          </ul>
+        </div>
+        <div class="pp-deep-card">
+          <h4>Architecture</h4>
+          <ul>
+            <li>27 packages — 22 libraries + 5 apps</li>
+            <li>Monorepo with independent deployable units</li>
+            <li>Provider interfaces — no vendor lock-in at code level</li>
+            <li>Multi-tenant by structural constraint</li>
+            <li>Docker-ready deployment</li>
+          </ul>
+        </div>
+        <div class="pp-deep-card">
+          <h4>Testing</h4>
+          <ul>
+            <li>630+ unit tests (xUnit / Vitest)</li>
+            <li>95% test pass rate</li>
+            <li>Provider contracts verified in test suite</li>
+            <li>Tenant isolation tested at every boundary</li>
+            <li>CI pipeline runs full suite on every commit</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       FINAL CTA
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-cta-section">
+    <div class="b-container">
+      <h2>Ready to deploy enterprise IAM?</h2>
+      <p>Talk to us about licensing Passport for your platform. Deploy in 1&ndash;2 weeks.</p>
+      <div class="b-btn-group">
+        <a href="https://bizfirstai.com/website/contact.html" class="b-btn b-btn-primary b-btn-large">Book a Demo</a>
+        <a href="./index.html" class="b-btn b-btn-secondary b-btn-large">Back to Overview</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="b-footer" id="pp-footer-container"></footer>
+
+  <script src="./assets/js/passport-layout.js"></script>
+</body>
+</html>

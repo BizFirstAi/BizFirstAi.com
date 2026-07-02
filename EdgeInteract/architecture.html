@@ -1,0 +1,315 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="https://bizfirstai.com/website/assets/Logo/logo-m.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="EdgeInteract Architecture — 7-layer system, 13 packages, three-manager internals, context data types.">
+  <title>Architecture — EdgeInteract by BizFirstAi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://bizfirstai.com/website/assets/css/b-index.css">
+  <link rel="stylesheet" href="./ei.css">
+  <style>
+    body { overflow-x: hidden; }
+    .layer-box { border: 1px solid var(--b-border-default); border-radius: var(--b-radius-lg); padding: var(--b-space-4) var(--b-space-6); transition: border-color var(--b-transition-fast); }
+    .layer-box:hover { border-color: var(--b-color-primary); }
+    .layer-box + .layer-box { margin-top: var(--b-space-2); }
+    .layer-box--highlight { background: var(--b-color-primary-subtle); border-color: var(--b-border-primary); }
+    .layer-box__num { font-size: var(--b-font-size-xs); font-weight: var(--b-font-weight-bold); color: var(--b-color-primary); opacity: 0.7; margin-bottom: var(--b-space-1); }
+    .layer-box__title { font-size: var(--b-font-size-sm); font-weight: var(--b-font-weight-semibold); color: var(--b-text-primary); margin-bottom: var(--b-space-2); }
+    .layer-box__pkgs { display: flex; flex-wrap: wrap; gap: var(--b-space-2); margin-bottom: var(--b-space-2); }
+    .layer-pkg { font-size: var(--b-font-size-xs); font-family: monospace; background: var(--b-bg-raised); border: 1px solid var(--b-border-subtle); border-radius: var(--b-radius-sm); padding: 2px var(--b-space-2); color: var(--b-color-primary); }
+    .layer-box__desc { font-size: var(--b-font-size-xs); color: var(--b-text-muted); line-height: 1.5; }
+    .arch-arrow { text-align: center; color: var(--b-color-primary); margin: var(--b-space-1) 0; opacity: 0.5; }
+    .type-block { background: var(--b-bg-surface); border: 1px solid var(--b-border-default); border-radius: var(--b-radius-lg); padding: var(--b-space-5); }
+    .type-block__name { font-size: var(--b-font-size-sm); font-weight: var(--b-font-weight-bold); color: var(--b-color-primary); font-family: monospace; margin-bottom: var(--b-space-3); }
+    .type-block__fields { display: flex; flex-direction: column; gap: var(--b-space-2); }
+    .type-field { display: flex; gap: var(--b-space-3); font-size: var(--b-font-size-xs); }
+    .type-field__key { color: var(--b-color-primary); font-family: monospace; min-width: 120px; }
+    .type-field__val { color: var(--b-text-muted); font-family: monospace; }
+    .flow-step { display: flex; gap: var(--b-space-4); padding: var(--b-space-4); background: var(--b-bg-surface); border: 1px solid var(--b-border-default); border-radius: var(--b-radius-md); margin-bottom: var(--b-space-3); }
+    .flow-step__num { width: 28px; height: 28px; border-radius: 50%; background: var(--b-color-primary-subtle); border: 1px solid var(--b-border-primary); display: flex; align-items: center; justify-content: center; font-size: var(--b-font-size-xs); font-weight: var(--b-font-weight-bold); color: var(--b-color-primary); flex-shrink: 0; }
+    .flow-step__title { font-size: var(--b-font-size-sm); font-weight: var(--b-font-weight-semibold); color: var(--b-text-primary); margin-bottom: 2px; }
+    .flow-step__desc { font-size: var(--b-font-size-xs); color: var(--b-text-muted); line-height: 1.5; }
+    .flow-step > div:last-child { min-width: 0; }
+
+    /* ── Inline code ── */
+    code { word-break: break-word; overflow-wrap: break-word; }
+
+    /* ── CTA button group — stack on mobile ── */
+    @media (max-width: 600px) {
+      .b-cta-section .b-btn-group { flex-direction: column; align-items: stretch; }
+      .b-cta-section .b-btn-group .b-btn { text-align: center; }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .arch-section-hero { padding-top: var(--b-space-12) !important; }
+    }
+    @media (max-width: 480px) {
+      .type-field { flex-direction: column; gap: var(--b-space-1); }
+      .type-field__key { min-width: unset; }
+    }
+  </style>
+</head>
+<body>
+  <header id="ei-header"></header>
+
+  <section class="b-section b-section--default arch-section-hero" style="padding-top: var(--b-space-20);">
+    <div class="b-container">
+      <h1 class="b-section-title">Architecture</h1>
+      <p class="b-section-subtitle">EdgeInteract is a 13-package TypeScript monorepo built in a 7-layer system. Each layer can only depend on layers below it. Context flows upward through every message — never sideways or lost.</p>
+    </div>
+  </section>
+
+  <!-- 7-Layer System -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">7-Layer System Architecture</h2>
+      <p class="b-section-subtitle">EdgeInteract sits in layers 2A and 3A. EdgeStream is the foundation at Layer 0. No upward dependencies allowed.</p>
+
+      <div style="max-width: 700px; margin: var(--b-space-12) auto 0;">
+
+        <div class="layer-box">
+          <div class="layer-box__num">Layer 3C — Future</div>
+          <div class="layer-box__title">Framework Adapters</div>
+          <div class="layer-box__pkgs">
+            <span class="layer-pkg">@edge-interact/vue</span>
+            <span class="layer-pkg">@edge-interact/angular</span>
+            <span class="layer-pkg">@edge-stream/react-native</span>
+          </div>
+          <div class="layer-box__desc">Future framework bindings — roadmap Phase 5.</div>
+        </div>
+        <div class="arch-arrow">↓</div>
+
+        <div class="layer-box layer-box--highlight">
+          <div class="layer-box__num">Layer 3A — EdgeInteract UI</div>
+          <div class="layer-box__title">React Components &amp; Pages</div>
+          <div class="layer-box__pkgs">
+            <span class="layer-pkg">@edge-interact/react-ui</span>
+            <span class="layer-pkg">@edge-interact/react-hooks</span>
+            <span class="layer-pkg">@edge-stream/observability-react</span>
+          </div>
+          <div class="layer-box__desc">EdgeInteractProvider, useEdgeInteract(), useChat(), useForm(), useWorkflow(). ChatPage, FormPage, DashboardPage. React 18 + TypeScript.</div>
+        </div>
+        <div class="arch-arrow">↓</div>
+
+        <div class="layer-box layer-box--highlight">
+          <div class="layer-box__num">Layer 2A — EdgeInteract Core</div>
+          <div class="layer-box__title">Design System &amp; Integration</div>
+          <div class="layer-box__pkgs">
+            <span class="layer-pkg">@edge-interact/ui</span>
+            <span class="layer-pkg">@edge-interact/integration</span>
+            <span class="layer-pkg">@edge-interact/client</span>
+            <span class="layer-pkg">@edge-interact/built-in-plugins</span>
+            <span class="layer-pkg">@edge-interact/plugins-core</span>
+            <span class="layer-pkg">@edge-interact/player-manager</span>
+            <span class="layer-pkg">@edge-interact/context-manager</span>
+            <span class="layer-pkg">@edge-interact/comm-manager</span>
+            <span class="layer-pkg">@edge-interact/chat-window</span>
+          </div>
+          <div class="layer-box__desc">Three-manager architecture. Plugin system. 6 Zustand stores. 5 API clients. Design tokens. Vanilla JS chat widget.</div>
+        </div>
+        <div class="arch-arrow">↓</div>
+
+        <div class="layer-box">
+          <div class="layer-box__num">Layer 1 — Utilities</div>
+          <div class="layer-box__title">Shared Utilities</div>
+          <div class="layer-box__pkgs">
+            <span class="layer-pkg">@edge-stream/utils</span>
+          </div>
+          <div class="layer-box__desc">Deep clone, diff engine, shared utility functions.</div>
+        </div>
+        <div class="arch-arrow">↓</div>
+
+        <div class="layer-box">
+          <div class="layer-box__num">Layer 0 — Foundation</div>
+          <div class="layer-box__title">EdgeStream Core</div>
+          <div class="layer-box__pkgs">
+            <span class="layer-pkg">edge-stream-js</span>
+            <span class="layer-pkg">@edge-interact/context-data-js</span>
+            <span class="layer-pkg">@edge-interact/context-data-samples-js</span>
+          </div>
+          <div class="layer-box__desc">Pipelines, hooks, pub/sub, servers, observability, routing. Zero UI dependencies. Canonical context types. Domain sample types (CRM, Healthcare, E-Commerce).</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 13 Packages -->
+  <section class="b-section b-section--default">
+    <div class="b-container">
+      <h2 class="b-section-title">13 packages — each with one job</h2>
+
+      <div class="ei-pkg-list">
+        <div class="ei-pkg">
+          <div class="ei-pkg__name">@edge-interact/context-data-js</div>
+          <div class="ei-pkg__desc">Canonical data types — IUserData, ISessionData, IConversationData, IEntityIdentityData, IContextualMessage. Zero external dependencies. Used by every other package.</div>
+        </div>
+        <div class="ei-pkg">
+          <div class="ei-pkg__name">@edge-interact/context-data-samples-js</div>
+          <div class="ei-pkg__desc">Domain-specific type extensions — CRM (sales rep, account, deal), Healthcare (clinician, patient, clinical session), E-Commerce (customer, product, order).</div>
+        </div>
+        <div class="ei-pkg">
+          <div class="ei-pkg__name">@edge-interact/context-manager</div>
+          <div class="ei-pkg__desc">Responsibilities #2–5 and #8. ContextStore (write-only), ContextQuery (read-only), ContextDispatcher (emit), ContextSubscriber (listen), IContextEnhancer pipeline.</div>
+        </div>
+        <div class="ei-pkg">
+          <div class="ei-pkg__name">@edge-interact/comm-manager</div>
+          <div class="ei-pkg__desc">Responsibility #1. Bridges EdgeStream pub/sub to context-enriched messaging. Auto-enriches every published message with current user/session/conversation/entity.</div>
+        </div>
+        <div class="ei-pkg">
+          <div class="ei-pkg__name">@edge-interact/player-manager</div>
+          <div class="ei-pkg__desc">Responsibility #6. UI orchestration — chat, form, workflow operations. coordinateUIs() for multi-component operations. broadcastStateChange() for cross-component sync.</div>
+        </div>
+        <div class="ei-pkg">
+          <div class="ei-pkg__name">@edge-interact/plugins-core</div>
+          <div class="ei-pkg__desc">Plugin system infrastructure — IUIPlugin interface, PluginRegistry, PluginLifecycleManager (dependency resolution, health monitoring), PluginEventBus, PluginContextBuilder.</div>
+        </div>
+        <div class="ei-pkg">
+          <div class="ei-pkg__name">@edge-interact/built-in-plugins</div>
+          <div class="ei-pkg__desc">Three production plugins — ChatWindowPlugin, AtlasFormsPlugin, WorkflowPlayerPlugin. Template Method pattern via BasePlugin. Complete operation sets for each UI type.</div>
+        </div>
+        <div class="ei-pkg">
+          <div class="ei-pkg__name">@edge-interact/client</div>
+          <div class="ei-pkg__desc">Main client facade. EdgeInteractClientService.create(edgeStream, options). Unified API: client.state, client.players, client.ui, client.comm, client.errors, client.observability.</div>
+        </div>
+        <div class="ei-pkg">
+          <div class="ei-pkg__name">@edge-interact/chat-window</div>
+          <div class="ei-pkg__desc">Vanilla JavaScript embeddable chat widget. No framework required. Named variable templates. show/hide/focus/scrollToBottom. onMessageSent/onMessageReceived events.</div>
+        </div>
+        <div class="ei-pkg">
+          <div class="ei-pkg__name">@edge-interact/react-hooks</div>
+          <div class="ei-pkg__desc">React integration — EdgeInteractProvider, useEdgeInteract(), useChat(), useForm(), useWorkflow(), useSubscription(), useConnectionStatus(), useLogger().</div>
+        </div>
+        <div class="ei-pkg">
+          <div class="ei-pkg__name">@edge-interact/react-ui</div>
+          <div class="ei-pkg__desc">React components — Button, Input, Card, Form, ChatWindow, Sidebar, Header. Pages — ChatPage, FormPage, DashboardPage, SettingsPage. Providers for theme, user, settings.</div>
+        </div>
+        <div class="ei-pkg">
+          <div class="ei-pkg__name">@edge-interact/ui</div>
+          <div class="ei-pkg__desc">Design system — zero dependencies. 30+ color tokens per theme. 4px–48px spacing scale. Typography (h1–h6, body, caption). 5-level elevation shadows. Light/dark themes.</div>
+        </div>
+        <div class="ei-pkg">
+          <div class="ei-pkg__name">@edge-interact/integration</div>
+          <div class="ei-pkg__desc">Zustand stores (conversation, message, form, settings, UI, user) + API clients (Server, Chat, Form, User, Metadata) + validators, transformers, formatters.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Context Data Types -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">The context envelope — what every message carries</h2>
+      <p class="b-section-subtitle">IContextualMessage is the complete envelope. It wraps any payload with structured context — user, session, conversation, entity, UI component, and variables.</p>
+
+      <div class="b-benefits-grid" style="margin-top: var(--b-space-12);">
+
+        <div class="type-block">
+          <div class="type-block__name">IUserData</div>
+          <div class="type-block__fields">
+            <div class="type-field"><span class="type-field__key">userId</span><span class="type-field__val">string</span></div>
+            <div class="type-field"><span class="type-field__key">userName</span><span class="type-field__val">string</span></div>
+            <div class="type-field"><span class="type-field__key">email?</span><span class="type-field__val">string</span></div>
+            <div class="type-field"><span class="type-field__key">permissions</span><span class="type-field__val">string[]</span></div>
+            <div class="type-field"><span class="type-field__key">attributes?</span><span class="type-field__val">Record&lt;string, unknown&gt;</span></div>
+          </div>
+        </div>
+
+        <div class="type-block">
+          <div class="type-block__name">ISessionData</div>
+          <div class="type-block__fields">
+            <div class="type-field"><span class="type-field__key">sessionId</span><span class="type-field__val">string</span></div>
+            <div class="type-field"><span class="type-field__key">startTime</span><span class="type-field__val">ISO8601 string</span></div>
+            <div class="type-field"><span class="type-field__key">timezone</span><span class="type-field__val">string</span></div>
+            <div class="type-field"><span class="type-field__key">locale</span><span class="type-field__val">string</span></div>
+            <div class="type-field"><span class="type-field__key">metadata?</span><span class="type-field__val">Record&lt;string, unknown&gt;</span></div>
+          </div>
+        </div>
+
+        <div class="type-block">
+          <div class="type-block__name">IConversationData</div>
+          <div class="type-block__fields">
+            <div class="type-field"><span class="type-field__key">conversationId</span><span class="type-field__val">string</span></div>
+            <div class="type-field"><span class="type-field__key">type</span><span class="type-field__val">'chat'|'form'|'workflow'|'mixed'</span></div>
+            <div class="type-field"><span class="type-field__key">participants</span><span class="type-field__val">string[]</span></div>
+            <div class="type-field"><span class="type-field__key">createdAt</span><span class="type-field__val">ISO8601 string</span></div>
+          </div>
+        </div>
+
+        <div class="type-block">
+          <div class="type-block__name">IEntityIdentityData</div>
+          <div class="type-block__fields">
+            <div class="type-field"><span class="type-field__key">type</span><span class="type-field__val">'customer'|'order'|…</span></div>
+            <div class="type-field"><span class="type-field__key">id</span><span class="type-field__val">string</span></div>
+            <div class="type-field"><span class="type-field__key">displayName?</span><span class="type-field__val">string</span></div>
+            <div class="type-field"><span class="type-field__key">data</span><span class="type-field__val">Record&lt;string, unknown&gt;</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Data flow -->
+  <section class="b-section b-section--default">
+    <div class="b-container">
+      <h2 class="b-section-title">How a message flows through the system</h2>
+      <p class="b-section-subtitle">Every operation follows the same 8-step pattern — from application API call to UI delivery, with full context at every stage.</p>
+
+      <div style="max-width: 680px; margin: var(--b-space-12) auto 0;">
+        <div class="flow-step">
+          <div class="flow-step__num">1</div>
+          <div><div class="flow-step__title">Application calls manager API</div><div class="flow-step__desc">e.g. <code>commManager.publish({ topic: 'messages:input', body: {...} })</code></div></div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step__num">2</div>
+          <div><div class="flow-step__title">CommManager builds MessageContext</div><div class="flow-step__desc">Reads current user, session, conversation, entity from ContextManager. Enriches message automatically — zero manual context passing required.</div></div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step__num">3</div>
+          <div><div class="flow-step__title">Message published to EdgeStream</div><div class="flow-step__desc">Context-enriched IContextualMessage enters the EdgeStream pipeline with full user/session/conversation/entity attached.</div></div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step__num">4</div>
+          <div><div class="flow-step__title">EdgeStream hooks execute in priority order</div><div class="flow-step__desc">Validation (priority 10) → Enrichment (priority 20) → NLP/business logic (priority 30) → Routing (priority 40). Each hook sees full context.</div></div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step__num">5</div>
+          <div><div class="flow-step__title">Message delivered to subscribers</div><div class="flow-step__desc">Subscribers receive the fully-enriched, routed message. Context filter ensures each subscriber only sees messages for their conversation.</div></div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step__num">6</div>
+          <div><div class="flow-step__title">Context-based business logic executes</div><div class="flow-step__desc">Backend handlers use <code>context.user.permissions</code>, <code>context.entity.data</code>, <code>context.variables</code> — no separate context lookup needed.</div></div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step__num">7</div>
+          <div><div class="flow-step__title">Response routed to UI component</div><div class="flow-step__desc">PlayerManager delivers to the correct ChatWindow, Form, or Workflow component — using context.conversation.id for isolation.</div></div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step__num">8</div>
+          <div><div class="flow-step__title">Full audit log recorded</div><div class="flow-step__desc">Every step logged with messageId, userId, conversationId, hook timings, and status. Complete audit trail for compliance.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="b-cta-section">
+    <div class="b-container">
+      <h2>Ready to eliminate context leakage?</h2>
+      <p>Follow the get-started guide or see real-world patterns in examples.</p>
+      <div class="b-btn-group">
+        <a href="./get-started.html" class="b-btn b-btn-primary b-btn-large">Get Started</a>
+        <a href="./examples.html" class="b-btn b-btn-secondary b-btn-large">See Examples</a>
+      </div>
+    </div>
+  </section>
+
+  <footer id="ei-footer"></footer>
+  <script src="./ei-layout.js"></script>
+</body>
+</html>

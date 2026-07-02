@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="https://bizfirstai.com/website/assets/Logo/logo-m.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="EdgeStream Architecture — 14-package TypeScript monorepo, layered pipeline, pub/sub engine, CloudEvents standard.">
+  <title>Architecture — EdgeStream by BizFirstAi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://bizfirstai.com/website/assets/css/b-index.css">
+  <link rel="stylesheet" href="./es.css">
+  <style>
+    body { overflow-x: hidden; }
+    .type-block { background: var(--b-bg-surface); border: 1px solid var(--b-border-default); border-radius: var(--b-radius-lg); padding: var(--b-space-5); }
+    .type-block__name { font-size: var(--b-font-size-sm); font-weight: var(--b-font-weight-bold); color: var(--b-color-primary); font-family: monospace; margin-bottom: var(--b-space-3); }
+    .type-block__fields { display: flex; flex-direction: column; gap: var(--b-space-2); }
+    .type-field { display: flex; gap: var(--b-space-3); font-size: var(--b-font-size-xs); }
+    .type-field__key { color: var(--b-color-primary); font-family: monospace; min-width: 140px; }
+    .type-field__val { color: var(--b-text-muted); font-family: monospace; }
+    .hook-table { width: 100%; border-collapse: collapse; margin-top: var(--b-space-8); font-size: var(--b-font-size-sm); }
+    .hook-table th { text-align: left; padding: var(--b-space-3) var(--b-space-4); border-bottom: 1px solid var(--b-border-default); color: var(--b-text-muted); font-size: var(--b-font-size-xs); font-weight: var(--b-font-weight-semibold); text-transform: uppercase; letter-spacing: var(--b-letter-spacing-wide); }
+    .hook-table td { padding: var(--b-space-3) var(--b-space-4); border-bottom: 1px solid var(--b-border-subtle); color: var(--b-text-secondary); vertical-align: top; }
+    .hook-table td:first-child { font-family: monospace; color: var(--b-color-primary); font-size: var(--b-font-size-xs); white-space: nowrap; }
+    .hook-table tr:hover td { background: var(--b-bg-surface); }
+  </style>
+</head>
+<body>
+  <header id="es-header"></header>
+
+  <section class="b-section b-section--default" style="padding-top: var(--b-space-20);">
+    <div class="b-container">
+      <h1 class="b-section-title">Architecture</h1>
+      <p class="b-section-subtitle">EdgeStream is a 14-package TypeScript monorepo organised in a strict layered architecture. Each message travels through a deterministic pipeline — validated, normalised, filtered, logged, and delivered with a complete audit trail.</p>
+    </div>
+  </section>
+
+  <!-- ── Package Layers ────────────────────────────────────── -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">Package Layers</h2>
+      <p class="b-section-subtitle">Packages are organised in three layers. Each layer may only depend on packages in layers below it — no upward dependencies, no circular imports.</p>
+
+      <div style="max-width: 720px; margin: var(--b-space-12) auto 0;">
+
+        <div class="layer-box">
+          <div class="layer-box__num">Layer 2 — Framework Adapters</div>
+          <div class="layer-box__title">Platform-Specific Integrations</div>
+          <div class="layer-box__pkgs">
+            <span class="layer-pkg">edge-stream-js-react</span>
+            <span class="layer-pkg">edge-stream-js-react-native</span>
+            <span class="layer-pkg">@edge-stream/observability-react</span>
+          </div>
+          <div class="layer-box__desc">React Provider, hooks (useEdgeStream, useSubscription, usePublish, useConnectionStatus). React Native adapter. Inspector UI for observability. Zero server dependencies.</div>
+        </div>
+        <div class="arch-arrow">↓</div>
+
+        <div class="layer-box layer-box--highlight">
+          <div class="layer-box__num">Layer 1 — Observability</div>
+          <div class="layer-box__title">Metrics, Logging &amp; Health</div>
+          <div class="layer-box__pkgs">
+            <span class="layer-pkg">observability-core</span>
+            <span class="layer-pkg">observability-hooks-js</span>
+            <span class="layer-pkg">@edge-stream/inspector</span>
+          </div>
+          <div class="layer-box__desc">Activity logging with LRU eviction, per-hook metrics, health check endpoints, real-time inspector app. Queryable by message ID, topic, source, or status. Export as JSON.</div>
+        </div>
+        <div class="arch-arrow">↓</div>
+
+        <div class="layer-box layer-box--highlight">
+          <div class="layer-box__num">Layer 0 — Core Infrastructure</div>
+          <div class="layer-box__title">Pipeline, Transport &amp; Pub/Sub</div>
+          <div class="layer-box__pkgs">
+            <span class="layer-pkg">edge-stream-js</span>
+            <span class="layer-pkg">utils</span>
+            <span class="layer-pkg">@edge-stream/signalr-server</span>
+            <span class="layer-pkg">@edge-stream/websocket-server</span>
+            <span class="layer-pkg">@edge-stream/http-transport</span>
+          </div>
+          <div class="layer-box__desc">EdgeStream facade, Pipeline executor, SubscriptionManager, ConnectionManager, HookActivityLogger, SubscriberActivityLogger, LoggingService. IEnvelope + CloudEvents standard. Zero external npm dependencies.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 14 Packages ───────────────────────────────────────── -->
+  <section class="b-section b-section--default">
+    <div class="b-container">
+      <h2 class="b-section-title">14 packages — each with one job</h2>
+
+      <div class="es-pkg-list">
+        <div class="es-pkg">
+          <div class="es-pkg__name">edge-stream-js</div>
+          <div class="es-pkg__desc">Core library — EdgeStream facade, Pipeline executor, SubscriptionManager, HubServer, WebSocketServer, ConnectionManager, HookActivityLogger, SubscriberActivityLogger, LoggingService. ~15KB minified.</div>
+        </div>
+        <div class="es-pkg">
+          <div class="es-pkg__name">utils</div>
+          <div class="es-pkg__desc">Shared utility functions — deepClone, diffEngine, formatters, validators. Zero external dependencies. Used by every other package.</div>
+        </div>
+        <div class="es-pkg">
+          <div class="es-pkg__name">observability-core</div>
+          <div class="es-pkg__desc">Metrics and activity logs — ActivityLog, MetricsCollector, HealthCheck. Configurable LRU log storage. Query by status, serverId, topic, source. Performance statistics: slowest hook, success rate, throughput.</div>
+        </div>
+        <div class="es-pkg">
+          <div class="es-pkg__name">observability-hooks-js</div>
+          <div class="es-pkg__desc">Hook-specific observability — HookMetrics, HookTracer, ExecutionTimingAnalyzer. Per-hook success/error rates. Hook dependency graph analysis and performance profiling.</div>
+        </div>
+        <div class="es-pkg">
+          <div class="es-pkg__name">@edge-stream/signalr-server</div>
+          <div class="es-pkg__desc">SignalR transport adapter — HubServer implementation wrapping @microsoft/signalr. Auto-reconnect strategy, group management (joinGroup/leaveGroup), connection lifecycle events.</div>
+        </div>
+        <div class="es-pkg">
+          <div class="es-pkg__name">@edge-stream/websocket-server</div>
+          <div class="es-pkg__desc">WebSocket transport adapter — direct WebSocket connections without SignalR. Same IServer interface as HubServer — swap transports without changing application code.</div>
+        </div>
+        <div class="es-pkg">
+          <div class="es-pkg__name">@edge-stream/http-transport</div>
+          <div class="es-pkg__desc">HTTP fallback transport — long-polling for environments where WebSocket is unavailable. Seamlessly used alongside other transports.</div>
+        </div>
+        <div class="es-pkg">
+          <div class="es-pkg__name">edge-stream-js-react</div>
+          <div class="es-pkg__desc">React integration — EdgeStreamProvider, useEdgeStream(), useSubscription(), usePublish(), useConnectionStatus(), useObservability(). Full TypeScript strict mode.</div>
+        </div>
+        <div class="es-pkg">
+          <div class="es-pkg__name">edge-stream-js-react-native</div>
+          <div class="es-pkg__desc">React Native adapter — same EdgeStream API surface with mobile-specific transport layer. Supports offline message queuing and background reconnection.</div>
+        </div>
+        <div class="es-pkg">
+          <div class="es-pkg__name">@edge-stream/observability-react</div>
+          <div class="es-pkg__desc">React components for observability — real-time activity feed, hook performance graphs, connection status indicators, subscriber delivery viewer.</div>
+        </div>
+        <div class="es-pkg">
+          <div class="es-pkg__name">@edge-stream/inspector</div>
+          <div class="es-pkg__desc">Standalone inspector application — real-time message flow visualisation, hook execution timeline, subscriber delivery map. Development and staging tool.</div>
+        </div>
+        <div class="es-pkg">
+          <div class="es-pkg__name">@edge-stream/azure-signalr</div>
+          <div class="es-pkg__desc">Azure SignalR Service adapter — horizontal scaling beyond a single SignalR hub. Group broadcast, connection management, and fan-out via Azure infrastructure.</div>
+        </div>
+        <div class="es-pkg">
+          <div class="es-pkg__name">@edge-stream/kafka-adapter</div>
+          <div class="es-pkg__desc">Kafka integration — durable message streaming for high-throughput scenarios. Bridges EdgeStream's in-process pub/sub to Kafka topics for cross-service event distribution.</div>
+        </div>
+        <div class="es-pkg">
+          <div class="es-pkg__name">@edge-stream/mcp-server</div>
+          <div class="es-pkg__desc">Model Context Protocol server — exposes EdgeStream pub/sub to AI agents and LLM toolchains. Enables AI agents to subscribe to topics and publish messages natively.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Hook Pipelines ────────────────────────────────────── -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">Hook pipelines — incoming and outgoing</h2>
+      <p class="b-section-subtitle">Every message passes through a deterministic hook pipeline before reaching subscribers. Hooks are ordered by priority, composable, and independently testable.</p>
+
+      <div class="b-benefits-grid" style="margin-top: var(--b-space-12);">
+
+        <div class="b-benefit-card">
+          <h3>Incoming Pipeline (9 hooks)</h3>
+          <div class="es-table-wrap">
+          <table class="hook-table">
+            <thead><tr><th>Hook</th><th>Priority</th><th>Purpose</th></tr></thead>
+            <tbody>
+              <tr><td>pre-pipeline</td><td>0</td><td>Early interceptors, rate limiting</td></tr>
+              <tr><td>validation</td><td>10</td><td>Schema validation, envelope structure check</td></tr>
+              <tr><td>normalization</td><td>20</td><td>Convert to IEnvelope + CloudEvents format</td></tr>
+              <tr><td>filter</td><td>30</td><td>Drop messages not matching subscription patterns, security checks</td></tr>
+              <tr><td>log (incoming)</td><td>40</td><td>Record arrival, source, metadata, processing start time</td></tr>
+              <tr><td>enrichment</td><td>50</td><td>Add business context, user data, entity information</td></tr>
+              <tr><td>routing</td><td>60</td><td>Resolve destination subscribers via topic matching</td></tr>
+              <tr><td>custom hooks</td><td>70+</td><td>User-defined transformation, third-party integrations</td></tr>
+              <tr><td>post-pipeline</td><td>100</td><td>Final processing before pub/sub delivery</td></tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>Outgoing Pipeline (5 hooks)</h3>
+          <div class="es-table-wrap">
+          <table class="hook-table">
+            <thead><tr><th>Hook</th><th>Priority</th><th>Purpose</th></tr></thead>
+            <tbody>
+              <tr><td>pre-pipeline</td><td>0</td><td>Early interceptors, outgoing validation</td></tr>
+              <tr><td>transformation</td><td>10</td><td>Convert app format → transport format, add timestamp and routing metadata</td></tr>
+              <tr><td>log (outgoing)</td><td>20</td><td>Record send, destination, metadata for audit trail</td></tr>
+              <tr><td>retry</td><td>30</td><td>Queue failed messages with exponential backoff</td></tr>
+              <tr><td>custom hooks</td><td>40+</td><td>Post-send processing, webhook triggers, notifications</td></tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── IEnvelope format ──────────────────────────────────── -->
+  <section class="b-section b-section--default">
+    <div class="b-container">
+      <h2 class="b-section-title">The IEnvelope — what every message carries</h2>
+      <p class="b-section-subtitle">IEnvelope is the canonical message format. It is CloudEvents-compliant and wraps every message with routing metadata, body, headers, and custom attributes.</p>
+
+      <div class="b-benefits-grid" style="margin-top: var(--b-space-12);">
+
+        <div class="type-block">
+          <div class="type-block__name">IEnvelope.meta</div>
+          <div class="type-block__fields">
+            <div class="type-field"><span class="type-field__key">messageId</span><span class="type-field__val">string (UUID)</span></div>
+            <div class="type-field"><span class="type-field__key">correlationId?</span><span class="type-field__val">string</span></div>
+            <div class="type-field"><span class="type-field__key">source</span><span class="type-field__val">string</span></div>
+            <div class="type-field"><span class="type-field__key">topic</span><span class="type-field__val">string</span></div>
+            <div class="type-field"><span class="type-field__key">timestamp</span><span class="type-field__val">ISO8601 string</span></div>
+            <div class="type-field"><span class="type-field__key">conversationId?</span><span class="type-field__val">string</span></div>
+            <div class="type-field"><span class="type-field__key">userId?</span><span class="type-field__val">string</span></div>
+          </div>
+        </div>
+
+        <div class="type-block">
+          <div class="type-block__name">IEnvelope.body</div>
+          <div class="type-block__fields">
+            <div class="type-field"><span class="type-field__key">text?</span><span class="type-field__val">string</span></div>
+            <div class="type-field"><span class="type-field__key">type?</span><span class="type-field__val">string</span></div>
+            <div class="type-field"><span class="type-field__key">data?</span><span class="type-field__val">Record&lt;string, unknown&gt;</span></div>
+            <div class="type-field"><span class="type-field__key">contentType?</span><span class="type-field__val">string</span></div>
+          </div>
+        </div>
+
+        <div class="type-block">
+          <div class="type-block__name">IEnvelope.headers</div>
+          <div class="type-block__fields">
+            <div class="type-field"><span class="type-field__key">specversion</span><span class="type-field__val">'1.0' (CloudEvents)</span></div>
+            <div class="type-field"><span class="type-field__key">type</span><span class="type-field__val">string (event type)</span></div>
+            <div class="type-field"><span class="type-field__key">id</span><span class="type-field__val">string (CloudEvents ID)</span></div>
+            <div class="type-field"><span class="type-field__key">time</span><span class="type-field__val">ISO8601 string</span></div>
+            <div class="type-field"><span class="type-field__key">datacontenttype?</span><span class="type-field__val">'application/json'</span></div>
+          </div>
+        </div>
+
+        <div class="type-block">
+          <div class="type-block__name">IEnvelope.attributes</div>
+          <div class="type-block__fields">
+            <div class="type-field"><span class="type-field__key">priority?</span><span class="type-field__val">'low'|'normal'|'high'</span></div>
+            <div class="type-field"><span class="type-field__key">ttl?</span><span class="type-field__val">number (milliseconds)</span></div>
+            <div class="type-field"><span class="type-field__key">routing?</span><span class="type-field__val">Record&lt;string, string&gt;</span></div>
+            <div class="type-field"><span class="type-field__key">[key: string]</span><span class="type-field__val">unknown</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Message Lifecycle ─────────────────────────────────── -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">Message lifecycle — from send to delivery</h2>
+      <p class="b-section-subtitle">Every message follows the same deterministic path. Every stage is logged. Every failure is captured with full context for debugging and compliance.</p>
+
+      <div style="max-width: 680px; margin: var(--b-space-12) auto 0;">
+        <div class="flow-step">
+          <div class="flow-step__num">1</div>
+          <div><div class="flow-step__title">Application publishes</div><div class="flow-step__desc"><code>edgeStream.publish({ topic, body, meta })</code> — enters the outgoing pipeline immediately.</div></div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step__num">2</div>
+          <div><div class="flow-step__title">Outgoing pipeline executes</div><div class="flow-step__desc">Transformation → Log → Retry hooks fire in priority order. Message is normalised and validated before leaving the client.</div></div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step__num">3</div>
+          <div><div class="flow-step__title">Transport layer transmits</div><div class="flow-step__desc">SignalR, WebSocket, or HTTP transport sends the serialised IEnvelope to the server. Connection manager handles retries on transport failure.</div></div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step__num">4</div>
+          <div><div class="flow-step__title">Server processes</div><div class="flow-step__desc">Backend receives the envelope, executes business logic (workflow, form validation, AI response), and may publish a response message back via EdgeStream.</div></div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step__num">5</div>
+          <div><div class="flow-step__title">Incoming pipeline runs</div><div class="flow-step__desc">Pre-pipeline → Validation → Normalization → Filter → Log → Enrichment → Routing → Custom hooks — in priority order. Failed validation drops the message and logs the error.</div></div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step__num">6</div>
+          <div><div class="flow-step__title">Pub/Sub Engine delivers</div><div class="flow-step__desc">SubscriptionManager matches the topic against all registered subscriptions — exact, prefix, and wildcard. Matching subscribers receive the full IEnvelope.</div></div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step__num">7</div>
+          <div><div class="flow-step__title">Subscriber callbacks execute</div><div class="flow-step__desc">Each matching subscriber's callback fires with the complete IEnvelope. Execution time, success, and errors are recorded by SubscriberActivityLogger.</div></div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step__num">8</div>
+          <div><div class="flow-step__title">Audit trail complete</div><div class="flow-step__desc">Full message lifecycle queryable by messageId. HookActivityLogger + SubscriberActivityLogger provide every timing, status, and error for compliance and debugging.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="b-cta-section">
+    <div class="b-container">
+      <h2>Ready to explore the code?</h2>
+      <p>Follow the get-started guide or browse real integration examples.</p>
+      <div class="b-btn-group">
+        <a href="./get-started.html" class="b-btn b-btn-primary b-btn-large">Get Started</a>
+        <a href="./examples.html" class="b-btn b-btn-secondary b-btn-large">See Examples</a>
+      </div>
+    </div>
+  </section>
+
+  <footer id="es-footer"></footer>
+  <script src="./es-layout.js"></script>
+</body>
+</html>

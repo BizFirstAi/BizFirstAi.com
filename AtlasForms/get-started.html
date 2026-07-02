@@ -1,0 +1,386 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="https://bizfirstai.com/website/assets/Logo/logo-m.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Get Started with Atlas Forms — Install, create your first form schema, render it, and submit.">
+  <title>Get Started — Atlas Forms by BizFirstAi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://bizfirstai.com/website/assets/css/b-index.css">
+  <link rel="stylesheet" href="./atlas.css">
+  <style>
+    body { overflow-x: hidden; }
+
+    /* ── Step layout ── */
+    .gs-step { display: grid; grid-template-columns: 56px 1fr; gap: var(--b-space-6); margin-bottom: var(--b-space-10); }
+    .gs-step__num { width: 56px; height: 56px; border-radius: 50%; border: 2px solid var(--b-color-primary); background: var(--b-color-primary-subtle); display: flex; align-items: center; justify-content: center; font-size: var(--b-font-size-xl); font-weight: var(--b-font-weight-black); color: var(--b-color-primary); flex-shrink: 0; }
+    .gs-step__body { min-width: 0; }
+    .gs-step__title { font-size: var(--b-font-size-lg); font-weight: var(--b-font-weight-semibold); color: var(--b-text-primary); margin-bottom: var(--b-space-3); }
+    .gs-step__desc { color: var(--b-text-muted); font-size: var(--b-font-size-base); line-height: var(--b-line-height-relaxed); margin-bottom: var(--b-space-4); }
+
+    /* ── Code blocks — white-space:pre preserves line breaks; overflow-x:auto scrolls long lines ── */
+    .gs-code {
+      background: var(--b-bg-surface);
+      border: 1px solid var(--b-border-default);
+      border-radius: var(--b-radius-md);
+      padding: var(--b-space-4) var(--b-space-5);
+      font-family: monospace;
+      font-size: var(--b-font-size-sm);
+      color: var(--b-color-primary-light);
+      white-space: pre;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      max-width: 100%;
+      box-sizing: border-box;
+      margin-bottom: var(--b-space-4);
+      line-height: 1.6;
+    }
+
+    /* ── Inline code — prevent overflow on narrow screens ── */
+    code { word-break: break-word; overflow-wrap: break-word; }
+
+    /* ── Note box ── */
+    .gs-note { display: flex; gap: var(--b-space-3); background: var(--b-color-primary-subtle); border: 1px solid var(--b-border-primary); border-radius: var(--b-radius-md); padding: var(--b-space-4); font-size: var(--b-font-size-sm); color: var(--b-text-secondary); line-height: var(--b-line-height-relaxed); margin-bottom: var(--b-space-4); }
+    .gs-note svg { width: 18px; height: 18px; color: var(--b-color-primary); flex-shrink: 0; margin-top: 2px; }
+
+    /* ── Prerequisites grid ── */
+    .prereq-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--b-space-4); margin-bottom: var(--b-space-10); }
+    .prereq-item { background: var(--b-bg-surface); border: 1px solid var(--b-border-default); border-radius: var(--b-radius-lg); padding: var(--b-space-4) var(--b-space-5); }
+    .prereq-item__label { font-size: var(--b-font-size-xs); font-weight: var(--b-font-weight-bold); color: var(--b-color-primary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: var(--b-space-2); }
+    .prereq-item__value { font-size: var(--b-font-size-sm); color: var(--b-text-secondary); }
+
+    /* ── CTA button group — stack on mobile ── */
+    @media (max-width: 600px) {
+      .b-cta-section .b-btn-group { flex-direction: column; align-items: stretch; }
+      .b-cta-section .b-btn-group .b-btn { text-align: center; }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .gs-hero-section { padding-top: var(--b-space-12) !important; }
+      .prereq-grid { grid-template-columns: 1fr 1fr; }
+      .gs-step { grid-template-columns: 40px 1fr; gap: var(--b-space-4); }
+      .gs-step__num { width: 40px; height: 40px; font-size: var(--b-font-size-base); }
+      .gs-code { font-size: 0.75rem; padding: var(--b-space-3) var(--b-space-4); }
+    }
+    @media (max-width: 480px) {
+      .prereq-grid { grid-template-columns: 1fr; }
+      .gs-step { margin-bottom: var(--b-space-8); }
+      .gs-step__title { font-size: var(--b-font-size-base); }
+    }
+  </style>
+</head>
+<body>
+  <header id="atlas-header"></header>
+
+  <section class="b-section b-section--default gs-hero-section" style="padding-top: var(--b-space-20);">
+    <div class="b-container">
+      <h1 class="b-section-title">Get Started with Atlas Forms</h1>
+      <p class="b-section-subtitle">Install the packages, define a form schema in JSON, render it with the FormRenderer component, and handle submission — all in under 30 minutes.</p>
+
+      <h3 style="font-size: var(--b-font-size-lg); font-weight: var(--b-font-weight-semibold); color: var(--b-text-primary); margin: var(--b-space-10) 0 var(--b-space-6);">Prerequisites</h3>
+
+      <div class="prereq-grid">
+        <div class="prereq-item">
+          <div class="prereq-item__label">Node.js</div>
+          <div class="prereq-item__value">Node 18+ and pnpm (monorepo uses pnpm workspaces)</div>
+        </div>
+        <div class="prereq-item">
+          <div class="prereq-item__label">React</div>
+          <div class="prereq-item__value">React 18+ and TypeScript 5.0+ (strict mode)</div>
+        </div>
+        <div class="prereq-item">
+          <div class="prereq-item__label">BizFirstAi Platform</div>
+          <div class="prereq-item__value">Backend API running for form definition and data storage</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">Installation</h2>
+
+      <div class="gs-step">
+        <div class="gs-step__num">1</div>
+        <div class="gs-step__body">
+          <div class="gs-step__title">Install the core packages</div>
+          <p class="gs-step__desc">Install the minimum packages needed to render a form. The types, schema, and validation packages have zero external dependencies.</p>
+          <div class="gs-code">pnpm add @atlas-forms/types-js
+pnpm add @atlas-forms/schema-js
+pnpm add @atlas-forms/validation-js
+pnpm add @atlas-forms/form-engine-js
+pnpm add @atlas-forms/state-react
+pnpm add @atlas-forms/player-components-react
+pnpm add @atlas-forms/controls-builtin-js</div>
+        </div>
+      </div>
+
+      <div class="gs-step">
+        <div class="gs-step__num">2</div>
+        <div class="gs-step__body">
+          <div class="gs-step__title">Add API &amp; storage (for production)</div>
+          <p class="gs-step__desc">For saving forms to the BizFirstAi backend and persisting drafts across sessions, add the API client and storage packages.</p>
+          <div class="gs-code">pnpm add @atlas-forms/api-client-js
+pnpm add @atlas-forms/storage-js
+pnpm add @atlas-forms/client-js</div>
+        </div>
+      </div>
+
+      <div class="gs-step">
+        <div class="gs-step__num">3</div>
+        <div class="gs-step__body">
+          <div class="gs-step__title">Register built-in controls</div>
+          <p class="gs-step__desc">Call this once at your application entry point. It registers all 89+ built-in control types into the control registry singleton.</p>
+          <div class="gs-code">// main.tsx or App.tsx
+import { registerBuiltInControls } from '@atlas-forms/controls-builtin-js';
+
+registerBuiltInControls();</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="b-section b-section--default">
+    <div class="b-container">
+      <h2 class="b-section-title">Define your first form schema</h2>
+      <p class="b-section-subtitle" style="margin-bottom: var(--b-space-12);">A form schema is a JSON object. No code generation, no GUI required for basic forms — just declare what you need.</p>
+
+      <div class="gs-step">
+        <div class="gs-step__num">4</div>
+        <div class="gs-step__body">
+          <div class="gs-step__title">Create a form schema</div>
+          <p class="gs-step__desc">Define controls, labels, validation rules, and default values. Every control has a unique <code>id</code>, a <code>type</code> from the 89+ available types, and optional validation.</p>
+          <div class="gs-code">// customer-onboarding.schema.ts
+import type { FormSchema } from '@atlas-forms/types-js';
+
+export const customerOnboardingSchema: FormSchema = {
+  version: "1.0.0",
+  metadata: {
+    name: "customer-onboarding",
+    title: "Customer Onboarding",
+    description: "New customer registration form"
+  },
+  controls: [
+    {
+      id: "first_name",
+      type: "text",
+      label: "First Name",
+      required: true,
+      order: 1,
+      validation: { minLength: 2, maxLength: 50 }
+    },
+    {
+      id: "last_name",
+      type: "text",
+      label: "Last Name",
+      required: true,
+      order: 2
+    },
+    {
+      id: "email",
+      type: "email",
+      label: "Email Address",
+      required: true,
+      order: 3,
+      validation: { required: true }
+    },
+    {
+      id: "industry",
+      type: "select",
+      label: "Industry",
+      order: 4,
+      settings: {
+        options: [
+          { value: "finance", label: "Financial Services" },
+          { value: "healthcare", label: "Healthcare" },
+          { value: "technology", label: "Technology" },
+          { value: "government", label: "Government" }
+        ]
+      }
+    },
+    {
+      id: "agree_terms",
+      type: "checkbox",
+      label: "I agree to the Terms of Service",
+      required: true,
+      order: 5,
+      validation: { required: true }
+    }
+  ]
+};</div>
+        </div>
+      </div>
+
+      <div class="gs-step">
+        <div class="gs-step__num">5</div>
+        <div class="gs-step__body">
+          <div class="gs-step__title">Render the form</div>
+          <p class="gs-step__desc">Wrap your component in <code>FormStateProvider</code> and pass the schema to <code>FormRenderer</code>. The provider initialises the FormEngine and Zustand state. FormRenderer handles the full submission lifecycle.</p>
+          <div class="gs-code">// OnboardingForm.tsx
+import { FormStateProvider } from '@atlas-forms/state-react';
+import { FormRenderer } from '@atlas-forms/player-components-react';
+import { customerOnboardingSchema } from './customer-onboarding.schema';
+
+export function OnboardingForm() {
+  const handleSubmit = async (values: Record&lt;string, any&gt;) =&gt; {
+    console.log('Submitted:', values);
+    // Call your API here
+  };
+
+  return (
+    &lt;FormStateProvider schema={customerOnboardingSchema} mode="edit"&gt;
+      &lt;FormRenderer
+        schema={customerOnboardingSchema}
+        mode="edit"
+        onSubmit={handleSubmit}
+        submitLabel="Create Account"
+      /&gt;
+    &lt;/FormStateProvider&gt;
+  );
+}</div>
+          <div class="gs-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span>The <code>mode</code> prop controls which controls are visible. Set <code>mode="view"</code> to show a read-only version of the same form — no code changes needed, just the prop.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="gs-step">
+        <div class="gs-step__num">6</div>
+        <div class="gs-step__body">
+          <div class="gs-step__title">Access form state with the hook</div>
+          <p class="gs-step__desc">Use <code>useAtlasForm()</code> anywhere inside the <code>FormStateProvider</code> to read values, trigger validation, or reset the form.</p>
+          <div class="gs-code">import { useAtlasForm } from '@atlas-forms/state-react';
+
+function SaveDraftButton() {
+  const { values, isDirty, validate, reset } = useAtlasForm();
+
+  const handleSave = async () => {
+    const result = await validate();
+    if (result.isValid) {
+      // Save to storage
+      console.log('Saving draft:', values);
+    }
+  };
+
+  return (
+    &lt;button onClick={handleSave} disabled={!isDirty}&gt;
+      Save Draft
+    &lt;/button&gt;
+  );
+}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">Add a custom validator</h2>
+
+      <div class="gs-step">
+        <div class="gs-step__num">7</div>
+        <div class="gs-step__body">
+          <div class="gs-step__title">Register a custom validator</div>
+          <p class="gs-step__desc">Register validators by name at startup. Reference the name in any control's schema. Works synchronously or asynchronously.</p>
+          <div class="gs-code">import { registerValidator } from '@atlas-forms/validation-js';
+
+// Sync validator
+registerValidator('phone', (value) => {
+  const valid = /^\+?1?\d{9,15}$/.test(String(value));
+  return valid
+    ? { valid: true }
+    : { valid: false, message: 'Enter a valid phone number' };
+});
+
+// Async validator (e.g. check email availability)
+registerValidator('emailAvailable', async (value) => {
+  const res = await fetch(`/api/check-email?email=${value}`);
+  const { available } = await res.json();
+  return available
+    ? { valid: true }
+    : { valid: false, message: 'This email is already registered' };
+});
+
+// Use in schema
+{
+  id: "phone",
+  type: "text",
+  label: "Phone Number",
+  validation: { customRule: "phone" }
+}</div>
+        </div>
+      </div>
+
+      <div class="gs-step">
+        <div class="gs-step__num">8</div>
+        <div class="gs-step__body">
+          <div class="gs-step__title">Register a custom control</div>
+          <p class="gs-step__desc">Extend Atlas Forms with your own control types. Register them with the control registry and they appear in the palette and work in schemas exactly like built-in controls.</p>
+          <div class="gs-code">import { controlRegistry } from '@atlas-forms/control-registry-js';
+import type { ControlPlugin } from '@atlas-forms/types-js';
+import { PhoneInputControl } from './PhoneInputControl';
+
+const phonePlugin: ControlPlugin = {
+  type: 'phone-input',
+  label: 'Phone Number',
+  category: 'input',
+  component: PhoneInputControl,
+  defaultSettings: {
+    countryCode: '+1',
+    format: 'national'
+  }
+};
+
+controlRegistry.register(phonePlugin);</div>
+          <div class="gs-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Custom controls appear immediately in Atlas Form Studio's drag-and-drop palette after registration. No rebuild required.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="b-section b-section--default">
+    <div class="b-container">
+      <h2 class="b-section-title">What to explore next</h2>
+      <div class="b-benefits-grid" style="margin-top: var(--b-space-10);">
+        <div class="b-benefit-card">
+          <h3>Multi-mode forms</h3>
+          <p>Set <code>modeVisibilitySettings</code> on each control to show different fields in edit vs view vs admin mode. Build a single schema that serves all personas.</p>
+          <a href="./examples.html" class="b-product-link" style="display:inline-block; margin-top: var(--b-space-4);">See example →</a>
+        </div>
+        <div class="b-benefit-card">
+          <h3>Stepper / multi-step forms</h3>
+          <p>Use the <code>stepper</code> layout control to split a long form into labelled steps. Progress validation ensures a step is complete before advancing.</p>
+          <a href="./examples.html#onboarding" class="b-product-link" style="display:inline-block; margin-top: var(--b-space-4);">See stepper example →</a>
+        </div>
+        <div class="b-benefit-card">
+          <h3>AI form generation</h3>
+          <p>Send a natural language description to the AI agent and receive a complete <code>FormSchema</code> JSON — full control types, validation rules, and layout configured automatically.</p>
+          <a href="./examples.html#ai" class="b-product-link" style="display:inline-block; margin-top: var(--b-space-4);">See AI generation →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="b-cta-section">
+    <div class="b-container">
+      <h2>Need help getting set up?</h2>
+      <p>Ask in the Atlas Forms community or book a session with the BizFirstAi team.</p>
+      <div class="b-btn-group">
+        <a href="https://community.bizfirstai.com/tag/atlas-forms" class="b-btn b-btn-primary b-btn-large" target="_blank" rel="noopener">Join the Community</a>
+        <a href="https://bizfirstai.com/website/contact.html" class="b-btn b-btn-secondary b-btn-large" target="_blank" rel="noopener">Book a Session</a>
+      </div>
+    </div>
+  </section>
+
+  <footer id="atlas-footer"></footer>
+  <script src="./atlas-layout.js"></script>
+</body>
+</html>

@@ -1,0 +1,369 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="https://bizfirstai.com/website/assets/Logo/logo-m.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="EdgeInteract — Context-aware UI orchestration. Three-manager architecture. Chat, Forms, and Workflows with full context in every message.">
+  <title>EdgeInteract — Context-Aware UI Orchestration by BizFirstAi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://bizfirstai.com/website/assets/css/b-index.css">
+  <link rel="stylesheet" href="./ei.css">
+  <style>
+    body { overflow-x: hidden; }
+    @media (max-width: 1024px) {
+      .b-benefits-grid[style*="1fr 1fr 1fr"] { grid-template-columns: 1fr 1fr !important; }
+    }
+    @media (max-width: 640px) {
+      .b-benefits-grid[style*="1fr 1fr 1fr"] { grid-template-columns: 1fr !important; }
+    }
+  </style>
+</head>
+<body>
+  <header id="ei-header"></header>
+
+  <!-- ── Hero ─────────────────────────────────────────────── -->
+  <section class="ei-hero">
+    <div class="b-container">
+      <div class="ei-hero__inner">
+
+        <div class="b-hero-left">
+          <div class="ei-hero__eyebrow">
+            <span class="ei-hero__eyebrow-dot"></span>
+            Context-Aware UI Orchestration
+          </div>
+          <h1 class="b-hero-headline">Context in<br><em>every message.</em></h1>
+          <p class="b-hero-subheading">EdgeInteract is the intelligent interface layer between your application and its interactive UI components — chat, forms, and workflows. Every message carries complete user, session, conversation, and entity context, eliminating context leakage and enabling distributed, multi-user systems that just work.</p>
+          <div class="b-hero-ctas">
+            <a href="./get-started.html" class="b-btn b-btn-primary b-btn-large">Get Started</a>
+            <a href="./architecture.html" class="b-btn b-btn-secondary b-btn-large">Explore Architecture</a>
+          </div>
+        </div>
+
+        <!-- Message flow visual -->
+        <div class="b-hero-right" style="min-height: auto;">
+          <div class="ei-flow-visual">
+
+            <div class="ei-msg">
+              <div class="ei-msg__avatar">U</div>
+              <div class="ei-msg__bubble">
+                <div class="ei-msg__text">I need help with my order #4521</div>
+                <div class="ei-msg__ctx">
+                  <span class="ei-ctx-tag">user: sarah.j</span>
+                  <span class="ei-ctx-tag">session: est-morning</span>
+                  <span class="ei-ctx-tag">entity: order#4521</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="ei-msg__divider"><span>EdgeStream pipeline — context enriched</span></div>
+
+            <div class="ei-msg ei-msg--out">
+              <div class="ei-msg__avatar">AI</div>
+              <div class="ei-msg__bubble">
+                <div class="ei-msg__text">Hi Sarah, I can see your order is in transit. Expected delivery: tomorrow 2pm.</div>
+                <div class="ei-msg__ctx">
+                  <span class="ei-ctx-tag">tier: gold</span>
+                  <span class="ei-ctx-tag">locale: en-US</span>
+                  <span class="ei-ctx-tag">routed: priority-queue</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="ei-msg__divider"><span>PlayerManager — showing order form</span></div>
+
+            <div class="ei-msg">
+              <div class="ei-msg__avatar">UI</div>
+              <div class="ei-msg__bubble">
+                <div class="ei-msg__text">Order #4521 — Update shipping address?</div>
+                <div class="ei-msg__ctx">
+                  <span class="ei-ctx-tag">form: update-shipping</span>
+                  <span class="ei-ctx-tag">prefilled: entity.address</span>
+                  <span class="ei-ctx-tag">perm: write-orders ✓</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <div class="ei-stats">
+        <div class="ei-stat">
+          <div class="ei-stat__number">3</div>
+          <div class="ei-stat__label">Core managers</div>
+        </div>
+        <div class="ei-stat">
+          <div class="ei-stat__number">8</div>
+          <div class="ei-stat__label">Explicit responsibilities</div>
+        </div>
+        <div class="ei-stat">
+          <div class="ei-stat__number">13</div>
+          <div class="ei-stat__label">npm packages</div>
+        </div>
+        <div class="ei-stat">
+          <div class="ei-stat__number">0</div>
+          <div class="ei-stat__label">Context leaks</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Core Philosophy ──────────────────────────────────── -->
+  <section class="b-section b-section--default">
+    <div class="b-container">
+      <h2 class="b-section-title">The problem: context gets lost.</h2>
+      <p class="b-section-subtitle">In traditional chat and form applications, user and session context is stored globally, passed through function calls, and routinely dropped — leading to real failures.</p>
+
+      <div class="b-benefits-grid" style="margin-top: var(--b-space-12);">
+        <div class="b-benefit-card" style="border-color: rgba(239,68,68,0.3);">
+          <h3 style="color: #f87171;">Context Leakage</h3>
+          <p>User A sees User B's chat messages. Form submission goes to the wrong customer. Workflow executes with the wrong permissions. These aren't edge cases — they're what happens when context isn't carried in every message.</p>
+        </div>
+        <div class="b-benefit-card" style="border-color: rgba(239,68,68,0.3);">
+          <h3 style="color: #f87171;">State Management Chaos</h3>
+          <p>Monolithic stores (Redux, MobX) become impossible to understand at scale. Local component state creates duplicated truth. Framework-locked solutions (Vue, Angular DI) mean vendor dependency.</p>
+        </div>
+        <div class="b-benefit-card" style="border-color: rgba(239,68,68,0.3);">
+          <h3 style="color: #f87171;">UI Coordination Boilerplate</h3>
+          <p>Coordinating chat + form + workflow requires custom glue code in every application. Sending a message from one component and having another respond means writing synchronisation logic from scratch every time.</p>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: var(--b-space-12);">
+        <p style="font-size: var(--b-font-size-xl); font-weight: var(--b-font-weight-bold); color: var(--b-text-primary);">EdgeInteract's answer: <em style="color: var(--b-color-primary);">context in every message.</em></p>
+        <p style="color: var(--b-text-muted); margin-top: var(--b-space-4); max-width: 600px; margin-left: auto; margin-right: auto;">Every message carries complete user, session, conversation, and entity context as a structured envelope — through every pipeline hook, every subscriber, and every UI component.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Three Managers ───────────────────────────────────── -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">Three managers. One coherent system.</h2>
+      <p class="b-section-subtitle">EdgeInteract solves context, communication, and UI orchestration through three focused, independently testable managers.</p>
+
+      <div class="b-benefits-grid" style="grid-template-columns: 1fr 1fr 1fr; margin-top: var(--b-space-12);">
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            </span>
+            ContextManager
+          </h3>
+          <p>The single source of truth for all context. Responsible for reading and writing user, session, conversation, and entity state — and broadcasting events when context changes.</p>
+          <ul class="b-feature-list">
+            <li>ContextStore — write-only, atomic</li>
+            <li>ContextQuery — read-only, consistent</li>
+            <li>ContextDispatcher — event broadcast</li>
+            <li>ContextSubscriber — subscription lifecycle</li>
+            <li>IContextEnhancer — middleware pipeline</li>
+          </ul>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+            </span>
+            CommManager
+          </h3>
+          <p>The bridge between EdgeStream's pub/sub pipeline and context-enriched messaging. Every message published automatically carries the current context — zero manual enrichment code.</p>
+          <ul class="b-feature-list">
+            <li>publish() with auto context enrichment</li>
+            <li>subscribe() with context filtering</li>
+            <li>Outgoing/incoming hook registration</li>
+            <li>Dynamic pipeline swapping</li>
+            <li>Context-aware message routing</li>
+          </ul>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </span>
+            PlayerManager
+          </h3>
+          <p>The single control point for all interactive UI components. Send chat messages, display forms, launch workflows, and coordinate multiple UIs simultaneously — from one consistent API.</p>
+          <ul class="b-feature-list">
+            <li>Chat — send, receive, operate window</li>
+            <li>Forms — display, submit, update fields</li>
+            <li>Workflows — display, execute, pause/resume</li>
+            <li>coordinateUIs() — multi-UI orchestration</li>
+            <li>broadcastStateChange() — cross-component sync</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 8 Responsibilities ───────────────────────────────── -->
+  <section class="b-section b-section--default">
+    <div class="b-container">
+      <h2 class="b-section-title">8 Responsibilities. Each with one reason to change.</h2>
+      <p class="b-section-subtitle">Traditional architecture mixes concerns — setting context triggers events, reading context rebuilds data. EdgeInteract separates everything into 8 explicit responsibilities.</p>
+
+      <div class="ei-responsibility-grid">
+        <div class="ei-resp-card">
+          <div class="ei-resp-card__num">1</div>
+          <div class="ei-resp-card__name">Communication Bridge</div>
+          <div class="ei-resp-card__impl">CommManager</div>
+          <div class="ei-resp-card__desc">All pub/sub goes through one place. Nothing else.</div>
+        </div>
+        <div class="ei-resp-card">
+          <div class="ei-resp-card__num">2</div>
+          <div class="ei-resp-card__name">Context Write</div>
+          <div class="ei-resp-card__impl">ContextStore</div>
+          <div class="ei-resp-card__desc">Writes are atomic and controlled. Never reads.</div>
+        </div>
+        <div class="ei-resp-card">
+          <div class="ei-resp-card__num">3</div>
+          <div class="ei-resp-card__name">Context Read</div>
+          <div class="ei-resp-card__impl">ContextQuery</div>
+          <div class="ei-resp-card__desc">Reads are fast and consistent. Never writes.</div>
+        </div>
+        <div class="ei-resp-card">
+          <div class="ei-resp-card__num">4</div>
+          <div class="ei-resp-card__name">Event Dispatch</div>
+          <div class="ei-resp-card__impl">ContextDispatcher</div>
+          <div class="ei-resp-card__desc">Events broadcast to all listeners. No logic.</div>
+        </div>
+        <div class="ei-resp-card">
+          <div class="ei-resp-card__num">5</div>
+          <div class="ei-resp-card__name">Event Subscribe</div>
+          <div class="ei-resp-card__impl">ContextSubscriber</div>
+          <div class="ei-resp-card__desc">Subscription lifecycle managed in one place.</div>
+        </div>
+        <div class="ei-resp-card">
+          <div class="ei-resp-card__num">6</div>
+          <div class="ei-resp-card__name">UI Orchestration</div>
+          <div class="ei-resp-card__impl">PlayerManager</div>
+          <div class="ei-resp-card__desc">Single control point for all UI components.</div>
+        </div>
+        <div class="ei-resp-card">
+          <div class="ei-resp-card__num">7</div>
+          <div class="ei-resp-card__name">Data Standards</div>
+          <div class="ei-resp-card__impl">Canonical Types</div>
+          <div class="ei-resp-card__desc">Single source of truth for all interfaces.</div>
+        </div>
+        <div class="ei-resp-card">
+          <div class="ei-resp-card__num">8</div>
+          <div class="ei-resp-card__name">Context Enrichment</div>
+          <div class="ei-resp-card__impl">IContextEnhancer</div>
+          <div class="ei-resp-card__desc">Middleware pipeline — each enhancer has one job.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Built-in Plugins ─────────────────────────────────── -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">Three production plugins. Ready to use.</h2>
+      <p class="b-section-subtitle">EdgeInteract ships three fully implemented plugins. Register them and control chat, forms, and workflows immediately.</p>
+
+      <div class="b-benefits-grid" style="margin-top: var(--b-space-12);">
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </span>
+            ChatWindowPlugin
+          </h3>
+          <p>A full context-aware chat interface. Embeddable as vanilla JS or React component. Every message carries the full context envelope — no context leakage possible.</p>
+          <ul class="b-feature-list">
+            <li>display, send-message, load-history</li>
+            <li>mark-read, clear-history</li>
+            <li>Named variables in templates</li>
+            <li>Light / dark theme</li>
+          </ul>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </span>
+            AtlasFormsPlugin
+          </h3>
+          <p>Integrates Atlas Forms directly into EdgeInteract. Display, submit, validate, and reset forms. Context from user and entity automatically prefills and validates field data.</p>
+          <ul class="b-feature-list">
+            <li>form:display, form:submit, form:validate</li>
+            <li>form:reset, form:update-field, form:get-data</li>
+            <li>HTTP or EdgeStream submission</li>
+            <li>Schema-based validation</li>
+          </ul>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/></svg>
+            </span>
+            WorkflowPlayerPlugin
+          </h3>
+          <p>Connect Flow Engine workflows into the UI layer. Display a workflow, execute it step by step, pause, resume, or stop — all with full context preserved through every state transition.</p>
+          <ul class="b-feature-list">
+            <li>workflow:display, workflow:start, workflow:step</li>
+            <li>workflow:pause, workflow:resume, workflow:stop</li>
+            <li>5-state machine (IDLE → RUNNING → COMPLETED)</li>
+            <li>Full error recovery</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Results ───────────────────────────────────────────── -->
+  <section class="b-section b-section--default">
+    <div class="b-container">
+      <h2 class="b-section-title">What the architecture delivers</h2>
+
+      <div class="b-benefits-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top: var(--b-space-10);">
+        <div class="b-benefit-card" style="text-align: center; padding: var(--b-space-8);">
+          <div style="font-size: 2.5rem; font-weight: 900; color: var(--b-color-primary);">40%</div>
+          <div style="font-size: var(--b-font-size-sm); font-weight: 600; color: var(--b-text-primary); margin-top: var(--b-space-2);">Faster Development</div>
+          <div style="font-size: var(--b-font-size-xs); color: var(--b-text-muted); margin-top: var(--b-space-2);">Separation of concerns eliminates boilerplate</div>
+        </div>
+        <div class="b-benefit-card" style="text-align: center; padding: var(--b-space-8);">
+          <div style="font-size: 2.5rem; font-weight: 900; color: var(--b-color-primary);">95%</div>
+          <div style="font-size: var(--b-font-size-sm); font-weight: 600; color: var(--b-text-primary); margin-top: var(--b-space-2);">Fewer Bugs</div>
+          <div style="font-size: var(--b-font-size-xs); color: var(--b-text-muted); margin-top: var(--b-space-2);">Type-safety and SRP prevent whole classes of errors</div>
+        </div>
+        <div class="b-benefit-card" style="text-align: center; padding: var(--b-space-8);">
+          <div style="font-size: 2.5rem; font-weight: 900; color: var(--b-color-primary);">60%</div>
+          <div style="font-size: var(--b-font-size-sm); font-weight: 600; color: var(--b-text-primary); margin-top: var(--b-space-2);">Less Technical Debt</div>
+          <div style="font-size: var(--b-font-size-xs); color: var(--b-text-muted); margin-top: var(--b-space-2);">Architecture eliminates boilerplate accumulation</div>
+        </div>
+        <div class="b-benefit-card" style="text-align: center; padding: var(--b-space-8);">
+          <div style="font-size: 2.5rem; font-weight: 900; color: var(--b-color-primary);">10x</div>
+          <div style="font-size: var(--b-font-size-sm); font-weight: 600; color: var(--b-text-primary); margin-top: var(--b-space-2);">Scalability</div>
+          <div style="font-size: var(--b-font-size-xs); color: var(--b-text-muted); margin-top: var(--b-space-2);">Context-aware design enables distributed systems</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="b-cta-section">
+    <div class="b-container">
+      <h2>Build context-aware applications.</h2>
+      <p>Three managers. Eight responsibilities. Zero context leakage.</p>
+      <div class="b-btn-group">
+        <a href="./get-started.html" class="b-btn b-btn-primary b-btn-large">Get Started</a>
+        <a href="./architecture.html" class="b-btn b-btn-secondary b-btn-large">Architecture</a>
+      </div>
+    </div>
+  </section>
+
+  <footer id="ei-footer"></footer>
+  <script src="./ei-layout.js"></script>
+</body>
+</html>

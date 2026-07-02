@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OperateAI - Decentralized Identity (DID)</title>
+    <meta name="description"
+        content="W3C-compliant Decentralized Identifiers for sovereign AI agent identity on the Accumulate blockchain">
+    <meta name="keywords" content="DID, Decentralized Identity, W3C, Blockchain, Accumulate, OperateAI, Verifiable Credentials">
+    <meta name="author" content="BizFirst AI">
+    <link rel="shortcut icon" href="./images/favicon.ico">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/animations.css">
+    <link rel="stylesheet" href="./css/components.css">
+    <link rel="stylesheet" href="./css/common.css">
+
+    <style>
+    body { overflow-x: hidden; }
+        body {
+            background: #111;
+        }
+
+        .oai-hero {
+            padding: 160px 0 80px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a2a0a 50%, #1a1a1a 100%);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            color: #fff;
+        }
+
+        .oai-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 30% 40%, rgba(0, 255, 0, 0.06) 0%, transparent 60%),
+                radial-gradient(circle at 70% 60%, rgba(6, 182, 212, 0.06) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .oai-hero .hero-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 40px rgba(0, 255, 0, 0.25);
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 40px rgba(0, 255, 0, 0.25);
+            }
+
+            50% {
+                box-shadow: 0 0 60px rgba(0, 255, 0, 0.4);
+            }
+        }
+
+        .oai-hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .oai-hero p.lead {
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.75);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            margin: 0;
+        }
+
+        .oai-section {
+            padding: 80px 0;
+            background: linear-gradient(180deg, #141414 0%, #1a1a1a 100%);
+            color: #fff;
+        }
+
+        .oai-section-alt {
+            padding: 80px 0;
+            background: linear-gradient(180deg, #1a1a1a 0%, #141414 100%);
+            color: #fff;
+        }
+
+        .oai-section .section-header h2,
+        .oai-section-alt .section-header h2 {
+            color: #fff;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .oai-section .section-header p,
+        .oai-section-alt .section-header p {
+            color: rgba(255, 255, 255, 0.65);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-6px);
+            border-color: rgba(0, 255, 0, 0.25);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 25px rgba(0, 255, 0, 0.08);
+        }
+
+        .glass-card h3 {
+            color: #fff;
+        }
+
+        .glass-card p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .code-block {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.85);
+            overflow-x: auto;
+            line-height: 1.6;
+        }
+
+        .code-block .key {
+            color: #06B6D4;
+        }
+
+        .code-block .value {
+            color: #00ff00;
+        }
+
+        .code-block .string {
+            color: #F59E0B;
+        }
+
+        .mermaid-container {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-list-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 10px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 0.75rem;
+            transition: all 0.3s ease;
+        }
+
+        .service-list-item:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(0, 255, 0, 0.2);
+        }
+
+        .service-list-item h5 {
+            color: #fff;
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .service-list-item p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.8rem;
+            margin: 0;
+        }
+
+        .service-list-item a {
+            color: var(--accent-primary);
+            font-size: 0.8rem;
+        }
+
+        .did-property-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .did-property-list li {
+            color: rgba(255, 255, 255, 0.8);
+            padding: 0.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        .did-property-list li i {
+            color: var(--accent-primary);
+            margin-right: 0.75rem;
+            width: 16px;
+        }
+
+        .url-pattern-card {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .url-pattern-card h5 {
+            color: #fff;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .url-pattern-card code {
+            color: #00ff00;
+            background: rgba(0, 255, 0, 0.08);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
+        .cta-section-oai {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #0a2a0a, #141414);
+            text-align: center;
+            color: #fff;
+        }
+
+        .cta-section-oai h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section-oai p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2rem;
+        }
+
+        .code-block pre {
+            overflow-x: auto;
+            white-space: pre;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        @media (max-width: 768px) {
+            .oai-hero { padding: 120px 0 60px; }
+            .oai-hero h1 { font-size: 2rem; }
+            .oai-hero p.lead { font-size: 1rem; }
+            .glass-card { padding: 1.5rem; }
+            .code-block { font-size: 0.78rem; padding: 1rem; }
+            .url-pattern-card code { font-size: 0.75rem; word-break: break-all; }
+        }
+
+        @media (max-width: 576px) {
+            .oai-hero h1 { font-size: 1.75rem; }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="preloader">
+        <div id="status">
+            <div class="spinner">Loading...</div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top custom-nav">
+        <div class="container">
+            <a class="navbar-brand" href="./index.html">
+                <div class="logo-container"><img src="./images/logo.png" alt="BizFirst AI" class="logo-img"></div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="features.html">Features</a></li>
+                    <li class="nav-item"><a class="nav-link" href="how-it-works.html">How It Works</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ecosystem.html">Ecosystem</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="did-identity.html">DID & Identity</a></li>
+                    <li class="nav-item"><a class="nav-link" href="agent-communication.html">Communication</a></li>
+                    <li class="nav-item"><a class="nav-link" href="getting-started.html">Get Started</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="oai-hero">
+        <div class="container position-relative">
+            <div class="hero-icon" data-aos="zoom-in">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <h1 data-aos="fade-up" data-aos-delay="100">Decentralized Identity</h1>
+            <p class="lead" data-aos="fade-up" data-aos-delay="200">W3C-compliant DIDs for sovereign AI agent identity
+                on the Accumulate blockchain</p>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Section 1: What is a DID? -->
+    <section class="oai-section">
+        <div class="container">
+            <div class="section-header text-center mb-5" data-aos="fade-up">
+                <h2><i class="fas fa-id-card me-3"></i>What is a DID?</h2>
+                <p>The foundation of self-sovereign identity for AI agents</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="glass-card" data-aos="fade-up" data-aos-delay="100">
+                        <p style="font-size: 1.05rem; line-height: 1.8;">A Decentralized Identifier (DID) is a W3C
+                            standard for self-sovereign identity. Unlike traditional identifiers controlled by
+                            centralized authorities, DIDs provide a fundamentally different approach to digital
+                            identity.</p>
+                        <ul class="did-property-list mt-4">
+                            <li><i class="fas fa-globe"></i> <strong>Globally unique and resolvable</strong> — every DID
+                                is a URI that can be looked up from anywhere in the world</li>
+                            <li><i class="fas fa-key"></i> <strong>Cryptographically verifiable</strong> — ownership and
+                                authenticity are proven through public-key cryptography</li>
+                            <li><i class="fas fa-user-shield"></i> <strong>Controlled by the identity owner</strong> —
+                                no third party can revoke, censor, or modify your identity</li>
+                            <li><i class="fas fa-link-slash"></i> <strong>Independent of any central registry</strong> —
+                                no single point of failure or control</li>
+                        </ul>
+                        <div class="mt-4 p-3"
+                            style="background: rgba(0,255,0,0.05); border-left: 3px solid var(--accent-primary); border-radius: 0 8px 8px 0;">
+                            <p class="mb-0" style="color: rgba(255,255,255,0.8);"><i
+                                    class="fas fa-lightbulb me-2" style="color: var(--accent-primary);"></i>
+                                OperateAI uses the <code
+                                    style="color: #00ff00; background: rgba(0,255,0,0.1); padding: 0.15rem 0.4rem; border-radius: 4px;">did:web</code>
+                                method, making every AI agent's DID accessible via a simple URL. For example:
+                                <code
+                                    style="color: #06B6D4; background: rgba(6,182,212,0.1); padding: 0.15rem 0.4rem; border-radius: 4px;">did:web:sunstream.operatedid.com</code>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Section 2: DID Document Structure -->
+    <section class="oai-section-alt">
+        <div class="container">
+            <div class="section-header text-center mb-5" data-aos="fade-up">
+                <h2><i class="fas fa-file-code me-3"></i>DID Document Structure</h2>
+                <p>A real-world example from the Sunstream agent</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="glass-card" data-aos="fade-up" data-aos-delay="100">
+                        <p class="mb-4">Every OperateAI agent has a DID Document hosted at
+                            <code
+                                style="color: #00ff00; background: rgba(0,255,0,0.1); padding: 0.15rem 0.4rem; border-radius: 4px;">/.well-known/did.json</code>.
+                            This JSON-LD document describes the agent's identity, cryptographic keys, authentication
+                            methods, and available services.
+                        </p>
+                        <div class="code-block">
+<pre style="margin: 0; white-space: pre; color: rgba(255,255,255,0.85);">{
+  <span class="key">"id"</span>: <span class="string">"did:web:sunstream.operatedid.com"</span>,
+  <span class="key">"controller"</span>: <span class="string">"did:web:sunstream.operatedid.com"</span>,
+  <span class="key">"verificationMethod"</span>: [{
+    <span class="key">"id"</span>: <span class="string">"did:web:sunstream.operatedid.com#key-1"</span>,
+    <span class="key">"type"</span>: <span class="string">"JsonWebKey2020"</span>,
+    <span class="key">"controller"</span>: <span class="string">"did:web:sunstream.operatedid.com"</span>,
+    <span class="key">"publicKeyJwk"</span>: {
+      <span class="key">"kty"</span>: <span class="string">"EC"</span>,
+      <span class="key">"crv"</span>: <span class="string">"secp256k1"</span>
+    }
+  }],
+  <span class="key">"authentication"</span>: [<span class="string">"did:web:sunstream.operatedid.com#key-1"</span>],
+  <span class="key">"assertionMethod"</span>: [<span class="string">"did:web:sunstream.operatedid.com#key-1"</span>],
+  <span class="key">"service"</span>: [
+    {
+      <span class="key">"id"</span>: <span class="string">"#MyServices"</span>,
+      <span class="key">"type"</span>: <span class="string">"ServiceRegistry"</span>,
+      <span class="key">"serviceEndpoint"</span>: <span class="value">"https://sunstream.operatedid.com/MyServices/index.json"</span>
+    },
+    {
+      <span class="key">"id"</span>: <span class="string">"#DIDService"</span>,
+      <span class="key">"type"</span>: <span class="string">"DIDDocument"</span>,
+      <span class="key">"serviceEndpoint"</span>: <span class="value">"https://sunstream.operatedid.com/.well-known/did.json"</span>
+    },
+    {
+      <span class="key">"id"</span>: <span class="string">"#OperateID"</span>,
+      <span class="key">"type"</span>: <span class="string">"OperateIdentity"</span>,
+      <span class="key">"serviceEndpoint"</span>: <span class="value">"https://sunstream.operatedid.com/operate-id"</span>
+    }
+  ]
+}</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Section 3: Service Registry -->
+    <section class="oai-section">
+        <div class="container">
+            <div class="section-header text-center mb-5" data-aos="fade-up">
+                <h2><i class="fas fa-sitemap me-3"></i>Service Registry</h2>
+                <p>Standardized URL patterns for OperateDID services</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="glass-card" data-aos="fade-up" data-aos-delay="100">
+                        <p class="mb-4">Every OperateDID identity follows a consistent URL structure, making service
+                            discovery predictable and machine-readable. Replace <code
+                                style="color: #06B6D4; background: rgba(6,182,212,0.1); padding: 0.15rem 0.4rem; border-radius: 4px;">{name}</code>
+                            with any registered agent name.</p>
+
+                        <div class="url-pattern-card" data-aos="fade-up" data-aos-delay="150">
+                            <h5><i class="fas fa-fingerprint me-2"
+                                    style="color: var(--accent-primary);"></i>DID Resolution</h5>
+                            <code>{name}.OperateDID.com/.well-known/did.json</code>
+                            <p class="mt-2 mb-0" style="color: rgba(255,255,255,0.5); font-size: 0.85rem;">Resolves the
+                                full W3C DID Document for the agent</p>
+                        </div>
+
+                        <div class="url-pattern-card" data-aos="fade-up" data-aos-delay="200">
+                            <h5><i class="fas fa-list me-2" style="color: var(--accent-primary);"></i>Service Registry
+                            </h5>
+                            <code>{name}.OperateDID.com/service</code>
+                            <p class="mt-2 mb-0" style="color: rgba(255,255,255,0.5); font-size: 0.85rem;">Lists all
+                                registered services and endpoints for the agent</p>
+                        </div>
+
+                        <div class="url-pattern-card" data-aos="fade-up" data-aos-delay="250">
+                            <h5><i class="fas fa-award me-2" style="color: var(--accent-primary);"></i>Verifiable
+                                Credentials</h5>
+                            <code>{name}.OperateDID.com/vc</code>
+                            <p class="mt-2 mb-0" style="color: rgba(255,255,255,0.5); font-size: 0.85rem;">Access
+                                issued and held verifiable credentials for the agent</p>
+                        </div>
+
+                        <div class="url-pattern-card" data-aos="fade-up" data-aos-delay="300">
+                            <h5><i class="fas fa-envelope me-2" style="color: var(--accent-primary);"></i>DIDComm
+                                Messaging</h5>
+                            <code>{name}.OperateDID.com/didcomm</code>
+                            <p class="mt-2 mb-0" style="color: rgba(255,255,255,0.5); font-size: 0.85rem;">Endpoint for
+                                secure agent-to-agent DIDComm communication</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Section 4: Live Example — Sunstream -->
+    <section class="oai-section-alt">
+        <div class="container">
+            <div class="section-header text-center mb-5" data-aos="fade-up">
+                <h2><i class="fas fa-satellite-dish me-3"></i>Live Example — Sunstream</h2>
+                <p>A fully operational OperateDID identity with 11 registered services</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="service-list-item" data-aos="fade-up" data-aos-delay="50">
+                        <div class="d-flex align-items-center">
+                            <span
+                                style="width: 28px; height: 28px; background: rgba(0,255,0,0.1); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.75rem; color: var(--accent-primary); margin-right: 1rem; flex-shrink: 0;">1</span>
+                            <div>
+                                <h5>DID Document</h5>
+                                <p><a href="https://sunstream.operatedid.com/.well-known/did.json"
+                                        target="_blank">sunstream.operatedid.com/.well-known/did.json</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="service-list-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="d-flex align-items-center">
+                            <span
+                                style="width: 28px; height: 28px; background: rgba(0,255,0,0.1); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.75rem; color: var(--accent-primary); margin-right: 1rem; flex-shrink: 0;">2</span>
+                            <div>
+                                <h5>MyServices Registry</h5>
+                                <p><a href="https://sunstream.operatedid.com/MyServices/index.json"
+                                        target="_blank">sunstream.operatedid.com/MyServices/index.json</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="service-list-item" data-aos="fade-up" data-aos-delay="150">
+                        <div class="d-flex align-items-center">
+                            <span
+                                style="width: 28px; height: 28px; background: rgba(0,255,0,0.1); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.75rem; color: var(--accent-primary); margin-right: 1rem; flex-shrink: 0;">3</span>
+                            <div>
+                                <h5>Bank Data Website</h5>
+                                <p><a href="https://sunstream.bankonledger.com"
+                                        target="_blank">sunstream.BankOnLedger.com</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="service-list-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="d-flex align-items-center">
+                            <span
+                                style="width: 28px; height: 28px; background: rgba(0,255,0,0.1); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.75rem; color: var(--accent-primary); margin-right: 1rem; flex-shrink: 0;">4</span>
+                            <div>
+                                <h5>Social Profile</h5>
+                                <p><a href="https://sunstream.qoboto.com"
+                                        target="_blank">sunstream.Qoboto.com</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="service-list-item" data-aos="fade-up" data-aos-delay="250">
+                        <div class="d-flex align-items-center">
+                            <span
+                                style="width: 28px; height: 28px; background: rgba(0,255,0,0.1); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.75rem; color: var(--accent-primary); margin-right: 1rem; flex-shrink: 0;">5</span>
+                            <div>
+                                <h5>DAO Profile</h5>
+                                <p><a href="https://operatedao.com" target="_blank">operatedao.com</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="service-list-item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="d-flex align-items-center">
+                            <span
+                                style="width: 28px; height: 28px; background: rgba(0,255,0,0.1); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.75rem; color: var(--accent-primary); margin-right: 1rem; flex-shrink: 0;">6</span>
+                            <div>
+                                <h5>DAO Marketplace</h5>
+                                <p><a href="https://operatedao.com" target="_blank">operatedao.com</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="service-list-item" data-aos="fade-up" data-aos-delay="350">
+                        <div class="d-flex align-items-center">
+                            <span
+                                style="width: 28px; height: 28px; background: rgba(0,255,0,0.1); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.75rem; color: var(--accent-primary); margin-right: 1rem; flex-shrink: 0;">7</span>
+                            <div>
+                                <h5>DAO Member Profile</h5>
+                                <p><a href="https://operatedao.com" target="_blank">operatedao.com</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="service-list-item" data-aos="fade-up" data-aos-delay="400">
+                        <div class="d-flex align-items-center">
+                            <span
+                                style="width: 28px; height: 28px; background: rgba(0,255,0,0.1); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.75rem; color: var(--accent-primary); margin-right: 1rem; flex-shrink: 0;">8</span>
+                            <div>
+                                <h5>DAO Member Marketplace</h5>
+                                <p><a href="https://operatedao.com" target="_blank">operatedao.com</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="service-list-item" data-aos="fade-up" data-aos-delay="450">
+                        <div class="d-flex align-items-center">
+                            <span
+                                style="width: 28px; height: 28px; background: rgba(0,255,0,0.1); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.75rem; color: var(--accent-primary); margin-right: 1rem; flex-shrink: 0;">9</span>
+                            <div>
+                                <h5>Identity Record</h5>
+                                <p>acc://sunstream.acme <span
+                                        style="color: rgba(255,255,255,0.4); font-size: 0.75rem;">(Accumulate
+                                        Network)</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="service-list-item" data-aos="fade-up" data-aos-delay="500">
+                        <div class="d-flex align-items-center">
+                            <span
+                                style="width: 28px; height: 28px; background: rgba(0,255,0,0.1); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.75rem; color: var(--accent-primary); margin-right: 1rem; flex-shrink: 0;">10</span>
+                            <div>
+                                <h5>Bank Data On-Chain</h5>
+                                <p>Accumulate Network verification</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="service-list-item" data-aos="fade-up" data-aos-delay="550">
+                        <div class="d-flex align-items-center">
+                            <span
+                                style="width: 28px; height: 28px; background: rgba(0,255,0,0.1); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.75rem; color: var(--accent-primary); margin-right: 1rem; flex-shrink: 0;">11</span>
+                            <div>
+                                <h5>Social Profile On-Chain</h5>
+                                <p>Accumulate Network verification</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Section 5: Verifiable Credentials -->
+    <section class="oai-section">
+        <div class="container">
+            <div class="section-header text-center mb-5" data-aos="fade-up">
+                <h2><i class="fas fa-award me-3"></i>Verifiable Credentials</h2>
+                <p>Tamper-proof digital credentials issued and verified on-chain</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="glass-card" data-aos="fade-up" data-aos-delay="100">
+                        <p style="font-size: 1.05rem; line-height: 1.8;">OperateDID issues tamper-proof digital
+                            credentials that prove claims about an AI agent's identity, capabilities, certifications,
+                            and permissions. These Verifiable Credentials (VCs) are cryptographically signed by the
+                            issuer and can be independently verified by any third party without contacting the
+                            original issuer.</p>
+                        <div class="row mt-4">
+                            <div class="col-md-4 mb-3" data-aos="fade-up" data-aos-delay="150">
+                                <div class="text-center p-3"
+                                    style="background: rgba(0,255,0,0.03); border-radius: 12px;">
+                                    <i class="fas fa-stamp mb-3"
+                                        style="font-size: 2rem; color: var(--accent-primary);"></i>
+                                    <h5 style="color: #fff; font-size: 0.95rem;">Issuer Signs</h5>
+                                    <p style="color: rgba(255,255,255,0.5); font-size: 0.85rem; margin: 0;">Credentials
+                                        are cryptographically signed by the issuing authority</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3" data-aos="fade-up" data-aos-delay="200">
+                                <div class="text-center p-3"
+                                    style="background: rgba(6,182,212,0.03); border-radius: 12px;">
+                                    <i class="fas fa-user-check mb-3"
+                                        style="font-size: 2rem; color: #06B6D4;"></i>
+                                    <h5 style="color: #fff; font-size: 0.95rem;">Holder Presents</h5>
+                                    <p style="color: rgba(255,255,255,0.5); font-size: 0.85rem; margin: 0;">The agent
+                                        holds and selectively presents credentials as needed</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3" data-aos="fade-up" data-aos-delay="250">
+                                <div class="text-center p-3"
+                                    style="background: rgba(0,255,0,0.03); border-radius: 12px;">
+                                    <i class="fas fa-search-plus mb-3"
+                                        style="font-size: 2rem; color: var(--accent-primary);"></i>
+                                    <h5 style="color: #fff; font-size: 0.95rem;">Verifier Checks</h5>
+                                    <p style="color: rgba(255,255,255,0.5); font-size: 0.85rem; margin: 0;">Any party
+                                        can verify credentials without contacting the issuer</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 p-3"
+                            style="background: rgba(6,182,212,0.05); border-left: 3px solid #06B6D4; border-radius: 0 8px 8px 0;">
+                            <p class="mb-0" style="color: rgba(255,255,255,0.8);"><i class="fas fa-info-circle me-2"
+                                    style="color: #06B6D4;"></i> Built on the W3C Verifiable Credentials specification,
+                                ensuring full interoperability with the broader decentralized identity ecosystem.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Section 6: Blockchain Integration -->
+    <section class="oai-section-alt">
+        <div class="container">
+            <div class="section-header text-center mb-5" data-aos="fade-up">
+                <h2><i class="fas fa-link me-3"></i>Blockchain Integration</h2>
+                <p>Multi-chain identity anchored on the Accumulate Protocol</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="row">
+                        <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                            <div class="glass-card h-100">
+                                <div class="mb-3">
+                                    <i class="fas fa-cubes"
+                                        style="font-size: 1.8rem; color: var(--accent-primary);"></i>
+                                </div>
+                                <h3 style="font-size: 1.2rem;">Accumulate Protocol</h3>
+                                <p>Built on the Accumulate blockchain with human-readable, URL-based addressing. Agent
+                                    identities are anchored at addresses like
+                                    <code
+                                        style="color: #00ff00; background: rgba(0,255,0,0.1); padding: 0.15rem 0.4rem; border-radius: 4px;">acc://sunstream.acme</code>,
+                                    providing a familiar and intuitive identity namespace.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                            <div class="glass-card h-100">
+                                <div class="mb-3">
+                                    <i class="fas fa-key" style="font-size: 1.8rem; color: #06B6D4;"></i>
+                                </div>
+                                <h3 style="font-size: 1.2rem;">secp256k1 Cryptography</h3>
+                                <p>Agent identities are secured with secp256k1 elliptic curve keys, the same
+                                    battle-tested cryptographic standard used by Bitcoin and Ethereum. This ensures
+                                    maximum compatibility across blockchain ecosystems.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                            <div class="glass-card h-100">
+                                <div class="mb-3">
+                                    <i class="fab fa-ethereum"
+                                        style="font-size: 1.8rem; color: var(--accent-primary);"></i>
+                                </div>
+                                <h3 style="font-size: 1.2rem;">Ethereum Account Mapping</h3>
+                                <p>Each agent identity maps to an Ethereum-compatible address, enabling seamless
+                                    interaction with EVM chains. For example:
+                                    <code
+                                        style="color: #F59E0B; background: rgba(245,158,11,0.1); padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.8rem;">0x0850c6FC4A59ac689F9515c3Cfd4D8d247557e4e</code>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
+                            <div class="glass-card h-100">
+                                <div class="mb-3">
+                                    <i class="fas fa-exchange-alt"
+                                        style="font-size: 1.8rem; color: #06B6D4;"></i>
+                                </div>
+                                <h3 style="font-size: 1.2rem;">Cross-Chain Interoperability</h3>
+                                <p>OperateDID identities are not limited to a single chain. Through Accumulate's
+                                    bridging capabilities, agent identities integrate with Ethereum, Bitcoin, and other
+                                    major blockchain networks for true multi-chain presence.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mermaid Diagram -->
+            <div class="row justify-content-center mt-4">
+                <div class="col-lg-10">
+                    <div class="section-header text-center mb-4" data-aos="fade-up">
+                        <h2 style="font-size: 1.5rem;"><i class="fas fa-project-diagram me-3"></i>DID Resolution Flow
+                        </h2>
+                        <p>From agent creation to third-party verification</p>
+                    </div>
+                    <div class="mermaid-container" data-aos="fade-up" data-aos-delay="200">
+                        <div class="mermaid">
+                            graph TD
+                                A[AI Agent Created] --> B[DID Assigned]
+                                B --> C[DID Document Generated]
+                                C --> D[Services Registered]
+                                D --> E[Verifiable Credentials Issued]
+
+                                C --> F[Authentication Keys]
+                                C --> G[Service Endpoints]
+
+                                G --> H[DIDComm Messaging]
+                                G --> I[Service Registry]
+                                G --> J[OperateID]
+
+                                E --> K[Third-Party Verification]
+
+                                style A fill:#0a2a0a,stroke:#00ff00,color:#fff
+                                style B fill:#0a2a0a,stroke:#06B6D4,color:#fff
+                                style C fill:#0a2a0a,stroke:#00ff00,color:#fff
+                                style D fill:#0a2a0a,stroke:#06B6D4,color:#fff
+                                style E fill:#0a2a0a,stroke:#00ff00,color:#fff
+                                style F fill:#141414,stroke:#06B6D4,color:#fff
+                                style G fill:#141414,stroke:#06B6D4,color:#fff
+                                style H fill:#141414,stroke:#00ff00,color:#fff
+                                style I fill:#141414,stroke:#00ff00,color:#fff
+                                style J fill:#141414,stroke:#00ff00,color:#fff
+                                style K fill:#0a2a0a,stroke:#F59E0B,color:#fff
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- CTA Section -->
+    <section class="cta-section-oai">
+        <div class="container">
+            <h2 data-aos="fade-up">Give Your AI Agents a Sovereign Identity</h2>
+            <p data-aos="fade-up" data-aos-delay="100">Register your agents on OperateAI and unlock W3C-compliant
+                decentralized identity, verifiable credentials, and cross-chain interoperability.</p>
+            <div data-aos="fade-up" data-aos-delay="200">
+                <a href="getting-started.html" class="btn btn-primary btn-lg me-3">
+                    <i class="fas fa-rocket me-2"></i>Get Started
+                </a>
+                <a href="features.html" class="btn btn-outline-light btn-lg">
+                    <i class="fas fa-cubes me-2"></i>Explore Features
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content text-center">
+                <div class="footer-logo" data-aos="fade-up">
+                    <img src="./images/logo.png" alt="BizFirst AI" class="footer-logo-img">
+                </div>
+
+                <div class="footer-social" data-aos="fade-up" data-aos-delay="400">
+                    <a href="https://www.youtube.com/@operatecrypto" target="_blank"><i
+                            class="fab fa-youtube"></i></a>
+                    <a href="https://twitter.com/OperateID" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://discord.gg/F6NjA5dzZV" target="_blank"><i class="fab fa-discord"></i></a>
+                    <a href="https://github.com/operatecrypto" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://t.me/operatecrypto" target="_blank"><i class="fab fa-telegram"></i></a>
+                </div>
+
+                <div class="footer-bottom" data-aos="fade-up" data-aos-delay="600">
+                    <p>&copy; 2024 BizFirst AI. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Custom JS -->
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/main.js"></script>
+    <script src="./js/animations.js"></script>
+    <script src="./js/components.js"></script>
+
+    <!-- Mermaid Diagram -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            theme: 'dark',
+            themeVariables: {
+                primaryColor: '#0a2a0a',
+                primaryBorderColor: '#00ff00',
+                primaryTextColor: '#fff',
+                lineColor: '#06B6D4',
+                secondaryColor: '#141414',
+                tertiaryColor: '#1a1a1a',
+                fontFamily: 'Poppins'
+            }
+        });
+    </script>
+</body>
+
+</html>

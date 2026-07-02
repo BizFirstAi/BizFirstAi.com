@@ -1,0 +1,642 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="https://bizfirstai.com/website/assets/Logo/logo-m.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Octopus Documentation — get up and running with multi-agent AI orchestration in minutes.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Octopus Documentation">
+  <meta property="og:description" content="Everything you need to get up and running with Octopus, the multi-agent AI orchestration engine by BizFirstAi.">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Octopus Documentation">
+  <meta name="twitter:description" content="Get up and running with multi-agent AI orchestration in minutes.">
+
+  <title>Documentation — Octopus by BizFirstAi</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://bizfirstai.com/website/assets/css/b-index.css">
+
+  <style>
+    body { overflow-x: hidden; }
+
+    /* ── Docs two-column layout ──────────────────────────────── */
+    .oct-docs-layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 0;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 var(--b-space-8);
+      min-height: calc(100vh - 60px);
+    }
+
+    /* ── Sidebar ─────────────────────────────────────────────── */
+    .oct-docs-sidebar {
+      border-right: 1px solid var(--b-border-subtle);
+      padding: var(--b-space-16) var(--b-space-8) var(--b-space-16) 0;
+      position: sticky;
+      top: 60px;
+      align-self: start;
+      height: calc(100vh - 60px);
+      overflow-y: auto;
+    }
+
+    .oct-docs-nav h4 {
+      font-size: var(--b-font-size-xs);
+      font-weight: var(--b-font-weight-bold);
+      color: var(--b-text-muted);
+      text-transform: uppercase;
+      letter-spacing: var(--b-letter-spacing-wide);
+      margin: var(--b-space-8) 0 var(--b-space-3);
+    }
+
+    .oct-docs-nav h4:first-child {
+      margin-top: 0;
+    }
+
+    .oct-docs-nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .oct-docs-nav li {
+      margin-bottom: var(--b-space-1);
+    }
+
+    .oct-docs-nav a {
+      display: block;
+      padding: var(--b-space-2) var(--b-space-3);
+      border-radius: var(--b-radius-md);
+      font-size: var(--b-font-size-sm);
+      color: var(--b-text-muted);
+      text-decoration: none;
+      transition: all var(--b-transition-fast);
+    }
+
+    .oct-docs-nav a:hover,
+    .oct-docs-nav a.oct-active {
+      color: var(--b-color-primary);
+      background: var(--b-color-primary-subtle);
+    }
+
+    /* ── Content area ────────────────────────────────────────── */
+    .oct-docs-content {
+      padding: var(--b-space-16) var(--b-space-16) var(--b-space-20);
+    }
+
+    .oct-docs-content h1 {
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-weight: var(--b-font-weight-black);
+      color: var(--b-text-primary);
+      margin-bottom: var(--b-space-6);
+    }
+
+    .oct-docs-content h2 {
+      font-size: var(--b-font-size-2xl);
+      font-weight: var(--b-font-weight-bold);
+      color: var(--b-text-primary);
+      margin: var(--b-space-16) 0 var(--b-space-6);
+      padding-top: var(--b-space-8);
+      border-top: 1px solid var(--b-border-subtle);
+    }
+
+    .oct-docs-content h2:first-of-type {
+      margin-top: var(--b-space-12);
+      border-top: none;
+    }
+
+    .oct-docs-content h3 {
+      font-size: var(--b-font-size-xl);
+      font-weight: var(--b-font-weight-semibold);
+      color: var(--b-color-primary);
+      margin: var(--b-space-10) 0 var(--b-space-4);
+    }
+
+    .oct-docs-content p {
+      color: var(--b-text-muted);
+      font-size: var(--b-font-size-base);
+      line-height: var(--b-line-height-relaxed);
+      margin-bottom: var(--b-space-6);
+    }
+
+    .oct-docs-content ul {
+      list-style: none;
+      margin: 0 0 var(--b-space-6);
+      padding: 0;
+    }
+
+    .oct-docs-content ul li {
+      color: var(--b-text-muted);
+      font-size: var(--b-font-size-base);
+      padding: var(--b-space-2) 0 var(--b-space-2) var(--b-space-6);
+      position: relative;
+      line-height: var(--b-line-height-relaxed);
+    }
+
+    .oct-docs-content ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--b-color-primary);
+      font-weight: var(--b-font-weight-bold);
+    }
+
+    /* ── Code block ──────────────────────────────────────────── */
+    .oct-code-block {
+      background: var(--b-card-bg);
+      border: 1px solid var(--b-card-border);
+      border-radius: var(--b-radius-xl);
+      overflow: hidden;
+      margin: var(--b-space-6) 0;
+    }
+
+    .oct-code-block__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--b-space-3) var(--b-space-6);
+      border-bottom: 1px solid var(--b-card-border);
+      background: var(--b-card-hover-bg);
+    }
+
+    .oct-code-block__lang {
+      font-size: var(--b-font-size-xs);
+      font-weight: var(--b-font-weight-semibold);
+      color: var(--b-color-primary);
+      text-transform: uppercase;
+      letter-spacing: var(--b-letter-spacing-wide);
+    }
+
+    .oct-code-block pre {
+      margin: 0;
+      padding: var(--b-space-8);
+      overflow-x: auto;
+    }
+
+    .oct-code-block code {
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-size: var(--b-font-size-sm);
+      color: var(--b-text-primary);
+      line-height: 1.7;
+    }
+
+    /* ── Next steps card row ─────────────────────────────────── */
+    .oct-docs-next {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--b-space-6);
+      margin-top: var(--b-space-8);
+    }
+
+    .oct-docs-next__card {
+      background: var(--b-card-bg);
+      border: 1px solid var(--b-card-border);
+      border-radius: var(--b-radius-xl);
+      padding: var(--b-space-6) var(--b-space-8);
+      text-decoration: none;
+      transition: all var(--b-transition-normal);
+      display: block;
+    }
+
+    .oct-docs-next__card:hover {
+      border-color: var(--b-color-primary);
+      background: var(--b-card-hover-bg);
+      transform: translateY(-4px);
+    }
+
+    .oct-docs-next__card-label {
+      font-size: var(--b-font-size-xs);
+      font-weight: var(--b-font-weight-bold);
+      color: var(--b-color-primary);
+      text-transform: uppercase;
+      letter-spacing: var(--b-letter-spacing-wide);
+      margin-bottom: var(--b-space-2);
+    }
+
+    .oct-docs-next__card-title {
+      font-size: var(--b-font-size-base);
+      font-weight: var(--b-font-weight-semibold);
+      color: var(--b-text-primary);
+    }
+
+    /* ── Concept table ───────────────────────────────────────── */
+    .oct-concept-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: var(--b-space-6) 0;
+    }
+
+    .oct-concept-table th {
+      text-align: left;
+      padding: var(--b-space-3) var(--b-space-5);
+      font-size: var(--b-font-size-sm);
+      font-weight: var(--b-font-weight-semibold);
+      color: var(--b-color-primary);
+      border-bottom: 1px solid var(--b-card-border);
+    }
+
+    .oct-concept-table td {
+      padding: var(--b-space-3) var(--b-space-5);
+      font-size: var(--b-font-size-sm);
+      color: var(--b-text-muted);
+      border-bottom: 1px solid var(--b-border-subtle);
+      line-height: var(--b-line-height-relaxed);
+      vertical-align: top;
+    }
+
+    .oct-concept-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* ── Callout note ────────────────────────────────────────── */
+    .oct-docs-note {
+      background: var(--b-color-primary-subtle);
+      border: 1px solid var(--b-border-primary);
+      border-left: 4px solid var(--b-color-primary);
+      border-radius: var(--b-radius-lg);
+      padding: var(--b-space-5) var(--b-space-6);
+      margin: var(--b-space-6) 0;
+    }
+
+    .oct-docs-note p {
+      margin: 0;
+      font-size: var(--b-font-size-sm);
+      color: var(--b-text-primary);
+    }
+
+    /* ── Responsive ──────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .oct-docs-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .oct-docs-sidebar {
+        position: static;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--b-border-subtle);
+        padding: var(--b-space-8) 0;
+      }
+
+      /* Sidebar pill-nav at tablet/mobile */
+      .oct-docs-nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--b-space-2);
+      }
+
+      .oct-docs-nav li {
+        margin-bottom: 0;
+      }
+
+      .oct-docs-nav a {
+        display: inline-flex;
+        align-items: center;
+        padding: var(--b-space-1) var(--b-space-4);
+        border-radius: var(--b-radius-full);
+        border: 1px solid var(--b-border-default);
+        font-size: var(--b-font-size-xs);
+        white-space: nowrap;
+      }
+
+      .oct-docs-content {
+        padding: var(--b-space-10) 0 var(--b-space-16);
+      }
+
+      .b-benefits-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    }
+
+    @media (max-width: 768px) {
+      .oct-docs-layout {
+        padding: 0 var(--b-space-4);
+      }
+      .b-benefits-grid { grid-template-columns: 1fr !important; }
+      .oct-docs-content {
+        padding: var(--b-space-8) 0 var(--b-space-12);
+      }
+
+      /* ── Mobile nav: flat horizontal scrollable strip ── */
+      .oct-docs-nav h4 { display: none; }
+
+      .oct-docs-nav {
+        display: flex;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        gap: var(--b-space-2);
+        padding-bottom: var(--b-space-3);
+        scrollbar-width: none;
+      }
+      .oct-docs-nav::-webkit-scrollbar { display: none; }
+
+      /* flatten each ul into the flex row */
+      .oct-docs-nav ul {
+        display: contents;
+      }
+
+      .oct-docs-nav li {
+        flex-shrink: 0;
+        margin-bottom: 0;
+      }
+
+      .oct-docs-nav a {
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      /* sidebar: no padding, just border-bottom */
+      .oct-docs-sidebar {
+        padding: var(--b-space-4) 0;
+        overflow: visible;
+      }
+    }
+
+    /* ── Table scroll wrapper — prevents concept table overflow on mobile ── */
+    .oct-concept-table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* ── Inline code — prevent overflow on narrow screens ── */
+    code { word-break: break-word; overflow-wrap: break-word; }
+
+    /* ── CTA button group — stack on mobile ── */
+    @media (max-width: 600px) {
+      .b-cta-section .b-btn-group { flex-direction: column; align-items: stretch; }
+      .b-cta-section .b-btn-group .b-btn { text-align: center; }
+    }
+
+    /* ── Extra small screen adjustments ── */
+    @media (max-width: 480px) {
+      .oct-docs-content h2 { font-size: var(--b-font-size-xl); }
+      .oct-docs-content h3 { font-size: var(--b-font-size-lg); }
+      .oct-docs-next { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header id="header-container"></header>
+
+  <!-- ════════════════════════════════════════════════════════════
+       HERO
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-hero-section b-hero-bg">
+    <div class="b-container">
+      <div class="b-hero-left">
+        <h1 class="b-hero-headline">Octopus Documentation</h1>
+        <p class="b-hero-subheading">Everything you need to get up and running with multi-agent AI orchestration.</p>
+        <div class="b-hero-ctas">
+          <a href="#quickstart" class="b-btn b-btn-primary b-btn-large">Quick Start</a>
+          <a href="https://community.bizfirstai.com/tag/octopus" class="b-btn b-btn-secondary b-btn-large" target="_blank" rel="noopener">Ask the Community</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       TWO-COLUMN DOCS LAYOUT
+       ════════════════════════════════════════════════════════════ -->
+  <div class="oct-docs-layout" style="padding-top: var(--b-space-8); padding-bottom: var(--b-space-20);">
+
+    <!-- SIDEBAR -->
+    <aside class="oct-docs-sidebar">
+      <nav class="oct-docs-nav">
+
+        <h4>Getting Started</h4>
+        <ul>
+          <li><a href="#quickstart" class="oct-active">Quick Start</a></li>
+          <li><a href="#install">Installation</a></li>
+          <li><a href="#first-agent">Your First Agent</a></li>
+        </ul>
+
+        <h4>Core Concepts</h4>
+        <ul>
+          <li><a href="#providers">Providers</a></li>
+          <li><a href="#agents">Agents</a></li>
+          <li><a href="#pipelines">Pipelines</a></li>
+        </ul>
+
+        <h4>Providers</h4>
+        <ul>
+          <li><a href="#openai">OpenAI</a></li>
+          <li><a href="#anthropic">Anthropic</a></li>
+          <li><a href="#deepseek">DeepSeek</a></li>
+          <li><a href="#gemini">Gemini</a></li>
+          <li><a href="#custom-providers">Custom Providers</a></li>
+        </ul>
+
+        <h4>Agents</h4>
+        <ul>
+          <li><a href="#agent-config">Agent Configuration</a></li>
+          <li><a href="#agent-lifecycle">Lifecycle Events</a></li>
+          <li><a href="#agent-tools">Tool Calling</a></li>
+          <li><a href="#agent-memory">Shared Memory</a></li>
+        </ul>
+
+        <h4>Pipelines</h4>
+        <ul>
+          <li><a href="#pipeline-builder">Pipeline Builder</a></li>
+          <li><a href="#branching">Branching &amp; Conditions</a></li>
+          <li><a href="#fallbacks">Fallback Chains</a></li>
+          <li><a href="#parallel">Parallel Execution</a></li>
+        </ul>
+
+        <h4>Cost &amp; Governance</h4>
+        <ul>
+          <li><a href="#cost-caps">Spend Caps</a></li>
+          <li><a href="#audit-log">Audit Log</a></li>
+          <li><a href="#trace-replay">Trace Replay</a></li>
+        </ul>
+
+        <h4>SDK Reference</h4>
+        <ul>
+          <li><a href="#sdk-csharp">C# SDK</a></li>
+          <li><a href="#sdk-openapi">OpenAPI</a></li>
+          <li><a href="#sdk-webhooks">Webhooks</a></li>
+        </ul>
+
+        <h4>Changelog</h4>
+        <ul>
+          <li><a href="./changelog.html">Release Notes</a></li>
+        </ul>
+
+      </nav>
+    </aside>
+
+    <!-- CONTENT -->
+    <main class="oct-docs-content">
+
+      <!-- Quick Start -->
+      <h1 id="quickstart">Getting Started with Octopus</h1>
+      <p>Octopus is the multi-model, multi-agent AI orchestration engine built into the BizFirstAi platform. This guide gets you from zero to a running agent pipeline in under five minutes.</p>
+
+      <div class="oct-docs-note">
+        <p><strong>Platform requirement:</strong> Octopus is part of BizFirstAi. You will need a BizFirstAi account to use the SDK and hosted runtime. <a href="https://bizfirstai.com/website/contact.html" >Sign up free here.</a></p>
+      </div>
+
+      <h2 id="install">Installation</h2>
+      <p>Add the Octopus NuGet package to your .NET project:</p>
+
+      <div class="oct-code-block">
+        <div class="oct-code-block__header">
+          <span class="oct-code-block__lang">Shell</span>
+        </div>
+        <pre><code>dotnet add package BizFirstAi.Octopus</code></pre>
+      </div>
+
+      <h2 id="first-agent">Basic Usage</h2>
+      <p>The following example creates an Octopus client, registers the OpenAI provider, defines a simple agent, runs a prompt, and prints the result.</p>
+
+      <div class="oct-code-block">
+        <div class="oct-code-block__header">
+          <span class="oct-code-block__lang">C#</span>
+        </div>
+        <pre><code>using BizFirstAi.Octopus;
+using BizFirstAi.Octopus.Providers;
+using BizFirstAi.Octopus.Agents;
+
+// 1. Create the Octopus client
+var client = new OctopusClient(new OctopusOptions
+{
+    ApiKey    = Environment.GetEnvironmentVariable("BIZFIRSTAI_API_KEY"),
+    Workspace = "my-workspace"
+});
+
+// 2. Register the OpenAI provider
+client.Providers.Add(new OpenAiProvider
+{
+    ApiKey = Environment.GetEnvironmentVariable("OPENAI_API_KEY"),
+    Model  = "gpt-4o"
+});
+
+// 3. Define an agent
+var agent = new OctopusAgent
+{
+    Name        = "research-agent",
+    Description = "Answers questions with concise, factual responses.",
+    Provider    = "openai",
+    SystemPrompt = "You are a helpful research assistant. Be concise and factual."
+};
+
+// 4. Register the agent
+await client.Agents.RegisterAsync(agent);
+
+// 5. Run a prompt
+var result = await client.Agents.RunAsync("research-agent", new AgentRunRequest
+{
+    Prompt = "What is the Agentic Node Communication Protocol?"
+});
+
+// 6. Print the result
+Console.WriteLine(result.Output);
+Console.WriteLine($"Tokens used: {result.TokensUsed}  Cost: ${result.EstimatedCostUsd:F4}");</code></pre>
+      </div>
+
+      <h2 id="providers">Core Concepts</h2>
+
+      <h3>Providers</h3>
+      <p>A <strong>Provider</strong> is a connection to an LLM service. Octopus supports multiple providers registered on the same client. Routing rules determine which provider handles each agent invocation.</p>
+
+      <div class="oct-concept-table-wrap">
+      <table class="oct-concept-table">
+        <thead>
+          <tr>
+            <th>Provider</th>
+            <th>Class</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>OpenAI</td>
+            <td><code>OpenAiProvider</code></td>
+            <td>Supports GPT-4o, GPT-4o mini, and all chat completion models</td>
+          </tr>
+          <tr>
+            <td>Anthropic</td>
+            <td><code>AnthropicProvider</code></td>
+            <td>Supports Claude 3.5 Sonnet, Claude 3 Haiku and Opus variants</td>
+          </tr>
+          <tr>
+            <td>DeepSeek</td>
+            <td><code>DeepSeekProvider</code></td>
+            <td>DeepSeek-V3 and DeepSeek-R1 series</td>
+          </tr>
+          <tr>
+            <td>Google Gemini</td>
+            <td><code>GeminiProvider</code></td>
+            <td>Gemini 1.5 Pro and Flash variants</td>
+          </tr>
+          <tr>
+            <td>Ollama</td>
+            <td><code>OllamaProvider</code></td>
+            <td>Self-hosted models via local Ollama instance</td>
+          </tr>
+          <tr>
+            <td>Custom</td>
+            <td><code>CustomHttpProvider</code></td>
+            <td>Any OpenAI-compatible HTTP endpoint</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3 id="agents">Agents</h3>
+      <p>An <strong>Agent</strong> is a named, configurable unit of AI work. It wraps a provider connection with a system prompt, a set of tools, memory configuration, and lifecycle hooks. Agents are the building blocks of every Octopus pipeline.</p>
+
+      <ul>
+        <li>Each agent is bound to one primary provider, with optional fallbacks.</li>
+        <li>Agents maintain their own context window, with automatic summarisation when limits are approached.</li>
+        <li>Tool definitions are registered per-agent and injected into the model call automatically.</li>
+        <li>Agents can share a pipeline-scoped memory store for cross-agent context passing.</li>
+      </ul>
+
+      <h3 id="pipelines">Pipelines</h3>
+      <p>A <strong>Pipeline</strong> is an ordered graph of agents and routing logic. Pipelines support sequential execution, parallel branches, conditional routing, and recursive spawning. You can define a pipeline using the visual designer or the Octopus SDK.</p>
+
+      <ul>
+        <li>Pipelines are versioned and can be promoted between environments.</li>
+        <li>Each pipeline run produces a full execution trace logged in BizFirst Observe.</li>
+        <li>Pipelines can be triggered via webhook, SDK call, scheduled cron, or from within a BizFirstAi Flow workflow.</li>
+      </ul>
+
+      <h2>Next Steps</h2>
+      <p>Ready to go further? Explore these resources:</p>
+
+      <div class="oct-docs-next">
+        <a href="./features.html" class="oct-docs-next__card">
+          <div class="oct-docs-next__card-label">Reference</div>
+          <div class="oct-docs-next__card-title">All Features</div>
+        </a>
+        <a href="./changelog.html" class="oct-docs-next__card">
+          <div class="oct-docs-next__card-label">History</div>
+          <div class="oct-docs-next__card-title">Changelog</div>
+        </a>
+        <a href="https://community.bizfirstai.com/tag/octopus" class="oct-docs-next__card" target="_blank" rel="noopener">
+          <div class="oct-docs-next__card-label">Community</div>
+          <div class="oct-docs-next__card-title">Ask &amp; Discuss</div>
+        </a>
+        <a href="https://bizfirstai.com/website/contact.html" class="oct-docs-next__card">
+          <div class="oct-docs-next__card-label">Enterprise</div>
+          <div class="oct-docs-next__card-title">Talk to Sales</div>
+        </a>
+      </div>
+
+    </main>
+
+  </div>
+
+  <footer id="footer-container"></footer>
+
+  <script src="./shared-layout.js"></script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+/* ============================================================
+   b-legal.css — BizFirstAi
+   Styles for legal content pages (Privacy, Terms, Cookies)
+   ============================================================ */
+
+.b-legal-content {
+  max-width: 800px;
+  color: var(--b-text-secondary);
+  font-size: var(--b-font-size-base);
+  line-height: var(--b-line-height-relaxed);
+}
+
+.b-legal-content h2 {
+  font-size: var(--b-font-size-xl);
+  font-weight: var(--b-font-weight-bold);
+  color: var(--b-text-primary);
+  margin-top: var(--b-space-12);
+  margin-bottom: var(--b-space-4);
+  padding-bottom: var(--b-space-3);
+  border-bottom: 1px solid var(--b-border-subtle);
+}
+
+.b-legal-content h2:first-child {
+  margin-top: 0;
+}
+
+.b-legal-content h3 {
+  font-size: var(--b-font-size-md);
+  font-weight: var(--b-font-weight-semibold);
+  color: var(--b-text-primary);
+  margin-top: var(--b-space-8);
+  margin-bottom: var(--b-space-3);
+}
+
+.b-legal-content p {
+  margin-bottom: var(--b-space-4);
+  color: var(--b-text-muted);
+}
+
+.b-legal-content ul,
+.b-legal-content ol {
+  margin-bottom: var(--b-space-4);
+  padding-left: var(--b-space-6);
+}
+
+.b-legal-content ul { list-style: disc; }
+.b-legal-content ol { list-style: decimal; }
+
+.b-legal-content li {
+  color: var(--b-text-muted);
+  margin-bottom: var(--b-space-2);
+}
+
+.b-legal-content a {
+  color: var(--b-color-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.b-legal-content a:hover {
+  opacity: 0.8;
+}
+
+.b-legal-content strong {
+  color: var(--b-text-primary);
+  font-weight: var(--b-font-weight-semibold);
+}
+
+.b-legal-content code {
+  font-family: var(--b-font-family-mono);
+  font-size: 0.875em;
+  color: var(--b-color-primary);
+  background: var(--b-color-primary-subtle);
+  padding: 1px 5px;
+  border-radius: var(--b-radius-sm);
+}
+
+/* ── Cookie table ─────────────────────────────────────────── */
+.b-legal-content__table-wrapper {
+  overflow-x: auto;
+  margin-bottom: var(--b-space-6);
+  border-radius: var(--b-radius-lg);
+  border: 1px solid var(--b-border-subtle);
+}
+
+.b-legal-content__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--b-font-size-sm);
+}
+
+.b-legal-content__table th {
+  text-align: left;
+  padding: var(--b-space-3) var(--b-space-4);
+  background: var(--b-bg-raised);
+  color: var(--b-text-primary);
+  font-weight: var(--b-font-weight-semibold);
+  border-bottom: 1px solid var(--b-border-subtle);
+  white-space: nowrap;
+}
+
+.b-legal-content__table td {
+  padding: var(--b-space-3) var(--b-space-4);
+  color: var(--b-text-muted);
+  border-bottom: 1px solid var(--b-border-subtle);
+  vertical-align: top;
+}
+
+.b-legal-content__table tr:last-child td {
+  border-bottom: none;
+}
+
+.b-legal-content__table tr:hover td {
+  background: var(--b-color-primary-subtle);
+}

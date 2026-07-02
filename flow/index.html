@@ -1,0 +1,363 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="https://bizfirstai.com/website/assets/Logo/logo-m.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Flow — Enterprise visual workflow automation. Flow Studio + Flow Engine. 20+ node types. Human-in-the-loop. AI-native.">
+  <title>Flow — Enterprise Workflow Automation by BizFirstAi</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://bizfirstai.com/website/assets/css/b-index.css">
+  <link rel="stylesheet" href="./flow.css">
+  <style>
+    body { overflow-x: hidden; }
+    @media (max-width: 768px) {
+      .b-benefits-grid[style*="grid-template-columns: 1fr 1fr"],
+      [style*="grid-template-columns: 1fr 1fr"] { grid-template-columns: 1fr !important; }
+    }
+  </style>
+</head>
+<body>
+  <header id="flow-header"></header>
+
+  <!-- ── Hero ────────────────────────────────────────────── -->
+  <section class="flow-hero">
+    <div class="b-container">
+      <div class="flow-hero__inner">
+
+        <div class="b-hero-left">
+          <div class="flow-hero__eyebrow">
+            <span class="flow-hero__eyebrow-dot"></span>
+            Visual Workflow Automation
+          </div>
+          <h1 class="b-hero-headline">Design. Execute.<br><em>Automate anything.</em></h1>
+          <p class="b-hero-subheading">Flow is two things working together: <strong>Flow Studio</strong> — a visual drag-and-drop workflow designer — and <strong>Flow Engine</strong> — a production-grade process orchestration engine. Together they let your team build, run, and monitor enterprise workflows without writing code.</p>
+          <div class="b-hero-ctas">
+            <a href="./get-started.html" class="b-btn b-btn-primary b-btn-large">Get Started</a>
+            <a href="./examples.html" class="b-btn b-btn-secondary b-btn-large">See Examples</a>
+          </div>
+        </div>
+
+        <!-- Flow canvas diagram -->
+        <div class="b-hero-right">
+          <div class="flow-canvas">
+            <div class="flow-canvas__grid"></div>
+            <div class="flow-nodes">
+
+              <div class="flow-row">
+                <div class="flow-node flow-node--trigger">
+                  <svg class="flow-node__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                  Form Submitted
+                </div>
+              </div>
+
+              <div class="flow-row" style="justify-content:center;">
+                <div style="width:2px;height:24px;background:linear-gradient(180deg,#16a34a,#22c55e);"></div>
+              </div>
+
+              <div class="flow-row">
+                <div class="flow-node">
+                  <svg class="flow-node__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  Validate Data
+                </div>
+                <div class="flow-connector"></div>
+                <div class="flow-node flow-node--ai">
+                  <svg class="flow-node__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4m0 14v4M4.22 4.22l2.83 2.83m9.9 9.9l2.83 2.83M1 12h4m14 0h4M4.22 19.78l2.83-2.83m9.9-9.9l2.83-2.83"/></svg>
+                  AI Classify
+                </div>
+                <div class="flow-connector"></div>
+                <div class="flow-node flow-node--action">
+                  <svg class="flow-node__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                  Approval
+                </div>
+              </div>
+
+              <div class="flow-row" style="justify-content:center;">
+                <div style="width:2px;height:24px;background:linear-gradient(180deg,#16a34a,#22c55e);"></div>
+              </div>
+
+              <div class="flow-row">
+                <div class="flow-node">
+                  <svg class="flow-node__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                  Save Record
+                </div>
+                <div class="flow-connector"></div>
+                <div class="flow-node flow-node--end">
+                  <svg class="flow-node__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  Complete
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Stats -->
+      <div class="flow-stats">
+        <div class="flow-stat">
+          <div class="flow-stat__number">20+</div>
+          <div class="flow-stat__label">Node types in Studio</div>
+        </div>
+        <div class="flow-stat">
+          <div class="flow-stat__number">60+</div>
+          <div class="flow-stat__label">Engine executors</div>
+        </div>
+        <div class="flow-stat">
+          <div class="flow-stat__number">9</div>
+          <div class="flow-stat__label">Execution states</div>
+        </div>
+        <div class="flow-stat">
+          <div class="flow-stat__number">15+</div>
+          <div class="flow-stat__label">Node capabilities</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Two Components ───────────────────────────────────── -->
+  <section class="b-section b-section--default">
+    <div class="b-container">
+      <h2 class="b-section-title">Two components. One complete system.</h2>
+      <p class="b-section-subtitle">Flow Studio is what you see. Flow Engine is what runs underneath.</p>
+
+      <div class="b-benefits-grid" style="grid-template-columns: 1fr 1fr; margin-top: var(--b-space-12);">
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            </span>
+            Flow Studio
+          </h3>
+          <p>The visual workflow designer. A React + TypeScript application with an infinite canvas, 20+ draggable node types, and three operating modes — Design, Execution, and Evaluation.</p>
+          <ul class="b-feature-list">
+            <li>Drag-and-drop infinite canvas</li>
+            <li>Design / Execution / Evaluation modes</li>
+            <li>Real-time execution panel via SignalR</li>
+            <li>6 Zustand stores — undo/redo, history</li>
+            <li>40 API clients, 100+ React components</li>
+          </ul>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            </span>
+            Flow Engine
+          </h3>
+          <p>The backend ProcessEngine. An ASP.NET Core orchestration engine built on SOLID + DDD principles, running 60+ NodeExecutor types with a stack-based execution model.</p>
+          <ul class="b-feature-list">
+            <li>Fire-and-forget with SignalR events</li>
+            <li>9-state execution model</li>
+            <li>Human-in-the-loop approvals</li>
+            <li>Suspension &amp; resumption</li>
+            <li>Multi-tenant isolation</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Key Capabilities ─────────────────────────────────── -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">Capabilities built for enterprise workflows</h2>
+      <p class="b-section-subtitle">Not just a drag-and-drop tool. Flow handles the hard parts — approvals, AI, long-running processes, errors, and real-time visibility.</p>
+
+      <div class="b-benefits-grid">
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </span>
+            Human-in-the-Loop
+          </h3>
+          <p>Approval nodes suspend execution and wait for human decisions. Three voting strategies: <strong>All</strong> (unanimous), <strong>AnyOne</strong> (first to approve), or <strong>NofM</strong> (any N of M approvers). Deadlines, auto-escalation, and reason requirements built in.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4m0 14v4M4.22 4.22l2.83 2.83m9.9 9.9l2.83 2.83M1 12h4m14 0h4M4.22 19.78l2.83-2.83m9.9-9.9l2.83-2.83"/></svg>
+            </span>
+            AI Agent Integration
+          </h3>
+          <p>Octopus Executor nodes connect directly to AI agents — invoke an agent, chain multiple agents, or use prompt/completion/reasoning nodes. Route workflow branches based on AI output.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>
+            </span>
+            Suspension &amp; Resumption
+          </h3>
+          <p>Long-running workflows pause at approval, timer, or event nodes and resume exactly where they left off. State is persisted — a workflow can wait days or weeks for a human decision.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </span>
+            Real-Time Monitoring
+          </h3>
+          <p>Switch to Execution Mode in Flow Studio to watch every node run live. SignalR delivers NodeProgress, WorkflowProgress, and ExecutionCompleted events as they happen — no polling.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </span>
+            Parallel &amp; Conditional Branching
+          </h3>
+          <p>Fork parallel execution paths that run simultaneously and rejoin. Branch on conditions, decision node outputs, or AI classification results. Standard output ports: success, error, true, false, waiting, escalated.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </span>
+            Error Handling &amp; Timeouts
+          </h3>
+          <p>Try/catch/finally blocks at the node level. Per-node timeout with four behaviours: Error, Cancel, Skip, or Retry. ContinueOnFail flag for non-critical nodes. Dead-letter queue for failed executions.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Node Types ────────────────────────────────────────── -->
+  <section class="b-section b-section--default">
+    <div class="b-container">
+      <h2 class="b-section-title">Every node type you need</h2>
+      <p class="b-section-subtitle">20+ visual node types in Flow Studio map directly to 60+ backend executors in Flow Engine.</p>
+
+      <div class="b-tech-highlights__groups" style="margin-top: var(--b-space-12);">
+
+        <div class="b-tech-group">
+          <div class="b-tech-group__label">Triggers</div>
+          <div class="b-tech-group__badges">
+            <span class="b-tech-badge">Manual Trigger</span>
+            <span class="b-tech-badge">Webhook Trigger</span>
+            <span class="b-tech-badge">Schedule (Cron)</span>
+            <span class="b-tech-badge">Form Trigger</span>
+          </div>
+        </div>
+
+        <div class="b-tech-group">
+          <div class="b-tech-group__label">Logic &amp; Control</div>
+          <div class="b-tech-group__badges">
+            <span class="b-tech-badge">If / Condition</span>
+            <span class="b-tech-badge">Switch</span>
+            <span class="b-tech-badge">Filter</span>
+            <span class="b-tech-badge">Loop</span>
+            <span class="b-tech-badge">Break / Continue</span>
+            <span class="b-tech-badge">Parallel Fork/Join</span>
+            <span class="b-tech-badge">Try / Catch / Finally</span>
+          </div>
+        </div>
+
+        <div class="b-tech-group">
+          <div class="b-tech-group__label">User Interaction</div>
+          <div class="b-tech-group__badges">
+            <span class="b-tech-badge">Form</span>
+            <span class="b-tech-badge">Approval</span>
+            <span class="b-tech-badge">Chat</span>
+            <span class="b-tech-badge">Chat Receive</span>
+          </div>
+        </div>
+
+        <div class="b-tech-group">
+          <div class="b-tech-group__label">Data &amp; Transform</div>
+          <div class="b-tech-group__badges">
+            <span class="b-tech-badge">Variable Assignment</span>
+            <span class="b-tech-badge">JSON Transform</span>
+            <span class="b-tech-badge">Data Mapping</span>
+            <span class="b-tech-badge">Merge / Split</span>
+            <span class="b-tech-badge">Aggregate</span>
+          </div>
+        </div>
+
+        <div class="b-tech-group">
+          <div class="b-tech-group__label">Integrations</div>
+          <div class="b-tech-group__badges">
+            <span class="b-tech-badge">HTTP Request</span>
+            <span class="b-tech-badge">GraphQL</span>
+            <span class="b-tech-badge">SQL Server Query</span>
+            <span class="b-tech-badge">PostgreSQL Query</span>
+            <span class="b-tech-badge">MongoDB Query</span>
+            <span class="b-tech-badge">Redis</span>
+            <span class="b-tech-badge">File Read/Write</span>
+          </div>
+        </div>
+
+        <div class="b-tech-group">
+          <div class="b-tech-group__label">AI &amp; Agents</div>
+          <div class="b-tech-group__badges">
+            <span class="b-tech-badge">AI Agent (Octopus)</span>
+            <span class="b-tech-badge">Agent Chain</span>
+            <span class="b-tech-badge">OpenAI LLM</span>
+            <span class="b-tech-badge">Anthropic Chat</span>
+            <span class="b-tech-badge">Prompt Template</span>
+            <span class="b-tech-badge">Sub-Workflow</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Three Modes ──────────────────────────────────────── -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">Three modes. One canvas.</h2>
+      <p class="b-section-subtitle">Flow Studio gives every team member the right view for what they need to do.</p>
+
+      <div class="flow-steps" style="margin-top: var(--b-space-12);">
+        <div class="flow-step">
+          <div class="flow-step__number">D</div>
+          <div class="flow-step__title">Design Mode</div>
+          <p class="flow-step__desc">Build the workflow. Add nodes from the palette, draw connections, configure each step, and save to the database. Undo/redo, duplicate, and rename — all keyboard-friendly.</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step__number">E</div>
+          <div class="flow-step__title">Execution Mode</div>
+          <p class="flow-step__desc">Run the workflow and watch it execute in real time. Each node lights up as it runs. View logs, outputs, and errors per node. Pause, resume, or cancel mid-execution.</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step__number">V</div>
+          <div class="flow-step__title">Evaluation Mode</div>
+          <p class="flow-step__desc">Validate workflow structure, review execution history, and replay past runs. Analyse performance metrics and identify bottlenecks before pushing to production.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ──────────────────────────────────────────────── -->
+  <section class="b-cta-section">
+    <div class="b-container">
+      <h2>Start building workflows today.</h2>
+      <p>Flow Studio + Flow Engine. Visual design. Production-grade execution.</p>
+      <div class="b-btn-group">
+        <a href="./get-started.html" class="b-btn b-btn-primary b-btn-large">Get Started</a>
+        <a href="./architecture.html" class="b-btn b-btn-secondary b-btn-large">Explore the Architecture</a>
+      </div>
+    </div>
+  </section>
+  <footer id="flow-footer"></footer>
+
+  <script src="./flow-layout.js"></script>
+</body>
+</html>

@@ -1,0 +1,358 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="https://bizfirstai.com/website/assets/Logo/logo-m.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Get Started with Flow — Set up Flow Studio and Flow Engine, build your first workflow.">
+  <title>Get Started — Flow by BizFirstAi</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://bizfirstai.com/website/assets/css/b-index.css">
+  <link rel="stylesheet" href="./flow.css">
+  <style>
+    .gs-step {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: var(--b-space-6);
+      margin-bottom: var(--b-space-10);
+    }
+    .gs-step__num {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 2px solid var(--b-color-primary);
+      background: var(--b-color-primary-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--b-font-size-xl);
+      font-weight: var(--b-font-weight-black);
+      color: var(--b-color-primary);
+      flex-shrink: 0;
+    }
+    .gs-step__body {}
+    .gs-step__title {
+      font-size: var(--b-font-size-lg);
+      font-weight: var(--b-font-weight-semibold);
+      color: var(--b-text-primary);
+      margin-bottom: var(--b-space-3);
+    }
+    .gs-step__desc {
+      color: var(--b-text-muted);
+      font-size: var(--b-font-size-base);
+      line-height: var(--b-line-height-relaxed);
+      margin-bottom: var(--b-space-4);
+    }
+    .gs-code {
+      background: var(--b-bg-surface);
+      border: 1px solid var(--b-border-default);
+      border-radius: var(--b-radius-md);
+      padding: var(--b-space-4) var(--b-space-5);
+      font-family: monospace;
+      font-size: var(--b-font-size-sm);
+      color: var(--b-color-primary-light);
+      overflow-x: auto;
+      margin-bottom: var(--b-space-4);
+      line-height: 1.6;
+    }
+    .gs-note {
+      display: flex;
+      gap: var(--b-space-3);
+      background: var(--b-color-primary-subtle);
+      border: 1px solid var(--b-border-primary);
+      border-radius: var(--b-radius-md);
+      padding: var(--b-space-4);
+      font-size: var(--b-font-size-sm);
+      color: var(--b-text-secondary);
+      line-height: var(--b-line-height-relaxed);
+      margin-bottom: var(--b-space-4);
+    }
+    .gs-note svg { width: 18px; height: 18px; color: var(--b-color-primary); flex-shrink: 0; margin-top: 2px; }
+    .prereq-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--b-space-4);
+      margin-bottom: var(--b-space-10);
+    }
+    .prereq-item {
+      background: var(--b-bg-surface);
+      border: 1px solid var(--b-border-default);
+      border-radius: var(--b-radius-lg);
+      padding: var(--b-space-4) var(--b-space-5);
+    }
+    .prereq-item__label {
+      font-size: var(--b-font-size-xs);
+      font-weight: var(--b-font-weight-bold);
+      color: var(--b-color-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: var(--b-space-2);
+    }
+    .prereq-item__value {
+      font-size: var(--b-font-size-sm);
+      color: var(--b-text-secondary);
+    }
+    @media (max-width: 768px) {
+      .prereq-grid { grid-template-columns: 1fr 1fr; }
+      .gs-step { grid-template-columns: 40px 1fr; gap: var(--b-space-4); }
+      .gs-step__num { width: 40px; height: 40px; font-size: var(--b-font-size-base); }
+    }
+    @media (max-width: 480px) {
+      .prereq-grid { grid-template-columns: 1fr; }
+    }
+    body { overflow-x: hidden; }
+  </style>
+</head>
+<body>
+  <header id="flow-header"></header>
+
+  <!-- Intro -->
+  <section class="b-section b-section--default" style="padding-top: var(--b-space-20);">
+    <div class="b-container">
+      <h1 class="b-section-title">Get Started with Flow</h1>
+      <p class="b-section-subtitle">Flow has two parts: <strong>Flow Engine</strong> (the backend, part of BizFirstAi platform) and <strong>Flow Studio</strong> (the visual designer, a React app). This guide walks you through setting up both and building your first workflow.</p>
+
+      <h3 style="font-size: var(--b-font-size-lg); font-weight: var(--b-font-weight-semibold); color: var(--b-text-primary); margin: var(--b-space-10) 0 var(--b-space-6);">Prerequisites</h3>
+
+      <div class="prereq-grid">
+        <div class="prereq-item">
+          <div class="prereq-item__label">Runtime</div>
+          <div class="prereq-item__value">.NET 6 or later (for Flow Engine)</div>
+        </div>
+        <div class="prereq-item">
+          <div class="prereq-item__label">Node.js</div>
+          <div class="prereq-item__value">Node 18+ and npm / pnpm (for Flow Studio)</div>
+        </div>
+        <div class="prereq-item">
+          <div class="prereq-item__label">Database</div>
+          <div class="prereq-item__value">SQL Server or PostgreSQL (Data Ocean)</div>
+        </div>
+        <div class="prereq-item">
+          <div class="prereq-item__label">BizFirstAi Platform</div>
+          <div class="prereq-item__value">Core platform running with Passport auth</div>
+        </div>
+        <div class="prereq-item">
+          <div class="prereq-item__label">SignalR</div>
+          <div class="prereq-item__value">Edge Stream configured for real-time events</div>
+        </div>
+        <div class="prereq-item">
+          <div class="prereq-item__label">Access</div>
+          <div class="prereq-item__value">BizFirstAi tenant account with workflow permissions</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Steps -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">Set up Flow Engine</h2>
+      <p class="b-section-subtitle" style="margin-bottom: var(--b-space-12);">Flow Engine is part of the BizFirstAi backend. If you are running the full platform, it is already registered.</p>
+
+      <div class="gs-step">
+        <div class="gs-step__num">1</div>
+        <div class="gs-step__body">
+          <div class="gs-step__title">Register ProcessEngine services</div>
+          <p class="gs-step__desc">In your ASP.NET Core startup, register the Flow Engine service collection. This wires up the OrchestrationProcessor, NodeExecutor factory, NodeCapability registry, and all 60+ executor implementations.</p>
+          <div class="gs-code">// Program.cs or Startup.cs
+builder.Services.AddFlowEngine(options =>
+{
+    options.TenantId = builder.Configuration["BizFirst:TenantId"];
+    options.EnableSignalR = true;
+    options.EnableApprovals = true;
+});</div>
+        </div>
+      </div>
+
+      <div class="gs-step">
+        <div class="gs-step__num">2</div>
+        <div class="gs-step__body">
+          <div class="gs-step__title">Run database migrations</div>
+          <p class="gs-step__desc">Flow Engine requires six execution tables in your Data Ocean database. Apply the included migrations to create ProcessExecution, ProcessThreadExecution, ProcessElementExecution, ExecutionMemory, ApprovalRequest, and SuspendedExecution.</p>
+          <div class="gs-code">dotnet ef database update --project BizFirst.Ai.ProcessEngine.Domain</div>
+        </div>
+      </div>
+
+      <div class="gs-step">
+        <div class="gs-step__num">3</div>
+        <div class="gs-step__body">
+          <div class="gs-step__title">Configure SignalR hub</div>
+          <p class="gs-step__desc">Flow Engine publishes execution events (NodeProgress, WorkflowProgress, ExecutionCompleted) over SignalR. Map the ProcessEngine hub in your app pipeline.</p>
+          <div class="gs-code">app.MapHub&lt;ProcessEngineHub&gt;("/hubs/process-engine");</div>
+          <div class="gs-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span>Edge Stream handles SignalR message routing. Ensure Edge Stream is running and the hub endpoint is reachable from Flow Studio's development server (port 5173 by default).</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="gs-step">
+        <div class="gs-step__num">4</div>
+        <div class="gs-step__body">
+          <div class="gs-step__title">Verify the API endpoint</div>
+          <p class="gs-step__desc">Flow Engine exposes a REST API. Confirm it is responding before starting Flow Studio.</p>
+          <div class="gs-code">POST /api/v1/process-engine/execute
+GET  /api/v1/process-engine/status/{executionId}
+POST /api/v1/process-engine/pause/{executionId}
+POST /api/v1/process-engine/resume/{executionId}
+POST /api/v1/process-engine/cancel/{executionId}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="b-section b-section--default">
+    <div class="b-container">
+      <h2 class="b-section-title">Set up Flow Studio</h2>
+      <p class="b-section-subtitle" style="margin-bottom: var(--b-space-12);">Flow Studio is a Vite/React monorepo. It connects to Flow Engine via the 40 API clients and subscribes to SignalR for live execution updates.</p>
+
+      <div class="gs-step">
+        <div class="gs-step__num">5</div>
+        <div class="gs-step__body">
+          <div class="gs-step__title">Install dependencies</div>
+          <p class="gs-step__desc">Navigate to the flow-studio root and install packages. The monorepo uses pnpm workspaces.</p>
+          <div class="gs-code">cd BizFirstAiStudio/src/flow-studio
+pnpm install</div>
+        </div>
+      </div>
+
+      <div class="gs-step">
+        <div class="gs-step__num">6</div>
+        <div class="gs-step__body">
+          <div class="gs-step__title">Configure the API base URL</div>
+          <p class="gs-step__desc">Create a <code>.env</code> file in <code>apps/studio/</code> pointing Flow Studio at your running Flow Engine backend.</p>
+          <div class="gs-code">VITE_API_BASE_URL=https://your-bizfirstai-backend.com
+VITE_SIGNALR_HUB_URL=https://your-bizfirstai-backend.com/hubs/process-engine
+VITE_TENANT_ID=your-tenant-id</div>
+        </div>
+      </div>
+
+      <div class="gs-step">
+        <div class="gs-step__num">7</div>
+        <div class="gs-step__body">
+          <div class="gs-step__title">Start the development server</div>
+          <p class="gs-step__desc">Start Flow Studio on port 5173. The Vite dev server hot-reloads on changes across all monorepo packages.</p>
+          <div class="gs-code">pnpm --filter studio dev
+# Opens at http://localhost:5173</div>
+        </div>
+      </div>
+
+      <div class="gs-step">
+        <div class="gs-step__num">8</div>
+        <div class="gs-step__body">
+          <div class="gs-step__title">Sign in with Passport</div>
+          <p class="gs-step__desc">Flow Studio uses Passport for authentication. Sign in with your BizFirstAi tenant credentials. Your auth token is stored in <code>authStore</code> and included in every API request.</p>
+          <div class="gs-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span>Your account needs the <strong>WorkflowDesigner</strong> role to create workflows and the <strong>WorkflowExecutor</strong> role to run them. Contact your BizFirstAi admin if you see permission errors.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- First workflow -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">Build your first workflow</h2>
+      <p class="b-section-subtitle" style="margin-bottom: var(--b-space-12);">A simple two-node workflow: a Manual Trigger connected to a Variable Assignment node.</p>
+
+      <div class="gs-step">
+        <div class="gs-step__num">9</div>
+        <div class="gs-step__body">
+          <div class="gs-step__title">Create a Project and Process</div>
+          <p class="gs-step__desc">In the Workflow Dashboard, navigate: <strong>Projects → New Project</strong>. Give it a name. Then open the project and click <strong>New Process</strong>. A Process contains one or more ProcessThreads (workflow instances).</p>
+        </div>
+      </div>
+
+      <div class="gs-step">
+        <div class="gs-step__num">10</div>
+        <div class="gs-step__body">
+          <div class="gs-step__title">Open the Canvas in Design Mode</div>
+          <p class="gs-step__desc">Click into a ProcessThread to open Flow Studio's canvas. You will see the infinite canvas with a left-side node palette, top toolbar with Save/Undo/Redo, and mode selector (Design / Execution / Evaluation).</p>
+        </div>
+      </div>
+
+      <div class="gs-step">
+        <div class="gs-step__num">11</div>
+        <div class="gs-step__body">
+          <div class="gs-step__title">Add a Manual Trigger node</div>
+          <p class="gs-step__desc">From the left palette under <strong>Triggers</strong>, drag <strong>Manual Trigger</strong> onto the canvas. This is a circle node — the entry point for your workflow. Every workflow needs exactly one trigger.</p>
+        </div>
+      </div>
+
+      <div class="gs-step">
+        <div class="gs-step__num">12</div>
+        <div class="gs-step__body">
+          <div class="gs-step__title">Add a Variable Assignment node and connect</div>
+          <p class="gs-step__desc">Drag <strong>Variable Assignment</strong> from the palette. Click the output handle on the trigger node and drag to the input handle of Variable Assignment. You will see an animated edge connecting them.</p>
+          <p class="gs-step__desc">Double-click Variable Assignment to open NodePropertiesModal. Set a variable name (e.g. <code>greeting</code>) and value (e.g. <code>Hello, World!</code>). Click Save.</p>
+        </div>
+      </div>
+
+      <div class="gs-step">
+        <div class="gs-step__num">13</div>
+        <div class="gs-step__body">
+          <div class="gs-step__title">Save and switch to Execution Mode</div>
+          <p class="gs-step__desc">Click <strong>Save</strong> (Ctrl+S) to persist the workflow. Then switch to <strong>Execution Mode</strong> from the top toolbar. Click <strong>Run</strong>.</p>
+          <p class="gs-step__desc">Flow Engine receives the request, starts a background execution, and streams progress back via SignalR. Watch both nodes highlight green as they complete. The execution panel on the right shows each node's status, output, and timing.</p>
+          <div class="gs-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>You just ran your first Flow workflow. The execution moved through states: Queued → Running → Completed, with every node's result persisted in ProcessElementExecution.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="gs-step">
+        <div class="gs-step__num">14</div>
+        <div class="gs-step__body">
+          <div class="gs-step__title">Explore Evaluation Mode</div>
+          <p class="gs-step__desc">Switch to <strong>Evaluation Mode</strong> to see execution history. Click on any past run to replay it step by step. Review timing data, variable values at each stage, and any errors encountered.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Next steps -->
+  <section class="b-section b-section--default">
+    <div class="b-container">
+      <h2 class="b-section-title">What to explore next</h2>
+      <div class="b-benefits-grid" style="margin-top: var(--b-space-10);">
+        <div class="b-benefit-card">
+          <h3>Add an Approval node</h3>
+          <p>Insert an Approval node between two steps. Configure approvers, choose a voting strategy (All / AnyOne / NofM), set a deadline, and test the human-in-the-loop suspension and resumption flow.</p>
+          <a href="./examples.html#approval" class="b-product-link" style="display:inline-block; margin-top: var(--b-space-4);">See approval example →</a>
+        </div>
+        <div class="b-benefit-card">
+          <h3>Connect an AI Agent</h3>
+          <p>Add an AI Agent node (Octopus executor). Configure it with an OpenAI or DeepSeek LLM, a prompt template, and a reasoning strategy. Route the workflow based on the AI's classification output.</p>
+          <a href="./examples.html#ai" class="b-product-link" style="display:inline-block; margin-top: var(--b-space-4);">See AI example →</a>
+        </div>
+        <div class="b-benefit-card">
+          <h3>Write a custom node executor</h3>
+          <p>Extend BaseNodeExecutor in C#, override ExecuteInternalAsync, and register it with the NodeExecutor factory. Your custom node appears in Flow Studio's palette immediately after registration.</p>
+          <a href="./architecture.html" class="b-product-link" style="display:inline-block; margin-top: var(--b-space-4);">Read the architecture →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="b-cta-section">
+    <div class="b-container">
+      <h2>Need help getting set up?</h2>
+      <p>Ask in the Flow community or book a setup session with the BizFirstAi team.</p>
+      <div class="b-btn-group">
+        <a href="https://community.bizfirstai.com/tag/flow" class="b-btn b-btn-primary b-btn-large" target="_blank" rel="noopener">Join the Community</a>
+        <a href="https://bizfirstai.com/website/contact.html" class="b-btn b-btn-secondary b-btn-large" target="_blank" rel="noopener">Book a Session</a>
+      </div>
+    </div>
+  </section>
+  <footer id="flow-footer"></footer>
+
+  <script src="./flow-layout.js"></script>
+</body>
+</html>

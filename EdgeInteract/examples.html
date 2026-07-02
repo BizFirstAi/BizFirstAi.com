@@ -1,0 +1,373 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="https://bizfirstai.com/website/assets/Logo/logo-m.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="EdgeInteract Examples — CRM, Healthcare, E-Commerce, Financial Services — context-aware UI patterns.">
+  <title>Examples — EdgeInteract by BizFirstAi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://bizfirstai.com/website/assets/css/b-index.css">
+  <link rel="stylesheet" href="./ei.css">
+  <style>
+    body { overflow-x: hidden; }
+    .ex-tag { display: inline-flex; align-items: center; gap: var(--b-space-2); background: var(--b-color-primary-subtle); border: 1px solid var(--b-border-primary); border-radius: var(--b-radius-full); padding: var(--b-space-1) var(--b-space-3); font-size: var(--b-font-size-xs); font-weight: var(--b-font-weight-medium); color: var(--b-color-primary); margin-bottom: var(--b-space-4); }
+    .ex-header { border-bottom: 1px solid var(--b-border-subtle); padding-bottom: var(--b-space-6); margin-bottom: var(--b-space-8); }
+    .ex-section { margin-bottom: var(--b-space-20); }
+    .ex-code {
+      background: var(--b-bg-surface);
+      border: 1px solid var(--b-border-default);
+      border-radius: var(--b-radius-md);
+      padding: var(--b-space-4) var(--b-space-5);
+      font-family: monospace;
+      font-size: var(--b-font-size-xs);
+      color: var(--b-color-primary-light);
+      white-space: pre;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      max-width: 100%;
+      box-sizing: border-box;
+      margin: var(--b-space-5) 0;
+      line-height: 1.6;
+    }
+    .ex-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--b-space-4); margin-top: var(--b-space-6); }
+    .ex-detail { background: var(--b-bg-surface); border: 1px solid var(--b-border-default); border-radius: var(--b-radius-lg); padding: var(--b-space-5); }
+    .ex-detail__label { font-size: var(--b-font-size-xs); font-weight: var(--b-font-weight-bold); color: var(--b-color-primary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: var(--b-space-2); }
+    .ex-detail__value { font-size: var(--b-font-size-sm); color: var(--b-text-secondary); line-height: 1.5; }
+    .ex-result { display: flex; align-items: center; gap: var(--b-space-3); background: rgba(34,197,94,0.06); border: 1px solid rgba(34,197,94,0.25); border-radius: var(--b-radius-md); padding: var(--b-space-4); font-size: var(--b-font-size-sm); color: var(--b-text-secondary); margin-top: var(--b-space-5); }
+    .ex-result svg { width: 20px; height: 20px; color: var(--b-color-primary); flex-shrink: 0; }
+    code { word-break: break-word; overflow-wrap: break-word; }
+
+    /* ── CTA button group — stack on mobile ── */
+    @media (max-width: 600px) {
+      .b-cta-section .b-btn-group { flex-direction: column; align-items: stretch; }
+      .b-cta-section .b-btn-group .b-btn { text-align: center; }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .ex-section-hero { padding-top: var(--b-space-12) !important; }
+      .ex-grid { grid-template-columns: 1fr; }
+      .ex-code { font-size: 0.7rem; padding: var(--b-space-3) var(--b-space-4); }
+    }
+    @media (max-width: 480px) {
+      .ex-result { flex-direction: column; align-items: flex-start; }
+      .ex-section { margin-bottom: var(--b-space-14); }
+    }
+  </style>
+</head>
+<body>
+  <header id="ei-header"></header>
+
+  <section class="b-section b-section--default ex-section-hero" style="padding-top: var(--b-space-20);">
+    <div class="b-container">
+      <h1 class="b-section-title">Examples</h1>
+      <p class="b-section-subtitle">Real-world patterns across industries. Each example shows how the three-manager architecture eliminates context bugs and enables clean multi-UI coordination.</p>
+    </div>
+  </section>
+
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+
+      <!-- Example 1: CRM -->
+      <div class="ex-section" id="crm">
+        <div class="ex-header">
+          <span class="ex-tag">CRM · Chat + Form Coordination · Entity Context</span>
+          <h2 style="font-size: clamp(1.4rem, 3vw, 1.8rem); font-weight: var(--b-font-weight-bold); color: var(--b-text-primary);">CRM Sales Rep Support Chat</h2>
+          <p style="color: var(--b-text-muted); margin-top: var(--b-space-2);">A sales rep opens a chat with a customer. EdgeInteract carries the customer entity context in every message — the AI knows who the customer is, their tier, and their order history without any lookup.</p>
+        </div>
+
+        <div class="ex-code">// Set the customer entity context when opening their record
+client.state.setEntity({
+  role: 'entity',
+  type: 'customer',
+  id: 'cust-acme-12345',
+  displayName: 'Acme Corporation',
+  data: {
+    creditLimit: 50000,
+    tier: 'gold',
+    accountManager: 'rep-789',
+    openOrders: 3
+  }
+});
+
+// Now send a message — entity.data is in every message automatically
+await client.players.chat('conv-acme-deal').sendMessage({
+  text: 'Can we discuss the outstanding orders?',
+  type: 'user'
+});
+
+// Bot handler receives — no context lookup needed
+function handleMessage(msg: IContextualMessage) {
+  const { entity, user, variables } = msg.context;
+  // entity.data.tier === 'gold' → route to priority support queue
+  // entity.data.creditLimit → validate order amount
+  // user.permissions → check if rep can approve discount
+}</div>
+
+        <div class="ex-grid">
+          <div class="ex-detail">
+            <div class="ex-detail__label">Entity context</div>
+            <div class="ex-detail__value">ICrmAccountEntity extends IEntityIdentityData with salesStage, dealValue, accountManager. The domain sample package provides these types pre-built for CRM use cases.</div>
+          </div>
+          <div class="ex-detail">
+            <div class="ex-detail__label">UI coordination</div>
+            <div class="ex-detail__value">When the customer mentions an order number, the bot triggers <code>client.players.form('order-detail').display()</code> — the form is pre-filled with entity data. Chat and form stay in sync via PlayerManager.</div>
+          </div>
+          <div class="ex-detail">
+            <div class="ex-detail__label">Permission enforcement</div>
+            <div class="ex-detail__value">The validation hook reads <code>context.user.permissions</code> on every message. A rep without 'approve-discounts' gets a clear error before the message reaches the backend — no server round-trip needed.</div>
+          </div>
+          <div class="ex-detail">
+            <div class="ex-detail__label">Context isolation</div>
+            <div class="ex-detail__value">The conversation filter on <code>conv-acme-deal</code> ensures Rep A's messages about Acme never reach Rep B's subscriber for a different customer — even if both reps are online simultaneously.</div>
+          </div>
+        </div>
+
+        <div class="ex-result">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <span><strong>Result:</strong> Sales reps see customer data in every response without any manual lookup. Zero context-leakage incidents between concurrent customer sessions.</span>
+        </div>
+      </div>
+
+      <!-- Example 2: Healthcare -->
+      <div class="ex-section" id="healthcare">
+        <div class="ex-header">
+          <span class="ex-tag">Healthcare · HIPAA · Patient Context · Workflow Integration</span>
+          <h2 style="font-size: clamp(1.4rem, 3vw, 1.8rem); font-weight: var(--b-font-weight-bold); color: var(--b-text-primary);">Clinical Consultation Workflow</h2>
+          <p style="color: var(--b-text-muted); margin-top: var(--b-space-2);">A clinician opens a patient record. The patient entity context flows through every chat message, form submission, and workflow step — allergies, medications, and permissions are always available without repeated lookups.</p>
+        </div>
+
+        <div class="ex-code">// IClinicianUserData — extends IUserData with clinical permissions
+client.state.setUser({
+  role: 'user',
+  userId: 'dr-chen-001',
+  userName: 'Dr. Chen',
+  permissions: ['read-patient', 'write-prescription', 'order-lab'],
+  attributes: {
+    specialty: 'cardiology',
+    licenseNumber: 'MD-12345',
+    department: 'cardiology-dept-a'
+  }
+});
+
+// IPatientEntity — extends IEntityIdentityData
+client.state.setEntity({
+  role: 'entity',
+  type: 'patient',
+  id: 'pat-78901',
+  displayName: 'James Wilson',
+  data: {
+    dob: '1965-03-15',
+    allergies: ['penicillin', 'sulfa'],
+    currentMedications: ['lisinopril', 'metoprolol'],
+    lastVisit: '2026-02-10'
+  }
+});
+
+// Display intake form — pre-filled from patient entity
+await client.players.form('clinical-intake').display({
+  data: { patientId: 'pat-78901' },  // Entity data pre-fills form
+  highlightFields: ['allergies']      // Flag allergy section
+});
+
+// Start workflow — all steps carry patient context
+await client.players.workflow('prescription-workflow').execute({
+  medication: 'atenolol',
+  dosage: '50mg',
+  // patientId, allergies, permissions all come from context — not passed manually
+});</div>
+
+        <div class="ex-grid">
+          <div class="ex-detail">
+            <div class="ex-detail__label">HIPAA isolation</div>
+            <div class="ex-detail__value">Every message filtered by <code>context.conversation.id</code> — patient Wilson's consultation messages are completely isolated from patient Jones in the adjacent room, even on the same server.</div>
+          </div>
+          <div class="ex-detail">
+            <div class="ex-detail__label">Allergy check in pipeline</div>
+            <div class="ex-detail__value">The prescription workflow hook reads <code>context.entity.data.allergies</code> and <code>context.entity.data.currentMedications</code> to run drug interaction checks before the prescription is created — no API lookup needed.</div>
+          </div>
+          <div class="ex-detail">
+            <div class="ex-detail__label">Permission enforcement</div>
+            <div class="ex-detail__value">A nurse without 'write-prescription' gets blocked at the validation hook. The same workflow works correctly for both roles — the hook reads <code>context.user.permissions</code>, not role string comparisons.</div>
+          </div>
+          <div class="ex-detail">
+            <div class="ex-detail__label">Audit trail</div>
+            <div class="ex-detail__value">Every step logged with patientId, clinicianId, timestamp, and hook results. Complete audit trail for HIPAA compliance — automatically, from the context carried in every message.</div>
+          </div>
+        </div>
+
+        <div class="ex-result">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <span><strong>Result:</strong> Clinicians have full patient context in every interaction. Allergy and drug interaction checks run automatically. Full audit trail for HIPAA without extra instrumentation.</span>
+        </div>
+      </div>
+
+      <!-- Example 3: E-Commerce -->
+      <div class="ex-section" id="ecommerce">
+        <div class="ex-header">
+          <span class="ex-tag">E-Commerce · Multi-UI Coordination · Order Entity</span>
+          <h2 style="font-size: clamp(1.4rem, 3vw, 1.8rem); font-weight: var(--b-font-weight-bold); color: var(--b-text-primary);">Customer Order Support — Chat + Form + Workflow</h2>
+          <p style="color: var(--b-text-muted); margin-top: var(--b-space-2);">A customer contacts support about an order. EdgeInteract coordinates three UIs simultaneously — the chat window, an order detail form, and a return/refund workflow — all sharing the same order entity context.</p>
+        </div>
+
+        <div class="ex-code">// Set order entity when customer opens order support
+client.state.setEntity({
+  role: 'entity',
+  type: 'order',
+  id: 'ord-88234',
+  displayName: 'Order #88234',
+  data: {
+    status: 'shipped',
+    trackingNumber: 'UPS-12345XYZ',
+    items: [{ sku: 'WH-2000', qty: 1, price: 349.99 }],
+    estimatedDelivery: '2026-04-15',
+    paymentMethod: 'card-ending-4521'
+  }
+});
+
+// Coordinate three UIs simultaneously
+await client.ui.coordinateUIs([
+  // Show chat with pre-loaded context
+  { componentId: 'support-chat', action: 'show' },
+
+  // Show order detail form — pre-filled from entity
+  { componentId: 'order-detail-form', action: 'display',
+    metadata: { orderId: 'ord-88234', readOnly: true }},
+
+  // Show return workflow (hidden until needed)
+  { componentId: 'return-workflow', action: 'initialize',
+    metadata: { orderId: 'ord-88234' }}
+]);
+
+// When customer requests return — activate workflow
+await client.players.workflow('return-workflow').execute({
+  reason: 'defective',
+  // order status, payment method, items — all from context
+});</div>
+
+        <div class="ex-grid">
+          <div class="ex-detail">
+            <div class="ex-detail__label">coordinateUIs()</div>
+            <div class="ex-detail__value"><code>coordinateUIs()</code> sends operations to multiple UI components in a single call. All three UIs (chat, form, workflow) activate simultaneously with the same order context — no sequential calls, no state synchronisation code.</div>
+          </div>
+          <div class="ex-detail">
+            <div class="ex-detail__label">Entity-prefilled form</div>
+            <div class="ex-detail__value">The AtlasFormsPlugin reads <code>context.entity.data</code> to pre-fill the order detail form. Tracking number, items, payment method — already populated when the form appears. The customer sees their order immediately.</div>
+          </div>
+          <div class="ex-detail">
+            <div class="ex-detail__label">Workflow state machine</div>
+            <div class="ex-detail__value">The return workflow uses WorkflowPlayerPlugin's IDLE → RUNNING → COMPLETED state machine. Each step carries the order entity — refund amount calculated from <code>entity.data.items</code>, reversal sent to <code>entity.data.paymentMethod</code>.</div>
+          </div>
+          <div class="ex-detail">
+            <div class="ex-detail__label">broadcastStateChange()</div>
+            <div class="ex-detail__value">When the workflow completes, <code>broadcastStateChange('order.status', 'return-initiated')</code> updates all three UI components simultaneously — chat shows confirmation, form shows updated status, workflow shows completion.</div>
+          </div>
+        </div>
+
+        <div class="ex-result">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <span><strong>Result:</strong> Three UIs coordinated from a single API. 40% reduction in support call handling time. Zero "wrong order" incidents from manual data entry.</span>
+        </div>
+      </div>
+
+      <!-- Example 4: Financial Services -->
+      <div class="ex-section" id="finance">
+        <div class="ex-header">
+          <span class="ex-tag">Financial Services · Compliance · Context Enhancers</span>
+          <h2 style="font-size: clamp(1.4rem, 3vw, 1.8rem); font-weight: var(--b-font-weight-bold); color: var(--b-text-primary);">Loan Application with Compliance Context</h2>
+          <p style="color: var(--b-text-muted); margin-top: var(--b-space-2);">A loan officer processes an application. Context enhancers add credit score, risk tier, and compliance flags to every message — the validation pipeline enforces compliance rules using context, with no code in individual handlers.</p>
+        </div>
+
+        <div class="ex-code">// Context enhancer — adds credit and compliance data to every message
+class ComplianceEnhancer implements IContextEnhancer {
+  name = 'compliance';
+  priority = 5; // Runs first
+
+  async enhance(context: IContextualMessage): Promise<IContextualMessage> {
+    const applicantId = context.context.entity?.id;
+    if (!applicantId) return context;
+
+    const [creditData, complianceFlags] = await Promise.all([
+      fetchCreditScore(applicantId),
+      checkComplianceFlags(applicantId)
+    ]);
+
+    return {
+      ...context,
+      context: {
+        ...context.context,
+        variables: {
+          ...context.context.variables,
+          creditScore: creditData.score,    // 750
+          riskTier: creditData.tier,        // 'low'
+          amlFlag: complianceFlags.aml,     // false
+          kycComplete: complianceFlags.kyc, // true
+          maxLoanAmount: creditData.maxApproval // 250000
+        }
+      }
+    };
+  }
+}
+
+client.state.addEnhancer(new ComplianceEnhancer());
+
+// Validation hook — enforces rules using context variables
+// (No knowledge of HOW compliance data was fetched)
+function loanValidationHook(context: IContextualMessage) {
+  if (!context.context.variables?.kycComplete) {
+    throw new Error('KYC verification required before loan processing');
+  }
+  if (context.context.variables?.amlFlag) {
+    throw new Error('AML flag requires compliance review');
+  }
+  if (body.amount > context.context.variables?.maxLoanAmount) {
+    throw new Error(`Amount exceeds approved limit of ${context.context.variables.maxLoanAmount}`);
+  }
+}</div>
+
+        <div class="ex-grid">
+          <div class="ex-detail">
+            <div class="ex-detail__label">Separation of concerns</div>
+            <div class="ex-detail__value">The enhancer fetches compliance data once. The validation hook enforces rules. Neither knows about the other. Adding a new compliance check means adding a new enhancer — not touching validation code.</div>
+          </div>
+          <div class="ex-detail">
+            <div class="ex-detail__label">Parallel data fetching</div>
+            <div class="ex-detail__value">The enhancer uses <code>Promise.all()</code> to fetch credit score and compliance flags simultaneously. The enriched context is ready before any hook or handler runs — efficient and clean.</div>
+          </div>
+          <div class="ex-detail">
+            <div class="ex-detail__label">Audit trail</div>
+            <div class="ex-detail__value">Every message logged with the full context snapshot — including <code>creditScore</code>, <code>riskTier</code>, <code>amlFlag</code>. Regulatory audits have a complete, timestamped record of what data was available at the time of each decision.</div>
+          </div>
+          <div class="ex-detail">
+            <div class="ex-detail__label">Form + workflow integration</div>
+            <div class="ex-detail__value">The Atlas Forms plugin renders the loan application form. The Flow Engine workflow handles multi-step approval. EdgeInteract carries the same compliance context through both — no data re-fetching or manual passing between systems.</div>
+          </div>
+        </div>
+
+        <div class="ex-result">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <span><strong>Result:</strong> Compliance checks run automatically on every message. AML/KYC enforcement without any handler-level code. Complete audit trail for regulatory review.</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="b-cta-section">
+    <div class="b-container">
+      <h2>Ready to build context-aware applications?</h2>
+      <p>Start with the get-started guide or explore the architecture.</p>
+      <div class="b-btn-group">
+        <a href="./get-started.html" class="b-btn b-btn-primary b-btn-large">Get Started</a>
+        <a href="./architecture.html" class="b-btn b-btn-secondary b-btn-large">Architecture</a>
+      </div>
+    </div>
+  </section>
+
+  <footer id="ei-footer"></footer>
+  <script src="./ei-layout.js"></script>
+</body>
+</html>

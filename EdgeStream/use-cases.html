@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="https://bizfirstai.com/website/assets/Logo/logo-m.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="EdgeStream Use Cases — Real-time collaboration, financial services, healthcare, IoT, workflow automation, and more.">
+  <title>Use Cases — EdgeStream by BizFirstAi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://bizfirstai.com/website/assets/css/b-index.css">
+  <link rel="stylesheet" href="./es.css">
+  <style>
+    body { overflow-x: hidden; }
+  </style>
+</head>
+<body>
+  <header id="es-header"></header>
+
+  <section class="b-section b-section--default" style="padding-top: var(--b-space-20);">
+    <div class="b-container">
+      <h1 class="b-section-title">Use Cases</h1>
+      <p class="b-section-subtitle">EdgeStream is the communication backbone for any system that requires real-time, context-aware, auditable message delivery. From enterprise SaaS to financial trading platforms, EdgeStream ships the infrastructure so your team focuses on business logic.</p>
+    </div>
+  </section>
+
+  <!-- ── Communication Patterns ────────────────────────────── -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">Core communication patterns</h2>
+      <p class="b-section-subtitle">Every EdgeStream deployment follows one or more of these four fundamental patterns. Each is supported out of the box with no custom routing code.</p>
+
+      <div class="es-usecase-grid">
+
+        <div class="es-usecase-card">
+          <div class="es-usecase-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <div class="es-usecase-card__title">Real-Time Collaboration</div>
+          <div class="es-usecase-card__desc">Multiple users edit the same document, whiteboard, or form simultaneously. EdgeStream's topic-based isolation ensures User A's changes are delivered to User B without leaking to unrelated sessions.</div>
+          <div class="es-usecase-card__examples">
+            <span class="es-tag">Collaborative editing</span>
+            <span class="es-tag">Whiteboarding</span>
+            <span class="es-tag">Simultaneous form editing</span>
+            <span class="es-tag">Live cursor sharing</span>
+          </div>
+        </div>
+
+        <div class="es-usecase-card">
+          <div class="es-usecase-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </div>
+          <div class="es-usecase-card__title">Workflow Integration</div>
+          <div class="es-usecase-card__desc">Form submissions trigger workflow execution in ProcessEngine. ExecutionNodes receive messages via subscription. Real-time step progress flows back to the UI — with full context preserved through every state transition.</div>
+          <div class="es-usecase-card__examples">
+            <span class="es-tag">Multi-step approvals</span>
+            <span class="es-tag">Human-in-the-loop</span>
+            <span class="es-tag">Batch processing</span>
+            <span class="es-tag">SLA tracking</span>
+          </div>
+        </div>
+
+        <div class="es-usecase-card">
+          <div class="es-usecase-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 2L11 13"/>
+              <path d="M22 2L15 22 11 13 2 9l20-7z"/>
+            </svg>
+          </div>
+          <div class="es-usecase-card__title">Multi-Client Broadcasting</div>
+          <div class="es-usecase-card__desc">Backend events fan out to all subscribed clients. Wildcard topics (<code>order:*:status</code>) deliver to all interested subscribers simultaneously. Context-aware filtering ensures each client receives only relevant messages.</div>
+          <div class="es-usecase-card__examples">
+            <span class="es-tag">Live dashboards</span>
+            <span class="es-tag">System notifications</span>
+            <span class="es-tag">Real-time metrics</span>
+            <span class="es-tag">Alert broadcasting</span>
+          </div>
+        </div>
+
+        <div class="es-usecase-card">
+          <div class="es-usecase-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+              <line x1="12" y1="18" x2="12.01" y2="18"/>
+            </svg>
+          </div>
+          <div class="es-usecase-card__title">Cross-Platform Sync</div>
+          <div class="es-usecase-card__desc">Web browser, React Native mobile app, and Electron desktop all subscribe to the same topics. A change in one client propagates instantly to all others — same IEnvelope, same hook pipeline, same delivery guarantees.</div>
+          <div class="es-usecase-card__examples">
+            <span class="es-tag">Multi-device sync</span>
+            <span class="es-tag">Universal state</span>
+            <span class="es-tag">Offline-capable</span>
+            <span class="es-tag">Background reconnect</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Industry Use Cases ─────────────────────────────────── -->
+  <section class="b-section b-section--default">
+    <div class="b-container">
+      <h2 class="b-section-title">By industry</h2>
+
+      <div class="b-benefits-grid" style="margin-top: var(--b-space-12);">
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="1" x2="12" y2="23"/>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+            </span>
+            Financial Services
+          </h3>
+          <p>Real-time trading platforms, live market data feeds, order management, compliance event logging, and broker-dealer communications. EdgeStream's complete audit trail meets regulatory requirements for message traceability.</p>
+          <ul class="b-feature-list">
+            <li>Real-time order routing</li>
+            <li>Compliance audit trail</li>
+            <li>Live market data feeds</li>
+            <li>Settlement notifications</li>
+          </ul>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+              </svg>
+            </span>
+            Healthcare
+          </h3>
+          <p>Real-time patient monitoring, care team coordination, telemedicine messaging, PHI-compliant event logging, and alert escalation workflows. Context isolation prevents patient data from leaking between care contexts.</p>
+          <ul class="b-feature-list">
+            <li>Patient monitoring alerts</li>
+            <li>Care team coordination</li>
+            <li>HIPAA-compliant audit logs</li>
+            <li>Lab result notifications</li>
+          </ul>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
+                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
+                <line x1="6" y1="6" x2="6.01" y2="6"/>
+                <line x1="6" y1="18" x2="6.01" y2="18"/>
+              </svg>
+            </span>
+            Manufacturing &amp; IoT
+          </h3>
+          <p>Real-time equipment status, sensor data collection, predictive maintenance alerts, supply chain visibility, and production line coordination. Low-latency edge deployment for sub-100ms sensor event processing.</p>
+          <ul class="b-feature-list">
+            <li>Sensor data pipelines</li>
+            <li>Predictive maintenance</li>
+            <li>Production alerts</li>
+            <li>Supply chain visibility</li>
+          </ul>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                <polyline points="9 22 9 12 15 12 15 22"/>
+              </svg>
+            </span>
+            Enterprise SaaS
+          </h3>
+          <p>Collaborative editing, real-time notifications, live dashboards, chat and messaging, activity feeds, and live form submissions. EdgeStream provides off-the-shelf real-time infrastructure so your team ships features, not plumbing.</p>
+          <ul class="b-feature-list">
+            <li>Collaborative editing</li>
+            <li>Real-time notifications</li>
+            <li>Live dashboards</li>
+            <li>Activity feeds</li>
+          </ul>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </span>
+            Government &amp; Public Sector
+          </h3>
+          <p>Inter-agency alert systems, citizen notification pipelines, permit application workflows, and disaster response coordination. On-premise deployment support with full audit trails for compliance.</p>
+          <ul class="b-feature-list">
+            <li>Emergency response alerts</li>
+            <li>Citizen notifications</li>
+            <li>Inter-agency coordination</li>
+            <li>Compliance event logging</li>
+          </ul>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+              </svg>
+            </span>
+            Education &amp; Training
+          </h3>
+          <p>Live classroom interaction, real-time student engagement, instant feedback and polling, live assignment submission, and virtual lab coordination — integrated with AtlasForms for interactive real-time forms.</p>
+          <ul class="b-feature-list">
+            <li>Live polling and quizzes</li>
+            <li>Real-time assignment submission</li>
+            <li>Student engagement tracking</li>
+            <li>Virtual lab coordination</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── AI Agent use cases ─────────────────────────────────── -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">AI Agent integration</h2>
+      <p class="b-section-subtitle">EdgeStream's MCP Server adapter makes it a native communication layer for AI agents and LLM toolchains. Agents subscribe to topics, publish messages, and participate in workflows — just like any other service.</p>
+
+      <div class="es-usecase-grid" style="margin-top: var(--b-space-12);">
+
+        <div class="es-usecase-card">
+          <div class="es-usecase-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/>
+            </svg>
+          </div>
+          <div class="es-usecase-card__title">Multi-Agent Handoffs</div>
+          <div class="es-usecase-card__desc">AI agents subscribe to topics and publish responses. When a customer service agent escalates to a specialist, the conversation context travels intact through the EdgeStream pipeline — no manual context passing between agent instances.</div>
+          <div class="es-usecase-card__examples">
+            <span class="es-tag">Agent handoffs</span>
+            <span class="es-tag">Context preservation</span>
+            <span class="es-tag">MCP integration</span>
+          </div>
+        </div>
+
+        <div class="es-usecase-card">
+          <div class="es-usecase-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+          </div>
+          <div class="es-usecase-card__title">LLM Streaming Responses</div>
+          <div class="es-usecase-card__desc">Token-by-token LLM output published to a topic. The UI subscribes and updates character-by-character. No custom streaming infrastructure — EdgeStream delivers each token through the same pipeline as any other message.</div>
+          <div class="es-usecase-card__examples">
+            <span class="es-tag">Streaming responses</span>
+            <span class="es-tag">Token delivery</span>
+            <span class="es-tag">Real-time typing</span>
+          </div>
+        </div>
+
+        <div class="es-usecase-card">
+          <div class="es-usecase-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/>
+            </svg>
+          </div>
+          <div class="es-usecase-card__title">Agentic Workflow Coordination</div>
+          <div class="es-usecase-card__desc">Multiple AI agents and human approvers participate in a shared workflow. ProcessEngine tasks, human-in-the-loop approvals, and agent completions all surface as EdgeStream messages with full context for every participant.</div>
+          <div class="es-usecase-card__examples">
+            <span class="es-tag">Multi-agent workflows</span>
+            <span class="es-tag">Human approval loops</span>
+            <span class="es-tag">ANCP integration</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="b-cta-section">
+    <div class="b-container">
+      <h2>See EdgeStream in action.</h2>
+      <p>Explore real code examples or start building in minutes.</p>
+      <div class="b-btn-group">
+        <a href="./examples.html" class="b-btn b-btn-primary b-btn-large">See Examples</a>
+        <a href="./get-started.html" class="b-btn b-btn-secondary b-btn-large">Get Started</a>
+      </div>
+    </div>
+  </section>
+
+  <footer id="es-footer"></footer>
+  <script src="./es-layout.js"></script>
+</body>
+</html>

@@ -1,0 +1,624 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="https://bizfirstai.com/website/assets/Logo/logo-m.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Passport — Enterprise Identity &amp; Access Management for SaaS. White-label IAM, RBAC, SSO, and multi-tenant authentication at a fraction of Auth0 or Okta pricing.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Passport — Enterprise IAM for SaaS. At a fraction of the cost.">
+  <meta property="og:description" content="White-label Identity &amp; Access Management. 5 apps, 4 pluggable IAM providers, 2,000+ req/sec. Deploy in 1–2 weeks for under $500/month.">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Passport — Enterprise IAM for SaaS">
+  <meta name="twitter:description" content="White-label IAM for SaaS companies. Not Auth0 prices.">
+
+  <title>Passport — Enterprise IAM for SaaS. At a fraction of the cost.</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://bizfirstai.com/website/assets/css/b-index.css">
+  <link rel="stylesheet" href="./assets/css/passport.css">
+  <style>
+    body { overflow-x: hidden; }
+  </style>
+</head>
+<body>
+
+  <header id="pp-header-container"></header>
+
+  <!-- ════════════════════════════════════════════════════════════
+       HERO
+       ════════════════════════════════════════════════════════════ -->
+  <section class="pp-hero">
+    <div class="b-container">
+      <div class="pp-hero-content">
+        <span class="pp-hero-eyebrow">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          Identity &amp; Access Management
+        </span>
+        <h1 class="pp-hero-headline">Enterprise IAM for SaaS.<br><span>At a fraction of the cost.</span></h1>
+        <p class="pp-hero-subheading">Passport is a white-label Identity &amp; Access Management platform that gives your SaaS product enterprise-grade authentication, RBAC, and SSO — without the Auth0 price tag.</p>
+        <div class="pp-hero-ctas">
+          <a href="https://bizfirstai.com/website/contact.html" class="b-btn b-btn-primary b-btn-large">Book a Demo</a>
+          <a href="./features.html" class="b-btn b-btn-secondary b-btn-large">See Features</a>
+        </div>
+        <p class="pp-hero-trust">A BizFirstAi product &middot; 5 apps included &middot; Deploy in 1&ndash;2 weeks</p>
+      </div>
+
+      <div class="pp-hero-visual" aria-hidden="true">
+        <div class="pp-hero-shield">
+          <div class="pp-hero-shield-bg">
+            <svg class="pp-hero-shield-icon" width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <rect x="9" y="11" width="6" height="6" rx="1"/>
+              <path d="M10.5 11V9.5C10.5 8.67 11.17 8 12 8C12.83 8 13.5 8.67 13.5 9.5V11"/>
+            </svg>
+          </div>
+          <span class="pp-hero-pill pp-hero-pill--top-right">Multi-Tenant</span>
+          <span class="pp-hero-pill pp-hero-pill--mid-right">2,000+ req/sec</span>
+          <span class="pp-hero-pill pp-hero-pill--bottom">GDPR &amp; SOC2</span>
+          <span class="pp-hero-pill pp-hero-pill--mid-left">White-Label</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       STATS BAR
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-section--sm b-section--alt">
+    <div class="b-container">
+      <div class="pp-stats-bar">
+        <div class="pp-stat">
+          <span class="pp-stat-number">5</span>
+          <span class="pp-stat-label">Apps Included</span>
+        </div>
+        <div class="pp-stat">
+          <span class="pp-stat-number">630+</span>
+          <span class="pp-stat-label">Unit Tests</span>
+        </div>
+        <div class="pp-stat">
+          <span class="pp-stat-number">95%</span>
+          <span class="pp-stat-label">Pass Rate</span>
+        </div>
+        <div class="pp-stat">
+          <span class="pp-stat-number">2,000+</span>
+          <span class="pp-stat-label">Requests / Sec</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       COMPARISON
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">How Passport compares.</h2>
+      <p class="b-section-subtitle">Stop paying enterprise SaaS tax for IAM you can own outright.</p>
+
+      <div class="pp-comparison">
+
+        <!-- Auth0 / Okta -->
+        <div class="pp-comparison-col">
+          <div class="pp-comparison-header">
+            <h3>Auth0 / Okta</h3>
+            <p class="pp-comparison-price"><strong>$2,000 – $10,000+</strong> / month</p>
+          </div>
+          <div class="pp-comparison-row">
+            <span class="pp-comparison-label">Cost</span>
+            <span class="pp-comparison-value pp-comparison-value--bad">$2K–$10K+/month, scales with MAUs</span>
+          </div>
+          <div class="pp-comparison-row">
+            <span class="pp-comparison-label">Time to Market</span>
+            <span class="pp-comparison-value">Days to integrate, weeks to customise</span>
+          </div>
+          <div class="pp-comparison-row">
+            <span class="pp-comparison-label">White-Label</span>
+            <span class="pp-comparison-value pp-comparison-value--bad">Limited — provider branding visible</span>
+          </div>
+          <div class="pp-comparison-row">
+            <span class="pp-comparison-label">Multi-Tenant</span>
+            <span class="pp-comparison-value">Available at higher tiers</span>
+          </div>
+          <div class="pp-comparison-row">
+            <span class="pp-comparison-label">Maintenance</span>
+            <span class="pp-comparison-value pp-comparison-value--bad">Vendor-controlled, breaking changes</span>
+          </div>
+          <div class="pp-comparison-row">
+            <span class="pp-comparison-label">Customisation</span>
+            <span class="pp-comparison-value pp-comparison-value--bad">Constrained by vendor limits</span>
+          </div>
+          <div class="pp-comparison-row">
+            <span class="pp-comparison-label">Security Audit</span>
+            <span class="pp-comparison-value">Vendor audited — you trust their report</span>
+          </div>
+        </div>
+
+        <!-- DIY -->
+        <div class="pp-comparison-col">
+          <div class="pp-comparison-header">
+            <h3>DIY Solution</h3>
+            <p class="pp-comparison-price"><strong>4–12 weeks</strong> to build</p>
+          </div>
+          <div class="pp-comparison-row">
+            <span class="pp-comparison-label">Cost</span>
+            <span class="pp-comparison-value">High eng cost upfront + ongoing overhead</span>
+          </div>
+          <div class="pp-comparison-row">
+            <span class="pp-comparison-label">Time to Market</span>
+            <span class="pp-comparison-value pp-comparison-value--bad">4–12 weeks minimum, often longer</span>
+          </div>
+          <div class="pp-comparison-row">
+            <span class="pp-comparison-label">White-Label</span>
+            <span class="pp-comparison-value pp-comparison-value--good">Fully yours — if you build it</span>
+          </div>
+          <div class="pp-comparison-row">
+            <span class="pp-comparison-label">Multi-Tenant</span>
+            <span class="pp-comparison-value pp-comparison-value--bad">Requires careful architecture, easy to get wrong</span>
+          </div>
+          <div class="pp-comparison-row">
+            <span class="pp-comparison-label">Maintenance</span>
+            <span class="pp-comparison-value pp-comparison-value--bad">Your team owns security updates forever</span>
+          </div>
+          <div class="pp-comparison-row">
+            <span class="pp-comparison-label">Customisation</span>
+            <span class="pp-comparison-value pp-comparison-value--good">Unlimited — you wrote it</span>
+          </div>
+          <div class="pp-comparison-row">
+            <span class="pp-comparison-label">Security Audit</span>
+            <span class="pp-comparison-value pp-comparison-value--bad">Your responsibility, high risk if missed</span>
+          </div>
+        </div>
+
+        <!-- Passport (highlighted) -->
+        <div class="pp-comparison-col pp-comparison-col--highlight">
+          <div class="pp-comparison-header">
+            <h3>Passport</h3>
+            <p class="pp-comparison-price"><strong>&lt;$500/month</strong> hosting</p>
+          </div>
+          <div class="pp-comparison-row">
+            <span class="pp-comparison-label">Cost</span>
+            <span class="pp-comparison-value pp-comparison-value--good">Under $500/month hosting, one-time licence</span>
+          </div>
+          <div class="pp-comparison-row">
+            <span class="pp-comparison-label">Time to Market</span>
+            <span class="pp-comparison-value pp-comparison-value--good">1–2 weeks to deploy &amp; customise</span>
+          </div>
+          <div class="pp-comparison-row">
+            <span class="pp-comparison-label">White-Label</span>
+            <span class="pp-comparison-value pp-comparison-value--good">Built-in — your brand throughout</span>
+          </div>
+          <div class="pp-comparison-row">
+            <span class="pp-comparison-label">Multi-Tenant</span>
+            <span class="pp-comparison-value pp-comparison-value--good">Native — TenantId enforced at every layer</span>
+          </div>
+          <div class="pp-comparison-row">
+            <span class="pp-comparison-label">Maintenance</span>
+            <span class="pp-comparison-value pp-comparison-value--good">Clean architecture, easy to extend</span>
+          </div>
+          <div class="pp-comparison-row">
+            <span class="pp-comparison-label">Customisation</span>
+            <span class="pp-comparison-value pp-comparison-value--good">Full source code, no vendor limits</span>
+          </div>
+          <div class="pp-comparison-row">
+            <span class="pp-comparison-label">Security Audit</span>
+            <span class="pp-comparison-value pp-comparison-value--good">630+ tests, SOLID principles, GDPR controls</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       5 APPS
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section">
+    <div class="b-container">
+      <h2 class="b-section-title">Five applications. One complete platform.</h2>
+      <p class="b-section-subtitle">Passport ships 5 purpose-built frontend applications — every screen your users and admins need, already built and tested.</p>
+
+      <div class="pp-apps-grid">
+
+        <!-- Admin Dashboard -->
+        <div class="pp-app-card">
+          <div class="pp-app-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+              <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+            </svg>
+          </div>
+          <h3>Admin Dashboard</h3>
+          <p>Complete user and tenant administration with RBAC configuration and audit logging.</p>
+          <ul class="pp-app-features">
+            <li>User management — create, suspend, bulk import</li>
+            <li>Role &amp; permission management</li>
+            <li>RBAC configuration per tenant</li>
+            <li>Full audit log viewer</li>
+            <li>Security policy settings</li>
+          </ul>
+        </div>
+
+        <!-- Login Portal -->
+        <div class="pp-app-card">
+          <div class="pp-app-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+              <polyline points="10 17 15 12 10 7"/>
+              <line x1="15" y1="12" x2="3" y2="12"/>
+            </svg>
+          </div>
+          <h3>Login Portal</h3>
+          <p>White-label authentication screens with every login method your users expect.</p>
+          <ul class="pp-app-features">
+            <li>Email / password with bcrypt hashing</li>
+            <li>OAuth 2.0 social — Google, GitHub, Microsoft</li>
+            <li>CSRF protection built-in</li>
+            <li>Rate limiting &amp; brute-force prevention</li>
+            <li>Customisable to your brand</li>
+          </ul>
+        </div>
+
+        <!-- User Portal -->
+        <div class="pp-app-card">
+          <div class="pp-app-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+          <h3>User Portal</h3>
+          <p>Self-service account management so users can stay in control without raising support tickets.</p>
+          <ul class="pp-app-features">
+            <li>Profile &amp; display name management</li>
+            <li>Password change flow</li>
+            <li>Active session viewer &amp; revoke</li>
+            <li>Connected apps overview</li>
+            <li>2FA setup &amp; recovery</li>
+          </ul>
+        </div>
+
+        <!-- Security Dashboard -->
+        <div class="pp-app-card">
+          <div class="pp-app-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <h3>Security Dashboard</h3>
+          <p>Real-time threat monitoring and compliance reporting for your security team.</p>
+          <ul class="pp-app-features">
+            <li>Real-time login monitoring</li>
+            <li>Suspicious activity alerts</li>
+            <li>Device fingerprinting &amp; IP reputation</li>
+            <li>VPN / proxy / datacenter detection</li>
+            <li>Compliance reports — GDPR, SOC2, HIPAA</li>
+          </ul>
+        </div>
+
+        <!-- SSO Management -->
+        <div class="pp-app-card">
+          <div class="pp-app-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+            </svg>
+          </div>
+          <h3>SSO Management</h3>
+          <p>Register and manage external applications and debug SSO integrations from one console.</p>
+          <ul class="pp-app-features">
+            <li>Register external apps for SSO</li>
+            <li>Configure role mappings per app</li>
+            <li>Monitor live SSO request traffic</li>
+            <li>Discourse Connect debugging tools</li>
+            <li>SAML &amp; OIDC configuration (roadmap)</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       PLUGGABLE PROVIDERS
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">Works with your existing IAM. Or replace it.</h2>
+      <p class="b-section-subtitle">Passport implements 6 provider interface contracts. Swap your IAM backend with a single config line — no changes to any controller or business logic.</p>
+
+      <div class="pp-providers">
+
+        <!-- AWS Cognito -->
+        <div class="pp-provider-card">
+          <div class="pp-provider-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
+            </svg>
+          </div>
+          <h3>AWS Cognito</h3>
+          <span class="pp-provider-stat">Cloud-managed</span>
+          <p>Connect to an existing Cognito user pool. Leverage AWS infrastructure with Passport's UI and RBAC layer on top.</p>
+        </div>
+
+        <!-- Azure AD -->
+        <div class="pp-provider-card">
+          <div class="pp-provider-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+              <line x1="8" y1="21" x2="16" y2="21"/>
+              <line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+          </div>
+          <h3>Azure AD</h3>
+          <span class="pp-provider-stat">Enterprise directory</span>
+          <p>Integrate with Microsoft Entra ID for enterprise customers who already live in the Microsoft ecosystem.</p>
+        </div>
+
+        <!-- Okta -->
+        <div class="pp-provider-card">
+          <div class="pp-provider-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/>
+              <circle cx="12" cy="12" r="4"/>
+            </svg>
+          </div>
+          <h3>Okta</h3>
+          <span class="pp-provider-stat">Federated identity</span>
+          <p>Delegate authentication to Okta while retaining Passport's white-label screens, RBAC, and audit trail.</p>
+        </div>
+
+        <!-- BizFirst Native -->
+        <div class="pp-provider-card pp-provider-card--native">
+          <div class="pp-provider-icon">
+            <svg width="22" height="22" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 2L4 7V16C4 22.627 9.373 28.627 16 30C22.627 28.627 28 22.627 28 16V7L16 2Z"/>
+              <rect x="11" y="14" width="10" height="9" rx="1.5"/>
+              <path d="M13 14V11.5C13 10.12 14.343 9 16 9C17.657 9 19 10.12 19 11.5V14"/>
+            </svg>
+          </div>
+          <h3>BizFirst Passport Native</h3>
+          <span class="pp-provider-stat">2,000 – 3,000 req/sec</span>
+          <p>Self-hosted, local SQL, maximum performance. 4&ndash;6&times; faster than cloud IAM. Full data ownership — nothing leaves your infrastructure.</p>
+        </div>
+
+      </div>
+
+      <p class="pp-providers-note">
+        <strong>Swap provider with a single config line</strong> — no code changes in controllers or business logic.
+        All four providers implement the same 6 interface contracts.
+      </p>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       CORE FEATURES
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section">
+    <div class="b-container">
+      <h2 class="b-section-title">Everything IAM should include.</h2>
+      <p class="b-section-subtitle">Every critical IAM capability built-in from day one — not bolt-on add-ons you pay extra for.</p>
+
+      <div class="pp-features-grid">
+
+        <div class="pp-feature-card">
+          <div class="pp-feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+            </svg>
+          </div>
+          <h3>Multi-Tenant by Default</h3>
+          <p>TenantId is enforced at the database, API, and UI layers. Cross-tenant data leaks are architecturally impossible, not just policy-controlled.</p>
+        </div>
+
+        <div class="pp-feature-card">
+          <div class="pp-feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="5" r="3"/>
+              <circle cx="5" cy="19" r="3"/>
+              <circle cx="19" cy="19" r="3"/>
+              <line x1="12" y1="8" x2="5" y2="16"/>
+              <line x1="12" y1="8" x2="19" y2="16"/>
+            </svg>
+          </div>
+          <h3>Role-Based Access Control</h3>
+          <p>Hierarchical roles with fine-grained permission assignment. A permission resolver pattern with 5-minute cache and fail-secure design.</p>
+        </div>
+
+        <div class="pp-feature-card">
+          <div class="pp-feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+            </svg>
+          </div>
+          <h3>Full Audit Trail</h3>
+          <p>Every authentication and authorisation event is logged with timestamp, actor, outcome, and context. Non-repudiable records for compliance.</p>
+        </div>
+
+        <div class="pp-feature-card">
+          <div class="pp-feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="16 3 21 3 21 8"/>
+              <line x1="4" y1="20" x2="21" y2="3"/>
+              <polyline points="21 16 21 21 16 21"/>
+              <line x1="15" y1="15" x2="21" y2="21"/>
+            </svg>
+          </div>
+          <h3>Protocol Flexibility</h3>
+          <p>Discourse Connect live now. SAML 2.0 and OIDC on the roadmap. OAuth 2.0 social providers (Google, GitHub, Microsoft) included.</p>
+        </div>
+
+        <div class="pp-feature-card">
+          <div class="pp-feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+          <h3>Self-Service Portals</h3>
+          <p>5 purpose-built frontend applications covering every user and admin workflow — login, profile, admin, SSO, and security. Zero custom dev for standard flows.</p>
+        </div>
+
+        <div class="pp-feature-card">
+          <div class="pp-feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <h3>GDPR &amp; Compliance</h3>
+          <p>Data export and deletion tooling, consent management hooks, and compliance reports covering GDPR, SOC2, and HIPAA controls.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       USE CASES
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">How SaaS companies use Passport.</h2>
+      <p class="b-section-subtitle">Three common deployment patterns — each live in production weeks, not quarters.</p>
+
+      <div class="pp-use-cases">
+
+        <!-- Use case 1 -->
+        <div class="pp-use-case">
+          <div class="pp-use-case-header">
+            <div class="pp-use-case-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+                <polyline points="10 17 15 12 10 7"/>
+                <line x1="15" y1="12" x2="3" y2="12"/>
+              </svg>
+            </div>
+            <h3>SaaS Authentication Layer</h3>
+          </div>
+          <p class="pp-use-case-scenario">A B2B SaaS platform needs enterprise-grade auth — SSO, RBAC, audit logs — but can't justify the Auth0 bill as they scale past 10,000 MAUs.</p>
+          <p class="pp-use-case-outcome"><strong>Outcome:</strong> Deploy and customise Passport in 1–2 weeks. Full white-label. Multi-tenant ready for the next enterprise customer on day one.</p>
+          <span class="pp-cost-indicator">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="12" y1="1" x2="12" y2="23"/>
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+            </svg>
+            ~$500/month vs. $2–10K
+          </span>
+        </div>
+
+        <!-- Use case 2 -->
+        <div class="pp-use-case">
+          <div class="pp-use-case-header">
+            <div class="pp-use-case-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+              </svg>
+            </div>
+            <h3>Internal SSO Platform</h3>
+          </div>
+          <p class="pp-use-case-scenario">An enterprise with 15 internal tools needs single sign-on. Employees manage separate passwords for each app, causing support overhead and security risk.</p>
+          <p class="pp-use-case-outcome"><strong>Outcome:</strong> One Passport deployment, 15 apps registered via SSO Management. Users log in once. RBAC determines which apps each team accesses.</p>
+          <span class="pp-cost-indicator">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+            Zero password sprawl
+          </span>
+        </div>
+
+        <!-- Use case 3 -->
+        <div class="pp-use-case">
+          <div class="pp-use-case-header">
+            <div class="pp-use-case-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="16 3 21 3 21 8"/>
+                <line x1="4" y1="20" x2="21" y2="3"/>
+                <polyline points="21 16 21 21 16 21"/>
+                <line x1="15" y1="15" x2="21" y2="21"/>
+              </svg>
+            </div>
+            <h3>Federated Provider Migration</h3>
+          </div>
+          <p class="pp-use-case-scenario">A team needs to migrate from AWS Cognito to Azure AD after an acquisition — without downtime or a re-authentication event for users.</p>
+          <p class="pp-use-case-outcome"><strong>Outcome:</strong> Change one config line in Passport. The provider interface contract means zero disruption to controllers, business logic, or end users.</p>
+          <span class="pp-cost-indicator">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="23 4 23 10 17 10"/>
+              <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+            </svg>
+            Zero disruption migration
+          </span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       PROTOCOL STRIP
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section">
+    <div class="b-container">
+      <h2 class="b-section-title">Protocol support.</h2>
+      <p class="b-section-subtitle">Open standards coverage for every integration scenario — current and future.</p>
+
+      <div class="pp-protocol-strip">
+        <span class="pp-protocol-badge pp-protocol-badge--live">
+          <span class="pp-protocol-badge-dot" aria-hidden="true"></span>
+          Discourse Connect
+          <span class="pp-protocol-badge-status">Live</span>
+        </span>
+        <span class="pp-protocol-badge pp-protocol-badge--live">
+          <span class="pp-protocol-badge-dot" aria-hidden="true"></span>
+          OAuth 2.0 Social
+          <span class="pp-protocol-badge-status">Live — Google, GitHub, Microsoft</span>
+        </span>
+        <span class="pp-protocol-badge">
+          <span class="pp-protocol-badge-dot" aria-hidden="true"></span>
+          SAML 2.0
+          <span class="pp-protocol-badge-status">In Roadmap</span>
+        </span>
+        <span class="pp-protocol-badge">
+          <span class="pp-protocol-badge-dot" aria-hidden="true"></span>
+          OIDC
+          <span class="pp-protocol-badge-status">In Roadmap</span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       FINAL CTA
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-cta-section">
+    <div class="b-container">
+      <h2>Ready to add enterprise IAM to your SaaS?</h2>
+      <p>Talk to us about licensing Passport for your platform.</p>
+      <div class="b-btn-group">
+        <a href="https://bizfirstai.com/website/contact.html" class="b-btn b-btn-primary b-btn-large">Book a Demo</a>
+        <a href="./features.html" class="b-btn b-btn-secondary b-btn-large">See All Features</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="b-footer" id="pp-footer-container"></footer>
+
+  <script src="./assets/js/passport-layout.js"></script>
+</body>
+</html>

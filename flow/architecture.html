@@ -1,0 +1,410 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="https://bizfirstai.com/website/assets/Logo/logo-m.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Flow Architecture — Flow Studio 7-layer model and Flow Engine ProcessEngine internals.">
+  <title>Architecture — Flow by BizFirstAi</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://bizfirstai.com/website/assets/css/b-index.css">
+  <link rel="stylesheet" href="./flow.css">
+  <style>
+    .arch-layer {
+      border: 1px solid var(--b-border-default);
+      border-radius: var(--b-radius-lg);
+      padding: var(--b-space-5) var(--b-space-6);
+      position: relative;
+      transition: border-color var(--b-transition-fast);
+    }
+    .arch-layer:hover { border-color: var(--b-color-primary); }
+    .arch-layer + .arch-layer { margin-top: var(--b-space-2); }
+    .arch-layer__num {
+      position: absolute;
+      top: var(--b-space-3);
+      right: var(--b-space-4);
+      font-size: var(--b-font-size-xs);
+      font-weight: var(--b-font-weight-bold);
+      color: var(--b-color-primary);
+      opacity: 0.6;
+    }
+    .arch-layer__title {
+      font-size: var(--b-font-size-sm);
+      font-weight: var(--b-font-weight-semibold);
+      color: var(--b-text-primary);
+      margin-bottom: var(--b-space-1);
+    }
+    .arch-layer__pkg {
+      font-size: var(--b-font-size-xs);
+      color: var(--b-color-primary);
+      font-family: monospace;
+      margin-bottom: var(--b-space-2);
+    }
+    .arch-layer__desc {
+      font-size: var(--b-font-size-xs);
+      color: var(--b-text-muted);
+      line-height: 1.5;
+    }
+    .arch-arrow {
+      text-align: center;
+      color: var(--b-color-primary);
+      font-size: 1.2rem;
+      margin: var(--b-space-1) 0;
+      opacity: 0.5;
+    }
+    .state-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--b-space-2);
+      padding: var(--b-space-2) var(--b-space-3);
+      border-radius: var(--b-radius-full);
+      font-size: var(--b-font-size-xs);
+      font-weight: var(--b-font-weight-medium);
+      border: 1px solid;
+      margin: var(--b-space-1);
+    }
+    .state-pill--running { background: rgba(34,197,94,0.1); border-color: rgba(34,197,94,0.4); color: #22c55e; }
+    .state-pill--waiting { background: rgba(245,158,11,0.1); border-color: rgba(245,158,11,0.4); color: #f59e0b; }
+    .state-pill--done { background: rgba(99,102,241,0.1); border-color: rgba(99,102,241,0.4); color: #a5b4fc; }
+    .state-pill--fail { background: rgba(239,68,68,0.1); border-color: rgba(239,68,68,0.4); color: #f87171; }
+    .state-pill--neutral { background: var(--b-bg-surface); border-color: var(--b-border-default); color: var(--b-text-muted); }
+    .cap-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--b-space-3);
+      margin-top: var(--b-space-8);
+    }
+    .cap-item {
+      background: var(--b-bg-surface);
+      border: 1px solid var(--b-border-default);
+      border-radius: var(--b-radius-md);
+      padding: var(--b-space-4);
+    }
+    .cap-item__name {
+      font-size: var(--b-font-size-xs);
+      font-weight: var(--b-font-weight-semibold);
+      color: var(--b-color-primary);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: var(--b-space-1);
+    }
+    .cap-item__desc {
+      font-size: var(--b-font-size-xs);
+      color: var(--b-text-muted);
+    }
+    .scope-table { width: 100%; border-collapse: collapse; margin-top: var(--b-space-8); font-size: var(--b-font-size-sm); }
+    .scope-table th { padding: var(--b-space-3) var(--b-space-4); text-align: left; border-bottom: 2px solid var(--b-border-default); font-size: var(--b-font-size-xs); text-transform: uppercase; letter-spacing: 0.05em; color: var(--b-text-muted); }
+    .scope-table td { padding: var(--b-space-3) var(--b-space-4); border-bottom: 1px solid var(--b-border-subtle); color: var(--b-text-secondary); vertical-align: top; }
+    .scope-table td:first-child { font-family: monospace; color: var(--b-color-primary); font-size: var(--b-font-size-xs); }
+    .scope-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    @media (max-width: 768px) { .cap-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .cap-grid { grid-template-columns: 1fr; } }
+    body { overflow-x: hidden; }
+
+    /* ── Inline code ── */
+    code { word-break: break-word; overflow-wrap: break-word; }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .arch-hero-section { padding-top: var(--b-space-12) !important; }
+    }
+  </style>
+</head>
+<body>
+  <header id="flow-header"></header>
+
+  <!-- Hero -->
+  <section class="b-section b-section--default arch-hero-section" style="padding-top: var(--b-space-20);">
+    <div class="b-container">
+      <h1 class="b-section-title">Architecture</h1>
+      <p class="b-section-subtitle">Flow is two systems working together. Flow Studio is a 7-layer React/TypeScript frontend. Flow Engine is an ASP.NET Core orchestration engine. Here is how they are built.</p>
+    </div>
+  </section>
+
+  <!-- Studio Architecture -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">Flow Studio — 7-Layer Architecture</h2>
+      <p class="b-section-subtitle">Each layer can only depend on the layer below it. No upward dependencies. This makes every package independently testable and reusable.</p>
+
+      <div style="max-width: 680px; margin: var(--b-space-12) auto 0;">
+
+        <div class="arch-layer" style="background: var(--b-color-primary-subtle); border-color: var(--b-border-primary);">
+          <span class="arch-layer__num">Layer 6</span>
+          <div class="arch-layer__title">Main Application</div>
+          <div class="arch-layer__pkg">apps/studio</div>
+          <div class="arch-layer__desc">Vite entry point. Mounts WorkflowApp. Dev server on port 5173. 896 KB bundle.</div>
+        </div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-layer">
+          <span class="arch-layer__num">Layer 5</span>
+          <div class="arch-layer__title">React Components</div>
+          <div class="arch-layer__pkg">flow-studio-designer</div>
+          <div class="arch-layer__desc">100+ components: WorkflowApp, WorkflowEditor, Canvas, 20+ Node types, Toolbars, Modals, Dashboards. Hooks: useExecutionSignalR, useKeyboardShortcuts. 682 KB.</div>
+        </div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-layer">
+          <span class="arch-layer__num">Layer 4</span>
+          <div class="arch-layer__title">Core Framework</div>
+          <div class="arch-layer__pkg">flow-studio-core</div>
+          <div class="arch-layer__desc">EventBus (pub/sub), Translators (UI ↔ Backend), DataTransformers, Utilities, Mock data. ~50 KB.</div>
+        </div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-layer">
+          <span class="arch-layer__num">Layer 3</span>
+          <div class="arch-layer__title">Business Logic</div>
+          <div class="arch-layer__pkg">@flow-studio/services</div>
+          <div class="arch-layer__desc">WorkflowService, NodeFactoryService, backendToUiMapper, FormBuilderService, LayoutService, ProjectInitializationService. 22 KB.</div>
+        </div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-layer">
+          <span class="arch-layer__num">Layer 2</span>
+          <div class="arch-layer__title">State Management</div>
+          <div class="arch-layer__pkg">@flow-studio/store</div>
+          <div class="arch-layer__desc">6 Zustand stores: workflowStore (nodes, edges, undo/redo, dirty flag), designerModeStore, uiStore, authStore, executionHistoryStore, settingsStore. 49 KB.</div>
+        </div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-layer">
+          <span class="arch-layer__num">Layer 1</span>
+          <div class="arch-layer__title">API Integration</div>
+          <div class="arch-layer__pkg">@flow-studio/api</div>
+          <div class="arch-layer__desc">40 API client classes, baseApiClient, DTOs, 70+ endpoint routes, response mappers. 78 KB.</div>
+        </div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-layer">
+          <span class="arch-layer__num">Layer 0</span>
+          <div class="arch-layer__title">Type Definitions</div>
+          <div class="arch-layer__pkg">@flow-studio/types</div>
+          <div class="arch-layer__desc">Pure TypeScript interfaces — Workflow, Node, Edge, Group, Execution, UI types. Zero dependencies. Foundation for all other packages.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Engine Architecture -->
+  <section class="b-section b-section--default">
+    <div class="b-container">
+      <h2 class="b-section-title">Flow Engine — ProcessEngine Internals</h2>
+      <p class="b-section-subtitle">Built on SOLID principles and Domain-Driven Design. The engine runs 60+ NodeExecutor types in a stack-based execution model with full persistence and real-time event streaming.</p>
+
+      <div class="b-benefits-grid" style="margin-top: var(--b-space-12);">
+
+        <div class="b-benefit-card">
+          <h3>ProcessEngineService</h3>
+          <p>The public API. Accepts <code>ExecuteProcessRequest</code> and returns immediately with an ExecutionID. Actual execution runs in a background service scope — fire-and-forget. Clients receive progress via SignalR.</p>
+          <ul class="b-feature-list">
+            <li>ExecuteProcessAsync</li>
+            <li>PauseProcessExecutionAsync</li>
+            <li>ResumeProcessExecutionAsync</li>
+            <li>CancelProcessExecutionAsync</li>
+            <li>GetProcessExecutionStatusAsync</li>
+          </ul>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>OrchestrationProcessor</h3>
+          <p>The core execution engine, split across 8 partial classes for maintainability. Manages the full lifecycle: process → thread → element execution with branching, routing, and event publishing.</p>
+          <ul class="b-feature-list">
+            <li>ExecuteProcess (all threads)</li>
+            <li>ExecuteThread (individual workflows)</li>
+            <li>ExecuteElement (individual nodes)</li>
+            <li>Suspend / Continuation</li>
+            <li>Control (Pause / Resume / Cancel)</li>
+          </ul>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>Execution Stack (LIFO)</h3>
+          <p>Nodes are pushed onto a stack and popped for execution. After each node, the routing algorithm evaluates connection conditions and pushes the next node(s). Supports parallel branching by pushing multiple nodes.</p>
+          <ul class="b-feature-list">
+            <li>Stack-based LIFO model</li>
+            <li>Conditional routing per connection</li>
+            <li>Parallel branch push</li>
+            <li>Port-based output routing</li>
+          </ul>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>Four-Level Context Hierarchy</h3>
+          <p>Every execution carries a nested context: AppExecutionContext → ProcessExecutionContext → ProcessThreadExecutionContext → ProcessElementExecutionContext. Each level carries its own data, ID, and state.</p>
+          <ul class="b-feature-list">
+            <li>AppExecutionContext</li>
+            <li>ProcessExecutionContext</li>
+            <li>ProcessThreadExecutionContext</li>
+            <li>ProcessElementExecutionContext</li>
+          </ul>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>NodeExecutor Pattern</h3>
+          <p>All 60+ executors extend BaseNodeExecutor and follow a 3-part pattern: Validate (preconditions) → ExecuteInternalAsync (main logic) → Finalize (cleanup). Any exception returns a failed NodeExecutionResult with the error port.</p>
+          <ul class="b-feature-list">
+            <li>Validate(context)</li>
+            <li>ExecuteInternalAsync(context)</li>
+            <li>Finalize(context, result)</li>
+            <li>OutputPort routing result</li>
+          </ul>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>Data Persistence Layer</h3>
+          <p>Every execution, thread, and node result is persisted. Six core tables capture the full audit trail from start to finish.</p>
+          <ul class="b-feature-list">
+            <li>ProcessExecution</li>
+            <li>ProcessThreadExecution</li>
+            <li>ProcessElementExecution</li>
+            <li>ExecutionMemory</li>
+            <li>ApprovalRequest</li>
+            <li>SuspendedExecution</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 9-State Model -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">9-State Execution Model</h2>
+      <p class="b-section-subtitle">Every workflow and every node moves through a defined set of states. Nothing is ambiguous.</p>
+
+      <div style="display: flex; flex-wrap: wrap; gap: var(--b-space-3); margin-top: var(--b-space-10); justify-content: center;">
+        <span class="state-pill state-pill--neutral">0 — Idle</span>
+        <span class="state-pill state-pill--neutral">1 — Queued</span>
+        <span class="state-pill state-pill--running">2 — Running</span>
+        <span class="state-pill state-pill--waiting">3 — Paused</span>
+        <span class="state-pill state-pill--waiting">4 — Waiting (Approval / Timer)</span>
+        <span class="state-pill state-pill--done">5 — Completed</span>
+        <span class="state-pill state-pill--waiting">6 — Completed with Warnings</span>
+        <span class="state-pill state-pill--fail">7 — Failed</span>
+        <span class="state-pill state-pill--fail">8 — Cancelled</span>
+        <span class="state-pill state-pill--fail">9 — Timed Out</span>
+      </div>
+
+      <div style="margin-top: var(--b-space-12);">
+        <h3 class="b-section-title" style="font-size: var(--b-font-size-xl);">Execution Memory — 5 Variable Scopes</h3>
+        <p class="b-section-subtitle">Variables are scoped to the right level. Node output data is merged into the appropriate scope and passed forward automatically.</p>
+
+        <div class="scope-table-wrap">
+        <table class="scope-table">
+          <thead>
+            <tr>
+              <th>Scope</th>
+              <th>Lifetime</th>
+              <th>Use for</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>GlobalScope</td>
+              <td>Entire workflow execution</td>
+              <td>Data shared across all threads and nodes — e.g. input parameters, final results</td>
+            </tr>
+            <tr>
+              <td>ThreadScope</td>
+              <td>One ProcessThread</td>
+              <td>Data local to a workflow thread — isolated from parallel branches</td>
+            </tr>
+            <tr>
+              <td>NodeScope</td>
+              <td>One node execution</td>
+              <td>Temporary working data for a single node — cleared after the node finishes</td>
+            </tr>
+            <tr>
+              <td>LoopScope</td>
+              <td>One loop iteration</td>
+              <td>Loop counter, current item — reset on each iteration</td>
+            </tr>
+            <tr>
+              <td>TryCatchScope</td>
+              <td>One try/catch block</td>
+              <td>Error information, rollback data — available in catch and finally blocks</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NodeCapability System -->
+  <section class="b-section b-section--default">
+    <div class="b-container">
+      <h2 class="b-section-title">15+ NodeCapabilities</h2>
+      <p class="b-section-subtitle">Capabilities extend what a node can do beyond its base execution logic. Each node declares which capabilities it needs. The engine validates availability before execution.</p>
+
+      <div class="cap-grid">
+        <div class="cap-item">
+          <div class="cap-item__name">ActorInLoop</div>
+          <div class="cap-item__desc">Human approvals, task assignments, voting strategies (All / AnyOne / NofM)</div>
+        </div>
+        <div class="cap-item">
+          <div class="cap-item__name">Forms</div>
+          <div class="cap-item__desc">Form rendering and data capture via Atlas Forms integration</div>
+        </div>
+        <div class="cap-item">
+          <div class="cap-item__name">Messaging</div>
+          <div class="cap-item__desc">Email, SMS, Slack, Teams notifications — pub/sub channels</div>
+        </div>
+        <div class="cap-item">
+          <div class="cap-item__name">Identity</div>
+          <div class="cap-item__desc">User/role validation and auth via Passport</div>
+        </div>
+        <div class="cap-item">
+          <div class="cap-item__name">Entity</div>
+          <div class="cap-item__desc">Database persistence via Data Ocean entities</div>
+        </div>
+        <div class="cap-item">
+          <div class="cap-item__name">Datasource</div>
+          <div class="cap-item__desc">Data queries across registered datasource providers</div>
+        </div>
+        <div class="cap-item">
+          <div class="cap-item__name">Rules</div>
+          <div class="cap-item__desc">Business rule evaluation and condition checking</div>
+        </div>
+        <div class="cap-item">
+          <div class="cap-item__name">Webhooks</div>
+          <div class="cap-item__desc">Inbound, outbound, and callback endpoint management</div>
+        </div>
+        <div class="cap-item">
+          <div class="cap-item__name">Services</div>
+          <div class="cap-item__desc">External REST API service integration</div>
+        </div>
+        <div class="cap-item">
+          <div class="cap-item__name">Widgets</div>
+          <div class="cap-item__desc">UI components — charts, tables, metrics panels</div>
+        </div>
+        <div class="cap-item">
+          <div class="cap-item__name">Process</div>
+          <div class="cap-item__desc">Sub-workflow invocation and nested process management</div>
+        </div>
+        <div class="cap-item">
+          <div class="cap-item__name">MCP</div>
+          <div class="cap-item__desc">Model Context Protocol — standardised AI tool integration</div>
+        </div>
+        <div class="cap-item">
+          <div class="cap-item__name">DIDComm</div>
+          <div class="cap-item__desc">Decentralized identity communication for cross-org workflows</div>
+        </div>
+        <div class="cap-item">
+          <div class="cap-item__name">Execution</div>
+          <div class="cap-item__desc">Parallel and batch execution coordination</div>
+        </div>
+        <div class="cap-item">
+          <div class="cap-item__name">Discovery</div>
+          <div class="cap-item__desc">Capability enumeration and node self-description</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer id="flow-footer"></footer>
+
+  <script src="./flow-layout.js"></script>
+</body>
+</html>

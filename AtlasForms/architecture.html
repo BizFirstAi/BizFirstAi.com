@@ -1,0 +1,346 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="https://bizfirstai.com/website/assets/Logo/logo-m.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Atlas Forms Architecture — 17-package monorepo, 3-tier design, security layers.">
+  <title>Architecture — Atlas Forms by BizFirstAi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://bizfirstai.com/website/assets/css/b-index.css">
+  <link rel="stylesheet" href="./atlas.css">
+  <style>
+    body { overflow-x: hidden; }
+    .pkg-layer { border: 1px solid var(--b-border-default); border-radius: var(--b-radius-lg); padding: var(--b-space-5) var(--b-space-6); position: relative; transition: border-color var(--b-transition-fast); }
+    .pkg-layer:hover { border-color: var(--b-color-primary); }
+    .pkg-layer + .pkg-layer { margin-top: var(--b-space-2); }
+    .pkg-layer__tier { position: absolute; top: var(--b-space-3); right: var(--b-space-4); font-size: var(--b-font-size-xs); font-weight: var(--b-font-weight-bold); color: var(--b-color-primary); opacity: 0.6; }
+    .pkg-layer__title { font-size: var(--b-font-size-sm); font-weight: var(--b-font-weight-semibold); color: var(--b-text-primary); margin-bottom: var(--b-space-2); }
+    .pkg-layer__packages { display: flex; flex-wrap: wrap; gap: var(--b-space-2); margin-bottom: var(--b-space-2); }
+    .pkg-pill { font-size: var(--b-font-size-xs); background: var(--b-bg-raised); border: 1px solid var(--b-border-subtle); border-radius: var(--b-radius-sm); padding: 2px var(--b-space-2); color: var(--b-color-primary); font-family: monospace; }
+    .pkg-layer__desc { font-size: var(--b-font-size-xs); color: var(--b-text-muted); line-height: 1.5; }
+    .arch-arrow { text-align: center; color: var(--b-color-primary); font-size: 1.2rem; margin: var(--b-space-1) 0; opacity: 0.5; }
+    .sec-layer { display: flex; gap: var(--b-space-4); align-items: flex-start; padding: var(--b-space-4) var(--b-space-5); background: var(--b-bg-surface); border: 1px solid var(--b-border-default); border-radius: var(--b-radius-md); margin-bottom: var(--b-space-3); }
+    .sec-layer__num { width: 28px; height: 28px; border-radius: 50%; background: var(--b-color-primary-subtle); border: 1px solid var(--b-border-primary); display: flex; align-items: center; justify-content: center; font-size: var(--b-font-size-xs); font-weight: var(--b-font-weight-bold); color: var(--b-color-primary); flex-shrink: 0; }
+    .sec-layer__title { font-size: var(--b-font-size-sm); font-weight: var(--b-font-weight-semibold); color: var(--b-text-primary); margin-bottom: 2px; }
+    .sec-layer__desc { font-size: var(--b-font-size-xs); color: var(--b-text-muted); }
+    .mode-table { width: 100%; border-collapse: collapse; font-size: var(--b-font-size-sm); margin-top: var(--b-space-8); }
+    .mode-table th { padding: var(--b-space-3) var(--b-space-4); text-align: left; border-bottom: 2px solid var(--b-border-default); font-size: var(--b-font-size-xs); text-transform: uppercase; letter-spacing: 0.05em; color: var(--b-text-muted); }
+    .mode-table td { padding: var(--b-space-3) var(--b-space-4); border-bottom: 1px solid var(--b-border-subtle); color: var(--b-text-secondary); }
+    .mode-table td:first-child { font-family: monospace; color: var(--b-color-primary); font-size: var(--b-font-size-xs); }
+    .check-sm { color: var(--b-color-primary); font-size: var(--b-font-size-sm); }
+    .cross-sm { color: var(--b-text-muted); opacity: 0.4; }
+  </style>
+</head>
+<body>
+  <header id="atlas-header"></header>
+
+  <section class="b-section b-section--default" style="padding-top: var(--b-space-20);">
+    <div class="b-container">
+      <h1 class="b-section-title">Architecture</h1>
+      <p class="b-section-subtitle">Atlas Forms is a 17-package pnpm monorepo built on a strict 3-tier architecture. Core packages have zero external dependencies. Every layer can only depend downward.</p>
+    </div>
+  </section>
+
+  <!-- 3-Tier + Packages -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">17-Package Monorepo</h2>
+      <p class="b-section-subtitle">Packages are organized by responsibility. No upward dependencies — Layer N can only import from Layer N-1 or below.</p>
+
+      <div style="max-width: 700px; margin: var(--b-space-12) auto 0;">
+
+        <div class="pkg-layer" style="background: var(--b-color-primary-subtle); border-color: var(--b-border-primary);">
+          <span class="pkg-layer__tier">Layer 3 — Presentation</span>
+          <div class="pkg-layer__title">React Components</div>
+          <div class="pkg-layer__packages">
+            <span class="pkg-pill">player-components-react</span>
+            <span class="pkg-pill">designer-components-react</span>
+            <span class="pkg-pill">pages-player-react</span>
+            <span class="pkg-pill">pages-studio-react</span>
+            <span class="pkg-pill">ui-components-react</span>
+            <span class="pkg-pill">controls-builtin-js</span>
+            <span class="pkg-pill">controls-advanced-react</span>
+          </div>
+          <div class="pkg-layer__desc">Form display (Player), visual designer (Studio), 89+ built-in controls, advanced media/chart controls. All React 18 + TypeScript.</div>
+        </div>
+        <div class="arch-arrow">↓</div>
+
+        <div class="pkg-layer">
+          <span class="pkg-layer__tier">Layer 2 — Logic</span>
+          <div class="pkg-layer__title">Services, State &amp; Storage</div>
+          <div class="pkg-layer__packages">
+            <span class="pkg-pill">form-engine-js</span>
+            <span class="pkg-pill">state-react</span>
+            <span class="pkg-pill">api-client-js</span>
+            <span class="pkg-pill">storage-js</span>
+            <span class="pkg-pill">control-registry-js</span>
+            <span class="pkg-pill">client-js</span>
+            <span class="pkg-pill">themes-js</span>
+          </div>
+          <div class="pkg-layer__desc">FormEngine state, Zustand bindings, HTTP client with 80%+ caching, LocalStorage/IndexedDB persistence, plugin registry, unified client service, theme management.</div>
+        </div>
+        <div class="arch-arrow">↓</div>
+
+        <div class="pkg-layer">
+          <span class="pkg-layer__tier">Layer 1 — Foundation</span>
+          <div class="pkg-layer__title">Types, Schema &amp; Validation</div>
+          <div class="pkg-layer__packages">
+            <span class="pkg-pill">types-js</span>
+            <span class="pkg-pill">schema-js</span>
+            <span class="pkg-pill">validation-js</span>
+          </div>
+          <div class="pkg-layer__desc">88+ TypeScript type definitions. O(n) JSON schema parser. 6 built-in validators + custom extension framework. Zero external dependencies.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Package Details -->
+  <section class="b-section b-section--default">
+    <div class="b-container">
+      <h2 class="b-section-title">Key packages explained</h2>
+
+      <div class="b-benefits-grid">
+
+        <div class="b-benefit-card">
+          <h3>form-engine-js</h3>
+          <p>Central form state machine. Manages all value changes, dirty/touched state, validation lifecycle, and form events. Framework-agnostic — works without React.</p>
+          <ul class="b-feature-list">
+            <li>setFieldValue / getValues</li>
+            <li>validate() → ValidationResult</li>
+            <li>isDirty / isTouched / isSubmitting</li>
+            <li>Form snapshots (save/restore)</li>
+            <li>8 event types (change, blur, submit…)</li>
+          </ul>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>api-client-js</h3>
+          <p>HTTP integration layer with built-in caching, retry logic, and memory leak prevention. Four client classes cover all form API operations.</p>
+          <ul class="b-feature-list">
+            <li>FormDefinitionApiClient</li>
+            <li>FormDataApiClient</li>
+            <li>FormCategoryApiClient</li>
+            <li>FormTypeApiClient</li>
+            <li>80%+ fewer API calls via cache</li>
+          </ul>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>storage-js</h3>
+          <p>Transparent storage layer with automatic fallback. Drafts and form records persist across sessions with quota management and auto-cleanup.</p>
+          <ul class="b-feature-list">
+            <li>LocalStorageAdapter (5–10MB)</li>
+            <li>IndexedDBAdapter (100MB+)</li>
+            <li>Auto-fallback chain</li>
+            <li>Draft save / load / clear</li>
+            <li>Quota management &amp; cleanup</li>
+          </ul>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>validation-js</h3>
+          <p>Extensible validation framework. Six built-in validators cover the common cases. Custom validators are registered by name and referenced in form schema.</p>
+          <ul class="b-feature-list">
+            <li>required, length, numeric</li>
+            <li>pattern, email, url</li>
+            <li>Async validator support</li>
+            <li>Multi-field validators</li>
+            <li>Context-aware validation</li>
+          </ul>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>control-registry-js</h3>
+          <p>Singleton plugin registry for all 89+ controls plus any custom ones. Observer pattern notifies components when controls are registered or removed.</p>
+          <ul class="b-feature-list">
+            <li>register / unregister</li>
+            <li>get / getAll / has / count</li>
+            <li>getGroups() by category</li>
+            <li>subscribe() for changes</li>
+            <li>Search functionality</li>
+          </ul>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>themes-js</h3>
+          <p>Theme management with OS preference detection. Register custom themes alongside built-in light and dark. All tokens cover colors, typography, spacing, radius, shadows, and transitions.</p>
+          <ul class="b-feature-list">
+            <li>Light / Dark / Custom themes</li>
+            <li>watchSystemPreference()</li>
+            <li>toggle() Light ↔ Dark</li>
+            <li>Full token coverage</li>
+            <li>onChange() subscription</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Security -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">6-Layer Security Model</h2>
+      <p class="b-section-subtitle">The HTML control is the highest-risk control in any form system. Atlas Forms blocks 28+ confirmed XSS attack vectors through 6 independent security layers — all enforced by default.</p>
+
+      <div style="max-width: 680px; margin: var(--b-space-12) auto 0;">
+        <div class="sec-layer">
+          <div class="sec-layer__num">1</div>
+          <div>
+            <div class="sec-layer__title">HTML5 Entity Encoding</div>
+            <div class="sec-layer__desc">All user-supplied text encoded before insertion. &lt;script&gt; becomes &amp;lt;script&amp;gt; — never executed.</div>
+          </div>
+        </div>
+        <div class="sec-layer">
+          <div class="sec-layer__num">2</div>
+          <div>
+            <div class="sec-layer__title">Attribute Encoding</div>
+            <div class="sec-layer__desc">HTML attribute values double-encoded. Event handler injection (onclick=, onerror=) blocked at the attribute layer.</div>
+          </div>
+        </div>
+        <div class="sec-layer">
+          <div class="sec-layer__num">3</div>
+          <div>
+            <div class="sec-layer__title">CSS Sanitization</div>
+            <div class="sec-layer__desc">Inline styles parsed and sanitized. expression(), javascript:, and behavior: properties stripped before rendering.</div>
+          </div>
+        </div>
+        <div class="sec-layer">
+          <div class="sec-layer__num">4</div>
+          <div>
+            <div class="sec-layer__title">URL Validation</div>
+            <div class="sec-layer__desc">All href and src attributes validated. javascript: and data: URIs rejected. Only http://, https://, and relative paths allowed.</div>
+          </div>
+        </div>
+        <div class="sec-layer">
+          <div class="sec-layer__num">5</div>
+          <div>
+            <div class="sec-layer__title">Tag Allowlist</div>
+            <div class="sec-layer__desc">Only a curated allowlist of HTML tags are permitted in rich content. script, iframe, object, embed, and form tags are removed regardless of encoding.</div>
+          </div>
+        </div>
+        <div class="sec-layer">
+          <div class="sec-layer__num">6</div>
+          <div>
+            <div class="sec-layer__title">Content Security Policy</div>
+            <div class="sec-layer__desc">CSP headers enforced at the application layer. inline-script execution blocked. 40+ security tests covering all 28+ confirmed XSS vectors.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 Modes -->
+  <section class="b-section b-section--default">
+    <div class="b-container">
+      <h2 class="b-section-title">5 Operating Modes</h2>
+      <p class="b-section-subtitle">Every control has per-mode visibility settings. Show different fields to users vs admins. Present read-only data in view mode. Let designers configure in design mode.</p>
+
+      <div style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
+      <table class="mode-table">
+        <thead>
+          <tr>
+            <th>Mode</th>
+            <th>Editable</th>
+            <th>Primary use</th>
+            <th>Typical users</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>edit</td>
+            <td><span class="check-sm">Yes</span></td>
+            <td>Normal form filling</td>
+            <td>End users entering data in a workflow or standalone form</td>
+          </tr>
+          <tr>
+            <td>view</td>
+            <td><span class="cross-sm">No</span></td>
+            <td>Read-only display</td>
+            <td>Reviewers, approvers checking a submitted record</td>
+          </tr>
+          <tr>
+            <td>design</td>
+            <td><span class="check-sm">Yes</span></td>
+            <td>Form building</td>
+            <td>Form designers and developers creating or editing form schema</td>
+          </tr>
+          <tr>
+            <td>admin</td>
+            <td><span class="check-sm">Yes</span></td>
+            <td>Administrative operations</td>
+            <td>Admins managing tenant forms, overriding values, audit review</td>
+          </tr>
+          <tr>
+            <td>preview</td>
+            <td><span class="cross-sm">No</span></td>
+            <td>Testing with sample data</td>
+            <td>Designers and QA testing form appearance before publish</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Data flow -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">Data Flow</h2>
+      <p class="b-section-subtitle">From user input to backend persistence — every step typed, validated, and tracked.</p>
+
+      <div class="b-benefits-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--b-space-3); margin-top: var(--b-space-10);">
+        <div class="b-benefit-card" style="text-align:center; padding: var(--b-space-6);">
+          <div style="font-size: var(--b-font-size-xl); font-weight: var(--b-font-weight-black); color: var(--b-color-primary); margin-bottom: var(--b-space-2);">1</div>
+          <div style="font-size: var(--b-font-size-sm); font-weight: var(--b-font-weight-semibold); color: var(--b-text-primary);">User Input</div>
+          <div style="font-size: var(--b-font-size-xs); color: var(--b-text-muted); margin-top: var(--b-space-2);">React component (FormField)</div>
+        </div>
+        <div class="b-benefit-card" style="text-align:center; padding: var(--b-space-6);">
+          <div style="font-size: var(--b-font-size-xl); font-weight: var(--b-font-weight-black); color: var(--b-color-primary); margin-bottom: var(--b-space-2);">2</div>
+          <div style="font-size: var(--b-font-size-sm); font-weight: var(--b-font-weight-semibold); color: var(--b-text-primary);">Hook</div>
+          <div style="font-size: var(--b-font-size-xs); color: var(--b-text-muted); margin-top: var(--b-space-2);">useAtlasForm() from state-react</div>
+        </div>
+        <div class="b-benefit-card" style="text-align:center; padding: var(--b-space-6);">
+          <div style="font-size: var(--b-font-size-xl); font-weight: var(--b-font-weight-black); color: var(--b-color-primary); margin-bottom: var(--b-space-2);">3</div>
+          <div style="font-size: var(--b-font-size-sm); font-weight: var(--b-font-weight-semibold); color: var(--b-text-primary);">State Engine</div>
+          <div style="font-size: var(--b-font-size-xs); color: var(--b-text-muted); margin-top: var(--b-space-2);">FormEngine dirty/touch tracking</div>
+        </div>
+        <div class="b-benefit-card" style="text-align:center; padding: var(--b-space-6);">
+          <div style="font-size: var(--b-font-size-xl); font-weight: var(--b-font-weight-black); color: var(--b-color-primary); margin-bottom: var(--b-space-2);">4</div>
+          <div style="font-size: var(--b-font-size-sm); font-weight: var(--b-font-weight-semibold); color: var(--b-text-primary);">Validation</div>
+          <div style="font-size: var(--b-font-size-xs); color: var(--b-text-muted); margin-top: var(--b-space-2);">validation-js → ValidationResult</div>
+        </div>
+        <div class="b-benefit-card" style="text-align:center; padding: var(--b-space-6);">
+          <div style="font-size: var(--b-font-size-xl); font-weight: var(--b-font-weight-black); color: var(--b-color-primary); margin-bottom: var(--b-space-2);">5</div>
+          <div style="font-size: var(--b-font-size-sm); font-weight: var(--b-font-weight-semibold); color: var(--b-text-primary);">API Client</div>
+          <div style="font-size: var(--b-font-size-xs); color: var(--b-text-muted); margin-top: var(--b-space-2);">api-client-js → Backend</div>
+        </div>
+        <div class="b-benefit-card" style="text-align:center; padding: var(--b-space-6);">
+          <div style="font-size: var(--b-font-size-xl); font-weight: var(--b-font-weight-black); color: var(--b-color-primary); margin-bottom: var(--b-space-2);">6</div>
+          <div style="font-size: var(--b-font-size-sm); font-weight: var(--b-font-weight-semibold); color: var(--b-text-primary);">Storage</div>
+          <div style="font-size: var(--b-font-size-xs); color: var(--b-text-muted); margin-top: var(--b-space-2);">Draft auto-save to localStorage / IndexedDB</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="b-cta-section">
+    <div class="b-container">
+      <h2>Ready to integrate Atlas Forms?</h2>
+      <p>Follow the get-started guide or explore real-world examples.</p>
+      <div class="b-btn-group">
+        <a href="./get-started.html" class="b-btn b-btn-primary b-btn-large">Get Started</a>
+        <a href="./examples.html" class="b-btn b-btn-secondary b-btn-large">See Examples</a>
+      </div>
+    </div>
+  </section>
+
+  <footer id="atlas-footer"></footer>
+  <script src="./atlas-layout.js"></script>
+</body>
+</html>

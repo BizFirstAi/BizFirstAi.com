@@ -1,0 +1,927 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="https://bizfirstai.com/website/assets/Logo/logo-m.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Octopus Features — full capability breakdown of the enterprise AI Agent Engine by BizFirstAi. Composite architecture, multi-LLM, RAG, ProcessServer, MCP tool calling, and more.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Features — Octopus by BizFirstAi">
+  <meta property="og:description" content="Every capability of the Octopus AI Agent Engine: composite architecture, multi-LLM, ProcessServer workflows, MCP tool calling, RAG, and enterprise security.">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Features — Octopus by BizFirstAi">
+  <meta name="twitter:description" content="Complete feature breakdown of the Octopus enterprise AI Agent Engine.">
+
+  <title>Features — Octopus by BizFirstAi</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://bizfirstai.com/website/assets/css/b-index.css">
+  <style>
+    body { overflow-x: hidden; }
+    @media (max-width: 1024px) {
+      .b-benefits-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    }
+    @media (max-width: 768px) {
+      .b-benefits-grid { grid-template-columns: 1fr !important; }
+    }
+
+    /* ── CTA button group — stack on mobile ── */
+    @media (max-width: 600px) {
+      .b-cta-section .b-btn-group { flex-direction: column; align-items: stretch; }
+      .b-cta-section .b-btn-group .b-btn { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <header id="header-container"></header>
+
+  <!-- ════════════════════════════════════════════════════════════
+       HERO
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-hero-section" style="min-height:52vh;">
+    <div class="b-container">
+      <div class="b-hero-left">
+        <h1 class="b-hero-headline">Everything you need to run AI at scale.</h1>
+        <p class="b-hero-subheading">Octopus combines deep AI reasoning with workflow automation — every agent decision is planned, tool-assisted, and fully auditable from the first token to the final result.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECTION 1 — AI REASONING MEETS WORKFLOW AUTOMATION
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">AI reasoning meets workflow automation</h2>
+      <p class="b-section-subtitle">Octopus is a workflow-driven AI Agent Engine. Agents reason, plan, call tools, execute sub-workflows, and explain every decision — all inside a single auditable runtime.</p>
+
+      <div class="b-benefits-grid" style="margin-top:var(--b-space-16);">
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                <path d="M4.93 4.93a10 10 0 0 0 0 14.14"></path>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                <path d="M8.46 8.46a5 5 0 0 0 0 7.07"></path>
+              </svg>
+            </span>
+            AI Reasoning Engine
+          </h3>
+          <p>Each agent uses its assigned LLM to reason step-by-step, form plans, and select tools dynamically. The engine surfaces the chain-of-thought so every decision is explainable and reviewable.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+                <rect x="14" y="3" width="7" height="7" rx="1"></rect>
+                <rect x="3" y="14" width="7" height="7" rx="1"></rect>
+                <rect x="14" y="14" width="7" height="7" rx="1"></rect>
+              </svg>
+            </span>
+            ProcessServer Integration
+          </h3>
+          <p>AI agents are first-class citizens inside ProcessServer workflows. An AI Agent Node runs a full Octopus agent as one workflow step — combining intelligent reasoning with 26+ standard executors like IF/Switch, HTTP Request, Loop, and Human Approval.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+            </span>
+            Full Audit Trail
+          </h3>
+          <p>Every agent action, tool call, LLM response, and workflow step is written to an immutable audit log. Debug, replay, and prove compliance at any point in time — nothing is a black box.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECTION 2 — COMPOSITE ARCHITECTURE
+       ════════════════════════════════════════════════════════════ -->
+  <!-- ════════════════════════════════════════════════════════════
+       SECTION 3 — MULTI-LLM, PROVIDER-AGNOSTIC
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-section--default">
+    <div class="b-container">
+      <h2 class="b-section-title">Multi-LLM, provider-agnostic</h2>
+      <p class="b-section-subtitle">Connect any major LLM provider — or run local models — without changing your agent logic. Each agent carries its own model config independently from every other agent.</p>
+
+      <div class="b-benefits-grid" style="margin-top:var(--b-space-16);">
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="5" r="3"></circle>
+                <circle cx="5" cy="19" r="3"></circle>
+                <circle cx="19" cy="19" r="3"></circle>
+                <line x1="12" y1="8" x2="5.5" y2="16.5"></line>
+                <line x1="12" y1="8" x2="18.5" y2="16.5"></line>
+              </svg>
+            </span>
+            Supported Providers
+          </h3>
+          <p>First-class support for every leading LLM provider today.</p>
+          <ul class="b-feature-list">
+            <li>OpenAI — GPT-4, GPT-3.5 Turbo</li>
+            <li>Anthropic — Claude (all versions)</li>
+            <li>Azure OpenAI — enterprise-hosted deployments</li>
+            <li>DeepSeek — cost-efficient reasoning models</li>
+            <li>Google Gemini — multimodal foundation models</li>
+            <li>Local models via Microsoft Semantic Kernel</li>
+            <li>HuggingFace — planned Phase 2</li>
+          </ul>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"></path>
+              </svg>
+            </span>
+            Per-Agent Configuration
+          </h3>
+          <p>Every agent carries a fully independent LLM configuration.</p>
+          <ul class="b-feature-list">
+            <li>Provider selection per agent</li>
+            <li>Model version pinning</li>
+            <li>Temperature control (0.0 – 2.0)</li>
+            <li>Max token budget per call</li>
+            <li>Custom stop sequences</li>
+            <li>Provider-specific extended settings</li>
+          </ul>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="17 1 21 5 17 9"></polyline>
+                <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+                <polyline points="7 23 3 19 7 15"></polyline>
+                <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+              </svg>
+            </span>
+            Fallback Chains
+          </h3>
+          <p>Define ordered fallback sequences that keep pipelines running even when a provider is unavailable or over budget.</p>
+          <ul class="b-feature-list">
+            <li>Ordered fallback model list per agent</li>
+            <li>Cost cap triggers — switch on budget threshold</li>
+            <li>Latency-based routing rules</li>
+            <li>Automatic retry before escalating fallback</li>
+            <li>Zero downtime for production pipelines</li>
+            <li>All fallback decisions written to audit log</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECTION 4 — AI NODES INSIDE PROCESSSERVER WORKFLOWS
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-section--default">
+    <div class="b-container">
+      <h2 class="b-section-title">AI nodes inside ProcessServer workflows</h2>
+      <p class="b-section-subtitle">ProcessServer hosts two special AI executors alongside 26+ standard nodes — letting you blend deterministic workflow logic with generative AI in a single, unified pipeline.</p>
+
+      <div class="b-benefits-grid" style="margin-top:var(--b-space-16);">
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+            </span>
+            AI Agent Node
+          </h3>
+          <p>Runs a complete Octopus agent as a single workflow step inside ProcessServer.</p>
+          <ul class="b-feature-list">
+            <li>Receives input variables from upstream steps</li>
+            <li>Injects conversation context and RAG knowledge</li>
+            <li>Routes to success or error output ports</li>
+            <li>ProcessServer knows nothing about LLMs — all AI logic delegated to AgentService</li>
+            <li>Full agent audit trail attached to workflow run</li>
+            <li>Composable with any other ProcessServer executor</li>
+          </ul>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+            </span>
+            AI Function Node
+          </h3>
+          <p>Describe logic in plain language — the LLM generates executable code at runtime.</p>
+          <ul class="b-feature-list">
+            <li>Natural language function specification</li>
+            <li>LLM generates code on first execution</li>
+            <li>Sandboxed execution environment</li>
+            <li>Binds outputs directly to workflow variables</li>
+            <li>Generated code is cached for subsequent runs</li>
+            <li>No manual coding required for custom transforms</li>
+          </ul>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="8" y1="6" x2="21" y2="6"></line>
+                <line x1="8" y1="12" x2="21" y2="12"></line>
+                <line x1="8" y1="18" x2="21" y2="18"></line>
+                <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                <line x1="3" y1="18" x2="3.01" y2="18"></line>
+              </svg>
+            </span>
+            Mixed Workflow Execution
+          </h3>
+          <p>AI nodes and standard executors work side by side in a single workflow graph.</p>
+          <ul class="b-feature-list">
+            <li>IF / Switch conditional branching</li>
+            <li>HTTP Request — call any external API</li>
+            <li>Loop — iterate over collections</li>
+            <li>Human Approval gate — pause for review</li>
+            <li>Sub-workflow execution (nested pipelines)</li>
+            <li>26+ standard executors available today</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECTION 5 — TOOL CALLING VIA MCP
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">Tool calling via MCP</h2>
+      <p class="b-section-subtitle">Octopus implements the Model Context Protocol for tool calling — giving agents a standardised, discoverable way to act on the world beyond text generation.</p>
+
+      <div class="b-benefits-grid" style="margin-top:var(--b-space-16);">
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+              </svg>
+            </span>
+            Built-In Tools
+          </h3>
+          <p>A production-ready tool library ships with Octopus out of the box.</p>
+          <ul class="b-feature-list">
+            <li>GetInvoices — query financial records</li>
+            <li>QueryDatabase — structured data retrieval</li>
+            <li>SendEmail — transactional messaging</li>
+            <li>CallAPI — generic HTTP for any endpoint</li>
+            <li>GenerateReport — structured output generation</li>
+            <li>ExecuteWorkflow — trigger sub-workflows from within an agent</li>
+          </ul>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 20h9"></path>
+                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+              </svg>
+            </span>
+            Custom Tool Registration
+          </h3>
+          <p>Extend the tool library with your own business-specific tools in minutes.</p>
+          <ul class="b-feature-list">
+            <li>Implement the IToolProvider interface</li>
+            <li>Declare JSON schema for inputs and outputs</li>
+            <li>Automatic discovery by the AgentService</li>
+            <li>Async execution with full error propagation</li>
+            <li>Tool call records written to audit log</li>
+            <li>Per-user and per-agent tool access control</li>
+          </ul>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
+            </span>
+            Web Automation
+          </h3>
+          <p>The WebDriver plugin gives agents full browser control via Selenium and Playwright.</p>
+          <ul class="b-feature-list">
+            <li>Navigate to any URL</li>
+            <li>Extract page content and structured data</li>
+            <li>Fill and submit forms programmatically</li>
+            <li>Capture screenshots for evidence or review</li>
+            <li>Headless or headed execution modes</li>
+            <li>Works as a standard MCP tool — any agent can use it</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECTION 6 — RAG
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-section--default">
+    <div class="b-container">
+      <h2 class="b-section-title">RAG — grounded in your enterprise data</h2>
+      <p class="b-section-subtitle">Octopus retrieves relevant knowledge before every LLM call, so agents answer from your actual business data rather than model priors. Fully configurable per agent, per tenant.</p>
+
+      <div class="b-benefits-grid" style="margin-top:var(--b-space-16);">
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+              </svg>
+            </span>
+            Knowledge Sources
+          </h3>
+          <p>Ingest enterprise content from wherever it lives today.</p>
+          <ul class="b-feature-list">
+            <li>PDF documents — contracts, manuals, reports</li>
+            <li>Word documents — policies, SOPs</li>
+            <li>HTML pages — intranet and public web content</li>
+            <li>Database tables — live structured data</li>
+            <li>API endpoints — real-time external knowledge</li>
+            <li>Automatic chunking and embedding on upload</li>
+          </ul>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </span>
+            Semantic Retrieval
+          </h3>
+          <p>Vector similarity search returns the most relevant chunks before each LLM prompt.</p>
+          <ul class="b-feature-list">
+            <li>Qdrant vector database — high-performance retrieval</li>
+            <li>PGVector — PostgreSQL-native vector search</li>
+            <li>Configurable top-K results per agent</li>
+            <li>Adjustable similarity threshold per agent</li>
+            <li>Chunk size tuning for context precision</li>
+            <li>Retrieved chunks injected into agent context window</li>
+          </ul>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+              </svg>
+            </span>
+            Knowledge Collections
+          </h3>
+          <p>Organise documents into named, reusable collections — assigned per agent.</p>
+          <ul class="b-feature-list">
+            <li>Named collections — logical grouping of related documents</li>
+            <li>Per-agent collection assignment in AgentComposite</li>
+            <li>Tenant-isolated — no cross-tenant knowledge leakage</li>
+            <li>Collection-level access control</li>
+            <li>Managed through the knowledge-app micro-frontend</li>
+            <li>Retrieval tuning configurable per collection</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECTION 7 — MULTI-TURN CONVERSATION MANAGEMENT
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">Multi-turn conversation management</h2>
+      <p class="b-section-subtitle">ConversationComposite carries the full interaction state from the first message to the final outcome — across agents, sessions, and users — with nothing lost between turns.</p>
+
+      <div class="b-benefits-grid" style="margin-top:var(--b-space-16);">
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+              </svg>
+            </span>
+            Context Preservation
+          </h3>
+          <p>Every turn is remembered and made available to the LLM within the configured context window.</p>
+          <ul class="b-feature-list">
+            <li>Full message history persisted in ConversationComposite</li>
+            <li>Automatic context window management</li>
+            <li>Recent messages always included</li>
+            <li>Extracted variables carried across turns</li>
+            <li>Tool call history available for reasoning</li>
+            <li>Workflow execution state preserved mid-run</li>
+          </ul>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 4v6h6"></path>
+                <path d="M23 20v-6h-6"></path>
+                <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4-4.64 4.36A9 9 0 0 1 3.51 15"></path>
+              </svg>
+            </span>
+            Session Continuity
+          </h3>
+          <p>Conversations can be paused, handed off to another agent, and resumed without losing a single byte of state.</p>
+          <ul class="b-feature-list">
+            <li>Pause and resume at any conversation turn</li>
+            <li>Hand-off between agents with full context transfer</li>
+            <li>Complete rehydration from persisted CompositeState</li>
+            <li>Cross-session history per user</li>
+            <li>Tenant-scoped — UserComposite links all sessions</li>
+            <li>Human-in-the-loop approval gates supported</li>
+          </ul>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                <line x1="6" y1="1" x2="6" y2="4"></line>
+                <line x1="10" y1="1" x2="10" y2="4"></line>
+                <line x1="14" y1="1" x2="14" y2="4"></line>
+              </svg>
+            </span>
+            Real-Time Updates via SignalR
+          </h3>
+          <p>Users watch every step of agent reasoning and execution as it happens — no polling, no page refresh.</p>
+          <ul class="b-feature-list">
+            <li>SignalR WebSocket connection in the chat-app</li>
+            <li>Each tool call streamed to the UI as it executes</li>
+            <li>Each LLM reasoning step surfaced in real time</li>
+            <li>Workflow node transitions shown live</li>
+            <li>Error states and retries visible immediately</li>
+            <li>Structured step log available for post-run review</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECTION 8 — PLUGIN ECOSYSTEM
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-section--default">
+    <div class="b-container">
+      <h2 class="b-section-title">Plugin ecosystem</h2>
+      <p class="b-section-subtitle">Octopus is built on a composable plugin model. Five plugins are complete and production-ready today; the ecosystem grows with every release.</p>
+
+      <div class="b-benefits-grid" style="margin-top:var(--b-space-16);">
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                <line x1="6" y1="18" x2="6.01" y2="18"></line>
+              </svg>
+            </span>
+            SqlServerStorage
+          </h3>
+          <p>Composite persistence for all Octopus objects via SQL Server. Efficient selective hydration and caching keep query costs low even as conversation histories grow.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                <path d="M2 17l10 5 10-5"></path>
+                <path d="M2 12l10 5 10-5"></path>
+              </svg>
+            </span>
+            SemanticKernel
+          </h3>
+          <p>Microsoft Semantic Kernel integration for LLM orchestration. Enables local model execution and memory connectors — keeping data on-premises when required by policy.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+            </span>
+            WebDriver
+          </h3>
+          <p>Selenium and Playwright browser automation surfaced as a standard MCP tool. Agents can navigate, extract, fill forms, and screenshot any web page as part of their tool-calling chain.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                <line x1="9" y1="10" x2="15" y2="10"></line>
+              </svg>
+            </span>
+            ChatbotUI
+          </h3>
+          <p>Embeddable chatbot component that connects directly to the Octopus runtime via SignalR. Fully brandable — drop it into any web app and your users interact with agents instantly.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="12" y1="18" x2="12" y2="12"></line>
+                <line x1="9" y1="15" x2="15" y2="15"></line>
+              </svg>
+            </span>
+            Process
+          </h3>
+          <p>The full ProcessServer workflow engine as a plugin. Brings AI Agent Node, AI Function Node, and 26+ standard executors into the Octopus runtime as a single installable unit.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </span>
+            Build Your Own
+          </h3>
+          <p>The plugin SDK is open. Implement a plugin interface, declare your capabilities, and the Octopus runtime discovers and loads your plugin automatically. The extension-app gives admins a UI for install, configure, and health monitoring.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECTION 9 — SECURITY AND MULTI-TENANCY
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">Security and multi-tenancy</h2>
+      <p class="b-section-subtitle">TenantID is enforced at every service layer — AgentService, ConversationService, KnowledgeService, ProcessEngine. No cross-tenant data is ever accessible, even by accident.</p>
+
+      <div class="b-benefits-grid" style="margin-top:var(--b-space-16);">
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+            </span>
+            Tenant Isolation
+          </h3>
+          <p>Complete data separation baked into the architecture — not a filter layer bolted on top.</p>
+          <ul class="b-feature-list">
+            <li>TenantID enforced at every service layer</li>
+            <li>AgentService, ConversationService, KnowledgeService, ProcessEngine all tenant-scoped</li>
+            <li>Knowledge collections are tenant-isolated</li>
+            <li>User and conversation composites are tenant-bound</li>
+            <li>No shared state between tenants at any level</li>
+            <li>Suitable for SaaS multi-tenant deployment</li>
+          </ul>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </span>
+            Granular Permissions
+          </h3>
+          <p>Access control is defined at the resource level — not just the service level.</p>
+          <ul class="b-feature-list">
+            <li>Agent execution permission — per user, per agent</li>
+            <li>Per-tool calling permission — control exactly which tools each user can trigger</li>
+            <li>Knowledge collection access grants</li>
+            <li>Workflow execution permission checks</li>
+            <li>Role-based defaults with per-user overrides</li>
+            <li>All permission decisions captured in audit log</li>
+          </ul>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+              </svg>
+            </span>
+            Audit and Encryption
+          </h3>
+          <p>Immutable records and enterprise-grade encryption protect every interaction end to end.</p>
+          <ul class="b-feature-list">
+            <li>Immutable audit log on all agent actions</li>
+            <li>Tool calls, LLM responses, workflow steps all logged</li>
+            <li>AES-256 encryption at rest for all data</li>
+            <li>TLS in transit — all API and SignalR traffic</li>
+            <li>Azure KeyVault for encryption key management</li>
+            <li>Full trace replay from audit log for compliance review</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECTION 10 — FOUR PURPOSE-BUILT INTERFACES
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-section--default">
+    <div class="b-container">
+      <h2 class="b-section-title">Four purpose-built interfaces</h2>
+      <p class="b-section-subtitle">Every role gets a focused micro-frontend, all loading into a shared shell via Module Federation (React/Next.js). Admin, builder, end-user, and developer — each sees exactly what they need.</p>
+
+      <div class="b-benefits-grid" style="margin-top:var(--b-space-16);">
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </span>
+            agents-app
+          </h3>
+          <p>Admin and builder interface for creating and managing agents. Configure LLM providers, prompt templates, tool registrations, knowledge collection assignments, fallback chains, and related agent hand-offs — all without touching code.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 9h8"></path>
+                <path d="M8 13h6"></path>
+                <path d="M18 3a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h12z"></path>
+              </svg>
+            </span>
+            chat-app
+          </h3>
+          <p>End-user multi-turn conversation interface. Connected via SignalR — every tool call, LLM reasoning step, and workflow node transition is visible to the user as it happens. Structured step log available for post-run review.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              </svg>
+            </span>
+            knowledge-app
+          </h3>
+          <p>Knowledge curator interface for document upload, collection management, and retrieval tuning. Upload PDFs, Word docs, and HTML pages; organise them into named collections; adjust top-K, similarity threshold, and chunk size per collection.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path>
+                <line x1="16" y1="8" x2="2" y2="22"></line>
+                <line x1="17.5" y1="15" x2="9" y2="15"></line>
+              </svg>
+            </span>
+            extension-app
+          </h3>
+          <p>Developer and admin interface for the plugin ecosystem. Install, configure, and monitor plugin health in one place. Supports all five current plugins and any future custom plugins that implement the standard plugin interface.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       COMPOSITE ARCHITECTURE
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">Composite architecture</h2>
+      <p class="b-section-subtitle">Three rich composite objects carry the complete runtime state for every agent, conversation, and user. Selective hydration keeps memory lean; full rehydration restores every detail instantly.</p>
+
+      <div class="b-benefits-grid" style="margin-top:var(--b-space-16);">
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+              </svg>
+            </span>
+            AgentComposite
+          </h3>
+          <p>The complete definition of an agent, loaded in one object.</p>
+          <ul class="b-feature-list">
+            <li>LLM provider config and model version</li>
+            <li>Prompt templates and system instructions</li>
+            <li>Registered tool list with JSON schemas</li>
+            <li>Named knowledge collections and RAG settings</li>
+            <li>Related agent references for hand-off</li>
+            <li>Ordered fallback model list with cost caps</li>
+          </ul>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+              </svg>
+            </span>
+            ConversationComposite
+          </h3>
+          <p>Full multi-turn state persisted across every interaction.</p>
+          <ul class="b-feature-list">
+            <li>Complete message history</li>
+            <li>Active context window with extracted variables</li>
+            <li>Tool call records with inputs and outputs</li>
+            <li>Workflow execution state and step results</li>
+            <li>Pause / resume / hand-off with full rehydration</li>
+            <li>Tenant-scoped isolation enforced at service layer</li>
+          </ul>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </span>
+            UserComposite
+          </h3>
+          <p>Rich user model linking identity, access, and history.</p>
+          <ul class="b-feature-list">
+            <li>Role-based permissions and agent access list</li>
+            <li>Per-user preferences and UI settings</li>
+            <li>Full conversation history for this user</li>
+            <li>Accessible knowledge collections</li>
+            <li>Tenant-scoped — no cross-tenant leakage</li>
+            <li>Tool-level permission grants per user</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       WHAT IS COMING NEXT
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-section--default">
+    <div class="b-container">
+      <h2 class="b-section-title">What is coming next</h2>
+      <p class="b-section-subtitle">The MVP is complete and production-ready. The roadmap extends Octopus with deeper memory, richer models, and self-improving agent capabilities across the next two phases.</p>
+
+      <div class="b-benefits-grid" style="margin-top:var(--b-space-16);">
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+            </span>
+            Phase 2 — Q2 2026
+          </h3>
+          <p>Deeper intelligence and collaborative agents arriving in the next release cycle.</p>
+          <ul class="b-feature-list">
+            <li>Long-term memory across conversations</li>
+            <li>Advanced RAG reranking for higher retrieval precision</li>
+            <li>Agent-to-agent collaboration — structured inter-agent communication</li>
+            <li>Prompt auto-optimisation — agents improve their own prompts over time</li>
+          </ul>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+            </span>
+            Phase 3 — Q3 2026
+          </h3>
+          <p>Foundation model capabilities and agentic self-improvement on the horizon.</p>
+          <ul class="b-feature-list">
+            <li>Fine-tuning on company-specific data</li>
+            <li>Vision input — agents that understand images and documents visually</li>
+            <li>Voice input and output — spoken interaction with agents</li>
+            <li>Agentic self-improvement loops — agents that learn from their own runs</li>
+          </ul>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"></path>
+              </svg>
+            </span>
+            Planned Plugins
+          </h3>
+          <p>Two additional plugins are on the confirmed roadmap to extend the storage and retrieval ecosystem.</p>
+          <ul class="b-feature-list">
+            <li>HuggingFace — open-source model hosting and inference</li>
+            <li>Qdrant — dedicated vector database plugin with advanced indexing</li>
+            <li>Both follow the same plugin interface as today's five production plugins</li>
+            <li>Available via extension-app when released</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       CTA
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-cta-section">
+    <div class="b-container">
+      <h2>Ready to build with Octopus?</h2>
+      <p>MVP complete. Production-ready.</p>
+      <div class="b-btn-group">
+        <a href="./docs.html" class="b-btn b-btn-primary b-btn-large">Read the Docs</a>
+        <a href="https://community.bizfirstai.com/tag/octopus" class="b-btn b-btn-secondary b-btn-large" target="_blank" rel="noopener">Join the Community</a>
+      </div>
+    </div>
+  </section>
+
+  <footer id="footer-container"></footer>
+
+  <script src="./shared-layout.js"></script>
+</body>
+</html>

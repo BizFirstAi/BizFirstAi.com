@@ -1,0 +1,806 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="https://bizfirstai.com/website/assets/Logo/logo-m.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="DataOcean Features — Deep-dive into 48 data domains, design patterns, 4-layer authorization, performance SLAs, and compliance capabilities. The complete enterprise data architecture.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="DataOcean Features — Every Domain. Every Pattern. Pre-Built.">
+  <meta property="og:description" content="Deep-dive into DataOcean's 605+ tables, 48 domains, design patterns, authorization layers, and enterprise compliance capabilities.">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="DataOcean Features — Every Domain. Every Pattern. Pre-Built.">
+  <meta name="twitter:description" content="Deep-dive into DataOcean's architecture: 605+ tables, 48 domains, 4-layer auth, compliance, and observability.">
+
+  <title>DataOcean Features — Every Domain. Every Pattern. Pre-Built.</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://bizfirstai.com/website/assets/css/b-index.css">
+  <link rel="stylesheet" href="./assets/css/dataocean.css">
+  <style>body { overflow-x: hidden; }</style>
+</head>
+<body>
+
+  <header id="do-header-container"></header>
+
+  <!-- ════════════════════════════════════════════════════════════
+       PAGE HERO
+       ════════════════════════════════════════════════════════════ -->
+  <section class="do-page-hero">
+    <div class="do-page-hero__inner">
+      <div class="do-hero__badge">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.5"/>
+          <circle cx="6" cy="6" r="2" fill="currentColor"/>
+        </svg>
+        DataOcean &middot; Feature Reference
+      </div>
+      <h1 class="do-page-hero__headline">Every domain. Every pattern. Pre-built.</h1>
+      <p class="do-page-hero__sub">A deep-dive into DataOcean's architecture — 605+ tables across 48 domains, six foundational design patterns, 4-layer authorization, enterprise compliance, and real-time observability.</p>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       STATS RECAP BAR
+       ════════════════════════════════════════════════════════════ -->
+  <div class="do-stats-bar">
+    <div class="do-stats-bar__inner">
+      <div class="do-stat">
+        <span class="do-stat__number">605+</span>
+        <span class="do-stat__label">Tables</span>
+      </div>
+      <div class="do-stat__divider" aria-hidden="true"></div>
+      <div class="do-stat">
+        <span class="do-stat__number">48</span>
+        <span class="do-stat__label">Data Domains</span>
+      </div>
+      <div class="do-stat__divider" aria-hidden="true"></div>
+      <div class="do-stat">
+        <span class="do-stat__number">12,000+</span>
+        <span class="do-stat__label">Columns</span>
+      </div>
+      <div class="do-stat__divider" aria-hidden="true"></div>
+      <div class="do-stat">
+        <span class="do-stat__number">500+</span>
+        <span class="do-stat__label">Stored Procs</span>
+      </div>
+      <div class="do-stat__divider" aria-hidden="true"></div>
+      <div class="do-stat">
+        <span class="do-stat__number">200+</span>
+        <span class="do-stat__label">Views</span>
+      </div>
+      <div class="do-stat__divider" aria-hidden="true"></div>
+      <div class="do-stat">
+        <span class="do-stat__number">100+</span>
+        <span class="do-stat__label">Triggers</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════════
+       DOMAIN DEEP-DIVES
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section">
+    <div class="b-container">
+      <h2 class="b-section-title">Domain deep-dives.</h2>
+      <p class="b-section-subtitle">Eight core domains examined in detail — their purpose, key tables, concepts, and enterprise use cases.</p>
+
+      <div class="do-domain-deep-grid">
+
+        <!-- Forms & Atlas -->
+        <div class="do-domain-deep-card">
+          <div class="do-domain-deep-card__left">
+            <span class="do-domain-deep-card__label">Domain</span>
+            <h3 class="do-domain-deep-card__title">
+              Forms &amp; Atlas
+              <span class="do-domain-deep-card__count-badge">8 tables</span>
+            </h3>
+            <p class="do-domain-deep-card__desc">A flexible, schema-on-write data collection layer. Atlas Forms lets you define arbitrary forms at runtime — without schema migrations. Stores structured form definitions, field configurations, and submitted data records in a normalised model.</p>
+            <div class="do-domain-deep-card__concepts">
+              <div class="do-domain-deep-card__concept-label">Key Concepts</div>
+              <div>
+                <span class="do-domain-deep-card__concept-tag">Dynamic form builder</span>
+                <span class="do-domain-deep-card__concept-tag">Schema-on-write</span>
+                <span class="do-domain-deep-card__concept-tag">Field validation rules</span>
+                <span class="do-domain-deep-card__concept-tag">Category hierarchy</span>
+                <span class="do-domain-deep-card__concept-tag">Submission versioning</span>
+              </div>
+            </div>
+          </div>
+          <div class="do-domain-deep-card__right">
+            <div class="do-domain-deep-card__right-label">Key Tables</div>
+            <ul class="do-domain-deep-card__tables-list">
+              <li>Form</li>
+              <li>FormField</li>
+              <li>FormFieldOption</li>
+              <li>FormDataRecord</li>
+              <li>FormCategory</li>
+              <li>FormVersion</li>
+              <li>FormSubmission</li>
+              <li>FormPermission</li>
+            </ul>
+            <div class="do-domain-deep-card__use-label">Enterprise Use Cases</div>
+            <ul class="do-domain-deep-card__use-list">
+              <li>Dynamic intake forms without DBA involvement</li>
+              <li>Regulatory data collection with validation</li>
+              <li>Customer onboarding questionnaires</li>
+              <li>Internal audit and checklist workflows</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Workflow & Process -->
+        <div class="do-domain-deep-card">
+          <div class="do-domain-deep-card__left">
+            <span class="do-domain-deep-card__label">Domain</span>
+            <h3 class="do-domain-deep-card__title">
+              Workflow &amp; Process
+              <span class="do-domain-deep-card__count-badge">75 tables</span>
+            </h3>
+            <p class="do-domain-deep-card__desc">The largest domain. A complete process orchestration substrate — from visual workflow definition to runtime execution tracing. Supports 60+ node types covering decisions, AI agents, human tasks, API calls, timers, loops, and parallel branches.</p>
+            <div class="do-domain-deep-card__concepts">
+              <div class="do-domain-deep-card__concept-label">Key Concepts</div>
+              <div>
+                <span class="do-domain-deep-card__concept-tag">Process definition</span>
+                <span class="do-domain-deep-card__concept-tag">Node types (60+)</span>
+                <span class="do-domain-deep-card__concept-tag">Execution trace</span>
+                <span class="do-domain-deep-card__concept-tag">Connection routing</span>
+                <span class="do-domain-deep-card__concept-tag">Element properties</span>
+                <span class="do-domain-deep-card__concept-tag">Human-in-the-loop</span>
+              </div>
+            </div>
+          </div>
+          <div class="do-domain-deep-card__right">
+            <div class="do-domain-deep-card__right-label">Key Tables</div>
+            <ul class="do-domain-deep-card__tables-list">
+              <li>Process</li>
+              <li>ProcessVersion</li>
+              <li>ProcessElement</li>
+              <li>ProcessConnection</li>
+              <li>ProcessExecution</li>
+              <li>ProcessExecutionTrace</li>
+              <li>ProcessElementProperty</li>
+              <li>NodeCapabilityPolicy</li>
+            </ul>
+            <div class="do-domain-deep-card__use-label">Enterprise Use Cases</div>
+            <ul class="do-domain-deep-card__use-list">
+              <li>Approval and sign-off chains</li>
+              <li>AI-augmented business processes</li>
+              <li>Contract lifecycle management</li>
+              <li>Incident response automation</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- IAM & Identity -->
+        <div class="do-domain-deep-card">
+          <div class="do-domain-deep-card__left">
+            <span class="do-domain-deep-card__label">Domain</span>
+            <h3 class="do-domain-deep-card__title">
+              IAM &amp; Identity
+              <span class="do-domain-deep-card__count-badge">40 tables</span>
+            </h3>
+            <p class="do-domain-deep-card__desc">Enterprise identity and access management. Covers user accounts, multi-organization membership, RBAC roles and permissions, SSO federation, API key management, session tracking, and MFA — all multi-tenant from the ground up.</p>
+            <div class="do-domain-deep-card__concepts">
+              <div class="do-domain-deep-card__concept-label">Key Concepts</div>
+              <div>
+                <span class="do-domain-deep-card__concept-tag">User profiles</span>
+                <span class="do-domain-deep-card__concept-tag">Organization hierarchy</span>
+                <span class="do-domain-deep-card__concept-tag">RBAC roles</span>
+                <span class="do-domain-deep-card__concept-tag">Permission grants</span>
+                <span class="do-domain-deep-card__concept-tag">SSO federation</span>
+                <span class="do-domain-deep-card__concept-tag">API keys</span>
+              </div>
+            </div>
+          </div>
+          <div class="do-domain-deep-card__right">
+            <div class="do-domain-deep-card__right-label">Key Tables</div>
+            <ul class="do-domain-deep-card__tables-list">
+              <li>User</li>
+              <li>Organization</li>
+              <li>OrganizationMember</li>
+              <li>Role</li>
+              <li>Permission</li>
+              <li>UserRoleAssignment</li>
+              <li>SSOProvider</li>
+              <li>APIKey</li>
+            </ul>
+            <div class="do-domain-deep-card__use-label">Enterprise Use Cases</div>
+            <ul class="do-domain-deep-card__use-list">
+              <li>Enterprise SSO with AD/SAML/OIDC</li>
+              <li>Multi-organization access management</li>
+              <li>Fine-grained permission systems</li>
+              <li>Service-to-service API authentication</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Security & Compliance -->
+        <div class="do-domain-deep-card">
+          <div class="do-domain-deep-card__left">
+            <span class="do-domain-deep-card__label">Domain</span>
+            <h3 class="do-domain-deep-card__title">
+              Security &amp; Compliance
+              <span class="do-domain-deep-card__count-badge">4 tables</span>
+            </h3>
+            <p class="do-domain-deep-card__desc">The compliance backbone. A small but critical domain that provides the security policy engine, capability policy enforcement, and immutable audit log infrastructure that underpins SOX, HIPAA, and GDPR compliance across all other domains.</p>
+            <div class="do-domain-deep-card__concepts">
+              <div class="do-domain-deep-card__concept-label">Key Concepts</div>
+              <div>
+                <span class="do-domain-deep-card__concept-tag">Security policies</span>
+                <span class="do-domain-deep-card__concept-tag">Capability enforcement</span>
+                <span class="do-domain-deep-card__concept-tag">Immutable audit log</span>
+                <span class="do-domain-deep-card__concept-tag">Compliance records</span>
+              </div>
+            </div>
+          </div>
+          <div class="do-domain-deep-card__right">
+            <div class="do-domain-deep-card__right-label">Key Tables</div>
+            <ul class="do-domain-deep-card__tables-list">
+              <li>SecurityPolicy</li>
+              <li>NodeCapabilityPolicy</li>
+              <li>AuditLog</li>
+              <li>ComplianceRecord</li>
+            </ul>
+            <div class="do-domain-deep-card__use-label">Enterprise Use Cases</div>
+            <ul class="do-domain-deep-card__use-list">
+              <li>SOX financial control evidence</li>
+              <li>HIPAA access and modification audit</li>
+              <li>GDPR data processing records</li>
+              <li>Security policy enforcement at runtime</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Marketplace & Distribution -->
+        <div class="do-domain-deep-card">
+          <div class="do-domain-deep-card__left">
+            <span class="do-domain-deep-card__label">Domain</span>
+            <h3 class="do-domain-deep-card__title">
+              Marketplace &amp; Distribution
+              <span class="do-domain-deep-card__count-badge">35 tables</span>
+            </h3>
+            <p class="do-domain-deep-card__desc">Everything needed to run a commercial or internal marketplace — package publishing, versioning, review and rating systems, download tracking, publisher verification, and licence management. Supports SaaS app stores, agent marketplaces, and enterprise app distribution.</p>
+            <div class="do-domain-deep-card__concepts">
+              <div class="do-domain-deep-card__concept-label">Key Concepts</div>
+              <div>
+                <span class="do-domain-deep-card__concept-tag">Package versioning</span>
+                <span class="do-domain-deep-card__concept-tag">Publisher verification</span>
+                <span class="do-domain-deep-card__concept-tag">Reviews &amp; ratings</span>
+                <span class="do-domain-deep-card__concept-tag">Download tracking</span>
+                <span class="do-domain-deep-card__concept-tag">Licence management</span>
+              </div>
+            </div>
+          </div>
+          <div class="do-domain-deep-card__right">
+            <div class="do-domain-deep-card__right-label">Key Tables</div>
+            <ul class="do-domain-deep-card__tables-list">
+              <li>MarketplacePackage</li>
+              <li>PackageVersion</li>
+              <li>Publisher</li>
+              <li>PackageReview</li>
+              <li>PackageRating</li>
+              <li>PackageDownload</li>
+              <li>PackageLicence</li>
+              <li>MarketplaceCategory</li>
+            </ul>
+            <div class="do-domain-deep-card__use-label">Enterprise Use Cases</div>
+            <ul class="do-domain-deep-card__use-list">
+              <li>AI agent and workflow marketplace</li>
+              <li>Internal enterprise app store</li>
+              <li>Partner app distribution</li>
+              <li>ISV product catalogue management</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Community & Engagement -->
+        <div class="do-domain-deep-card">
+          <div class="do-domain-deep-card__left">
+            <span class="do-domain-deep-card__label">Domain</span>
+            <h3 class="do-domain-deep-card__title">
+              Community &amp; Engagement
+              <span class="do-domain-deep-card__count-badge">12 tables</span>
+            </h3>
+            <p class="do-domain-deep-card__desc">A reward, reputation, and community engagement engine. Supports gamification (points, badges, levels), community reputation scoring, reward grant management, and rule-based reward automation — suitable for developer communities, customer portals, and partner programs.</p>
+            <div class="do-domain-deep-card__concepts">
+              <div class="do-domain-deep-card__concept-label">Key Concepts</div>
+              <div>
+                <span class="do-domain-deep-card__concept-tag">Reward rules</span>
+                <span class="do-domain-deep-card__concept-tag">Reputation scoring</span>
+                <span class="do-domain-deep-card__concept-tag">Gamification levels</span>
+                <span class="do-domain-deep-card__concept-tag">Community activity</span>
+                <span class="do-domain-deep-card__concept-tag">Badge system</span>
+              </div>
+            </div>
+          </div>
+          <div class="do-domain-deep-card__right">
+            <div class="do-domain-deep-card__right-label">Key Tables</div>
+            <ul class="do-domain-deep-card__tables-list">
+              <li>RewardGrant</li>
+              <li>RewardRule</li>
+              <li>ReputationScore</li>
+              <li>CommunityActivity</li>
+              <li>Badge</li>
+              <li>BadgeGrant</li>
+              <li>EngagementLevel</li>
+              <li>RewardCatalogue</li>
+            </ul>
+            <div class="do-domain-deep-card__use-label">Enterprise Use Cases</div>
+            <ul class="do-domain-deep-card__use-list">
+              <li>Developer community gamification</li>
+              <li>Customer loyalty programs</li>
+              <li>Partner tier management</li>
+              <li>Internal employee recognition</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Payments & Billing -->
+        <div class="do-domain-deep-card">
+          <div class="do-domain-deep-card__left">
+            <span class="do-domain-deep-card__label">Domain</span>
+            <h3 class="do-domain-deep-card__title">
+              Payments &amp; Billing
+              <span class="do-domain-deep-card__count-badge">10 tables</span>
+            </h3>
+            <p class="do-domain-deep-card__desc">A complete billing and payments substrate. Supports subscription billing, one-time transactions, invoice generation, multiple payment gateway integrations, payment method management, and refund processing — with full audit trail on every financial event.</p>
+            <div class="do-domain-deep-card__concepts">
+              <div class="do-domain-deep-card__concept-label">Key Concepts</div>
+              <div>
+                <span class="do-domain-deep-card__concept-tag">Subscription lifecycle</span>
+                <span class="do-domain-deep-card__concept-tag">Invoice generation</span>
+                <span class="do-domain-deep-card__concept-tag">Gateway abstraction</span>
+                <span class="do-domain-deep-card__concept-tag">Refund processing</span>
+                <span class="do-domain-deep-card__concept-tag">Payment methods</span>
+              </div>
+            </div>
+          </div>
+          <div class="do-domain-deep-card__right">
+            <div class="do-domain-deep-card__right-label">Key Tables</div>
+            <ul class="do-domain-deep-card__tables-list">
+              <li>PaymentTransaction</li>
+              <li>Invoice</li>
+              <li>InvoiceLine</li>
+              <li>Subscription</li>
+              <li>PaymentGateway</li>
+              <li>PaymentMethod</li>
+              <li>Refund</li>
+              <li>BillingPlan</li>
+            </ul>
+            <div class="do-domain-deep-card__use-label">Enterprise Use Cases</div>
+            <ul class="do-domain-deep-card__use-list">
+              <li>SaaS subscription and usage billing</li>
+              <li>Marketplace transaction settlement</li>
+              <li>Multi-currency invoicing</li>
+              <li>Financial reconciliation reporting</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- AI & Automation -->
+        <div class="do-domain-deep-card">
+          <div class="do-domain-deep-card__left">
+            <span class="do-domain-deep-card__label">Domain</span>
+            <h3 class="do-domain-deep-card__title">
+              AI &amp; Automation
+              <span class="do-domain-deep-card__count-badge">101+ tables</span>
+            </h3>
+            <p class="do-domain-deep-card__desc">Four sub-domains covering the full AI automation stack: Agent definitions and teams, Channel routing and message queues, Conversation history and states, and the Extended Systems layer (AIFunction, AILLM, AIMCP, AIMonitor, AIScheduler). Together they form a production-grade AI backend.</p>
+            <div class="do-domain-deep-card__concepts">
+              <div class="do-domain-deep-card__concept-label">Key Concepts</div>
+              <div>
+                <span class="do-domain-deep-card__concept-tag">Agent profiles</span>
+                <span class="do-domain-deep-card__concept-tag">Knowledge bases</span>
+                <span class="do-domain-deep-card__concept-tag">Message queue</span>
+                <span class="do-domain-deep-card__concept-tag">Conversation state</span>
+                <span class="do-domain-deep-card__concept-tag">LLM registry</span>
+                <span class="do-domain-deep-card__concept-tag">Tool/MCP catalogue</span>
+                <span class="do-domain-deep-card__concept-tag">AI scheduler</span>
+              </div>
+            </div>
+          </div>
+          <div class="do-domain-deep-card__right">
+            <div class="do-domain-deep-card__right-label">Key Tables</div>
+            <ul class="do-domain-deep-card__tables-list">
+              <li>AIAgent</li>
+              <li>AIKnowledgeBase</li>
+              <li>AIChannel</li>
+              <li>AIMessageQueue</li>
+              <li>AIConversation</li>
+              <li>AIConversationMessage</li>
+              <li>AILLM</li>
+              <li>AIFunction</li>
+              <li>AIMCP</li>
+              <li>AIScheduler</li>
+            </ul>
+            <div class="do-domain-deep-card__use-label">Enterprise Use Cases</div>
+            <ul class="do-domain-deep-card__use-list">
+              <li>Multi-agent AI orchestration platforms</li>
+              <li>Conversational AI with persistent history</li>
+              <li>AI-powered workflow automation</li>
+              <li>LLM abstraction with fallback routing</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       DESIGN PATTERNS
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">Six foundational design patterns.</h2>
+      <p class="b-section-subtitle">Every table in DataOcean follows these patterns — applied consistently across all 605 tables, all 48 domains, from day one.</p>
+
+      <div class="do-pattern-grid">
+
+        <div class="do-pattern-card">
+          <div class="do-pattern-card__icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="3 6 5 6 21 6"/>
+              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+              <line x1="10" y1="11" x2="10" y2="17"/>
+              <line x1="14" y1="11" x2="14" y2="17"/>
+            </svg>
+          </div>
+          <h3 class="do-pattern-card__title">Soft Delete</h3>
+          <p class="do-pattern-card__how">Every table carries <code>Deleted BIT NOT NULL DEFAULT 0</code> and <code>Archived BIT NOT NULL DEFAULT 0</code>. Hard deletes are never issued. Filtered indexes on <code>Deleted=0</code> keep active-record queries at full speed.</p>
+          <p class="do-pattern-card__why">Why it matters: Data deleted by mistake can be recovered. Compliance regulations require data retention. Referential integrity is never broken by a missing row.</p>
+        </div>
+
+        <div class="do-pattern-card">
+          <div class="do-pattern-card__icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+            </svg>
+          </div>
+          <h3 class="do-pattern-card__title">Audit Trail</h3>
+          <p class="do-pattern-card__how">All 605 tables carry <code>CreatedOn</code>, <code>CreatedBy</code>, <code>LastModifiedOn</code>, and <code>LastModifiedBy</code>. 100+ triggers record every INSERT, UPDATE, and state change into the AuditLog table automatically.</p>
+          <p class="do-pattern-card__why">Why it matters: SOX, HIPAA, and GDPR all require demonstrable data lineage. Audit trail is the schema — not a layer bolted on later.</p>
+        </div>
+
+        <div class="do-pattern-card">
+          <div class="do-pattern-card__icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <h3 class="do-pattern-card__title">Multi-Tenancy</h3>
+          <p class="do-pattern-card__how"><code>TenantID UNIQUEIDENTIFIER NOT NULL</code> appears on every table. All stored procedures, views, and indexes are designed with TenantID as the leading key. Row-level security policies enforce tenant isolation at the engine level.</p>
+          <p class="do-pattern-card__why">Why it matters: Retrofitting TenantID onto a production schema is a catastrophic migration. DataOcean ships with it already on every table.</p>
+        </div>
+
+        <div class="do-pattern-card">
+          <div class="do-pattern-card__icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"/>
+              <polyline points="8 6 2 12 8 18"/>
+            </svg>
+          </div>
+          <h3 class="do-pattern-card__title">JSON Configuration</h3>
+          <p class="do-pattern-card__how">Tables with variable configuration use <code>ConfigJSON NVARCHAR(MAX)</code> columns with JSON Schema validation via check constraints. Avoids EAV anti-patterns while still supporting flexible, per-record configuration without schema changes.</p>
+          <p class="do-pattern-card__why">Why it matters: Extensibility without endless schema migrations. Configuration evolves at runtime; the schema stays stable.</p>
+        </div>
+
+        <div class="do-pattern-card">
+          <div class="do-pattern-card__icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <ellipse cx="12" cy="5" rx="9" ry="3"/>
+              <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+              <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+            </svg>
+          </div>
+          <h3 class="do-pattern-card__title">Data Segmentation</h3>
+          <p class="do-pattern-card__how"><code>SourceAppID</code>, <code>ClientAccountID</code>, <code>AppDomainID</code>, <code>DataDomainID</code>, and <code>DataSegmentID</code> provide five independent segmentation axes on every table. Zero-code data partitioning for multi-product and multi-client deployments.</p>
+          <p class="do-pattern-card__why">Why it matters: B2B2C architectures, white-label SaaS, and multi-product platforms all need clean data partitioning — without custom schemas for each product.</p>
+        </div>
+
+        <div class="do-pattern-card">
+          <div class="do-pattern-card__icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="2" y1="12" x2="22" y2="12"/>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+          </div>
+          <h3 class="do-pattern-card__title">Distributed System ID</h3>
+          <p class="do-pattern-card__how"><code>ResID UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID()</code> provides a stable, globally unique identifier on every row. Surrogate integer PKs are for local joins; ResID is for external references, replication, API responses, and distributed system federation.</p>
+          <p class="do-pattern-card__why">Why it matters: Systems that need to expose stable external IDs — APIs, webhooks, cross-system sync — don't leak internal surrogate keys.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       ARCHITECTURE LAYERS
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section">
+    <div class="b-container">
+      <h2 class="b-section-title">Architecture layers.</h2>
+      <p class="b-section-subtitle">DataOcean sits at the bottom of a clean, layered stack. Each layer has a single responsibility — no logic leaks between them.</p>
+
+      <div class="do-arch-stack">
+
+        <div class="do-arch-layer">
+          <div class="do-arch-layer__icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+              <line x1="8" y1="21" x2="16" y2="21"/>
+              <line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+          </div>
+          <span class="do-arch-layer__name">Application Layer</span>
+          <span class="do-arch-layer__detail">Web / Mobile / API clients</span>
+        </div>
+
+        <div class="do-arch-arrow" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M8 2v12M3 9l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <div class="do-arch-layer">
+          <div class="do-arch-layer__icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+            </svg>
+          </div>
+          <span class="do-arch-layer__name">Service Layer</span>
+          <span class="do-arch-layer__detail">Business logic, orchestration, domain services</span>
+        </div>
+
+        <div class="do-arch-arrow" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M8 2v12M3 9l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <div class="do-arch-layer">
+          <div class="do-arch-layer__icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22 6 12 13 2 6"/>
+            </svg>
+          </div>
+          <span class="do-arch-layer__name">Repository Layer</span>
+          <span class="do-arch-layer__detail">Domain repositories, query objects, specifications</span>
+        </div>
+
+        <div class="do-arch-arrow" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M8 2v12M3 9l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <div class="do-arch-layer">
+          <div class="do-arch-layer__icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"/>
+              <polyline points="8 6 2 12 8 18"/>
+            </svg>
+          </div>
+          <span class="do-arch-layer__name">Data Access Layer</span>
+          <span class="do-arch-layer__detail">Entity Framework Core · DbContext · Migrations</span>
+        </div>
+
+        <div class="do-arch-arrow" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M8 2v12M3 9l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <div class="do-arch-layer do-arch-layer--primary">
+          <div class="do-arch-layer__icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <ellipse cx="12" cy="5" rx="9" ry="3"/>
+              <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+              <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+            </svg>
+          </div>
+          <span class="do-arch-layer__name">DataOcean — SQL Server 2019+</span>
+          <span class="do-arch-layer__detail">605+ tables &middot; 48 domains &middot; 2,500+ indexes</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       COMPLIANCE & SECURITY
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">Compliance &amp; security built in.</h2>
+      <p class="b-section-subtitle">Enterprise regulatory requirements are architectural decisions — not afterthoughts. DataOcean's schema was designed to satisfy them from the first table.</p>
+
+      <div class="do-compliance-grid">
+
+        <div class="do-compliance-card">
+          <div class="do-compliance-card__icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <polyline points="9 12 11 14 15 10"/>
+            </svg>
+          </div>
+          <h3 class="do-compliance-card__title">SOX — Financial Integrity</h3>
+          <p class="do-compliance-card__body">Immutable audit trail on all financial tables. CreatedBy and LastModifiedBy fields are set by the database layer and cannot be bypassed by application code. Full change history for every transaction, approval, and override.</p>
+        </div>
+
+        <div class="do-compliance-card">
+          <div class="do-compliance-card__icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+            </svg>
+          </div>
+          <h3 class="do-compliance-card__title">HIPAA — Health Data</h3>
+          <p class="do-compliance-card__body">Access audit logging via triggers on all protected data tables. Row-level tenant isolation prevents cross-tenant data exposure. Soft delete ensures data retention for the required periods. Encryption at rest supported by SQL Server TDE.</p>
+        </div>
+
+        <div class="do-compliance-card">
+          <div class="do-compliance-card__icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="2" y1="12" x2="22" y2="12"/>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+          </div>
+          <h3 class="do-compliance-card__title">GDPR — Data Residency</h3>
+          <p class="do-compliance-card__body">DataSegmentID and TenantID enable geographic data partitioning. Soft delete supports right-to-be-forgotten workflows. Data processing records are maintained in the Compliance domain. JSON configuration columns support consent tracking.</p>
+        </div>
+
+        <div class="do-compliance-card">
+          <div class="do-compliance-card__icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+          </div>
+          <h3 class="do-compliance-card__title">Row-Level Security</h3>
+          <p class="do-compliance-card__body">SQL Server Row-Level Security policies enforce TenantID isolation at the storage engine layer — even direct database connections cannot read cross-tenant data. Application-layer security is a second defence, not the first.</p>
+        </div>
+
+        <div class="do-compliance-card">
+          <div class="do-compliance-card__icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/>
+            </svg>
+          </div>
+          <h3 class="do-compliance-card__title">Encryption</h3>
+          <p class="do-compliance-card__body">Encryption at rest via SQL Server Transparent Data Encryption (TDE). Encryption in transit via enforced TLS for all connections. Sensitive column encryption available via SQL Server Always Encrypted for PII and credential fields.</p>
+        </div>
+
+        <div class="do-compliance-card">
+          <div class="do-compliance-card__icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/>
+            </svg>
+          </div>
+          <h3 class="do-compliance-card__title">4-Layer Authorization</h3>
+          <p class="do-compliance-card__body">RBAC privilege system, ABAC scope hierarchy, node-level capability policies, and actor assignment gates. Four independently configurable authorization layers that compose to cover any enterprise access control requirement without custom code.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       OBSERVABILITY DOMAIN
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section">
+    <div class="b-container">
+      <h2 class="b-section-title">Built-in observability domain.</h2>
+      <p class="b-section-subtitle">15 dedicated observability tables give you real-time visibility into every execution, error, and performance metric — without bolting on an external APM tool.</p>
+
+      <div class="do-observability-grid">
+
+        <div class="do-obs-card">
+          <div class="do-obs-card__icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </div>
+          <h3 class="do-obs-card__title">Real-Time Metrics</h3>
+          <p class="do-obs-card__body">PerformanceMetric table captures query times, execution durations, and resource utilisation with millisecond precision. Aggregation views provide dashboard-ready summaries.</p>
+        </div>
+
+        <div class="do-obs-card">
+          <div class="do-obs-card__icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="12" y1="8" x2="12" y2="12"/>
+              <line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+          </div>
+          <h3 class="do-obs-card__title">Error Tracking</h3>
+          <p class="do-obs-card__body">ErrorTracking table stores structured error events with stack traces, severity levels, and correlation IDs. Linked to ProcessExecutionTrace for full root-cause context.</p>
+        </div>
+
+        <div class="do-obs-card">
+          <div class="do-obs-card__icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="20" x2="18" y2="10"/>
+              <line x1="12" y1="20" x2="12" y2="4"/>
+              <line x1="6" y1="20" x2="6" y2="14"/>
+            </svg>
+          </div>
+          <h3 class="do-obs-card__title">Performance Monitoring</h3>
+          <p class="do-obs-card__body">Indexed views aggregate performance data by time window, tenant, and operation type. Pre-built stored procedures return dashboard-ready datasets without custom reporting queries.</p>
+        </div>
+
+        <div class="do-obs-card">
+          <div class="do-obs-card__icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+            </svg>
+          </div>
+          <h3 class="do-obs-card__title">Execution Logs</h3>
+          <p class="do-obs-card__body">ExecutionLog captures every process and workflow run with start time, end time, status, and result payload. Supports full replay debugging and SLA measurement across all workflow types.</p>
+        </div>
+
+        <div class="do-obs-card">
+          <div class="do-obs-card__icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+              <polyline points="17 6 23 6 23 12"/>
+            </svg>
+          </div>
+          <h3 class="do-obs-card__title">Historical Trends</h3>
+          <p class="do-obs-card__body">Time-series data partitioned by date for efficient range queries. Rolling aggregates maintained via indexed views. Trend analysis covers throughput, error rates, and latency over configurable time windows.</p>
+        </div>
+
+        <div class="do-obs-card">
+          <div class="do-obs-card__icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+            </svg>
+          </div>
+          <h3 class="do-obs-card__title">Alerting</h3>
+          <p class="do-obs-card__body">AlertRule table defines threshold-based and anomaly-based alert conditions. AlertEvent table records every triggered alert with context. Integrates with AI Channel domain for multi-channel alert delivery.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       FINAL CTA
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-cta-section">
+    <div class="b-container">
+      <h2>Ready to deploy DataOcean?</h2>
+      <p>Talk to the team about licensing, deployment options, and how DataOcean fits into your existing architecture.</p>
+      <div class="b-btn-group">
+        <a href="https://bizfirstai.com/website/contact.html" class="b-btn b-btn-primary b-btn-large">Book a Demo</a>
+        <a href="./index.html" class="b-btn b-btn-secondary b-btn-large">Back to Overview</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="b-footer" id="do-footer-container"></footer>
+
+  <script src="./assets/js/dataocean-layout.js"></script>
+</body>
+</html>

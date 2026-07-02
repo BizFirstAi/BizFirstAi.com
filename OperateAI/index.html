@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OperateAI - Sovereign AI Registry</title>
+    <meta name="description" content="OperateAI - Decentralized AI Registry platform. Own your AI Agent identity permanently, verifiably, and autonomously.">
+    <meta name="keywords" content="AI, AI Registry, DID, Blockchain, Web3, OperateAI, BizFirst AI">
+    <meta name="author" content="BizFirst AI">
+
+    <!-- Open Graph Meta Tags for Social Media -->
+    <meta property="og:title" content="OperateAI - Sovereign AI Registry">
+    <meta property="og:description" content="OperateAI - Decentralized AI Registry platform. Own your AI Agent identity permanently, verifiably, and autonomously.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.bizfirstai.com/OperateAI/">
+    <meta property="og:image" content="https://www.bizfirstai.com/images/og-image.png">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="OperateAI - Sovereign AI Registry">
+    <meta name="twitter:description" content="OperateAI - Decentralized AI Registry platform. Own your AI Agent identity permanently, verifiably, and autonomously.">
+    <meta name="twitter:image" content="https://www.bizfirstai.com/images/og-image.png">
+
+    <link rel="shortcut icon" href="./images/favicon.ico">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/animations.css">
+    <link rel="stylesheet" href="./css/components.css">
+    <link rel="stylesheet" href="./css/common.css">
+
+    <style>
+    body { overflow-x: hidden; }
+        body { background: #111; }
+
+        /* ── Hero ── */
+        .oai-hero {
+            padding: 160px 0 80px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a2a0a 50%, #1a1a1a 100%);
+            position: relative; overflow: hidden; text-align: center; color: #fff;
+        }
+        .oai-hero::before {
+            content: ""; position: absolute; inset: 0;
+            background: radial-gradient(circle at 30% 40%, rgba(0,255,0,0.06) 0%, transparent 60%),
+                        radial-gradient(circle at 70% 60%, rgba(6,182,212,0.06) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .oai-hero .hero-icon {
+            width: 100px; height: 100px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+            font-size: 2.5rem; color: #fff; margin-bottom: 1.5rem;
+            box-shadow: 0 0 40px rgba(0,255,0,0.25);
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 40px rgba(0,255,0,0.25); }
+            50% { box-shadow: 0 0 60px rgba(0,255,0,0.4); }
+        }
+        .oai-hero h1 { font-size: 2.8rem; font-weight: 700; margin-bottom: 1rem; }
+        .oai-hero p.lead { font-size: 1.15rem; color: rgba(255,255,255,0.75); max-width: 640px; margin: 0 auto 2rem; }
+        .oai-hero .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .oai-hero .hero-tagline {
+            margin-top: 2.5rem; font-size: 0.8rem; color: rgba(255,255,255,0.4);
+            letter-spacing: 1px; text-transform: uppercase;
+        }
+
+        /* ── Section Divider ── */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            margin: 0;
+        }
+
+        /* ── Sections ── */
+        .oai-section {
+            padding: 80px 0;
+            background: linear-gradient(180deg, #141414 0%, #1a1a1a 100%);
+            color: #fff;
+        }
+        .oai-section-alt {
+            padding: 80px 0;
+            background: linear-gradient(180deg, #1a1a1a 0%, #141414 100%);
+            color: #fff;
+        }
+        .oai-section .section-header h2,
+        .oai-section-alt .section-header h2 {
+            color: #fff; font-size: 2rem; font-weight: 700;
+        }
+        .oai-section .section-header p,
+        .oai-section-alt .section-header p {
+            color: rgba(255,255,255,0.65);
+        }
+
+        /* ── Glassmorphism Cards ── */
+        .glass-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            height: 100%;
+            text-align: center;
+        }
+        .glass-card:hover {
+            background: rgba(255,255,255,0.08);
+            transform: translateY(-6px);
+            border-color: rgba(0,255,0,0.25);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4), 0 0 25px rgba(0,255,0,0.08);
+        }
+        .glass-card .card-icon {
+            width: 72px; height: 72px;
+            background: linear-gradient(135deg, rgba(0,255,0,0.15), rgba(6,182,212,0.1));
+            border-radius: 18px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.8rem; color: var(--accent-primary); margin: 0 auto 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        .glass-card:hover .card-icon { transform: scale(1.1) rotate(5deg); }
+        .glass-card h3 { color: #fff; font-size: 1.25rem; font-weight: 600; margin-bottom: 0.75rem; }
+        .glass-card p { color: rgba(255,255,255,0.65); font-size: 0.95rem; line-height: 1.6; }
+
+        /* ── Feature Mini Cards ── */
+        .feature-mini {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        .feature-mini:hover {
+            background: rgba(255,255,255,0.06);
+            border-color: rgba(0,255,0,0.2);
+            transform: translateY(-3px);
+        }
+        .feature-mini .mini-icon {
+            width: 48px; height: 48px;
+            background: linear-gradient(135deg, rgba(0,255,0,0.12), rgba(6,182,212,0.08));
+            border-radius: 12px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem; color: var(--accent-primary); margin: 0 auto 1rem;
+        }
+        .feature-mini h4 { color: #fff; font-size: 1rem; font-weight: 600; margin-bottom: 0.4rem; }
+        .feature-mini p { color: rgba(255,255,255,0.5); font-size: 0.85rem; margin: 0; }
+
+        /* ── Mermaid Container ── */
+        .mermaid-container {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* ── CTA ── */
+        .cta-section-oai {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #0a2a0a, #141414);
+            text-align: center; color: #fff;
+        }
+        .cta-section-oai h2 { font-size: 2rem; font-weight: 700; margin-bottom: 1rem; }
+        .cta-section-oai p { color: rgba(255,255,255,0.7); margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+
+        @media (max-width: 768px) {
+            .oai-hero { padding: 120px 0 60px; }
+            .oai-hero h1 { font-size: 2rem; }
+            .oai-hero p.lead { font-size: 1rem; }
+            .glass-card { padding: 1.5rem; }
+            .feature-mini { padding: 1rem; }
+        }
+
+        @media (max-width: 576px) {
+            .oai-hero h1 { font-size: 1.75rem; }
+            .oai-hero p.lead { font-size: 0.95rem; }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div id="status">
+            <div class="spinner">Loading...</div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top custom-nav">
+        <div class="container">
+            <a class="navbar-brand" href="./index.html">
+                <div class="logo-container">
+                    <img src="./images/logo.png" alt="BizFirst AI" class="logo-img">
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="features.html">Features</a></li>
+                    <li class="nav-item"><a class="nav-link" href="how-it-works.html">How It Works</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ecosystem.html">Ecosystem</a></li>
+                    <li class="nav-item"><a class="nav-link" href="did-identity.html">DID & Identity</a></li>
+                    <li class="nav-item"><a class="nav-link" href="agent-communication.html">Communication</a></li>
+                    <li class="nav-item"><a class="nav-link" href="getting-started.html">Get Started</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="oai-hero">
+        <div class="container" data-aos="fade-up" data-aos-duration="800">
+            <div class="hero-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+                </svg>
+            </div>
+            <h1><span class="gradient-text">OperateAI</span></h1>
+            <p class="lead">Own your AI Agent identity &mdash; permanently, verifiably, and autonomously. A decentralized AI Registry that no government or corporation can alter.</p>
+            <div class="hero-btns" data-aos="fade-up" data-aos-delay="200">
+                <a href="getting-started.html" class="btn btn-primary btn-lg">
+                    <i class="fas fa-rocket me-2"></i>Get Started
+                </a>
+                <a href="features.html" class="btn btn-outline-light btn-lg">
+                    <i class="fas fa-th-large me-2"></i>Explore Features
+                </a>
+            </div>
+            <p class="hero-tagline" data-aos="fade-up" data-aos-delay="400">A product by BizFirst AI &bull;</p>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- What is OperateAI -->
+    <section class="oai-section">
+        <div class="container">
+            <div class="section-header text-center" data-aos="fade-up">
+                <h2><i class="fas fa-cube me-3"></i>What is OperateAI?</h2>
+                <p>A decentralized platform for registering, managing, and certifying AI Agents on-chain</p>
+            </div>
+            <div class="row g-4 mt-4">
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="glass-card">
+                        <div class="card-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Sovereign Registry</h3>
+                        <p>Your AI Registry can only be altered by you or your trusted delegates. No government or private company can touch it. Full sovereignty over your agent's identity.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="glass-card">
+                        <div class="card-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <h3>Trusted Certification</h3>
+                        <p>Get your AI Agents certified by any certifying authority. You can even enroll yourself as a certification authority to build trust across the ecosystem.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="glass-card">
+                        <div class="card-icon">
+                            <i class="fas fa-fingerprint"></i>
+                        </div>
+                        <h3>Decentralized Identity</h3>
+                        <p>Every AI Agent gets a W3C-compliant DID automatically. Discoverable at {agentid}.operateDid.com with full DID documents and service endpoints.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Key Features Overview -->
+    <section class="oai-section-alt">
+        <div class="container">
+            <div class="section-header text-center" data-aos="fade-up">
+                <h2><i class="fas fa-th-large me-3"></i>Key Features</h2>
+                <p>Everything you need to build, manage, and publish sovereign AI Agents</p>
+            </div>
+            <div class="row g-3 mt-4">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-mini">
+                        <div class="mini-icon"><i class="fas fa-database"></i></div>
+                        <h4>AI Registry</h4>
+                        <p>Sovereign, delegate-controlled agent registry on-chain</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="150">
+                    <div class="feature-mini">
+                        <div class="mini-icon"><i class="fas fa-certificate"></i></div>
+                        <h4>Certification</h4>
+                        <p>Third-party trust via certifying authorities</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-mini">
+                        <div class="mini-icon"><i class="fas fa-hdd"></i></div>
+                        <h4>Data Registration</h4>
+                        <p>On-chain memory and RAG data storage</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="250">
+                    <div class="feature-mini">
+                        <div class="mini-icon"><i class="fas fa-fingerprint"></i></div>
+                        <h4>DID Identity</h4>
+                        <p>W3C-compliant Decentralized Identifiers</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-mini">
+                        <div class="mini-icon"><i class="fas fa-satellite-dish"></i></div>
+                        <h4>DIDComm</h4>
+                        <p>Agent-to-agent encrypted messaging</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="350">
+                    <div class="feature-mini">
+                        <div class="mini-icon"><i class="fas fa-file-signature"></i></div>
+                        <h4>Document Signing</h4>
+                        <p>Autonomous document signing for agents</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4" data-aos="fade-up" data-aos-delay="400">
+                <a href="features.html" class="btn btn-outline-light">
+                    <i class="fas fa-arrow-right me-2"></i>View All Features in Detail
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Architecture Overview (Mermaid) -->
+    <section class="oai-section">
+        <div class="container">
+            <div class="section-header text-center" data-aos="fade-up">
+                <h2><i class="fas fa-project-diagram me-3"></i>How It All Connects</h2>
+                <p>From registration to marketplace &mdash; the OperateAI architecture at a glance</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="mermaid-container" data-aos="zoom-in" data-aos-duration="1000">
+                        <div class="mermaid">
+graph LR
+    OW[Operate Wallet] --> REG[AI Registry]
+    REG --> DID[DID Identity]
+    REG --> DATA[Data Registration]
+    DID --> CERT[Certification]
+    DID --> COMM[DIDComm]
+    CERT --> DAO[Marketplace]
+    COMM --> DOC[Document Signing]
+
+    style OW fill:#0a2a0a,stroke:#00ff00,color:#fff
+    style REG fill:#0a2a0a,stroke:#00ff00,color:#fff
+    style DID fill:#0a2a0a,stroke:#06B6D4,color:#fff
+    style DATA fill:#141414,stroke:#06B6D4,color:#fff
+    style CERT fill:#0a2a0a,stroke:#00ff00,color:#fff
+    style COMM fill:#141414,stroke:#06B6D4,color:#fff
+    style DAO fill:#0a2a0a,stroke:#F59E0B,color:#fff
+    style DOC fill:#141414,stroke:#00ff00,color:#fff
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4" data-aos="fade-up" data-aos-delay="200">
+                <a href="how-it-works.html" class="btn btn-outline-light">
+                    <i class="fas fa-route me-2"></i>See the Full Registration Flow
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Ecosystem Preview -->
+    <section class="oai-section-alt">
+        <div class="container">
+            <div class="section-header text-center" data-aos="fade-up">
+                <h2><i class="fas fa-network-wired me-3"></i>Powered by 12+ Products</h2>
+                <p>OperateAI leverages a comprehensive ecosystem of BizFirst products and blockchain partners</p>
+            </div>
+            <div class="row g-3 mt-4 justify-content-center">
+                <div class="col-lg-2 col-md-3 col-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="feature-mini">
+                        <div class="mini-icon"><i class="fas fa-wallet"></i></div>
+                        <h4>Wallet</h4>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-4" data-aos="zoom-in" data-aos-delay="150">
+                    <div class="feature-mini">
+                        <div class="mini-icon"><i class="fas fa-robot"></i></div>
+                        <h4>AI App</h4>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-4" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="feature-mini">
+                        <div class="mini-icon"><i class="fas fa-fingerprint"></i></div>
+                        <h4>DID</h4>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-4" data-aos="zoom-in" data-aos-delay="250">
+                    <div class="feature-mini">
+                        <div class="mini-icon"><i class="fas fa-bolt"></i></div>
+                        <h4>EdgeStream</h4>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-4" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="feature-mini">
+                        <div class="mini-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                        <h4>IPFS</h4>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-4" data-aos="zoom-in" data-aos-delay="350">
+                    <div class="feature-mini">
+                        <div class="mini-icon"><i class="fas fa-store"></i></div>
+                        <h4>DAO</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4" data-aos="fade-up" data-aos-delay="400">
+                <a href="ecosystem.html" class="btn btn-outline-light">
+                    <i class="fas fa-arrow-right me-2"></i>Explore the Full Ecosystem
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- CTA -->
+    <section class="cta-section-oai">
+        <div class="container" data-aos="zoom-in">
+            <i class="fas fa-rocket" style="font-size:2.5rem; color: var(--accent-primary); margin-bottom: 1.5rem;"></i>
+            <h2>Start Building Your Sovereign AI Registry</h2>
+            <p>Download the Operate Wallet, create your first AI Agent, and publish it to the decentralized marketplace.</p>
+            <div class="d-flex gap-3 justify-content-center flex-wrap">
+                <a href="getting-started.html" class="btn btn-primary btn-lg">
+                    <i class="fas fa-rocket me-2"></i>Get Started
+                </a>
+                <a href="ecosystem.html" class="btn btn-outline-light btn-lg">
+                    <i class="fas fa-network-wired me-2"></i>View Ecosystem
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content text-center">
+                <div class="footer-logo" data-aos="fade-up">
+                    <img src="./images/logo.png" alt="BizFirst AI" class="footer-logo-img">
+                </div>
+                <div class="footer-social" data-aos="fade-up" data-aos-delay="400">
+                    <a href="https://www.youtube.com/@operatecrypto" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="https://twitter.com/OperateID" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://discord.gg/F6NjA5dzZV" target="_blank"><i class="fab fa-discord"></i></a>
+                    <a href="https://github.com/operatecrypto" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://t.me/operatecrypto" target="_blank"><i class="fab fa-telegram"></i></a>
+                </div>
+                <div class="footer-bottom" data-aos="fade-up" data-aos-delay="600">
+                    <p>&copy; 2024 BizFirst AI. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="./js/main.js"></script>
+    <script src="./js/animations.js"></script>
+    <script src="./js/components.js"></script>
+
+    <!-- Mermaid -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            theme: 'dark',
+            themeVariables: {
+                primaryColor: '#0a2a0a',
+                primaryBorderColor: '#00ff00',
+                primaryTextColor: '#fff',
+                lineColor: '#06B6D4',
+                secondaryColor: '#141414',
+                tertiaryColor: '#1a1a1a',
+                fontFamily: 'Poppins'
+            }
+        });
+    </script>
+</body>
+
+</html>

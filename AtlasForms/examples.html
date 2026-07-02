@@ -1,0 +1,308 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="https://bizfirstai.com/website/assets/Logo/logo-m.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Atlas Forms Examples — Real-world form patterns across healthcare, finance, HR, and more.">
+  <title>Examples — Atlas Forms by BizFirstAi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://bizfirstai.com/website/assets/css/b-index.css">
+  <link rel="stylesheet" href="./atlas.css">
+  <style>
+    body { overflow-x: hidden; }
+    .ex-tag { display: inline-flex; align-items: center; gap: var(--b-space-2); background: var(--b-color-primary-subtle); border: 1px solid var(--b-border-primary); border-radius: var(--b-radius-full); padding: var(--b-space-1) var(--b-space-3); font-size: var(--b-font-size-xs); font-weight: var(--b-font-weight-medium); color: var(--b-color-primary); margin-bottom: var(--b-space-4); }
+    .ex-header { border-bottom: 1px solid var(--b-border-subtle); padding-bottom: var(--b-space-6); margin-bottom: var(--b-space-8); }
+    .ex-section { margin-bottom: var(--b-space-20); }
+    .ex-controls { display: flex; flex-wrap: wrap; gap: var(--b-space-2); margin: var(--b-space-5) 0; }
+    .ex-control { background: var(--b-bg-surface); border: 1px solid var(--b-border-default); border-radius: var(--b-radius-md); padding: var(--b-space-2) var(--b-space-3); font-size: var(--b-font-size-xs); font-family: monospace; color: var(--b-color-primary); }
+    .ex-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--b-space-4); margin-top: var(--b-space-6); }
+    .ex-detail { background: var(--b-bg-surface); border: 1px solid var(--b-border-default); border-radius: var(--b-radius-lg); padding: var(--b-space-5); }
+    .ex-detail__label { font-size: var(--b-font-size-xs); font-weight: var(--b-font-weight-bold); color: var(--b-color-primary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: var(--b-space-2); }
+    .ex-detail__value { font-size: var(--b-font-size-sm); color: var(--b-text-secondary); line-height: 1.5; }
+    .ex-schema { background: var(--b-bg-surface); border: 1px solid var(--b-border-default); border-radius: var(--b-radius-md); padding: var(--b-space-4) var(--b-space-5); font-family: monospace; font-size: var(--b-font-size-xs); color: var(--b-color-primary-light); overflow-x: auto; margin-top: var(--b-space-5); line-height: 1.6; }
+    .ex-result { display: flex; align-items: center; gap: var(--b-space-3); background: rgba(34,197,94,0.06); border: 1px solid rgba(34,197,94,0.25); border-radius: var(--b-radius-md); padding: var(--b-space-4); font-size: var(--b-font-size-sm); color: var(--b-text-secondary); margin-top: var(--b-space-5); }
+    .ex-result svg { width: 20px; height: 20px; color: var(--b-color-primary); flex-shrink: 0; }
+    @media (max-width: 768px) { .ex-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header id="atlas-header"></header>
+
+  <section class="b-section b-section--default" style="padding-top: var(--b-space-20);">
+    <div class="b-container">
+      <h1 class="b-section-title">Form Examples</h1>
+      <p class="b-section-subtitle">Real-world patterns across industries. Each example shows the controls used, the schema structure, and the real-world outcome.</p>
+    </div>
+  </section>
+
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+
+      <!-- Example 1: Customer Onboarding -->
+      <div class="ex-section" id="onboarding">
+        <div class="ex-header">
+          <span class="ex-tag">SaaS · Multi-step · Validation</span>
+          <h2 style="font-size: clamp(1.4rem, 3vw, 1.8rem); font-weight: var(--b-font-weight-bold); color: var(--b-text-primary);">SaaS Customer Onboarding</h2>
+          <p style="color: var(--b-text-muted); margin-top: var(--b-space-2);">A multi-step wizard that collects account details, verifies email, and connects to the approval workflow — saving 6–8 weeks of development per release cycle.</p>
+        </div>
+
+        <div class="ex-controls">
+          <span class="ex-control">stepper</span>
+          <span class="ex-control">text</span>
+          <span class="ex-control">email</span>
+          <span class="ex-control">select</span>
+          <span class="ex-control">multiselect</span>
+          <span class="ex-control">checkbox</span>
+          <span class="ex-control">password</span>
+        </div>
+
+        <div class="ex-schema">// Step 1 of stepper — account details
+{
+  id: "step_1",
+  type: "stepper",
+  label: "Create Your Account",
+  settings: {
+    steps: [
+      { label: "Account", controlIds: ["email", "password", "company"] },
+      { label: "Profile", controlIds: ["first_name", "last_name", "role"] },
+      { label: "Plan", controlIds: ["plan_type", "interests"] }
+    ],
+    validateOnNext: true   // block advance if step invalid
+  }
+}</div>
+
+        <div class="ex-grid">
+          <div class="ex-detail">
+            <div class="ex-detail__label">Mode usage</div>
+            <div class="ex-detail__value">Users see the form in <code>edit</code> mode. After submission, the same schema renders in <code>view</code> mode for the approver — read-only, no code changes needed.</div>
+          </div>
+          <div class="ex-detail">
+            <div class="ex-detail__label">Validation</div>
+            <div class="ex-detail__value">Email uses built-in <code>email</code> validator. Password uses <code>pattern</code> validator for strength. An async custom validator checks email availability against the API.</div>
+          </div>
+          <div class="ex-detail">
+            <div class="ex-detail__label">Draft save</div>
+            <div class="ex-detail__value">The storage-js package auto-saves the draft after each step. If the user closes the browser and returns, their progress is restored from IndexedDB.</div>
+          </div>
+          <div class="ex-detail">
+            <div class="ex-detail__label">Workflow integration</div>
+            <div class="ex-detail__value">On submission, a Flow Engine workflow is triggered. The same form schema is used as the Form Trigger node in Flow — no duplication, single source of truth.</div>
+          </div>
+        </div>
+
+        <div class="ex-result">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <span><strong>Result:</strong> SaaS companies save 6–8 weeks of dev time per form release. 95% automation rate from form submission to account creation.</span>
+        </div>
+      </div>
+
+      <!-- Example 2: Financial Loan Application -->
+      <div class="ex-section" id="loan">
+        <div class="ex-header">
+          <span class="ex-tag">Financial Services · Compliance · Conditional Logic</span>
+          <h2 style="font-size: clamp(1.4rem, 3vw, 1.8rem); font-weight: var(--b-font-weight-bold); color: var(--b-text-primary);">Financial Loan Application</h2>
+          <p style="color: var(--b-text-muted); margin-top: var(--b-space-2);">A 100+ field loan application with conditional sections, compliance tracking, and full audit trail — reducing processing time from 4 weeks to 10 days.</p>
+        </div>
+
+        <div class="ex-controls">
+          <span class="ex-control">text</span>
+          <span class="ex-control">number</span>
+          <span class="ex-control">date</span>
+          <span class="ex-control">select</span>
+          <span class="ex-control">file-upload</span>
+          <span class="ex-control">accordion</span>
+          <span class="ex-control">checkbox</span>
+          <span class="ex-control">data-table</span>
+        </div>
+
+        <div class="ex-schema">// Conditional visibility — show co-applicant section only if toggled
+{
+  id: "co_applicant_section",
+  type: "accordion",
+  label: "Co-Applicant Details",
+  hidden: false,
+  settings: {
+    visibilityCondition: "values.has_co_applicant === true"
+  }
+},
+{
+  id: "has_co_applicant",
+  type: "switch",
+  label: "Include a co-applicant",
+  defaultValue: false,
+  order: 5
+}</div>
+
+        <div class="ex-grid">
+          <div class="ex-detail">
+            <div class="ex-detail__label">Conditional logic</div>
+            <div class="ex-detail__value">The co-applicant accordion is shown only when the switch is toggled. Conditions are schema-level expressions — no custom component code.</div>
+          </div>
+          <div class="ex-detail">
+            <div class="ex-detail__label">Compliance &amp; audit</div>
+            <div class="ex-detail__value">Every field change is logged with timestamp, user ID, and before/after value. The audit trail is stored in Data Ocean and satisfies KYC/AML requirements.</div>
+          </div>
+          <div class="ex-detail">
+            <div class="ex-detail__label">Admin mode</div>
+            <div class="ex-detail__value">Loan officers access the same form in <code>admin</code> mode, which shows additional fields (risk score, internal notes) hidden from applicants.</div>
+          </div>
+          <div class="ex-detail">
+            <div class="ex-detail__label">File upload</div>
+            <div class="ex-detail__value">The <code>file-upload</code> control handles income proof, ID documents, and bank statements with type validation and size limits configured in schema settings.</div>
+          </div>
+        </div>
+
+        <div class="ex-result">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <span><strong>Result:</strong> Processing time reduced from 4 weeks to 10 days. 100% audit compliance. Zero manual data re-entry errors.</span>
+        </div>
+      </div>
+
+      <!-- Example 3: Healthcare Patient Intake -->
+      <div class="ex-section" id="healthcare">
+        <div class="ex-header">
+          <span class="ex-tag">Healthcare · HIPAA · Real-time Validation</span>
+          <h2 style="font-size: clamp(1.4rem, 3vw, 1.8rem); font-weight: var(--b-font-weight-bold); color: var(--b-text-primary);">Healthcare Patient Intake</h2>
+          <p style="color: var(--b-text-muted); margin-top: var(--b-space-2);">Digital patient intake on tablets. Reduces 30-minute paper check-ins to 5 minutes with 99% complete data and zero transcription errors.</p>
+        </div>
+
+        <div class="ex-controls">
+          <span class="ex-control">text</span>
+          <span class="ex-control">date</span>
+          <span class="ex-control">select</span>
+          <span class="ex-control">radio</span>
+          <span class="ex-control">textarea</span>
+          <span class="ex-control">multiselect</span>
+          <span class="ex-control">signature (custom)</span>
+        </div>
+
+        <div class="ex-schema">// Custom control — digital signature
+{
+  id: "patient_signature",
+  type: "signature-pad",   // custom registered control
+  label: "Patient Signature",
+  required: true,
+  order: 20,
+  settings: {
+    penColor: "#000",
+    backgroundColor: "#fff",
+    outputFormat: "base64-png"
+  }
+}
+
+// Visibility: only show allergy details if allergies reported
+{
+  id: "allergy_details",
+  type: "textarea",
+  label: "Please describe your allergies",
+  settings: {
+    visibilityCondition: "values.has_allergies === 'yes'"
+  }
+}</div>
+
+        <div class="ex-grid">
+          <div class="ex-detail">
+            <div class="ex-detail__label">Custom control</div>
+            <div class="ex-detail__value">A signature pad control is registered via the plugin registry. It captures patient consent digitally and outputs base64 PNG — treated as a standard form value, stored and validated like any field.</div>
+          </div>
+          <div class="ex-detail">
+            <div class="ex-detail__label">HIPAA compliance</div>
+            <div class="ex-detail__value">Multi-tenant isolation ensures each patient's data is isolated. All data encrypted in transit. XSS prevention blocks injection attacks. Audit trail per field for regulatory review.</div>
+          </div>
+          <div class="ex-detail">
+            <div class="ex-detail__label">Preview mode</div>
+            <div class="ex-detail__value">Clinic administrators preview the form in <code>preview</code> mode with sample data before deploying to tablets — no live data required during setup.</div>
+          </div>
+          <div class="ex-detail">
+            <div class="ex-detail__label">Real-time validation</div>
+            <div class="ex-detail__value">Date of birth validated against minimum age rules via a custom validator. Insurance ID format validated with a regex pattern in schema. Errors shown inline without page refresh.</div>
+          </div>
+        </div>
+
+        <div class="ex-result">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <span><strong>Result:</strong> 5-minute check-in vs 30-minute paper process. 99% complete data on first submission. Zero transcription errors.</span>
+        </div>
+      </div>
+
+      <!-- Example 4: AI Form Generation -->
+      <div class="ex-section" id="ai">
+        <div class="ex-header">
+          <span class="ex-tag">AI Agent · Prompt to Schema · No-Code</span>
+          <h2 style="font-size: clamp(1.4rem, 3vw, 1.8rem); font-weight: var(--b-font-weight-bold); color: var(--b-text-primary);">AI-Generated Form from Prompt</h2>
+          <p style="color: var(--b-text-muted); margin-top: var(--b-space-2);">Describe a form in plain English. The AI agent generates a complete <code>FormSchema</code> JSON — controls, validation rules, layout, and section organisation — in seconds.</p>
+        </div>
+
+        <div class="ex-schema">// User prompt:
+// "Create a vendor onboarding form with company details,
+//  contact person, banking information, and tax ID.
+//  Banking section should be collapsible."
+
+// AI-generated schema (excerpt):
+{
+  controls: [
+    { id: "company_name", type: "text", label: "Company Name", required: true },
+    { id: "registration_number", type: "text", label: "Registration Number",
+      validation: { pattern: "^[A-Z0-9]{6,12}$" } },
+    { id: "contact_name", type: "text", label: "Primary Contact Name", required: true },
+    { id: "contact_email", type: "email", label: "Contact Email", required: true },
+    {
+      id: "banking_section",
+      type: "collapsible-panel",
+      label: "Banking Information",
+      settings: { defaultExpanded: false }
+    },
+    { id: "bank_name", type: "text", label: "Bank Name" },
+    { id: "account_number", type: "text", label: "Account Number",
+      settings: { mask: true } },
+    { id: "tax_id", type: "text", label: "Tax ID / EIN",
+      validation: { pattern: "^\\d{2}-\\d{7}$", message: "Enter Tax ID as XX-XXXXXXX" } }
+  ]
+}</div>
+
+        <div class="ex-grid">
+          <div class="ex-detail">
+            <div class="ex-detail__label">How it works</div>
+            <div class="ex-detail__value">The AI agent uses the full 89+ control type inventory and property definitions as context. It maps your natural language description to the correct control types, sets validation rules, and organises the layout.</div>
+          </div>
+          <div class="ex-detail">
+            <div class="ex-detail__label">Output</div>
+            <div class="ex-detail__value">The agent returns a valid <code>FormSchema</code> JSON that can be used directly with <code>FormRenderer</code> or imported into Atlas Form Studio for further editing. No manual schema writing needed.</div>
+          </div>
+          <div class="ex-detail">
+            <div class="ex-detail__label">Integration with Octopus</div>
+            <div class="ex-detail__value">The AI form generation capability uses the Octopus multi-agent engine with a custom LLM prompt template that includes the full control property inventory as context.</div>
+          </div>
+          <div class="ex-detail">
+            <div class="ex-detail__label">Editing after generation</div>
+            <div class="ex-detail__value">Generated schemas can be loaded into Atlas Form Studio for visual adjustment. Drag to reorder, double-click to reconfigure, or add controls from the palette — the JSON is the source of truth throughout.</div>
+          </div>
+        </div>
+
+        <div class="ex-result">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <span><strong>Result:</strong> Form schema generated in seconds from a one-paragraph description. Business users build forms without involving developers.</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="b-cta-section">
+    <div class="b-container">
+      <h2>Ready to build your forms?</h2>
+      <p>Follow the get-started guide or explore the architecture.</p>
+      <div class="b-btn-group">
+        <a href="./get-started.html" class="b-btn b-btn-primary b-btn-large">Get Started</a>
+        <a href="./architecture.html" class="b-btn b-btn-secondary b-btn-large">Architecture</a>
+      </div>
+    </div>
+  </section>
+
+  <footer id="atlas-footer"></footer>
+  <script src="./atlas-layout.js"></script>
+</body>
+</html>

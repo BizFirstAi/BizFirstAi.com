@@ -1,0 +1,645 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="https://bizfirstai.com/website/assets/Logo/logo-m.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BizFirst Observe Features — Logs, metrics, distributed traces, health checks, multi-tenancy, alerting, compliance, and product integrations.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="BizFirst Observe Features — Every observability signal your platform needs.">
+  <meta property="og:description" content="Structured logs via Grafana Loki, metrics via Prometheus, distributed traces via Grafana Tempo, health checks, multi-tenant enrichment, and alerting.">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BizFirst Observe Features">
+  <meta name="twitter:description" content="Every observability signal your platform needs — logs, metrics, traces, health checks, alerting, and compliance.">
+
+  <title>Features — BizFirst Observe by BizFirstAi</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://bizfirstai.com/website/assets/css/b-index.css">
+
+  <style>
+    body { overflow-x: hidden; }
+    .b-benefit-card { overflow: hidden; min-width: 0; }
+    .b-benefit-card p, .b-benefit-card li { overflow-wrap: break-word; word-break: break-word; }
+    .b-hero-section .b-container { display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .b-hero-section .b-hero-left { max-width: 780px; width: 100%; }
+    .b-hero-section .b-hero-ctas { justify-content: center; }
+    .b-hero-section .b-hero-subheading { max-width: 640px; margin-left: auto; margin-right: auto; }
+  </style>
+</head>
+<body>
+
+  <header id="header-container"></header>
+
+  <!-- ════════════════════════════════════════════════════════════
+       HERO
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-hero-section b-hero-bg" style="min-height:52vh;">
+    <div class="b-container">
+      <div class="b-hero-left">
+        <h1 class="b-hero-headline">Every observability signal your platform needs.</h1>
+        <p class="b-hero-subheading">Structured logs, time-series metrics, distributed traces, health checks, multi-tenant enrichment, and enterprise alerting — all in one platform.</p>
+        <div class="b-hero-ctas">
+          <a href="./docs.html" class="b-btn b-btn-primary b-btn-large">Read the Docs</a>
+          <a href="https://bizfirstai.com/website/contact.html" class="b-btn b-btn-secondary b-btn-large">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       STRUCTURED LOGS
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">Structured Logs via Grafana Loki</h2>
+      <p class="b-section-subtitle">Serilog-powered structured logging with multi-tier storage, automatic context enrichment, and LogQL querying.</p>
+
+      <div class="b-benefits-grid">
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="8" y1="6" x2="21" y2="6"></line>
+                <line x1="8" y1="12" x2="21" y2="12"></line>
+                <line x1="8" y1="18" x2="21" y2="18"></line>
+                <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                <line x1="3" y1="18" x2="3.01" y2="18"></line>
+              </svg>
+            </span>
+            Three-Tier Logging
+          </h3>
+          <p>L0 Console/File for local development. L1 Loki HTTP push for all environments — structured, queryable, retained. L2 SecurityAuditLog table for compliance — every ALLOW/DENY/ERROR RBAC decision persisted to SQL Server, indexed by TenantId and CreatedAt.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+              </svg>
+            </span>
+            Automatic Context Enrichment
+          </h3>
+          <p>Every log entry is automatically enriched with TenantId, ServerId, RequestId, and TraceId by TelemetryEnrichmentMiddleware — no manual instrumentation needed. Five log levels: Debug, Information, Warning, Error, Fatal.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </span>
+            LogQL Queries &amp; Retention
+          </h3>
+          <p>Query logs directly in Grafana using LogQL. Configurable retention: Development 3 days, Staging 7 days, Production 30 days. Example: <code>{tenant_id="acme"} |= "ERROR"</code> or <code>{service="payroll"} | json | level="Fatal"</code>.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       METRICS
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-section--default">
+    <div class="b-container">
+      <h2 class="b-section-title">Metrics via Prometheus</h2>
+      <p class="b-section-subtitle">50+ built-in metrics exposed at /metrics. Custom BizFirst metrics plus full ASP.NET Core auto-instrumentation. Scrape every 15 seconds.</p>
+
+      <div class="b-benefits-grid">
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="20" x2="18" y2="10"></line>
+                <line x1="12" y1="20" x2="12" y2="4"></line>
+                <line x1="6" y1="20" x2="6" y2="14"></line>
+              </svg>
+            </span>
+            50+ Built-In Metrics
+          </h3>
+          <p>Custom BizFirst metrics: <code>bizfirst_health_check_status</code> (gauge), <code>bizfirst_payroll_processed_total</code> (counter), <code>bizfirst_form_submission_duration_seconds</code> (histogram). ASP.NET Core auto-instrumented: <code>http_server_request_duration_seconds</code> P50/P95/P99, <code>http_server_active_requests</code>, <code>http_client_request_duration_seconds</code>. Metric naming convention: <code>{product}_{entity}_{operation}_{unit}</code>.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+              </svg>
+            </span>
+            Kafka Metrics
+          </h3>
+          <p>EdgeStream Kafka metrics built in: <code>edgestream_kafka_consumer_lag_messages</code>, <code>edgestream_kafka_consume_errors_total</code>, and <code>edgestream_kafka_messages_produced_total</code>. All labelled by topic, partition, and consumer_group for granular PromQL filtering.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <path d="M3 9h18"></path>
+                <path d="M9 21V9"></path>
+              </svg>
+            </span>
+            Dashboard Creation
+          </h3>
+          <p>Build Grafana dashboards in minutes with PromQL. Request rate: <code>rate(http_server_request_duration_seconds_count[5m])</code>. P99 latency: <code>histogram_quantile(0.99, ...)</code>. Error rate: <code>rate(http_server_request_duration_seconds_count{status=~"5.."}[5m])</code>. Health status: <code>bizfirst_health_check_status{component="kafka"}</code>.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       DISTRIBUTED TRACES
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">Distributed Traces via Grafana Tempo</h2>
+      <p class="b-section-subtitle">Full-chain tracing via OTLP gRPC with adaptive sampling, automatic service dependency graphs, and TraceQL querying.</p>
+
+      <div class="b-benefits-grid">
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+              </svg>
+            </span>
+            Full-Chain Tracing
+          </h3>
+          <p>Traces span the full request path: HTTP request &rarr; service layer &rarr; database queries &rarr; Kafka &rarr; SignalR. Service dependency graph auto-built from span relationships. TraceId is automatically correlated to Loki logs for one-click log navigation from any trace.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </span>
+            Adaptive Sampling
+          </h3>
+          <p>Environment-aware sampling rates: 100% in development, 10% in staging, 1% in production. Always-sample-errors policy ensures no error trace is ever dropped regardless of environment. Configurable via appsettings.json without code changes.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </span>
+            TraceQL Queries
+          </h3>
+          <p>Query traces in Grafana with TraceQL. Slow traces: <code>{duration &gt; 2s}</code>. Error traces: <code>{status=error}</code>. Tenant-specific: <code>{.tenant_id="acme"}</code>. Database query spans: <code>{span.db.system="mssql" &amp;&amp; duration &gt; 500ms}</code>.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       HEALTH CHECKS
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-section--default">
+    <div class="b-container">
+      <h2 class="b-section-title">Health Checks &amp; Readiness</h2>
+      <p class="b-section-subtitle">Live component status with Kubernetes-compatible probes and automatic Prometheus publication.</p>
+
+      <div class="b-benefits-grid">
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </span>
+            6 Component Checks
+          </h3>
+          <p>Checks cover all critical dependencies: Kafka, Redis, SQL Server, Loki, Tempo, and Grafana. Each check reports Healthy, Degraded, or Unhealthy status. GET /health returns the full status report with detail per component.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                <line x1="6" y1="18" x2="6.01" y2="18"></line>
+              </svg>
+            </span>
+            Kubernetes Probes
+          </h3>
+          <p>GET /health/live for liveness probe — returns 200 when the process is alive. GET /health/ready for readiness probe — returns 200 only when all critical dependencies are Healthy. Drop-in compatible with Kubernetes liveness and readiness probe configuration.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"></path>
+              </svg>
+            </span>
+            Prometheus Integration
+          </h3>
+          <p>Health check results published automatically as the <code>bizfirst_health_check_status</code> gauge: 2 = Healthy, 1 = Degraded, 0 = Unhealthy. Alert on <code>bizfirst_health_check_status == 0</code> to trigger ComponentDown alerting rules.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       MULTI-TENANCY
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">Multi-Tenant Observability</h2>
+      <p class="b-section-subtitle">Every signal — every log, metric, and trace — automatically carries tenant context. Per-tenant dashboards out of the box.</p>
+
+      <div class="b-benefits-grid">
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </span>
+            Automatic Enrichment
+          </h3>
+          <p>TelemetryEnrichmentMiddleware intercepts every request and adds TenantId and ServerId to every log entry, metric label, and trace span — automatically, with no per-service instrumentation required. All custom metrics must include a tenant_id label to enforce per-tenant isolation.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <path d="M3 9h18"></path>
+                <path d="M9 21V9"></path>
+              </svg>
+            </span>
+            Per-Tenant Dashboards
+          </h3>
+          <p>Grafana dashboards use the <code>$TenantId</code> template variable to filter all panels to a single tenant. Per-tenant PromQL: <code>rate(http_server_request_duration_seconds_count{tenant_id="$TenantId"}[5m])</code>. Per-tenant LogQL: <code>{tenant_id="$TenantId"} |= "ERROR"</code>.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </span>
+            Tenant Isolation Audit
+          </h3>
+          <p>Compliance checklist enforced by the platform: every log entry includes TenantId, every metric includes tenant_id label, every trace span includes tenant_id attribute, every database query is tenant-scoped. SecurityAuditLog indexed by (TenantId, CreatedAt) for sub-second compliance queries.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECURITY & COMPLIANCE
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-section--default">
+    <div class="b-container">
+      <h2 class="b-section-title">Security &amp; Compliance Logging</h2>
+      <p class="b-section-subtitle">A complete RBAC decision trail, GDPR-ready data handling, and configurable compliance event tracking.</p>
+
+      <div class="b-benefits-grid">
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+              </svg>
+            </span>
+            SecurityAuditLog
+          </h3>
+          <p>Every RBAC decision is recorded in the SecurityAuditLog table: EventType (ALLOW/DENY/ERROR), PolicyId, PrivilegeKey, PrincipalId, ResourceNodeId, ActionType, Reason, and TenantId. Full audit trail for every authorisation decision across the platform.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+            </span>
+            GDPR Compliance
+          </h3>
+          <p>User IDs are hashed before logging — no PII ever reaches Loki or Tempo. Configurable TTL retention per environment. Structured log fields are schema-validated to prevent accidental PII leakage. Data residency guaranteed — all storage runs in your own infrastructure.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </span>
+            Compliance Event Tracking
+          </h3>
+          <p>Five compliance event categories automatically tracked: authentication events (login/logout/failed), data access (reads of sensitive resources), data modifications (creates/updates/deletes), authorisation changes (privilege grants/revocations), and admin actions (tenant config, user management).</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       ALERTING
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">Alerting &amp; Incident Response</h2>
+      <p class="b-section-subtitle">Pre-built alert rules, intelligent routing, and a structured escalation policy — from first alert to war room in 30 minutes.</p>
+
+      <div class="b-benefits-grid">
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+              </svg>
+            </span>
+            Pre-Built Alert Rules
+          </h3>
+          <p>Four production-ready rules included: HighErrorRate (&gt;5% 5xx for 5 minutes), HighLatency (P95 &gt; 1 second for 10 minutes), HighKafkaLag (&gt;10,000 messages for 5 minutes), ComponentDown (health check == 0 for 2 minutes). All configurable via AlertManager.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+              </svg>
+            </span>
+            Alert Routing
+          </h3>
+          <p>Critical severity routes to PagerDuty immediately. Warning severity routes to Slack. Alert grouping and inhibition rules configured in AlertManager. Routing is environment-aware — production critical alerts escalate faster than staging warnings.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </span>
+            Escalation Policy
+          </h3>
+          <p>Structured 30-minute escalation ladder: 5 minutes — log alert and notify on-call. 15 minutes — page via PagerDuty. 20 minutes — escalate to engineering manager. 30 minutes — open a war room with all stakeholders. All timings configurable per alert rule.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       PRODUCT INTEGRATIONS
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-section--default">
+    <div class="b-container">
+      <h2 class="b-section-title">Product Integrations</h2>
+      <p class="b-section-subtitle">Deep observability built into every BizFirstAi product — not bolted on after the fact.</p>
+
+      <div class="b-benefits-grid">
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="9" y1="9" x2="15" y2="9"></line>
+                <line x1="9" y1="12" x2="15" y2="12"></line>
+                <line x1="9" y1="15" x2="13" y2="15"></line>
+              </svg>
+            </span>
+            FormMaker
+          </h3>
+          <p>Form validation counters and submission duration histograms. Track submission rates, validation failure rates, and end-to-end form processing latency per tenant and per form definition.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+              </svg>
+            </span>
+            EdgeStream
+          </h3>
+          <p>Kafka consumer lag metrics and SignalR connected client count gauge. Monitor real-time event processing health, detect consumer stalls before they become incidents, and track active client connections per hub.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"></path>
+              </svg>
+            </span>
+            ExecutorNodes
+          </h3>
+          <p>Individual node execution tracing via <code>node.execute</code> spans. Success and failure counters per node type. Trace the full execution lifecycle of every automation node, including duration histograms and error breakdowns by node category.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 20V10"></path>
+                <path d="M12 20V4"></path>
+                <path d="M6 20v-6"></path>
+              </svg>
+            </span>
+            ProcessEngine
+          </h3>
+          <p>Workflow execution tracing with parent/child span hierarchy: <code>workflow.execute</code> spans contain <code>node.execute</code> child spans for every node in the workflow. Visualise the complete execution graph of any workflow run in Grafana Tempo.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="5" r="3"></circle>
+                <circle cx="5" cy="19" r="3"></circle>
+                <circle cx="19" cy="19" r="3"></circle>
+                <line x1="12" y1="8" x2="5" y2="16"></line>
+                <line x1="12" y1="8" x2="19" y2="16"></line>
+              </svg>
+            </span>
+            Octopus
+          </h3>
+          <p>Agent function execution spans covering every tool call and LLM invocation. Token usage metrics — input and output tokens per tenant — for cost attribution. Full trace from agent request to response, including any sub-agent delegations.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       COMPETITIVE ADVANTAGES
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-section--alt">
+    <div class="b-container">
+      <h2 class="b-section-title">Competitive Advantages</h2>
+      <p class="b-section-subtitle">Open standards, open-source, and your data in your infrastructure. A different approach from the big vendors.</p>
+
+      <div class="b-benefits-grid">
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="1" x2="12" y2="23"></line>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+              </svg>
+            </span>
+            vs Datadog
+          </h3>
+          <p>BizFirst Observe is free open-source — $0 vs Datadog's $0.50+/GB ingestion pricing. No vendor lock-in: switch or add backends without re-instrumenting. On-prem capable — your data never leaves your infrastructure. Datadog requires sending all telemetry to their cloud.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </span>
+            vs New Relic
+          </h3>
+          <p>OpenTelemetry SDK is lightweight — no heavy APM agent to deploy and maintain. Standard OpenTelemetry protocols mean your instrumentation works with any OTLP-compatible backend. Flexible sampling configured in code, not locked to New Relic's proprietary sampling policies.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 11 12 14 22 4"></polyline>
+                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+              </svg>
+            </span>
+            vs Splunk
+          </h3>
+          <p>Standard LogQL and TraceQL — not Splunk's proprietary SPL. Engineers already know these query languages from the broader Grafana ecosystem. Implementation takes days, not weeks. No expensive Splunk licensing or infrastructure to maintain.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       ROADMAP
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-section--default">
+    <div class="b-container">
+      <h2 class="b-section-title">Roadmap</h2>
+      <p class="b-section-subtitle">Where BizFirst Observe is going — from adaptive sampling to Observability Hub.</p>
+
+      <div class="b-benefits-grid">
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+            </span>
+            Q2 2026
+          </h3>
+          <p>Adaptive trace sampling (head-based decisions before span creation). Slack and Microsoft Teams native alert templates. Pre-built dashboard library with 10+ ready-to-use dashboards for all BizFirstAi products. Multi-tenant comparison views for SaaS operators.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </span>
+            Q3–Q4 2026
+          </h3>
+          <p>Istio service mesh integration for network-level observability. eBPF kernel-level tracing without SDK changes. ML-based anomaly detection for automatic baseline learning and alert suppression during known maintenance windows. Observability as Code — define dashboards and alerts in YAML/HCL.</p>
+        </div>
+
+        <div class="b-benefit-card">
+          <h3>
+            <span class="b-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+            </span>
+            2027+
+          </h3>
+          <p>Observability Hub for all 10 BizFirstAi products — one pane of glass across the entire platform. Automatic HIPAA and SOC2 compliance reporting generated from existing audit logs. Cost optimization engine with per-tenant cost attribution. Observability marketplace for community dashboards and alert templates.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       FINAL CTA
+       ════════════════════════════════════════════════════════════ -->
+  <section class="b-section b-cta-section">
+    <div class="b-container">
+      <h2>Start observing.</h2>
+      <p>Three lines of C#. Full-stack observability. Production-verified.</p>
+      <div class="b-btn-group">
+        <a href="./docs.html" class="b-btn b-btn-primary b-btn-large">Read the Docs</a>
+        <a href="https://community.bizfirstai.com/c/observe" class="b-btn b-btn-secondary b-btn-large" target="_blank" rel="noopener">Join the Community</a>
+      </div>
+    </div>
+  </section>
+
+  <footer id="footer-container"></footer>
+
+  <script src="./shared-layout.js"></script>
+</body>
+</html>
