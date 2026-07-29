@@ -354,7 +354,6 @@ const SHARED_FOOTER = `
     <ul>
       <li><a href="./about.html">About Us</a></li>
       <li><a href="./contact.html">Contact</a></li>
-      <li><a href="https://blog.bizFirstAi.com" target="_blank" rel="noopener">Blog</a></li>
     </ul>
   </div>
 
