@@ -14,6 +14,7 @@
     --live: #3fb950;
     --pending: #d29922;
     --dead: #f85149;
+    --misrouted: #bc8cff;
     --accent: #58a6ff;
   }
   * { box-sizing: border-box; }
@@ -40,6 +41,7 @@
   .dot.live { background: var(--live); }
   .dot.pending { background: var(--pending); }
   .dot.dead { background: var(--dead); }
+  .dot.misrouted { background: var(--misrouted); }
 
   .grid {
     display: grid;
@@ -151,8 +153,9 @@
     <p>Internal testing view — one panel per subdomain, loaded lazily as iframes.</p>
   </div>
   <div class="legend">
-    <span><span class="dot live"></span>Live (confirmed 200)</span>
+    <span><span class="dot live"></span>Live (confirmed 200, served by GitHub)</span>
     <span><span class="dot pending"></span>Propagating</span>
+    <span><span class="dot misrouted"></span>Misrouted (200 but not GitHub)</span>
     <span><span class="dot dead"></span>Not actionable yet</span>
   </div>
 </header>
@@ -173,30 +176,52 @@
 <div class="grid" id="grid-pending"></div>
 
 <section class="group">
+  <h2>Misrouted (200, but not served by GitHub)</h2>
+</section>
+<div class="grid" id="grid-misrouted"></div>
+
+<section class="group">
   <h2>Not actionable yet</h2>
 </section>
 <div class="grid" id="grid-dead"></div>
 
 <script>
   const SITES = [
-    { name: "ancp",          url: "https://ancp.bizfirstai.com",          status: "live" },
-    { name: "Community",     url: "https://community.bizfirstai.com",     status: "live" },
-    { name: "AtlasForms",    url: "https://atlasforms.bizfirstai.com",    status: "live" },
-    { name: "Observe",       url: "https://observe.bizfirstai.com",       status: "live" },
-    { name: "Passport",      url: "https://passport.bizfirstai.com",      status: "live" },
-    { name: "MarketHub",     url: "https://markethub.bizfirstai.com",     status: "live" },
-    { name: "InstallHub",    url: "https://installhub.bizfirstai.com",    status: "live" },
-    { name: "EdgeStream",    url: "https://edgestream.bizfirstai.com",    status: "live" },
-    { name: "EdgeInteract",  url: "https://edgeinteract.bizfirstai.com",  status: "live" },
-    { name: "OperateAgents", url: "https://operateagents.bizfirstai.com", status: "live" },
-    { name: "DataOcean",     url: "https://dataocean.bizfirstai.com",     status: "live" },
-    { name: "Octopus",       url: "https://octopus.bizfirstai.com",       status: "pending" },
-    { name: "OperateAI",     url: "https://operateai.bizfirstai.com",     status: "pending" },
-    { name: "Flow",          url: "https://flow.bizfirstai.com",          status: "dead" },
-    { name: "Forms",         url: "https://forms.bizfirstai.com",         status: "dead" },
+    { name: "ancp",              url: "https://ancp.bizfirstai.com",              status: "live" },
+    { name: "Community",         url: "https://community.bizfirstai.com",         status: "live" },
+    { name: "AtlasForms",        url: "https://atlasforms.bizfirstai.com",        status: "live" },
+    { name: "Observe",           url: "https://observe.bizfirstai.com",           status: "live" },
+    { name: "Passport",          url: "https://passport.bizfirstai.com",          status: "live" },
+    { name: "MarketHub",         url: "https://markethub.bizfirstai.com",         status: "live" },
+    { name: "InstallHub",        url: "https://installhub.bizfirstai.com",        status: "live" },
+    { name: "EdgeStream",        url: "https://edgestream.bizfirstai.com",        status: "live" },
+    { name: "EdgeInteract",      url: "https://edgeinteract.bizfirstai.com",      status: "live" },
+    { name: "OperateAgents",     url: "https://operateagents.bizfirstai.com",     status: "live" },
+    { name: "DataOcean",         url: "https://dataocean.bizfirstai.com",         status: "live" },
+    { name: "Octopus",           url: "https://octopus.bizfirstai.com",           status: "live" },
+    { name: "OperateAI",         url: "https://operateai.bizfirstai.com",         status: "live" },
+    { name: "Flow",              url: "https://flow.bizfirstai.com",              status: "live" },
+    { name: "AccumulatePlatform",url: "https://accumulateplatform.bizfirstai.com",status: "live" },
+    { name: "EthereumAgents",    url: "https://ethereum.bizfirstai.com",          status: "live" },
+    { name: "SlackAgents",       url: "https://slack.bizfirstai.com",             status: "live" },
+    { name: "FaceBookAgents",    url: "https://facebook.bizfirstai.com",          status: "live" },
+    { name: "WhatsappAgents",    url: "https://whatsapp.bizfirstai.com",          status: "live" },
+    { name: "CertenAgents",      url: "https://certen.bizfirstai.com",            status: "live" },
+    { name: "CentrifugeAgents",  url: "https://centrifuge.bizfirstai.com",        status: "live" },
+    { name: "CircleAgents",      url: "https://circle.bizfirstai.com",            status: "live" },
+    { name: "OndoAgents",        url: "https://ondo.bizfirstai.com",              status: "live" },
+    { name: "HederaAgents",      url: "https://hedera.bizfirstai.com",            status: "live" },
+    { name: "Forms",             url: "https://forms.bizfirstai.com",             status: "dead" },
+    { name: "CoinbaseAgents",    url: "https://coinbase.bizfirstai.com",          status: "dead" },
+    { name: "BinanceAgents",     url: "https://binance.bizfirstai.com",           status: "dead" },
+    { name: "BitcoinAgents",     url: "https://bitcoin.bizfirstai.com",           status: "dead" },
+    { name: "ChainLinkAgents",   url: "https://chainlink.bizfirstai.com",         status: "dead" },
+    { name: "HashiCorpAgents",   url: "https://hashicorp.bizfirstai.com",         status: "dead" },
+    { name: "IpfsAgents",        url: "https://ipfs.bizfirstai.com",              status: "dead" },
+    { name: "SolanaAgents",      url: "https://solana.bizfirstai.com",            status: "dead" },
   ];
 
-  const grids = { live: document.getElementById("grid-live"), pending: document.getElementById("grid-pending"), dead: document.getElementById("grid-dead") };
+  const grids = { live: document.getElementById("grid-live"), pending: document.getElementById("grid-pending"), misrouted: document.getElementById("grid-misrouted"), dead: document.getElementById("grid-dead") };
 
   SITES.forEach((site, i) => {
     const panel = document.createElement("div");
