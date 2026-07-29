@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BizFirstAi — Domain Check Dashboard</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --text-muted: #8b949e;
+    --live: #3fb950;
+    --pending: #d29922;
+    --dead: #f85149;
+    --accent: #58a6ff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  header {
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  header h1 { font-size: 18px; margin: 0; }
+  header p { margin: 4px 0 0; color: var(--text-muted); font-size: 13px; }
+  .legend { display: flex; gap: 16px; font-size: 12px; color: var(--text-muted); }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+  .dot.live { background: var(--live); }
+  .dot.pending { background: var(--pending); }
+  .dot.dead { background: var(--dead); }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 16px;
+    padding: 16px;
+  }
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    gap: 8px;
+  }
+  .panel-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    min-width: 0;
+  }
+  .panel-title .dot { flex-shrink: 0; }
+  .panel-title .url { color: var(--text-muted); font-weight: 400; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .panel-actions { display: flex; gap: 6px; flex-shrink: 0; }
+  .panel-actions button, .panel-actions a {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 11px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .panel-actions button:hover, .panel-actions a:hover { color: var(--text); border-color: var(--accent); }
+  .panel iframe {
+    width: 100%;
+    height: 360px;
+    border: none;
+    background: #fff;
+    display: block;
+  }
+  .panel.not-loaded iframe { display: none; }
+  .placeholder {
+    height: 360px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 12px;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .panel.not-loaded .placeholder { display: flex; }
+  .panel:not(.not-loaded) .placeholder { display: none; }
+  .placeholder button {
+    background: var(--accent);
+    color: #0d1117;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .toolbar {
+    padding: 0 16px 8px;
+    display: flex;
+    gap: 10px;
+  }
+  .toolbar button {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  .toolbar button:hover { border-color: var(--accent); }
+
+  section.group { padding: 0 16px; }
+  section.group h2 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    margin: 20px 0 0;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>BizFirstAi — Domain Check Dashboard</h1>
+    <p>Internal testing view — one panel per subdomain, loaded lazily as iframes.</p>
+  </div>
+  <div class="legend">
+    <span><span class="dot live"></span>Live (confirmed 200)</span>
+    <span><span class="dot pending"></span>Propagating</span>
+    <span><span class="dot dead"></span>Not actionable yet</span>
+  </div>
+</header>
+
+<div class="toolbar">
+  <button onclick="loadAll()">Load All</button>
+  <button onclick="unloadAll()">Unload All</button>
+</div>
+
+<section class="group">
+  <h2>Live</h2>
+</section>
+<div class="grid" id="grid-live"></div>
+
+<section class="group">
+  <h2>Propagating</h2>
+</section>
+<div class="grid" id="grid-pending"></div>
+
+<section class="group">
+  <h2>Not actionable yet</h2>
+</section>
+<div class="grid" id="grid-dead"></div>
+
+<script>
+  const SITES = [
+    { name: "ancp",          url: "https://ancp.bizfirstai.com",          status: "live" },
+    { name: "Community",     url: "https://community.bizfirstai.com",     status: "live" },
+    { name: "AtlasForms",    url: "https://atlasforms.bizfirstai.com",    status: "live" },
+    { name: "Observe",       url: "https://observe.bizfirstai.com",       status: "live" },
+    { name: "Passport",      url: "https://passport.bizfirstai.com",      status: "live" },
+    { name: "MarketHub",     url: "https://markethub.bizfirstai.com",     status: "live" },
+    { name: "InstallHub",    url: "https://installhub.bizfirstai.com",    status: "live" },
+    { name: "EdgeStream",    url: "https://edgestream.bizfirstai.com",    status: "live" },
+    { name: "EdgeInteract",  url: "https://edgeinteract.bizfirstai.com",  status: "live" },
+    { name: "OperateAgents", url: "https://operateagents.bizfirstai.com", status: "live" },
+    { name: "DataOcean",     url: "https://dataocean.bizfirstai.com",     status: "live" },
+    { name: "Octopus",       url: "https://octopus.bizfirstai.com",       status: "pending" },
+    { name: "OperateAI",     url: "https://operateai.bizfirstai.com",     status: "pending" },
+    { name: "Flow",          url: "https://flow.bizfirstai.com",          status: "dead" },
+    { name: "Forms",         url: "https://forms.bizfirstai.com",         status: "dead" },
+  ];
+
+  const grids = { live: document.getElementById("grid-live"), pending: document.getElementById("grid-pending"), dead: document.getElementById("grid-dead") };
+
+  SITES.forEach((site, i) => {
+    const panel = document.createElement("div");
+    panel.className = "panel not-loaded";
+    panel.id = "panel-" + i;
+    panel.innerHTML = `
+      <div class="panel-header">
+        <div class="panel-title">
+          <span class="dot ${site.status}"></span>
+          <span>${site.name}</span>
+          <span class="url">${site.url.replace('https://','')}</span>
+        </div>
+        <div class="panel-actions">
+          <button onclick="toggle(${i})">Load</button>
+          <a href="${site.url}" target="_blank" rel="noopener">Open ↗</a>
+        </div>
+      </div>
+      <div class="placeholder"><span>Not loaded</span><button onclick="toggle(${i})">Load iframe</button></div>
+      <iframe data-src="${site.url}" title="${site.name}"></iframe>
+    `;
+    grids[site.status].appendChild(panel);
+  });
+
+  function toggle(i) {
+    const panel = document.getElementById("panel-" + i);
+    const iframe = panel.querySelector("iframe");
+    const loadBtns = panel.querySelectorAll("button");
+    if (panel.classList.contains("not-loaded")) {
+      if (!iframe.src) iframe.src = iframe.getAttribute("data-src");
+      panel.classList.remove("not-loaded");
+      loadBtns.forEach(b => { if (b.textContent.includes("Load")) b.textContent = "Unload"; });
+    } else {
+      iframe.src = "about:blank";
+      panel.classList.add("not-loaded");
+      loadBtns.forEach(b => { if (b.textContent.includes("Unload")) b.textContent = "Load"; });
+    }
+  }
+
+  function loadAll() {
+    SITES.forEach((_, i) => {
+      const panel = document.getElementById("panel-" + i);
+      if (panel.classList.contains("not-loaded")) toggle(i);
+    });
+  }
+  function unloadAll() {
+    SITES.forEach((_, i) => {
+      const panel = document.getElementById("panel-" + i);
+      if (!panel.classList.contains("not-loaded")) toggle(i);
+    });
+  }
+</script>
+
+</body>
+</html>
